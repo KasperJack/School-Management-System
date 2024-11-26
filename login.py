@@ -53,12 +53,15 @@ class Login(QMainWindow):
             user_type = result[4]  # Assuming type is the 4th column in the result (index 3)
 
             # Combine the login logic with the status and user type checks
-            if status == 'active' and (user_type == 'admin' or user_type == 'superadmin'):
+            if status == 'active' and (user_type == 'superadmin'):
                 # If the user is active and of the correct type, show success message
-                QMessageBox.information(self, "Login Successful", f"Welcome, {result[1]}!")
+                QMessageBox.information(self, "Login Successful As sudo", f"Welcome, {result[1]}!")
+            elif status == 'active' and (user_type == 'admin'):
+                QMessageBox.information(self, "Login Successful as Admin", f"Welcome, {result[1]}!")
+
             else:
                 # If the status is not 'active' or the type is not 'admin' or 'superadmin'
-                QMessageBox.critical(self, "Login Failed", "Your account is either inactive or does not have the correct permissions.")
+                QMessageBox.critical(self, "Login Failed", "Your account is inactive .")
         else:
             # If credentials are invalid, display error message
             QMessageBox.critical(self, "Login Failed", "Invalid email or password. Please try again.")
