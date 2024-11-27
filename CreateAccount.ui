@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(222, 221, 218);
+color: rgb(0, 0, 0);</string>
+  </property>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>

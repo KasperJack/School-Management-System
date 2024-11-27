@@ -103,8 +103,6 @@ class Login(QMainWindow):
 # Entry point of the program
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-
     window = Login()  # Create an instance of the Login class
     window.show()  # Show the window
 

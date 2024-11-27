@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
+from PyQt6.QtCore import Qt
 import sqlite3
 
 
@@ -12,6 +13,10 @@ class CreateAccountDialog(QDialog):
         self.setWindowTitle("Create Account")
 
         self.create_account_button.clicked.connect(self.create_account)
+
+
+
+
 
     
     
