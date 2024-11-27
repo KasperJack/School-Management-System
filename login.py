@@ -2,19 +2,40 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
 import sqlite3
+from CreateAccount import CreateAccountDialog
 
 
 
 class Login(QMainWindow):  
     def __init__(self):
         super().__init__()
-        uic.loadUi('login.ui', self)  # Load the .ui file
+        uic.loadUi('login2.ui', self)  # Load the .ui file
 
         self.setWindowTitle("Login")
 
         # Connect the login button to the login method
         self.login_button.clicked.connect(self.authenticate_user)
-        self.view_password.clicked.connect(self.toggle_password_visibility)
+        #self.view_password.clicked.connect(self.toggle_password_visibility)
+        self.create_account_button.clicked.connect(self.create_account)
+        self.forget_password_button.clicked.connect(self.forget_password)
+
+
+
+
+
+
+
+    def forget_password(self):
+        pass
+
+
+
+    def create_account(self):
+        # Create an instance of the CreateAccountDialog
+        create_account_dialog = CreateAccountDialog(self)  # Pass self as parent
+        create_account_dialog.exec()  # Open the dialog modally
+
+
 
 
 
@@ -30,7 +51,7 @@ class Login(QMainWindow):
 
     def authenticate_user(self):
         # Connect to the database ##################
-        self.db_connection = sqlite3.connect('users.db')
+        self.db_connection = sqlite3.connect('school.db')
         self.cursor = self.db_connection.cursor()
 
         # Get email and password from input fields
@@ -79,10 +100,10 @@ class Login(QMainWindow):
 
 
 
-
 # Entry point of the program
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
 
     window = Login()  # Create an instance of the Login class
     window.show()  # Show the window

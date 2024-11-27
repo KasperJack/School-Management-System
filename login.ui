@@ -195,25 +195,6 @@ padding: 4px;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>440</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(28, 113, 216)</string>
-    </property>
-    <property name="text">
-     <string>Forget Password ? </string>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="login_button">
     <property name="geometry">
      <rect>
@@ -301,15 +282,34 @@ padding: 4px;
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="forget_password_button">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>450</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(28, 113, 216)</string>
+    </property>
+    <property name="text">
+     <string>Forget Password ? </string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>email_field</zorder>
    <zorder>password_field</zorder>
    <zorder>create_account_button</zorder>
-   <zorder>pushButton_3</zorder>
    <zorder>login_button</zorder>
    <zorder>label</zorder>
    <zorder>view_password</zorder>
+   <zorder>forget_password_button</zorder>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
