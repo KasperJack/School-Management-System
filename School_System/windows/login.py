@@ -1,21 +1,23 @@
 import sys
+import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
 import sqlite3
-from CreateAccount import CreateAccountDialog
-
+from School_System.windows.CreateAccount import CreateAccountDialog
+from School_System.windows.indexSU import indexSU
+from School_System.db.dbio import connect
 
 
 class Login(QMainWindow):  
     def __init__(self):
         super().__init__()
-        uic.loadUi('login2.ui', self)  # Load the .ui file
+        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'login.ui')
+        uic.loadUi(ui_path, self)
 
         self.setWindowTitle("Login")
 
-        # Connect the login button to the login method
         self.login_button.clicked.connect(self.authenticate_user)
-        #self.view_password.clicked.connect(self.toggle_password_visibility)
+
         self.create_account_button.clicked.connect(self.create_account)
         self.forget_password_button.clicked.connect(self.forget_password)
 
@@ -51,7 +53,8 @@ class Login(QMainWindow):
 
     def authenticate_user(self):
         # Connect to the database ##################
-        self.db_connection = sqlite3.connect('school.db')
+        db = connect()
+        self.db_connection = sqlite3.connect(db)
         self.cursor = self.db_connection.cursor()
 
         # Get email and password from input fields
@@ -70,15 +73,26 @@ class Login(QMainWindow):
 
         if result:
             # Check if the user is active and has the correct type (admin or superadmin)
-            status = result[5]  # Assuming status is the 5th column in the result (index 4)
-            user_type = result[4]  # Assuming type is the 4th column in the result (index 3)
+            status = result[5]  
+            user_type = result[4]  
+            #print(status)
+            #print(user_type)
 
             # Combine the login logic with the status and user type checks
             if status == 'active' and (user_type == 'superadmin'):
                 # If the user is active and of the correct type, show success message
-                QMessageBox.information(self, "Login Successful As sudo", f"Welcome, {result[1]}!")
+                QMessageBox.information(self, "As sudo", f"Welcome, {result[1]}!")
+                # Load the Index window
+                self.index_window = indexSU()  # Initialize the main window
+                self.index_window.show()    # Show the main window
+                self.close() 
+
+
+
+
+
             elif status == 'active' and (user_type == 'admin'):
-                QMessageBox.information(self, "Login Successful as Admin", f"Welcome, {result[1]}!")
+                QMessageBox.information(self, "as Admin", f"Welcome, {result[1]}!")
 
             else:
                 # If the status is not 'active' or the type is not 'admin' or 'superadmin'
@@ -96,14 +110,3 @@ class Login(QMainWindow):
 
 
 
-
-
-
-
-# Entry point of the program
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = Login()  # Create an instance of the Login class
-    window.show()  # Show the window
-
-    sys.exit(app.exec())  # Execute the application

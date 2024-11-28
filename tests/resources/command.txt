@@ -1,0 +1,1 @@
+pyside6-rcc rec.qrc -o rec_rc.py
