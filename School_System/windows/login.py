@@ -20,6 +20,7 @@ class Login(QMainWindow):
 
         self.create_account_button.clicked.connect(self.create_account)
         self.forget_password_button.clicked.connect(self.forget_password)
+        self.view_password_button.clicked.connect(self.toggle_password_visibility)
 
 
 
@@ -36,6 +37,7 @@ class Login(QMainWindow):
         # Create an instance of the CreateAccountDialog
         create_account_dialog = CreateAccountDialog(self)  # Pass self as parent
         create_account_dialog.exec()  # Open the dialog modally
+
 
 
 
