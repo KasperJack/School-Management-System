@@ -1,28 +1,35 @@
 import sys
+import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
 import sqlite3
-from CreateAccount import CreateAccountDialog
-from index import index
+
+from School_System.windows.CreateAccount import CreateAccountDialog
+from School_System.windows.indexSU import indexSU
+from School_System.db.dbio import connect
+from School_System.helpers.db_utils import *
 
 
 
 class Login(QMainWindow):  
     def __init__(self):
         super().__init__()
-        uic.loadUi('login2.ui', self)  # Load the .ui file
+        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'login.ui')
+        uic.loadUi(ui_path, self)
 
         self.setWindowTitle("Login")
-
-        # Connect the login button to the login method
-        self.login_button.clicked.connect(self.authenticate_user)
-        #self.view_password.clicked.connect(self.toggle_password_visibility)
+        self.login_button.clicked.connect(self.authenticate_user2)
         self.create_account_button.clicked.connect(self.create_account)
         self.forget_password_button.clicked.connect(self.forget_password)
+        self.view_password_button.clicked.connect(self.toggle_password_visibility)
+        self.remember_me_button.toggled.connect(self.remember_me)
 
 
-
-
+    def remember_me(self, checked):
+        if checked:
+            self.email_field.setText("Button is checked")
+        else:
+            self.email_field.setText("Button is unchecked")
 
 
 
@@ -40,6 +47,7 @@ class Login(QMainWindow):
 
 
 
+
     def toggle_password_visibility(self):
         # Toggle the echoMode of the password field
         if self.password_field.echoMode() == QLineEdit.EchoMode.Password:
@@ -52,7 +60,8 @@ class Login(QMainWindow):
 
     def authenticate_user(self):
         # Connect to the database ##################
-        self.db_connection = sqlite3.connect('school.db')
+        db = connect()
+        self.db_connection = sqlite3.connect(db)
         self.cursor = self.db_connection.cursor()
 
         # Get email and password from input fields
@@ -74,19 +83,14 @@ class Login(QMainWindow):
             status = result[5]  
             user_type = result[4]  
             #print(status)
-            #print(user_type)
-
-            # Combine the login logic with the status and user type checks
+             # Combine the login logic with the status and user type checks
             if status == 'active' and (user_type == 'superadmin'):
                 # If the user is active and of the correct type, show success message
                 QMessageBox.information(self, "As sudo", f"Welcome, {result[1]}!")
                 # Load the Index window
-                self.index_window = index()  # Initialize the main window
+                self.index_window = indexSU()  # Initialize the main window
                 self.index_window.show()    # Show the main window
-                self.close() 
-
-
-
+                self.close()    #print(user_type)
 
 
             elif status == 'active' and (user_type == 'admin'):
@@ -101,6 +105,41 @@ class Login(QMainWindow):
 
         # Close the database connection after the authentication check
         self.db_connection.close()
+
+
+
+    def authenticate_user2(self):
+        # Get email and password from input fields
+        email = self.email_field.text()
+        password = self.password_field.text()
+
+        # Validate inputs
+        if not email or not password:
+            QMessageBox.warning(self, "Input Error", "Both email and password fields must be filled.")
+            return
+        
+        evaluate = login_user(email,password)
+
+        if evaluate == SUPERADMIN:
+            QMessageBox.information(self, "sudo","Welcome superadmin")
+
+
+
+        elif evaluate == ADMIN:
+            QMessageBox.information(self, "Welcome, admin")
+
+
+        elif evaluate == USER_INACTIVE:
+            QMessageBox.critical(self, "Login Failed", "Your account is inactive .")
+
+        else:
+            QMessageBox.critical(self, "Login Failed", "Invalid email or password. Please try again.")
+
+        
+
+
+
+        
             
 
     
@@ -108,11 +147,3 @@ class Login(QMainWindow):
 
 
 
-
-# Entry point of the program
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = Login()  # Create an instance of the Login class
-    window.show()  # Show the window
-
-    sys.exit(app.exec())  # Execute the application
