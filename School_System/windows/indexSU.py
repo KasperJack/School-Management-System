@@ -2,7 +2,6 @@ import sys
 import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
-from  School_System.db.dbio import connect
 
 
 

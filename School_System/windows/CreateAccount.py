@@ -1,11 +1,8 @@
 import os 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
+from School_System.helpers.db_utils import add_account_user
 
-
-import sqlite3
-from  School_System.db.dbio import connect
-from School_System.helpers.db_utils import login_user
 
 
 class CreateAccountDialog(QDialog):
@@ -27,10 +24,7 @@ class CreateAccountDialog(QDialog):
     
     
     def create_account(self):
-        # Connect to the database #########
-        db = connect()
-        self.db_connection = sqlite3.connect(db)
-        self.cursor = self.db_connection.cursor()
+
 
         # Get info from input fields
         full_name = self.full_name_field.text()
@@ -47,20 +41,21 @@ class CreateAccountDialog(QDialog):
             QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
             return
 
-        try:
-            # Insert user into the database
-            query = """
-                INSERT INTO users (full_name, email, password) 
-                VALUES (?, ?, ?)
-            """
-            self.cursor.execute(query, (full_name, email, pass1))
-            self.db_connection.commit()
+     
+        evaluate = add_account_user(full_name,email,pass1)
 
-            QMessageBox.information(self, "Success", "Account created successfully!")
+        if evaluate == 'This email already exists':
+            QMessageBox.warning(self, "Error", f"{evaluate}")
+            return
+        
+        else:
+            QMessageBox.information(self, "info", f"{evaluate}")
             self.close()
 
-        except sqlite3.Error as e:
-            QMessageBox.critical(self, "Database Error", f"An error occurred: {e}")
+        
 
-        finally:
-            self.db_connection.close()
+
+
+
+        
+

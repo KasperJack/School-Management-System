@@ -2,11 +2,9 @@ import sys
 import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
-import sqlite3
 
 from School_System.windows.CreateAccount import CreateAccountDialog
 from School_System.windows.indexSU import indexSU
-from School_System.db.dbio import connect
 from School_System.helpers.db_utils import *
 
 
@@ -70,10 +68,10 @@ class Login(QMainWindow):
             QMessageBox.warning(self, "Input Error", "Both email and password fields must be filled.")
             return
         
-        evaluate = login_user(email,password)
+        evaluate, name = login_user(email,password)
 
         if evaluate == SUPERADMIN:
-            QMessageBox.information(self, "sudo","Welcome superadmin")
+            QMessageBox.information(self, "superadmin",f"Welcome {name}")
             # Load the IndexSU window
             self.index_window = indexSU()  
             self.index_window.show()   
@@ -82,11 +80,11 @@ class Login(QMainWindow):
 
 
         elif evaluate == ADMIN:
-            QMessageBox.information(self, "Welcome, admin")
+            QMessageBox.information(self, " admin",f"Welcome {name}")
 
 
         elif evaluate == USER_INACTIVE:
-            QMessageBox.critical(self, "Login Failed", "Your account is inactive .")
+            QMessageBox.critical(self, "Login Failed", f"Your account {name} is inactive .")
 
         else:
             QMessageBox.critical(self, "Login Failed", "Invalid email or password. Please try again.")
