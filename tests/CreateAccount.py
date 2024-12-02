@@ -1,61 +1,78 @@
-from PyQt6.QtWidgets import QDialog, QMessageBox
-from PyQt6 import uic
-from PyQt6.QtCore import Qt
-import sqlite3
+from PyQt5.QtWidgets import QPushButton, QHBoxLayout, QWidget, QTableWidgetItem
 
+def load_inactive_users(self):
+    # Connect to the database
+    db_path = connect()  # Replace with your database connection method
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
 
+        # Query to fetch inactive users
+        query = """
+            SELECT full_name, email, registration_date 
+            FROM users 
+            WHERE status = 'inactive'
+        """
+        cursor.execute(query)
+        results = cursor.fetchall()
 
-class CreateAccountDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        uic.loadUi('CreateAccount.ui', self)
+        # Set up the table widget for 4 columns (adding "Actions")
+        self.tableWidget.setRowCount(len(results))  # Set rows based on query result count
+        self.tableWidget.setColumnCount(4)  # Adding the "Actions" column
+        self.tableWidget.setHorizontalHeaderLabels(["Full Name", "Email", "Registration Date", "Actions"])
 
-        self.setWindowTitle("Create Account")
+        # Populate the table
+        for row_index, row_data in enumerate(results):
+            for col_index, data in enumerate(row_data):
+                self.tableWidget.setItem(row_index, col_index, QTableWidgetItem(str(data)))
 
-        self.create_account_button.clicked.connect(self.create_account)
+            # Add the "Actions" buttons
+            activate_button = QPushButton("Activate")
+            delete_button = QPushButton("Delete")
 
+            # Connect buttons to their respective methods
+            activate_button.clicked.connect(lambda _, r=row_index: self.activate_user(r))
+            delete_button.clicked.connect(lambda _, r=row_index: self.delete_user(r))
 
+            # Add buttons to a layout
+            button_layout = QHBoxLayout()
+            button_layout.addWidget(activate_button)
+            button_layout.addWidget(delete_button)
 
+            # Create a widget to hold the buttons
+            button_widget = QWidget()
+            button_widget.setLayout(button_layout)
 
+            # Add the widget to the table
+            self.tableWidget.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
 
-    
-    
-    
-    
-    def create_account(self):
-        # Connect to the database
-        self.db_connection = sqlite3.connect('school.db')
-        self.cursor = self.db_connection.cursor()
+        # Adjust columns to fit contents
+        self.tableWidget.resizeColumnsToContents()
 
-        # Get info from input fields
-        full_name = self.full_name_field.text()
-        email = self.email_field.text()
-        pass1 = self.pass1_field.text()
-        pass2 = self.pass2_field.text()
+# Methods to handle the buttons' functionality
+def activate_user(self, row_index):
+    full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
+    email = self.tableWidget.item(row_index, 1).text()  # Get email from row
 
-        # Validate input fields
-        if not full_name or not email or not pass1:
-            QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
-            return
+    # Connect to the database and update the status
+    db_path = connect()
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        cursor.execute("UPDATE users SET status = 'active' WHERE full_name = ? AND email = ?", (full_name, email))
+        db_connection.commit()
 
-        if pass1 != pass2:
-            QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
-            return
+    # Optionally refresh the table
+    self.load_inactive_users()
 
-        try:
-            # Insert user into the database
-            query = """
-                INSERT INTO users (full_name, email, password) 
-                VALUES (?, ?, ?)
-            """
-            self.cursor.execute(query, (full_name, email, pass1))
-            self.db_connection.commit()
+def delete_user(self, row_index):
+    full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
+    email = self.tableWidget.item(row_index, 1).text()  # Get email from row
 
-            QMessageBox.information(self, "Success", "Account created successfully!")
-            self.close()
+    # Connect to the database and delete the user
+    db_path = connect()
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        cursor.execute("DELETE FROM users WHERE full_name = ? AND email = ?", (full_name, email))
+        db_connection.commit()
 
-        except sqlite3.Error as e:
-            QMessageBox.critical(self, "Database Error", f"An error occurred: {e}")
-
-        finally:
-            self.db_connection.close()
+    # Optionally refresh the table
+    self.load_inactive_users()
