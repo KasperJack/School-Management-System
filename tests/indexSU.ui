@@ -76,7 +76,7 @@ background-color: rgb(0, 0, 0);
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/logo.png</normaloff>:/icons/icons/logo.png</iconset>
             </property>
             <property name="iconSize">
@@ -116,7 +116,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/dashboardsmall1.png</normaloff>
               <normalon>:/icons/icons/dashboardsmall2.png</normalon>:/icons/icons/dashboardsmall1.png</iconset>
             </property>
@@ -140,7 +140,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/institutionsmall1.png</normaloff>
               <normalon>:/icons/icons/institutionsmall2.png</normalon>:/icons/icons/institutionsmall1.png</iconset>
             </property>
@@ -164,7 +164,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/dashboardsmall1.png</normaloff>
               <normalon>:/icons/icons/dashboardsmall2.png</normalon>:/icons/icons/dashboardsmall1.png</iconset>
             </property>
@@ -188,7 +188,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/teacherssmall1.png</normaloff>
               <normalon>:/icons/icons/teacherssmall2.png</normalon>:/icons/icons/teacherssmall1.png</iconset>
             </property>
@@ -212,7 +212,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/studentssmall1.png</normaloff>
               <normalon>:/icons/icons/studentssmall2.png</normalon>:/icons/icons/studentssmall1.png</iconset>
             </property>
@@ -253,7 +253,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/settingssmall1.png</normaloff>
               <normalon>:/icons/icons/settingssmall2.png</normalon>:/icons/icons/settingssmall1.png</iconset>
             </property>
@@ -277,7 +277,7 @@ background-color: rgb(0, 0, 0);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/signoutsmall1.png</normaloff>
               <normalon>:/icons/icons/signoutsmall2.png</normalon>:/icons/icons/signoutsmall1.png</iconset>
             </property>
@@ -329,7 +329,7 @@ background-color: rgb(0, 0, 0);
              <string>...</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/logo.png</normaloff>:/icons/icons/logo.png</iconset>
             </property>
             <property name="iconSize">
@@ -372,7 +372,7 @@ background-color: rgb(0, 0, 0);
              <string>  Dashboard</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/dashboardsmall1.png</normaloff>
               <normalon>:/icons/icons/dashboardsmall2.png</normalon>:/icons/icons/dashboardsmall1.png</iconset>
             </property>
@@ -399,7 +399,7 @@ background-color: rgb(0, 0, 0);
              <string>  Subject</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/institutionsmall1.png</normaloff>
               <normalon>:/icons/icons/institutionsmall2.png</normalon>:/icons/icons/institutionsmall1.png</iconset>
             </property>
@@ -423,7 +423,7 @@ background-color: rgb(0, 0, 0);
              <string>  Classes</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/dashboardsmall1.png</normaloff>
               <normalon>:/icons/icons/dashboardsmall2.png</normalon>:/icons/icons/dashboardsmall1.png</iconset>
             </property>
@@ -447,7 +447,7 @@ background-color: rgb(0, 0, 0);
              <string>  Teachers</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/teacherssmall1.png</normaloff>
               <normalon>:/icons/icons/teacherssmall2.png</normalon>:/icons/icons/teacherssmall1.png</iconset>
             </property>
@@ -471,7 +471,7 @@ background-color: rgb(0, 0, 0);
              <string>  Students</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/studentssmall1.png</normaloff>
               <normalon>:/icons/icons/studentssmall2.png</normalon>:/icons/icons/studentssmall1.png</iconset>
             </property>
@@ -512,7 +512,7 @@ background-color: rgb(0, 0, 0);
              <string>  Settings</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/settingssmall1.png</normaloff>
               <normalon>:/icons/icons/settingssmall2.png</normalon>:/icons/icons/settingssmall1.png</iconset>
             </property>
@@ -536,7 +536,7 @@ background-color: rgb(0, 0, 0);
              <string>  Sign Out</string>
             </property>
             <property name="icon">
-             <iconset resource="resources/rec.qrc">
+             <iconset resource="../resources/rec.qrc">
               <normaloff>:/icons/icons/signoutsmall1.png</normaloff>
               <normalon>:/icons/icons/signoutsmall2.png</normalon>:/icons/icons/signoutsmall1.png</iconset>
             </property>
@@ -588,7 +588,7 @@ color: rgb(0, 0, 0);</string>
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resources/rec.qrc">
+               <iconset resource="../resources/rec.qrc">
                 <normaloff>:/icons/icons/menu.png</normaloff>:/icons/icons/menu.png</iconset>
               </property>
               <property name="iconSize">
@@ -610,8 +610,14 @@ color: rgb(0, 0, 0);</string>
               <property name="spacing">
                <number>0</number>
               </property>
+              <property name="topMargin">
+               <number>5</number>
+              </property>
+              <property name="bottomMargin">
+               <number>5</number>
+              </property>
               <item>
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="label_user_name">
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
@@ -698,7 +704,7 @@ border-radius: 10px;
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap resource="resources/rec.qrc">:/icons/icons/profile.png</pixmap>
+               <pixmap resource="../resources/rec.qrc">:/icons/icons/profile.png</pixmap>
               </property>
               <property name="scaledContents">
                <bool>true</bool>
@@ -719,7 +725,7 @@ border-radius: 10px;
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(87, 227, 137);</string>
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="geometry">
@@ -730,12 +736,15 @@ border-radius: 10px;
             <height>721</height>
            </rect>
           </property>
-          <widget class="QWidget" name="dashboard">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);</string>
+          </property>
+          <widget class="QWidget" name="dash">
            <widget class="QLabel" name="label_5">
             <property name="geometry">
              <rect>
-              <x>310</x>
-              <y>80</y>
+              <x>0</x>
+              <y>0</y>
               <width>111</width>
               <height>51</height>
              </rect>
@@ -750,15 +759,72 @@ border-radius: 10px;
              <string>  Dashboard</string>
             </property>
            </widget>
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>280</y>
+              <width>181</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>inactive Admins</string>
+            </property>
+           </widget>
            <widget class="QTableWidget" name="tableWidget">
             <property name="geometry">
              <rect>
-              <x>280</x>
-              <y>360</y>
-              <width>256</width>
+              <x>0</x>
+              <y>380</y>
+              <width>811</width>
               <height>192</height>
              </rect>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QHeaderView::section{
+font-weight: bold;
+background-color: black;
+color: white;
+
+}
+
+QTableWidget{
+alternate-background-color: #B0EDFB;
+background-color: #F4F9A;
+
+
+}</string>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <column>
+             <property name="text">
+              <string>name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>address</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>birht date</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>actions</string>
+             </property>
+            </column>
            </widget>
           </widget>
           <widget class="QWidget" name="classes">
@@ -856,6 +922,7 @@ border-radius: 10px;
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
+  <include location="../resources/rec.qrc"/>
   <include location="resources/rec.qrc"/>
  </resources>
  <connections>

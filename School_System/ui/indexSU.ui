@@ -743,8 +743,8 @@ border-radius: 10px;
            <widget class="QLabel" name="label_5">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>0</y>
+              <x>650</x>
+              <y>680</y>
               <width>111</width>
               <height>51</height>
              </rect>
@@ -762,10 +762,10 @@ border-radius: 10px;
            <widget class="QLabel" name="label_10">
             <property name="geometry">
              <rect>
-              <x>40</x>
-              <y>280</y>
-              <width>181</width>
-              <height>51</height>
+              <x>30</x>
+              <y>440</y>
+              <width>191</width>
+              <height>41</height>
              </rect>
             </property>
             <property name="font">
@@ -781,9 +781,9 @@ border-radius: 10px;
            <widget class="QTableWidget" name="tableWidget">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>380</y>
-              <width>811</width>
+              <x>20</x>
+              <y>490</y>
+              <width>401</width>
               <height>192</height>
              </rect>
             </property>
@@ -797,7 +797,7 @@ color: white;
 
 QTableWidget{
 alternate-background-color: #B0EDFB;
-background-color: #F4F9A;
+#background-color: #FBFB9A;
 
 
 }</string>
@@ -825,6 +825,134 @@ background-color: #F4F9A;
               <string>actions</string>
              </property>
             </column>
+           </widget>
+           <widget class="QWidget" name="widget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>30</y>
+              <width>231</width>
+              <height>80</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(97, 53, 131);
+
+color: rgb(255, 255, 255);</string>
+            </property>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>40</x>
+               <y>30</y>
+               <width>141</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>students | 220</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="widget_2" native="true">
+            <property name="geometry">
+             <rect>
+              <x>300</x>
+              <y>30</y>
+              <width>231</width>
+              <height>80</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(97, 53, 131);
+
+color: rgb(255, 255, 255);</string>
+            </property>
+            <widget class="QLabel" name="label_11">
+             <property name="geometry">
+              <rect>
+               <x>45</x>
+               <y>30</y>
+               <width>121</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>classes | 20</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="widget_3" native="true">
+            <property name="geometry">
+             <rect>
+              <x>570</x>
+              <y>30</y>
+              <width>231</width>
+              <height>80</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(97, 53, 131);
+
+color: rgb(255, 255, 255);</string>
+            </property>
+            <widget class="QLabel" name="label_12">
+             <property name="geometry">
+              <rect>
+               <x>45</x>
+               <y>30</y>
+               <width>121</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>teachers | 40</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="widget_5" native="true">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>140</y>
+              <width>321</width>
+              <height>271</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 221, 218);</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="widget_6" native="true">
+            <property name="geometry">
+             <rect>
+              <x>390</x>
+              <y>140</y>
+              <width>321</width>
+              <height>271</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 221, 218);</string>
+            </property>
            </widget>
           </widget>
           <widget class="QWidget" name="classes">

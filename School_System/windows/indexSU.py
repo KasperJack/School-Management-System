@@ -1,6 +1,6 @@
 import sys
 import os
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView
 from PyQt6 import uic
 
 import sqlite3
@@ -34,9 +34,10 @@ class indexSU(QMainWindow):
 ##############################################################
         self.icon_only.setHidden(True)
         self.tableWidget.verticalHeader().setVisible(False)
+        
+        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
         
-        self.settings_b.clicked.connect(self.clear)
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
         
@@ -55,10 +56,6 @@ class indexSU(QMainWindow):
         for row in range(self.tableWidget.rowCount()):
             self.tableWidget.setRowHeight(row, 40)
 
-
-
-    def clear(self):
-        clear_entry_log()
 
 
 
@@ -81,6 +78,8 @@ class indexSU(QMainWindow):
                 # Add the "Actions" buttons
                 activate_button = QPushButton("Activate")
                 delete_button = QPushButton("Delete")
+                activate_button.setStyleSheet("background-color: green; color: white;")
+                delete_button.setStyleSheet("background-color: red; color: white;")
 
                 # Connect buttons to their respective methods
                 activate_button.clicked.connect(lambda _, r=row_index: self.activate_user(r))
@@ -101,21 +100,55 @@ class indexSU(QMainWindow):
             #self.tableWidget.resizeColumnsToContents()
 
 
+
+
+
+
+
+
+
+
     # Methods to handle the buttons' functionality
     def activate_user(self, row_index):
         full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
         email = self.tableWidget.item(row_index, 1).text()  # Get email from row
-        activate_admin(full_name,email)
-        self.load_inactive_users()
+
+
+        # Show a confirmation dialog
+        confirmation = QMessageBox.question(
+        self,
+        "Confirm Activation",
+        f"Are you sure you want to activate the user:\n\nName: {full_name}\nEmail: {email}?",
+        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+        QMessageBox.StandardButton.No
+    )
+
+
+        if confirmation == QMessageBox.StandardButton.Yes:
+
+            activate_admin(full_name,email)
+            self.load_inactive_users()
 
     
     
     def delete_user(self, row_index):
         full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
         email = self.tableWidget.item(row_index, 1).text()  # Get email from row
-        delete_admin(full_name,email)
 
-        self.load_inactive_users()
+
+        # Show a confirmation dialog
+        confirmation = QMessageBox.question(
+        self,
+        "Confirm Deletion",
+        f"Are you sure you want to delete the user:\n\nName: {full_name}\nEmail: {email}?",
+        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+        QMessageBox.StandardButton.No
+    )   
+       
+        if confirmation == QMessageBox.StandardButton.Yes:
+
+            delete_admin(full_name,email)
+            self.load_inactive_users()
         
 
 
