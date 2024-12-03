@@ -8,7 +8,7 @@ from School_System.helpers.db_utils import add_account_user
 class CreateAccountDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'CreateAccount.ui')
+        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'CreateAccountDialog.ui')
         uic.loadUi(ui_path, self)
 
         self.setWindowTitle("Create Account")

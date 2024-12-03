@@ -1,8 +1,7 @@
-import sys
 import os
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel
 from PyQt6 import uic
-
+from School_System.windows.AddSubjectDialog import AddSubjectDialog
 import sqlite3
 from School_System.db.dbio import connect
 
@@ -32,37 +31,74 @@ class indexSU(QMainWindow):
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
 ##############################################################
+        self.add_subject_button.clicked.connect(self.add_subject)
+
+
         self.icon_only.setHidden(True)
         self.tableWidget.verticalHeader().setVisible(False)
         
         self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
+
+
+        # Get the scroll area and its content widget
+        self.scrollAreaWidgetContents = self.scrollArea.widget()
+        if not self.scrollAreaWidgetContents:
+            self.scrollAreaWidgetContents = QWidget()
+            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        # Set up a layout for the scroll area's content widget
+        self.contentLayout = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.scrollAreaWidgetContents.setLayout(self.contentLayout)
+
+        # Add some widgets dynamically to test
+        for i in range(55):  # Add 5 test labels
+            label = QLabel(f"Dynamic Label {i + 1}")
+            self.contentLayout.addWidget(label)
+
+        # Add a test button
+        button = QPushButton("Dynamic Button")
+        button.clicked.connect(lambda: print("Button clicked!"))
+        self.contentLayout.addWidget(button)
+
+
+
+
+
+
+
+
+
+
+
+
         
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
         
-        
-
- 
-
-        
         self.load_inactive_users()
 
-        self.tableWidget.setColumnWidth(0,150)
-        self.tableWidget.setColumnWidth(1,150)
-        self.tableWidget.setColumnWidth(2,150)
-        self.tableWidget.setColumnWidth(3,150)
+        #self.tableWidget.setColumnWidth(0,150)
+        #self.tableWidget.setColumnWidth(1,150)
+        #self.tableWidget.setColumnWidth(2,150)
+        #self.tableWidget.setColumnWidth(3,150)
         # Set the height of all rows to 50 pixels
+
+        header = self.tableWidget.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
         for row in range(self.tableWidget.rowCount()):
             self.tableWidget.setRowHeight(row, 40)
 
 
-
+    def add_subject(self):
+        # Create an instance of the CreateAccountDialog
+        add_subject_dialog = AddSubjectDialog(self)
+        add_subject_dialog.exec()
 
     def load_inactive_users(self):
             
             results = get_inactive_users()
-
 
             # Set up the table widget for 3 columns
             self.tableWidget.setRowCount(len(results))  # Set rows based on query result count
