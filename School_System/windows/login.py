@@ -16,7 +16,7 @@ class Login(QMainWindow):
 
         self.setWindowTitle("Login")
         self.login_button.clicked.connect(self.authenticate_user)
-        self.create_account_button.clicked.connect(self.create_account)
+        self.create_account_button.clicked.connect(self.open_create_account_dialog)
         self.forget_password_button.clicked.connect(self.forget_password)
         self.view_password_button.clicked.connect(self.toggle_password_visibility)
         self.remember_me_button.toggled.connect(self.remember_me)
@@ -35,7 +35,7 @@ class Login(QMainWindow):
 
 
 
-    def create_account(self):
+    def open_create_account_dialog(self):
         # Create an instance of the CreateAccountDialog
         create_account_dialog = CreateAccountDialog(self)  
         create_account_dialog.exec()  

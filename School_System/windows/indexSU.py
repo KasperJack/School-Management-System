@@ -2,6 +2,7 @@ import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel
 from PyQt6 import uic
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
+from School_System.windows.AddTeacherDialog import AddTeacherDialog
 import sqlite3
 from School_System.db.dbio import connect
 
@@ -31,7 +32,8 @@ class indexSU(QMainWindow):
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
 ##############################################################
-        self.add_subject_button.clicked.connect(self.add_subject)
+        self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
+        self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
 
 
         self.icon_only.setHidden(True)
@@ -91,10 +93,18 @@ class indexSU(QMainWindow):
             self.tableWidget.setRowHeight(row, 40)
 
 
-    def add_subject(self):
-        # Create an instance of the CreateAccountDialog
+    def open_add_subject_dialog(self):
+        # Create an instance of the AddSubjectDialog
         add_subject_dialog = AddSubjectDialog(self)
         add_subject_dialog.exec()
+
+    def open_add_teacher_dialog(self):
+        # Create an instance of the AddTeacherDialog
+        add_teacher_dialog = AddTeacherDialog(self)
+        add_teacher_dialog.exec()
+
+
+
 
     def load_inactive_users(self):
             

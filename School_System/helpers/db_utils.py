@@ -40,7 +40,7 @@ def login_user(email, password):
 
 
 
-
+#adds a user to the db (admin)
 def add_account_user(full_name, email, password):
 
     db_path = connect()
@@ -59,10 +59,10 @@ def add_account_user(full_name, email, password):
     except sqlite3.IntegrityError:
         return "This email already exists"
     except Exception as e:
-        return f"An error occurred: {e}"
+        return f"{e}"
     
 
-
+#retunrs a list of inactive users (admins)
 def get_inactive_users():
     # Connect to the database
     db_path = connect()  # Replace with your database connection method
@@ -99,7 +99,7 @@ def activate_admin(full_name,email):
 
 
 
-
+#adds admin the entry log
 def log_user_in(user_id):
     # Connect to the database
     db_path = connect()  
@@ -132,7 +132,7 @@ def log_user_in(user_id):
 
 def get_logged_in_user():
     # Connect to the database
-    db_path = connect()  # Replace with your database connection method
+    db_path = connect()
     with sqlite3.connect(db_path) as db_connection:
         cursor = db_connection.cursor()
 
@@ -157,7 +157,7 @@ def get_logged_in_user():
 
 def clear_entry_log():
     # Connect to the database
-    db_path = connect()  # Replace with your database connection method
+    db_path = connect()
     with sqlite3.connect(db_path) as db_connection:
         cursor = db_connection.cursor()
 
@@ -171,4 +171,24 @@ def clear_entry_log():
             query_delete = "DELETE FROM logged_in_user WHERE time != ?"
             cursor.execute(query_delete, (last_timestamp,))
             db_connection.commit()
+
+
+def add_subject(subject_name,description):
+    # Connect to the database
+    db_path = connect()
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Insert query to add a new subject
+        query = """
+            INSERT INTO subject (subject_name, description) 
+            VALUES (?, ?)
+        """
+        try:
+            cursor.execute(query, (subject_name, description))
+            db_connection.commit()
+            return "Subject added successfully"
+        except sqlite3.Error as e:
+            return f"{e}"
+
 

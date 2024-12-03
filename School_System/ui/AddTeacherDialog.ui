@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddSubjectDialog</class>
- <widget class="QDialog" name="AddSubjectDialog">
+ <class>AddTeacherDialog</class>
+ <widget class="QDialog" name="AddTeacherDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -46,7 +46,7 @@ color: rgb(0, 0, 0);</string>
     </font>
    </property>
    <property name="text">
-    <string>Add Subject</string>
+    <string>Add Teacher</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -68,7 +68,7 @@ color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="text">
-       <string>subject</string>
+       <string>Teacher</string>
       </property>
      </widget>
     </item>
@@ -88,7 +88,7 @@ color: rgb(0, 0, 0);</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="add_subject_button">
+     <widget class="QPushButton" name="add_teacher_button">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -104,7 +104,7 @@ font-weight:bold;
 font-size: 15px;</string>
       </property>
       <property name="text">
-       <string>Add subject</string>
+       <string>Add Teacher</string>
       </property>
      </widget>
     </item>
@@ -147,7 +147,7 @@ font-size: 15px;</string>
     </font>
    </property>
    <property name="text">
-    <string>description</string>
+    <string>Teacher</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="description_field">

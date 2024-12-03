@@ -1,4 +1,5 @@
-import os 
+import os
+
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import *
@@ -27,30 +28,26 @@ class AddSubjectDialog(QDialog):
 
 
         # Get info from input fields
-        subject = self.subject_name_field
-        description = self.description_field
+        subject_name = self.subject_name_field.text()
+        description = self.description_field.text()
 
         # Validate input fields
-        if not subject:
+        if not subject_name:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
-        if pass1 != pass2:
-            QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
+
+        evaluate = add_subject(subject_name,description)
+
+        if evaluate == "Subject added successfully":
+            QMessageBox.information(self, "info", f"{evaluate}")
+            self.subject_name_field.clear()
+            self.description_field.clear()
             return
 
-     
-        evaluate = add_account_user(full_name,email,pass1)
-
-        if evaluate == 'This email already exists':
+        else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
             return
-        
-        else:
-            QMessageBox.information(self, "info", f"{evaluate}")
-            self.close()
-
-        
 
 
 

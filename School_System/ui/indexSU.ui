@@ -576,8 +576,7 @@ background-color: rgb(0, 0, 0);
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(153, 193, 241);
-color: rgb(0, 0, 0);</string>
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
@@ -1012,8 +1011,8 @@ alternate-background-color: #B0EDFB;
            <widget class="QLabel" name="label_9">
             <property name="geometry">
              <rect>
-              <x>230</x>
-              <y>40</y>
+              <x>300</x>
+              <y>10</y>
               <width>111</width>
               <height>51</height>
              </rect>
@@ -1027,6 +1026,58 @@ alternate-background-color: #B0EDFB;
             <property name="text">
              <string>Teachers</string>
             </property>
+           </widget>
+           <widget class="QToolButton" name="add_teacher_button">
+            <property name="geometry">
+             <rect>
+              <x>730</x>
+              <y>0</y>
+              <width>41</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/rec.qrc">
+              <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+           <widget class="QTabWidget" name="tabWidget">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>791</width>
+              <height>691</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(87, 227, 137);</string>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab">
+             <attribute name="title">
+              <string>Tab 1</string>
+             </attribute>
+            </widget>
+            <widget class="QWidget" name="tab_2">
+             <attribute name="title">
+              <string>Tab 2</string>
+             </attribute>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="subject">
