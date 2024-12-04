@@ -44,8 +44,10 @@ class AddTeacherDialog(QDialog):
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
                 return
-        evaluate = add_teacher(full_name, phone, email, gender,address)
-        if evaluate == "Subject added successfully":
+
+
+        evaluate = add_teacher(full_name, phone, email,gender,address)
+        if evaluate == "Teacher added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.name_field.clear()
             self.last_name_field.clear()

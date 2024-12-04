@@ -25,15 +25,16 @@ class CreateAccountDialog(QDialog):
     
     def create_account(self):
 
-
         # Get info from input fields
-        full_name = self.full_name_field.text()
+        name = self.name_field.text()
+        last_name = self.last_name_field.text()
+        full_name = f"{name} {last_name}"
         email = self.email_field.text()
         pass1 = self.pass1_field.text()
         pass2 = self.pass2_field.text()
 
         # Validate input fields
-        if not full_name or not email or not pass1:
+        if not name or not last_name or not email or not pass1:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
@@ -44,13 +45,13 @@ class CreateAccountDialog(QDialog):
      
         evaluate = add_account_user(full_name,email,pass1)
 
-        if evaluate == 'This email already exists':
-            QMessageBox.warning(self, "Error", f"{evaluate}")
-            return
-        
-        else:
+        if evaluate == 'User added successfully':
             QMessageBox.information(self, "info", f"{evaluate}")
             self.close()
+
+        
+        else:
+            QMessageBox.warning(self, "Error", f"{evaluate}")
 
         
 
