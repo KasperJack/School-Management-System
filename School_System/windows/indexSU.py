@@ -17,6 +17,8 @@ class indexSU(QMainWindow):
         super().__init__()
         ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'indexSU.ui')
         uic.loadUi(ui_path, self)
+
+        #side bar buttons#####"
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
 
@@ -36,10 +38,14 @@ class indexSU(QMainWindow):
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
 
+        #removes the seconds tab in the tab widget for admin access
+        #self.tabWidget.removeTab(1)#################"
+
 
         self.icon_only.setHidden(True)
         self.tableWidget.verticalHeader().setVisible(False)
-        
+
+        #prevents the table () from being edited
         self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
 

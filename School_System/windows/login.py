@@ -80,6 +80,10 @@ class Login(QMainWindow):
 
         elif evaluate == ADMIN:
             QMessageBox.information(self, " admin",f"Welcome {name}")
+            # Load the IndexSU window(for admins)
+            self.index_window = indexSU()
+            self.index_window.show()
+            self.close()
 
 
         elif evaluate == USER_INACTIVE:
