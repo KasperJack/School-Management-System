@@ -36,6 +36,17 @@ class AddSubjectDialog(QDialog):
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
+        if not description:
+            evaluate = add_subject(subject_name)
+            if evaluate == "Subject added successfully":
+                QMessageBox.information(self, "info", f"{evaluate}")
+                self.subject_name_field.clear()
+                return
+            else:
+                QMessageBox.warning(self, "Error", f"{evaluate}")
+                return
+
+
 
         evaluate = add_subject(subject_name,description)
 
@@ -47,7 +58,6 @@ class AddSubjectDialog(QDialog):
 
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
-            return
 
 
 

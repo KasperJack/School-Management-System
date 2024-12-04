@@ -173,7 +173,7 @@ def clear_entry_log():
             db_connection.commit()
 
 
-def add_subject(subject_name,description):
+def add_subject(subject_name,description=None):
     # Connect to the database
     db_path = connect()
     with sqlite3.connect(db_path) as db_connection:
@@ -192,3 +192,32 @@ def add_subject(subject_name,description):
             return f"{e}"
 
 
+
+
+def add_teacher(full_name, phone, email, gender, address=None):
+    try:
+
+        db_path = connect()
+        with sqlite3.connect(db_path) as db_connection:
+            cursor = db_connection.cursor()
+
+            # SQL query to insert a teacher
+            query = """
+            INSERT INTO teachers (full_name, phone, email, gender, address)
+            VALUES (?, ?, ?, ?, ?);
+            """
+
+            # Execute the query with the provided data
+            cursor.execute(query, (full_name, phone, email, gender, address))
+
+            # Commit the changes
+            db_connection.commit()
+
+        return "Teacher added successfully"
+
+    except sqlite3.IntegrityError as e:
+        # Handle unique constraint violations (e.g., duplicate phone or email)
+        return f"{e}"
+
+    except sqlite3.Error as e:
+        return f"{e}"

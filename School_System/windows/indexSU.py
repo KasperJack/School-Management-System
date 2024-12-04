@@ -34,6 +34,7 @@ class indexSU(QMainWindow):
 ##############################################################
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
+        self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
 
 
         self.icon_only.setHidden(True)
