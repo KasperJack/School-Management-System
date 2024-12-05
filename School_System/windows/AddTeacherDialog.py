@@ -52,6 +52,8 @@ class AddTeacherDialog(QDialog):
             checkbox.setObjectName(f"checkbox_{subject_name[0]}")
             layout.addWidget(checkbox)
 
+
+
     def get_selected_subjects(self):
         """Retrieve selected subjects from the scroll area."""
         selected_subjects = []
@@ -74,6 +76,31 @@ class AddTeacherDialog(QDialog):
                 selected_subjects.append(widget.text())  # Append the checkbox text
 
         return selected_subjects
+
+
+
+
+    def clear_checkbox_selection(self):
+        """Clear all checkbox selections in the subjects_scrollArea."""
+        # Access the widget inside the scroll area
+        scroll_widget = self.subjects_scrollArea.widget()
+
+        if scroll_widget is None or scroll_widget.layout() is None:
+            print("Error: Scroll area does not have a proper widget or layout.")
+            return
+
+        layout = scroll_widget.layout()
+
+        # Iterate through the items in the layout
+        for i in range(layout.count()):
+            item = layout.itemAt(i)
+            if item is not None:
+                widget = item.widget()
+
+                # Check if the widget is a QCheckBox and uncheck it
+                if isinstance(widget, QCheckBox):
+                    widget.setChecked(False)
+
 
 
 
@@ -102,6 +129,7 @@ class AddTeacherDialog(QDialog):
                 self.email_field.clear()
                 for subject in selected_subjects:
                     add_teacher_subject(full_name,subject)
+                self.clear_checkbox_selection()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -119,6 +147,7 @@ class AddTeacherDialog(QDialog):
             self.address_field.clear()
             for subject in selected_subjects:
                 add_teacher_subject(full_name,subject)
+            self.clear_checkbox_selection()
             return
 
         else:
