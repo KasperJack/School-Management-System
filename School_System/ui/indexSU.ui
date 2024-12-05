@@ -623,6 +623,9 @@ background-color: rgb(0, 0, 0);
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
                 <property name="text">
                  <string>Hello, User</string>
                 </property>
@@ -630,6 +633,9 @@ background-color: rgb(0, 0, 0);
               </item>
               <item>
                <widget class="QLabel" name="label_2">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
                 <property name="text">
                  <string>Welcome to your page</string>
                 </property>
@@ -771,7 +777,7 @@ border-radius: 10px;
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -782,8 +788,8 @@ border-radius: 10px;
                <rect>
                 <x>30</x>
                 <y>50</y>
-                <width>231</width>
-                <height>80</height>
+                <width>221</width>
+                <height>81</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -791,25 +797,55 @@ border-radius: 10px;
 
 color: rgb(255, 255, 255);</string>
               </property>
-              <widget class="QLabel" name="label">
-               <property name="geometry">
-                <rect>
-                 <x>40</x>
-                 <y>30</y>
-                 <width>141</width>
-                 <height>20</height>
-                </rect>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>15</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>students | 220</string>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <item>
+                    <spacer name="horizontalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="font">
+                      <font>
+                       <pointsize>15</pointsize>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>students | 220</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="widget_2" native="true">
               <property name="geometry">
@@ -936,7 +972,7 @@ color: rgb(255, 255, 255);</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
-                <widget class="QTableWidget" name="tableWidget">
+                <widget class="QTableWidget" name="inactive_admins_table">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -988,6 +1024,11 @@ alternate-background-color: #B0EDFB;
                </item>
               </layout>
              </widget>
+            </widget>
+            <widget class="QWidget" name="tab_3">
+             <attribute name="title">
+              <string>Page</string>
+             </attribute>
             </widget>
            </widget>
           </widget>

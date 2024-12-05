@@ -43,10 +43,10 @@ class indexSU(QMainWindow):
 
 
         self.icon_only.setHidden(True)
-        self.tableWidget.verticalHeader().setVisible(False)
+        self.inactive_admins_table.verticalHeader().setVisible(False)
 
         #prevents the table () from being edited
-        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
 
 
@@ -93,11 +93,11 @@ class indexSU(QMainWindow):
         #self.tableWidget.setColumnWidth(3,150)
         # Set the height of all rows to 50 pixels
 
-        header = self.tableWidget.horizontalHeader()
+        header = self.inactive_admins_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
-        for row in range(self.tableWidget.rowCount()):
-            self.tableWidget.setRowHeight(row, 40)
+        for row in range(self.inactive_admins_table.rowCount()):
+            self.inactive_admins_table.setRowHeight(row, 40)
 
 
     def open_add_subject_dialog(self):
@@ -118,14 +118,14 @@ class indexSU(QMainWindow):
             results = get_inactive_users()
 
             # Set up the table widget for 3 columns
-            self.tableWidget.setRowCount(len(results))  # Set rows based on query result count
-            self.tableWidget.setColumnCount(4)  # Set columns for "Full Name", "Email", "Registration Date"
-            self.tableWidget.setHorizontalHeaderLabels(["Full Name", "Email", "Registration Date", "Actions"])
+            self.inactive_admins_table.setRowCount(len(results))  # Set rows based on query result count
+            self.inactive_admins_table.setColumnCount(4)  # Set columns for "Full Name", "Email", "Registration Date"
+            self.inactive_admins_table.setHorizontalHeaderLabels(["Full Name", "Email", "Registration Date", "Actions"])
 
             # Populate the table
             for row_index, row_data in enumerate(results):
                 for col_index, data in enumerate(row_data):
-                    self.tableWidget.setItem(row_index, col_index, QTableWidgetItem(str(data)))
+                    self.inactive_admins_table.setItem(row_index, col_index, QTableWidgetItem(str(data)))
 
 
                 # Add the "Actions" buttons
@@ -148,7 +148,7 @@ class indexSU(QMainWindow):
                 button_widget.setLayout(button_layout)
 
                 # Add the widget to the table
-                self.tableWidget.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
+                self.inactive_admins_table.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
 
             #self.tableWidget.resizeColumnsToContents()
 
@@ -163,8 +163,8 @@ class indexSU(QMainWindow):
 
     # Methods to handle the buttons' functionality
     def activate_user(self, row_index):
-        full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
-        email = self.tableWidget.item(row_index, 1).text()  # Get email from row
+        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
+        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
 
 
         # Show a confirmation dialog
@@ -185,8 +185,8 @@ class indexSU(QMainWindow):
     
     
     def delete_user(self, row_index):
-        full_name = self.tableWidget.item(row_index, 0).text()  # Get full_name from row
-        email = self.tableWidget.item(row_index, 1).text()  # Get email from row
+        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
+        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
 
 
         # Show a confirmation dialog

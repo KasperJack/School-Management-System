@@ -87,7 +87,7 @@ class Login(QMainWindow):
 
 
         elif evaluate == USER_INACTIVE:
-            QMessageBox.critical(self, "Login Failed", f"Your account {name} is inactive .")
+            QMessageBox.critical(self, "Login Failed", f"account {name} is inactive .")
 
         else:
             QMessageBox.critical(self, "Login Failed", "Invalid email or password. Please try again.")

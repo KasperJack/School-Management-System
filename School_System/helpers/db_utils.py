@@ -33,7 +33,9 @@ def login_user(email, password):
                     log_user_in(id)
                     return SUPERADMIN, name
                 elif user_type == 'admin':
+                    log_user_in(id)
                     return ADMIN, name
+
 
         return INVALID_CREDENTIALS, None  # gitaddno match is found
 
@@ -108,7 +110,7 @@ def log_user_in(user_id):
 
         #cursor.execute("DELETE FROM logged_in_user")
         query = """
-            SELECT user_id, full_name, email 
+            SELECT user_id, full_name, email, type 
             FROM users 
             WHERE user_id = ?
         """
@@ -118,8 +120,8 @@ def log_user_in(user_id):
         if user_data:
             # Insert or replace the logged-in user entry
             insert_query = """
-                INSERT OR REPLACE INTO logged_in_user (id, full_name, email)
-                VALUES (?, ?, ?)
+                INSERT OR REPLACE INTO logged_in_user (id, full_name, email, type)
+                VALUES (?, ?, ?, ?)
             """
             cursor.execute(insert_query, user_data)
             db_connection.commit()
@@ -129,7 +131,7 @@ def log_user_in(user_id):
 
 
 
-
+#add the return of the role here
 def get_logged_in_user():
     # Connect to the database
     db_path = connect()
@@ -221,3 +223,9 @@ def add_teacher(full_name, phone, email, gender, address=None):
 
     except sqlite3.Error as e:
         return f"{e}"
+
+
+
+
+def update_teachers_count():
+    pass
