@@ -25,30 +25,32 @@ class AddTeacherDialog(QDialog):
         db_path = connect()
         with sqlite3.connect(db_path) as db_connection:
             cursor = db_connection.cursor()
-            cursor.execute("SELECT subject_id, subject_name FROM subject")
+
+            # Fetch all subjects from the 'subject' table
+            cursor.execute("SELECT subject_name FROM subject")
             subjects = cursor.fetchall()
 
         # Ensure the widget has a layout
         if self.subjects_widget.layout() is None:
-            self.subjects_widget.setLayout(QVBoxLayout())  # QVBoxLayout if none exists
+            self.subjects_widget.setLayout(QVBoxLayout())  # Use QVBoxLayout if none exists
 
-        # Clear the layout
+        # Clear the existing layout
         while self.subjects_widget.layout().count():
             child = self.subjects_widget.layout().takeAt(0)
             if child.widget():
                 child.widget().deleteLater()
 
         # Populate the subjects_widget with checkboxes
-        for subject_id, subject_name in subjects:
+        for subject_name in subjects:
             # Create a horizontal layout for each subject
             row_layout = QHBoxLayout()
 
             # Create a label for the subject name
-            subject_label = QLabel(subject_name, self)
+            subject_label = QLabel(subject_name[0], self)  # Use subject_name[0] as fetchall returns a tuple
 
             # Create a checkbox for selection
             subject_checkbox = QCheckBox(self)
-            subject_checkbox.setObjectName(f"checkbox_{subject_id}")  # Optional: Unique identifier
+            subject_checkbox.setObjectName(f"checkbox_{subject_name[0]}")  # Use subject name for identification
 
             # Add the label and checkbox to the horizontal layout
             row_layout.addWidget(subject_label)
@@ -57,42 +59,42 @@ class AddTeacherDialog(QDialog):
             # Add the horizontal layout to the main layout of subjects_widget
             self.subjects_widget.layout().addLayout(row_layout)
 
+    def save_selected_subjects(self, teacher_full_name):
+        """Save the selected subjects for a teacher to the database."""
+        db_path = connect()
+        selected_subjects = []
 
+        # Retrieve selected subjects from the widget
+        layout = self.subjects_widget.layout()
+        for i in range(layout.count()):
+            row_layout = layout.itemAt(i)
+            if isinstance(row_layout, QHBoxLayout):
+                checkbox = row_layout.itemAt(1).widget()  # Checkbox is the second widget
+                if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                    # Get the subject name from the checkbox object name
+                    subject_name = row_layout.itemAt(0).widget().text()  # Text of the label
+                    selected_subjects.append(subject_name)
 
-
-    def loadd_subjects(self):
-        """Fetch subjects from the database and populate the dropdown."""
-        db_path = connect()  # Assuming `connect()` returns the database file path
         with sqlite3.connect(db_path) as db_connection:
             cursor = db_connection.cursor()
-            cursor.execute("SELECT subject_name FROM subject")
-            subjects = cursor.fetchall()
 
-        # Add subjects to the dropdown
-        for subject_name, in subjects:  # Use single-element unpacking
-            self.subject_dropdown.addItem(subject_name)
+            # Get teacher details
+            cursor.execute("SELECT full_name FROM teachers WHERE full_name = ?", (teacher_full_name,))
+            teacher = cursor.fetchone()
+            if not teacher:
+                print(f"Teacher '{teacher_full_name}' not found.")
+                return False
 
+            # Insert selected subjects into the teachers_subjects table
+            for subject_name in selected_subjects:
+                cursor.execute(
+                    "INSERT INTO teachers_subjects (full_name, subject_name) VALUES (?, ?)",
+                    (teacher_full_name, subject_name)
+                )
+            db_connection.commit()
 
-
-    def get_selected_subjects(self):
-        """Get a list of selected subject IDs."""
-        selected_subjects = []  # Store the IDs of selected subjects
-        layout = self.subjects_widget.layout()
-
-        # Iterate through the rows in the layout
-        for i in range(layout.count()):
-            row_layout = layout.itemAt(i)  # Get the row's layout
-            if isinstance(row_layout, QHBoxLayout):
-                # Get the checkbox (second widget in the row layout)
-                checkbox = row_layout.itemAt(1).widget()
-                if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
-                    # Extract the subject ID from the checkbox's object name
-                    subject_id = int(checkbox.objectName().split('_')[-1])
-                    selected_subjects.append(subject_id)
-
-        return selected_subjects
-
-
+        print(f"Successfully saved subjects for teacher: {teacher_full_name}")
+        return True
 
 
 
@@ -112,15 +114,16 @@ class AddTeacherDialog(QDialog):
 
         if not address:
             evaluate = add_teacher(full_name,phone,email,gender)
-            selected_subjects = self.get_selected_subjects()
+            #selected_subjects = self.get_selected_subjects()
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.name_field.clear()
                 self.last_name_field.clear()
                 self.phone_field.clear()
                 self.email_field.clear()
-                for subject_id in selected_subjects:
-                    add_teacher_subject(email,subject_id)
+                self.save_selected_subjects(full_name)
+                #for subject_id in selected_subjects:
+                    #add_teacher_subject(email,subject_id)
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -129,15 +132,16 @@ class AddTeacherDialog(QDialog):
 
         evaluate = add_teacher(full_name, phone, email,gender,address)
         if evaluate == "Teacher added successfully":
-            selected_subjects = self.get_selected_subjects()
+            #selected_subjects = self.get_selected_subjects()
             QMessageBox.information(self, "info", f"{evaluate}")
             self.name_field.clear()
             self.last_name_field.clear()
             self.phone_field.clear()
             self.email_field.clear()
             self.address_field.clear()
-            for subject_id in selected_subjects:
-                add_teacher_subject(email, subject_id)
+            self.save_selected_subjects(full_name)
+            #for subject_id in selected_subjects:
+                #add_teacher_subject(email, subject_id)
             return
 
         else:
