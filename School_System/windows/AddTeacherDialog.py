@@ -113,14 +113,15 @@ class AddTeacherDialog(QDialog):
         if not address:
             evaluate = add_teacher(full_name,phone,email,gender)
             selected_subjects = self.get_selected_subjects()
-            print(selected_subjects)
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.name_field.clear()
                 self.last_name_field.clear()
                 self.phone_field.clear()
                 self.email_field.clear()
-               #self.comboBox.clear()
+                for subject in selected_subjects:
+                    add_teacher_subject(email,subject)
+
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")

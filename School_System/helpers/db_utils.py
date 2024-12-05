@@ -88,7 +88,10 @@ def delete_admin(full_name,email):
         cursor = db_connection.cursor()
         cursor.execute("DELETE FROM users WHERE full_name = ? AND email = ?", (full_name, email))
         db_connection.commit()
-    
+
+
+
+
 
 
 def activate_admin(full_name,email):
@@ -229,3 +232,38 @@ def add_teacher(full_name, phone, email, gender, address=None):
 
 def update_teachers_count():
     pass
+
+
+
+def add_teacher_subject(teacher_email, subject_id):
+    """Add an entry to the teachers_subjects table."""
+    db_path = connect()  # Path to the database
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Step 1: Retrieve teacher_id using the teacher's email
+        cursor.execute("SELECT teacher_id FROM teachers WHERE email = ?", (teacher_email,))
+        result = cursor.fetchone()
+        if not result:
+            print(f"No teacher found with email: {teacher_email}")
+            return False
+
+        teacher_id = result[0]
+
+        # Step 2: Check if the entry already exists
+        cursor.execute(
+            "SELECT * FROM teachers_subjects WHERE teacher_id = ? AND subject_id = ?",
+            (teacher_id, subject_id)
+        )
+        if cursor.fetchone():
+            print(f"Entry already exists for teacher_id {teacher_id} and subject_id {subject_id}")
+            return False
+
+        # Step 3: Insert the new entry into teachers_subjects
+        cursor.execute(
+            "INSERT INTO teachers_subjects (teacher_id, subject_id) VALUES (?, ?)",
+            (teacher_id, subject_id)
+        )
+        db_connection.commit()
+        print(f"Successfully added entry for teacher_id {teacher_id} and subject_id {subject_id}")
+        return True
