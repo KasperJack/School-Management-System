@@ -744,6 +744,9 @@ border-radius: 10px;
           <property name="styleSheet">
            <string notr="true">color: rgb(0, 0, 0);</string>
           </property>
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
           <widget class="QWidget" name="dash">
            <widget class="QLabel" name="label_5">
             <property name="geometry">
@@ -764,7 +767,7 @@ border-radius: 10px;
              <string>  Dashboard</string>
             </property>
            </widget>
-           <widget class="QTabWidget" name="tabWidget">
+           <widget class="QTabWidget" name="tabWidget_dash">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -777,7 +780,7 @@ border-radius: 10px;
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -1078,10 +1081,10 @@ alternate-background-color: #B0EDFB;
            <widget class="QLabel" name="label_9">
             <property name="geometry">
              <rect>
-              <x>300</x>
-              <y>10</y>
+              <x>640</x>
+              <y>-10</y>
               <width>111</width>
-              <height>51</height>
+              <height>31</height>
              </rect>
             </property>
             <property name="font">
@@ -1097,7 +1100,7 @@ alternate-background-color: #B0EDFB;
            <widget class="QToolButton" name="add_teacher_button">
             <property name="geometry">
              <rect>
-              <x>700</x>
+              <x>750</x>
               <y>0</y>
               <width>41</width>
               <height>41</height>
@@ -1119,6 +1122,403 @@ alternate-background-color: #B0EDFB;
               <height>30</height>
              </size>
             </property>
+           </widget>
+           <widget class="QTabWidget" name="tabWidget_teachers">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>801</width>
+              <height>691</height>
+             </rect>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>Tab 1</string>
+             </attribute>
+             <widget class="QScrollArea" name="scrollArea_teachers">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>801</width>
+                <height>661</height>
+               </rect>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>799</width>
+                 <height>659</height>
+                </rect>
+               </property>
+               <widget class="QWidget" name="widget_5" native="true">
+                <property name="geometry">
+                 <rect>
+                  <x>20</x>
+                  <y>30</y>
+                  <width>761</width>
+                  <height>111</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(192, 191, 188);</string>
+                </property>
+                <widget class="QLabel" name="label_10">
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>40</y>
+                   <width>401</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>teacher name (sine,math,information;)</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_13">
+                 <property name="geometry">
+                  <rect>
+                   <x>50</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_14">
+                 <property name="geometry">
+                  <rect>
+                   <x>120</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_15">
+                 <property name="geometry">
+                  <rect>
+                   <x>190</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_16">
+                 <property name="geometry">
+                  <rect>
+                   <x>260</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QToolButton" name="toolButton_3">
+                 <property name="geometry">
+                  <rect>
+                   <x>710</x>
+                   <y>50</y>
+                   <width>26</width>
+                   <height>25</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="widget_6" native="true">
+                <property name="geometry">
+                 <rect>
+                  <x>20</x>
+                  <y>160</y>
+                  <width>761</width>
+                  <height>111</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(192, 191, 188);</string>
+                </property>
+                <widget class="QLabel" name="label_17">
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>40</y>
+                   <width>401</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>teacher name (sine,math,information;)</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_18">
+                 <property name="geometry">
+                  <rect>
+                   <x>50</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_19">
+                 <property name="geometry">
+                  <rect>
+                   <x>120</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_20">
+                 <property name="geometry">
+                  <rect>
+                   <x>190</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_21">
+                 <property name="geometry">
+                  <rect>
+                   <x>260</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QToolButton" name="toolButton_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>710</x>
+                   <y>50</y>
+                   <width>26</width>
+                   <height>25</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="widget_7" native="true">
+                <property name="geometry">
+                 <rect>
+                  <x>20</x>
+                  <y>290</y>
+                  <width>761</width>
+                  <height>111</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(192, 191, 188);</string>
+                </property>
+                <widget class="QLabel" name="label_22">
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>40</y>
+                   <width>401</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>16</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>teacher name (sine,math,information;)</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_23">
+                 <property name="geometry">
+                  <rect>
+                   <x>50</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_24">
+                 <property name="geometry">
+                  <rect>
+                   <x>120</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_25">
+                 <property name="geometry">
+                  <rect>
+                   <x>190</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QLabel" name="label_26">
+                 <property name="geometry">
+                  <rect>
+                   <x>260</x>
+                   <y>80</y>
+                   <width>66</width>
+                   <height>18</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>class b01</string>
+                 </property>
+                </widget>
+                <widget class="QToolButton" name="toolButton_5">
+                 <property name="geometry">
+                  <rect>
+                   <x>710</x>
+                   <y>50</y>
+                   <width>26</width>
+                   <height>25</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </widget>
+              </widget>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="tab_5">
+             <attribute name="title">
+              <string>Tab 2</string>
+             </attribute>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="subject">

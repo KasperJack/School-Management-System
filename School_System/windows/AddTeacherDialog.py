@@ -119,9 +119,8 @@ class AddTeacherDialog(QDialog):
                 self.last_name_field.clear()
                 self.phone_field.clear()
                 self.email_field.clear()
-                for subject in selected_subjects:
-                    add_teacher_subject(email,subject)
-
+                for subject_id in selected_subjects:
+                    add_teacher_subject(email,subject_id)
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -130,12 +129,15 @@ class AddTeacherDialog(QDialog):
 
         evaluate = add_teacher(full_name, phone, email,gender,address)
         if evaluate == "Teacher added successfully":
+            selected_subjects = self.get_selected_subjects()
             QMessageBox.information(self, "info", f"{evaluate}")
             self.name_field.clear()
             self.last_name_field.clear()
             self.phone_field.clear()
             self.email_field.clear()
             self.address_field.clear()
+            for subject_id in selected_subjects:
+                add_teacher_subject(email, subject_id)
             return
 
         else:
