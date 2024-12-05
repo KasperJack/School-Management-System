@@ -74,6 +74,23 @@ class AddTeacherDialog(QDialog):
 
 
 
+    def get_selected_subjects(self):
+        """Get a list of selected subject IDs."""
+        selected_subjects = []  # Store the IDs of selected subjects
+        layout = self.subjects_widget.layout()
+
+        # Iterate through the rows in the layout
+        for i in range(layout.count()):
+            row_layout = layout.itemAt(i)  # Get the row's layout
+            if isinstance(row_layout, QHBoxLayout):
+                # Get the checkbox (second widget in the row layout)
+                checkbox = row_layout.itemAt(1).widget()
+                if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                    # Extract the subject ID from the checkbox's object name
+                    subject_id = int(checkbox.objectName().split('_')[-1])
+                    selected_subjects.append(subject_id)
+
+        return selected_subjects
 
 
 
@@ -95,6 +112,8 @@ class AddTeacherDialog(QDialog):
 
         if not address:
             evaluate = add_teacher(full_name,phone,email,gender)
+            selected_subjects = self.get_selected_subjects()
+            print(selected_subjects)
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.name_field.clear()
