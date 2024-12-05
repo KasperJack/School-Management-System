@@ -281,15 +281,38 @@ font-size: 15px;</string>
   <widget class="QWidget" name="subjects_widget" native="true">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>390</y>
-     <width>251</width>
+     <x>60</x>
+     <y>400</y>
+     <width>321</width>
      <height>131</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(153, 193, 241);</string>
    </property>
+   <widget class="QScrollArea" name="subjects_scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>261</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>259</width>
+       <height>109</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
