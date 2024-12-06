@@ -270,5 +270,24 @@ def get_grades():
     return  grades
 
 
-def add_class(class_name,grade_name):
-    pass
+
+
+def add_class(class_name, grade_name):
+    """
+    Insert a new class with the given class_name and grade_name into the class table.
+    """
+    db_path = connect()  # Assuming 'connect()' provides the database path
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        try:
+            # Insert the new class into the class table
+            cursor.execute(
+                "INSERT INTO class (class_name, grade_name) VALUES (?, ?)",
+                (class_name, grade_name)
+            )
+            db_connection.commit()
+            return "Class added successfully"
+        except sqlite3.IntegrityError as e:
+            return f"{e}"

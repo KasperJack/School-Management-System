@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>512</width>
-    <height>229</height>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -104,7 +104,7 @@ font-weight:bold;
 font-size: 15px;</string>
       </property>
       <property name="text">
-       <string>Add subject</string>
+       <string>Add Class</string>
       </property>
      </widget>
     </item>
@@ -145,6 +145,42 @@ font-size: 15px;</string>
      <strikeout>false</strikeout>
     </font>
    </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>240</y>
+     <width>331</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(98, 160, 234);</string>
+   </property>
+   <widget class="QScrollArea" name="subjects_scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>281</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>279</width>
+       <height>99</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
