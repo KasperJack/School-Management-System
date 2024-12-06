@@ -254,3 +254,21 @@ def add_teacher_subject(full_name, subject_name):
         except sqlite3.IntegrityError as e:
             return False
 
+
+
+
+
+def get_grades():
+    """Fetch grade names from the grades table and return them as a list."""
+    db_path = connect()
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT grade_name FROM grades")
+        grades = cursor.fetchall()  # Fetch all grade names
+        grades = [grade[0] for grade in grades]
+    return  grades
+
+
+def add_class(class_name,grade_name):
+    pass

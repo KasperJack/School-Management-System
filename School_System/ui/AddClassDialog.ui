@@ -73,7 +73,7 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="subject_name_field"/>
+     <widget class="QLineEdit" name="class_name_field"/>
     </item>
    </layout>
   </widget>
@@ -131,7 +131,7 @@ font-size: 15px;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="grades_dropdown">
    <property name="geometry">
     <rect>
      <x>390</x>

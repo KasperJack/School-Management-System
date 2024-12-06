@@ -15,7 +15,8 @@ class AddClassDialog(QDialog):
         self.setWindowTitle("Add Class")
 
         self.add_class_button.clicked.connect(self.add_class)
-
+        grades = get_grades()
+        self.grades_dropdown.addItems(grades)
 
 
 
@@ -26,38 +27,25 @@ class AddClassDialog(QDialog):
     
     def add_class(self):
 
-
-        # Get info from input fields
-        subject_name = self.subject_name_field.text()
-        description = self.description_field.text()
+        #info from input fields
+        class_name = self.class_name_field
+        grade_name = self.grades_dropdown.currentText()
 
         # Validate input fields
-        if not subject_name:
+        if not class_name or not grade_name:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
-        if not description:
-            evaluate = add_subject(subject_name)
-            if evaluate == "Subject added successfully":
-                QMessageBox.information(self, "info", f"{evaluate}")
-                self.subject_name_field.clear()
-                return
-            else:
-                QMessageBox.warning(self, "Error", f"{evaluate}")
-                return
 
-
-
-        evaluate = add_subject(subject_name,description)
-
+        evaluate = add_class(class_name,grade_name)
         if evaluate == "Subject added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
-            self.subject_name_field.clear()
-            self.description_field.clear()
+            self.class_name_field.clear()
             return
-
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
+
+
 
 
 
