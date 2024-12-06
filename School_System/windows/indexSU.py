@@ -1,5 +1,5 @@
 import os
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
@@ -82,9 +82,6 @@ class indexSU(QMainWindow):
 
 
 
-
-
-        
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
         
@@ -101,6 +98,54 @@ class indexSU(QMainWindow):
 
         for row in range(self.inactive_admins_table.rowCount()):
             self.inactive_admins_table.setRowHeight(row, 40)
+        self.setup_tables()
+        classn = "class 05"
+        self.populate_class_tables(classn)
+
+
+    def setup_tables(self):
+        # Configure Students Table
+        self.students_table.setColumnCount(5)
+        self.students_table.setHorizontalHeaderLabels(["Name", "Last Name", "Phone", "Email", "Birth Date"])
+
+        # Configure Teachers Table
+        self.teachers_table.setColumnCount(2)
+        self.teachers_table.setHorizontalHeaderLabels(["Full Name", "Subject Name"])
+
+        # Configure Subjects Table
+        self.subjects_table.setColumnCount(1)
+        self.subjects_table.setHorizontalHeaderLabels(["Subject Name"])
+
+    def populate_class_tables(self, class_name):
+        """
+        Populate the students, teachers, and subjects tables in the UI based on the selected class.
+
+        Parameters:
+        - class_name (str): The name of the class to load data for.
+        """
+        # Get data from `get_class_info`
+        students, teachers, subjects = get_class_info(class_name)
+
+        # Populate Students Table
+        self.students_table.setRowCount(0)  # Clear existing rows
+        for student in students:
+            row_position = self.students_table.rowCount()
+            self.students_table.insertRow(row_position)
+            self.students_table.setItem(row_position, 0, QTableWidgetItem(student))  # Assuming 'student' is a string
+
+        # Populate Teachers Table
+        self.teachers_table.setRowCount(0)  # Clear existing rows
+        for teacher in teachers:
+            row_position = self.teachers_table.rowCount()
+            self.teachers_table.insertRow(row_position)
+            self.teachers_table.setItem(row_position, 0, QTableWidgetItem(teacher))  # Assuming 'teacher' is a string
+
+        # Populate Subjects Table
+        self.subjects_table.setRowCount(0)  # Clear existing rows
+        for subject in subjects:
+            row_position = self.subjects_table.rowCount()
+            self.subjects_table.insertRow(row_position)
+            self.subjects_table.setItem(row_position, 0, QTableWidgetItem(subject))  # Assuming 'subject' is a string
 
 
     def open_add_subject_dialog(self):

@@ -305,3 +305,41 @@ def add_class(class_name, grade_name):
             return "Class added successfully"
         except sqlite3.IntegrityError as e:
             return f"{e}"
+
+
+
+
+
+
+
+def get_class_info(class_name):
+    """
+    Retrieve information about a class, including its students, teachers, and subjects.
+    Returns three separate lists: students, teachers, and subjects.
+    """
+    db_path = connect()  # Connect to your SQLite database
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Get the list of students in the class
+        cursor.execute("SELECT name, last_name FROM Students WHERE class_name = ?", (class_name,))
+        students = [f"{row[0]} {row[1]}" for row in cursor.fetchall()]
+
+        # Get the list of subjects in the class
+        cursor.execute("""
+            SELECT subject_name
+            FROM class_Subject
+            WHERE class_name = ?
+        """, (class_name,))
+        subjects = [row[0] for row in cursor.fetchall()]
+
+        # Get the list of teachers for the subjects in this class
+        cursor.execute("""
+            SELECT DISTINCT ts.full_name
+            FROM teachers_subjects ts
+            INNER JOIN class_Subject cs ON ts.subject_name = cs.subject_name
+            WHERE cs.class_name = ?
+        """, (class_name,))
+        teachers = [row[0] for row in cursor.fetchall()]
+
+    return students, teachers, subjects
