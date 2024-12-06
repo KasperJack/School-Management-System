@@ -1,8 +1,10 @@
 import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel
 from PyQt6 import uic
+
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
+from School_System.windows.AddClassDialog import AddClassDialog
 import sqlite3
 from School_System.db.dbio import connect
 
@@ -35,6 +37,7 @@ class indexSU(QMainWindow):
         self.students_b.clicked.connect(self.sw_students)
 ##############################################################
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
+        self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
 
@@ -109,6 +112,10 @@ class indexSU(QMainWindow):
         # Create an instance of the AddTeacherDialog
         add_teacher_dialog = AddTeacherDialog(self)
         add_teacher_dialog.exec()
+
+    def open_add_class_dialog(self):
+        add_class_dialog = AddClassDialog(self)
+        add_class_dialog.exec()
 
 
 
