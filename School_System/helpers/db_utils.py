@@ -255,6 +255,20 @@ def add_teacher_subject(full_name, subject_name):
             return False
 
 
+def add_class_subject(class_name,subject_name):
+    db_path = connect()  # Get the database path
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        try:
+            # Insert the data into the teachers_subjects table
+            cursor.execute(
+                "INSERT INTO class_Subject (class_name, subject_name) VALUES (?, ?)",
+                (class_name, subject_name))
+            db_connection.commit()
+            return True
+        except sqlite3.IntegrityError as e:
+            return False
 
 
 

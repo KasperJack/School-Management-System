@@ -121,9 +121,12 @@ class AddClassDialog(QDialog):
 
 
         evaluate = add_class(class_name,grade_name)
+        selected_subjects = self.get_selected_subjects()
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
+            for subject in selected_subjects:
+                add_class_subject(class_name,subject)
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
