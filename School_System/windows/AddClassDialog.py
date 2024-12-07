@@ -95,6 +95,35 @@ class AddClassDialog(QDialog):
 
 
 
+    def clear_checkbox_selection(self):
+        """Clear all checkbox selections in the teachers_subjects_scrollArea."""
+        # Access the widget inside the scroll area
+        scroll_widget = self.teachers_subjects_scrollArea.widget()
+
+        if scroll_widget is None or scroll_widget.layout() is None:
+            print("Error: Scroll area does not have a proper widget or layout.")
+            return
+
+        layout = scroll_widget.layout()
+
+        # Iterate through the items in the layout
+        for i in range(layout.count()):
+            item = layout.itemAt(i)
+            if item is not None:
+                widget = item.widget()
+
+                # Check if the widget is a QCheckBox and uncheck it
+                if isinstance(widget, QCheckBox):
+                    widget.setChecked(False)
+
+
+
+
+
+
+
+
+
 
     def add_class(self):
 
@@ -109,12 +138,13 @@ class AddClassDialog(QDialog):
 
 
         evaluate = add_class(class_name,grade_name)
-        selected_subjects = self.get_selected_subjects()
+        get_selected_teachers_subjects = self.get_selected_teachers_subjects()
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
-            for subject in selected_subjects:
-                add_class_subject(class_name,subject)
+            for teacher_subject in get_selected_teachers_subjects:
+                add_course(teacher_subject,class_name)
+                self.clear_checkbox_selection()
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")

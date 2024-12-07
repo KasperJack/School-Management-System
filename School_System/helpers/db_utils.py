@@ -255,7 +255,7 @@ def add_teacher_subject(teacher_id, subject_id):
             return False
 
 
-def add_class_subject(class_name,subject_name):
+def add_course(teacher_subject,class_name):
     db_path = connect()  # Get the database path
     with sqlite3.connect(db_path) as db_connection:
         cursor = db_connection.cursor()
@@ -263,8 +263,8 @@ def add_class_subject(class_name,subject_name):
         try:
             # Insert the data into the teachers_subjects table
             cursor.execute(
-                "INSERT INTO class_Subject (class_name, subject_name) VALUES (?, ?)",
-                (class_name, subject_name))
+                "INSERT INTO course (id, class_name) VALUES (?, ?)",
+                (teacher_subject, class_name))
             db_connection.commit()
             return True
         except sqlite3.IntegrityError as e:
