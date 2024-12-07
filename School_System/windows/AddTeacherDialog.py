@@ -19,12 +19,13 @@ class AddTeacherDialog(QDialog):
         self.load_subjects()
 
 
+
     def load_subjects(self):
         """Fetch subjects from the database and populate the subjects_scrollArea with checkboxes."""
         db_path = connect()
         with sqlite3.connect(db_path) as db_connection:
             cursor = db_connection.cursor()
-            cursor.execute("SELECT subject_name FROM subject")
+            cursor.execute("SELECT subject_id, subject_name FROM subjects")
             subjects = cursor.fetchall()
 
         # Access or create the scroll area widget
@@ -47,22 +48,21 @@ class AddTeacherDialog(QDialog):
                 child.widget().deleteLater()
 
         # Add checkboxes for each subject
-        for subject_name in subjects:
-            checkbox = QCheckBox(subject_name[0], self)
-            checkbox.setObjectName(f"checkbox_{subject_name[0]}")
+        for subject_id, subject_name in subjects:
+            checkbox = QCheckBox(subject_name, self)
+            checkbox.setObjectName(f"checkbox_{subject_id}")  # Use subject ID in the object name
+            checkbox.setProperty("subject_id", subject_id)  # Store subject ID as a property
             layout.addWidget(checkbox)
 
-
-
     def get_selected_subjects(self):
-        """Retrieve selected subjects from the scroll area."""
-        selected_subjects = []
+        """Retrieve IDs of selected subjects from the scroll area."""
+        selected_subject_ids = []
 
         # Access the widget inside the scroll area
         scroll_widget = self.subjects_scrollArea.widget()
         if scroll_widget is None or scroll_widget.layout() is None:
             print("Error: Scroll area does not have a proper widget or layout.")
-            return selected_subjects  # Return an empty list if layout is missing
+            return selected_subject_ids  # Return an empty list if layout is missing
 
         layout = scroll_widget.layout()
 
@@ -73,10 +73,12 @@ class AddTeacherDialog(QDialog):
 
             # Check if the widget is a QCheckBox and is checked
             if isinstance(widget, QCheckBox) and widget.isChecked():
-                selected_subjects.append(widget.text())  # Append the checkbox text
+                # Retrieve the subject ID stored in the checkbox property
+                subject_id = widget.property("subject_id")
+                if subject_id is not None:
+                    selected_subject_ids.append(subject_id)
 
-        return selected_subjects
-
+        return selected_subject_ids
 
 
 
@@ -127,8 +129,9 @@ class AddTeacherDialog(QDialog):
                 self.last_name_field.clear()
                 self.phone_field.clear()
                 self.email_field.clear()
+                teacher_id = get_teachers_sequence()
                 for subject in selected_subjects:
-                    add_teacher_subject(full_name,subject)
+                    add_teacher_subject(teacher_id,subject)
                 self.clear_checkbox_selection()
                 return
             else:
@@ -145,8 +148,9 @@ class AddTeacherDialog(QDialog):
             self.phone_field.clear()
             self.email_field.clear()
             self.address_field.clear()
+            teacher_id = get_teachers_sequence()
             for subject in selected_subjects:
-                add_teacher_subject(full_name,subject)
+                add_teacher_subject(teacher_id,subject)
             self.clear_checkbox_selection()
             return
 

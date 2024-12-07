@@ -158,7 +158,7 @@ font-size: 15px;</string>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(98, 160, 234);</string>
    </property>
-   <widget class="QScrollArea" name="subjects_scrollArea">
+   <widget class="QScrollArea" name="teachers_subjects_scrollArea">
     <property name="geometry">
      <rect>
       <x>20</x>

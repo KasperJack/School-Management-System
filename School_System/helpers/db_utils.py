@@ -186,7 +186,7 @@ def add_subject(subject_name,description=None):
 
         # Insert query to add a new subject
         query = """
-            INSERT INTO subject (subject_name, description) 
+            INSERT INTO subjects (subject_name, description) 
             VALUES (?, ?)
         """
         try:
@@ -235,7 +235,7 @@ def update_teachers_count():
 
 
 
-def add_teacher_subject(full_name, subject_name):
+def add_teacher_subject(teacher_id, subject_id):
     """
     Insert a teacher's subject into the teachers_subjects table.
     """
@@ -246,8 +246,8 @@ def add_teacher_subject(full_name, subject_name):
         try:
             # Insert the data into the teachers_subjects table
             cursor.execute(
-                "INSERT INTO teachers_subjects (full_name, subject_name) VALUES (?, ?)",
-                (full_name, subject_name)
+                "INSERT INTO teachers_subjects (teacher_id, subject_id) VALUES (?, ?)",
+                (teacher_id, subject_id)
             )
             db_connection.commit()
             return True
@@ -312,34 +312,26 @@ def add_class(class_name, grade_name):
 
 
 
-def get_class_info(class_name):
+def get_teachers_sequence():
     """
-    Retrieve information about a class, including its students, teachers, and subjects.
-    Returns three separate lists: students, teachers, and subjects.
+    Fetch the sequence number from the sqlite_sequence table for the 'teachers' table.
+
+    Returns:
+        int: The current sequence number for the 'teachers' table, or None if not found.
     """
-    db_path = connect()  # Connect to your SQLite database
+    db_path = connect()  # Call your custom connect() function to get the database path
+
     with sqlite3.connect(db_path) as db_connection:
         cursor = db_connection.cursor()
 
-        # Get the list of students in the class
-        cursor.execute("SELECT name, last_name FROM Students WHERE class_name = ?", (class_name,))
-        students = [f"{row[0]} {row[1]}" for row in cursor.fetchall()]
+        # Query to fetch the sequence number for 'teachers'
+        query = "SELECT seq FROM sqlite_sequence WHERE name = 'teachers';"
+        cursor.execute(query)
 
-        # Get the list of subjects in the class
-        cursor.execute("""
-            SELECT subject_name
-            FROM class_Subject
-            WHERE class_name = ?
-        """, (class_name,))
-        subjects = [row[0] for row in cursor.fetchall()]
+        # Fetch the result
+        result = cursor.fetchone()
 
-        # Get the list of teachers for the subjects in this class
-        cursor.execute("""
-            SELECT DISTINCT ts.full_name
-            FROM teachers_subjects ts
-            INNER JOIN class_Subject cs ON ts.subject_name = cs.subject_name
-            WHERE cs.class_name = ?
-        """, (class_name,))
-        teachers = [row[0] for row in cursor.fetchall()]
+    # Return the sequence number if found, else None
+    return result[0] if result else None
 
-    return students, teachers, subjects
+

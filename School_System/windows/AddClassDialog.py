@@ -17,26 +17,35 @@ class AddClassDialog(QDialog):
         self.add_class_button.clicked.connect(self.add_class)
         grades = get_grades()
         self.grades_dropdown.addItems(grades)
-        self.load_subjects()
+        self.load_teachers_subjects()
 
 
 
 
     
-    def load_subjects(self):
-        """Fetch subjects from the database and populate the subjects_scrollArea with checkboxes."""
+
+
+
+    def load_teachers_subjects(self):
+        """Fetch teacher-subject pairs from the database and populate the teachers_subjects_scrollArea with checkboxes."""
         db_path = connect()
         with sqlite3.connect(db_path) as db_connection:
             cursor = db_connection.cursor()
-            cursor.execute("SELECT subject_name FROM subject")
-            subjects = cursor.fetchall()
+            # Query to fetch teacher-subject pairs
+            cursor.execute("""
+                SELECT ts.id, sub.subject_name, t.full_name
+                FROM teachers_subjects ts
+                JOIN subjects sub ON ts.subject_id = sub.subject_id
+                JOIN teachers t ON ts.teacher_id = t.teacher_id
+            """)
+            teachers_subjects = cursor.fetchall()
 
         # Access or create the scroll area widget
-        scroll_widget = self.subjects_scrollArea.widget()
+        scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:
             scroll_widget = QWidget()
-            self.subjects_scrollArea.setWidget(scroll_widget)
-            self.subjects_scrollArea.setWidgetResizable(True)
+            self.teachers_subjects_scrollArea.setWidget(scroll_widget)
+            self.teachers_subjects_scrollArea.setWidgetResizable(True)
 
         # Set up a layout if not already present
         if scroll_widget.layout() is None:
@@ -50,23 +59,23 @@ class AddClassDialog(QDialog):
             if child.widget():
                 child.widget().deleteLater()
 
-        # Add checkboxes for each subject
-        for subject_name in subjects:
-            checkbox = QCheckBox(subject_name[0], self)
-            checkbox.setObjectName(f"checkbox_{subject_name[0]}")
+        # Add checkboxes for each teacher-subject pair
+        for pair_id, subject_name, teacher_name in teachers_subjects:
+            display_text = f"{subject_name} ({teacher_name})"  # Format the display
+            checkbox = QCheckBox(display_text, self)
+            checkbox.setObjectName(f"checkbox_{pair_id}")  # Use pair ID in the object name
+            checkbox.setProperty("pair_id", pair_id)  # Store the pair ID as a property
             layout.addWidget(checkbox)
 
-
-
-    def get_selected_subjects(self):
-        """Retrieve selected subjects from the scroll area."""
-        selected_subjects = []
+    def get_selected_teachers_subjects(self):
+        """Retrieve IDs of selected teacher-subject pairs from the scroll area."""
+        selected_pair_ids = []
 
         # Access the widget inside the scroll area
-        scroll_widget = self.subjects_scrollArea.widget()
+        scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None or scroll_widget.layout() is None:
             print("Error: Scroll area does not have a proper widget or layout.")
-            return selected_subjects  # Return an empty list if layout is missing
+            return selected_pair_ids  # Return an empty list if layout is missing
 
         layout = scroll_widget.layout()
 
@@ -77,37 +86,16 @@ class AddClassDialog(QDialog):
 
             # Check if the widget is a QCheckBox and is checked
             if isinstance(widget, QCheckBox) and widget.isChecked():
-                selected_subjects.append(widget.text())  # Append the checkbox text
+                # Retrieve the pair ID stored in the checkbox property
+                pair_id = widget.property("pair_id")
+                if pair_id is not None:
+                    selected_pair_ids.append(pair_id)
 
-        return selected_subjects
-
-
-
-    def clear_checkbox_selection(self):
-        """Clear all checkbox selections in the subjects_scrollArea."""
-        # Access the widget inside the scroll area
-        scroll_widget = self.subjects_scrollArea.widget()
-
-        if scroll_widget is None or scroll_widget.layout() is None:
-            print("Error: Scroll area does not have a proper widget or layout.")
-            return
-
-        layout = scroll_widget.layout()
-
-        # Iterate through the items in the layout
-        for i in range(layout.count()):
-            item = layout.itemAt(i)
-            if item is not None:
-                widget = item.widget()
-
-                # Check if the widget is a QCheckBox and uncheck it
-                if isinstance(widget, QCheckBox):
-                    widget.setChecked(False)
+        return selected_pair_ids
 
 
 
-    
-    
+
     def add_class(self):
 
         #info from input fields
