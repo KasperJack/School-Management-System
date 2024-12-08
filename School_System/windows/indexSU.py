@@ -124,7 +124,7 @@ class indexSU(QMainWindow):
         add_class_dialog.exec()
     def open_add_student_dialog(self):
         add_student_dialog = AddStudentDialog(self)
-        add_student_dialog
+        add_student_dialog.exec()
 
 
 
