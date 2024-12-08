@@ -335,3 +335,13 @@ def get_teachers_sequence():
     return result[0] if result else None
 
 
+## look up teacher (change info)
+    ##add subject /remove
+    ##
+
+## look up student (change info)
+    ## add  /remove class
+
+ ## look up class
+    ## add /remove couses
+    ##

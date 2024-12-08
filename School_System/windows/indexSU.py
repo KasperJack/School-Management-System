@@ -1,10 +1,12 @@
 import os
+
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
+from School_System.windows.AddStudentDialog import AddStudentDialog
 import sqlite3
 from School_System.db.dbio import connect
 
@@ -40,6 +42,7 @@ class indexSU(QMainWindow):
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
+        self.add_student_button.clicked.connect(self.open_add_student_dialog)
 
         #removes the seconds tab in the tab widget for admin access
         #self.tabWidget.removeTab(1)#################"
@@ -119,7 +122,9 @@ class indexSU(QMainWindow):
     def open_add_class_dialog(self):
         add_class_dialog = AddClassDialog(self)
         add_class_dialog.exec()
-
+    def open_add_student_dialog(self):
+        add_student_dialog = AddStudentDialog(self)
+        add_student_dialog
 
 
 
