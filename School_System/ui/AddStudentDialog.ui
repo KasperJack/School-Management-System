@@ -260,8 +260,18 @@ font-size: 15px;</string>
      <height>26</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>M</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>F</string>
+    </property>
+   </item>
   </widget>
-  <widget class="QDateEdit" name="dateEdit">
+  <widget class="QDateEdit" name="birth_date">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -269,6 +279,22 @@ font-size: 15px;</string>
      <width>110</width>
      <height>27</height>
     </rect>
+   </property>
+   <property name="wrapping">
+    <bool>false</bool>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2000</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="displayFormat">
+    <string>d/M/yyyy</string>
    </property>
   </widget>
  </widget>

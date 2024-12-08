@@ -349,6 +349,39 @@ def get_classes():
 
 
 
+def add_student(full_name, phone, email, gender, birth_date, class_name=None):
+    """
+    Inserts a new student into the `students` table and handles integrity errors.
+    """
+    db_path = connect()
+
+    try:
+        with sqlite3.connect(db_path) as db_connection:
+            cursor = db_connection.cursor()
+
+
+            cursor.execute(
+                """
+                INSERT INTO students (full_name, phone, email, gender, birth_date, class_name)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (full_name, phone, email, gender, birth_date, class_name)
+            )
+
+            # commit
+            db_connection.commit()
+            return "Student added successfully"
+
+    except sqlite3.IntegrityError as e:
+        #integrity errors ( foreign key violations, unique constraint failures)
+        return f"{e}"
+    except Exception as e:
+        #handle other database errors
+        return f"{e}"
+
+
+
+
 
 ## look up teacher (change info)
     ##add subject /remove

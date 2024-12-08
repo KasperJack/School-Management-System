@@ -2,7 +2,7 @@ import os
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 
-from School_System.helpers.db_utils import get_classes
+from School_System.helpers.db_utils import get_classes, add_student
 
 
 class AddStudentDialog(QDialog):
@@ -31,16 +31,39 @@ class AddStudentDialog(QDialog):
         phone = self.phone_field.text()
         email = self.email_field.text()
         gender = self.comboBox.currentText()
+        birth_date = self.birth_date.date().toString("dd-MM-yyyy")
         stdclass = self.classes_dropdown.currentText()
 
         if not name or not last_name or not phone or not email:
+            QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
 
         if stdclass == "N/A":
-            print("no class selected")
+            evaluate = add_student(full_name,phone,email,gender,birth_date)
+            if evaluate == "Student added successfully":
+                QMessageBox.information(self, "info", f"{evaluate}")
+                self.name_field.clear()
+                self.last_name_field.clear()
+                self.phone_field.clear()
+                self.email_field.clear()
+                return
+            else:
+                QMessageBox.warning(self, "Error", f"{evaluate}")
+                return
+
+        evaluate = add_student(full_name, phone, email, gender, birth_date,stdclass)
+        if evaluate == "Student added successfully":
+            QMessageBox.information(self, "info", f"{evaluate}")
+            self.name_field.clear()
+            self.last_name_field.clear()
+            self.phone_field.clear()
+            self.email_field.clear()
+            return
         else:
-            print(f"class {stdclass} selected")
+            QMessageBox.warning(self, "Error", f"{evaluate}")
+
+
 
 
 
