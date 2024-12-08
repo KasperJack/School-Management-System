@@ -2,7 +2,7 @@ import os
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 
-
+from School_System.helpers.db_utils import get_classes
 
 
 class AddStudentDialog(QDialog):
@@ -14,14 +14,23 @@ class AddStudentDialog(QDialog):
         self.setWindowTitle("Add Student")
 
         self.add_student_button.clicked.connect(self.add_student)
+        classes = get_classes()
+        self.classes_dropdown.addItems(classes)
 
 
 
 
-    
+
     
     def add_student(self):
-        pass
+
+        name = self.name_field.text()
+        last_name = self.last_name_field.text()
+        full_name = f"{name} {last_name}"
+        phone = self.phone_field.text()
+        email = self.email_field.text()
+        gender = self.comboBox.currentText()
+        address = self.address_field.text()
 
 
 

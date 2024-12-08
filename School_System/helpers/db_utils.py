@@ -309,9 +309,6 @@ def add_class(class_name, grade_name):
 
 
 
-
-
-
 def get_teachers_sequence():
     """
     Fetch the sequence number from the sqlite_sequence table for the 'teachers' table.
@@ -319,7 +316,7 @@ def get_teachers_sequence():
     Returns:
         int: The current sequence number for the 'teachers' table, or None if not found.
     """
-    db_path = connect()  # Call your custom connect() function to get the database path
+    db_path = connect()
 
     with sqlite3.connect(db_path) as db_connection:
         cursor = db_connection.cursor()
@@ -333,6 +330,24 @@ def get_teachers_sequence():
 
     # Return the sequence number if found, else None
     return result[0] if result else None
+
+
+
+def get_classes():
+    """Fetch a list of class names from the database."""
+    db_path = connect()
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to fetch all class names
+        cursor.execute("SELECT class_name FROM class")
+        classes = cursor.fetchall()
+        classes = [class_name[0] for class_name in classes]
+
+    return classes
+
+
+
 
 
 ## look up teacher (change info)

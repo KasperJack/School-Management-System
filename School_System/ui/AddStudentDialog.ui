@@ -110,8 +110,8 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>20</x>
      <y>110</y>
-     <width>259</width>
-     <height>113</height>
+     <width>171</width>
+     <height>54</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -215,7 +215,7 @@ font-size: 15px;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="classes_dropdown">
    <property name="geometry">
     <rect>
      <x>260</x>
