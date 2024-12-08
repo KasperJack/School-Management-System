@@ -14,10 +14,11 @@ class AddStudentDialog(QDialog):
         self.setWindowTitle("Add Student")
 
         self.add_student_button.clicked.connect(self.add_student)
+        self.classes_dropdown.addItem("N/A")
         classes = get_classes()
         self.classes_dropdown.addItems(classes)
 
-
+        self.classes_dropdown.setCurrentIndex(0)
 
 
 
@@ -30,9 +31,16 @@ class AddStudentDialog(QDialog):
         phone = self.phone_field.text()
         email = self.email_field.text()
         gender = self.comboBox.currentText()
-        address = self.address_field.text()
+        stdclass = self.classes_dropdown.currentText()
+
+        if not name or not last_name or not phone or not email:
+            return
 
 
+        if stdclass == "N/A":
+            print("no class selected")
+        else:
+            print(f"class {stdclass} selected")
 
 
 
