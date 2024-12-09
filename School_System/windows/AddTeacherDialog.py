@@ -8,8 +8,9 @@ import sqlite3
 from School_System.db.dbio import connect
 
 class AddTeacherDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, index_instance, parent=None):
         super().__init__(parent)
+        self.index_instance = index_instance
         ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddTeacherDialog.ui')
         uic.loadUi(ui_path, self)
 
@@ -135,6 +136,7 @@ class AddTeacherDialog(QDialog):
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.clear_fields()
+                self.index_instance.update_teachers_count()
                 teacher_id = get_teachers_sequence()
                 for subject in selected_subjects:
                     add_teacher_subject(teacher_id,subject)
@@ -150,6 +152,7 @@ class AddTeacherDialog(QDialog):
             selected_subjects = self.get_selected_subjects()
             QMessageBox.information(self, "info", f"{evaluate}")
             self.clear_fields()
+            self.index_instance.update_teachers_count()
             teacher_id = get_teachers_sequence()
             for subject in selected_subjects:
                 add_teacher_subject(teacher_id,subject)

@@ -390,13 +390,53 @@ def get_total_students():
 
             #count the total number of students
             cursor.execute("SELECT COUNT(*) FROM students")
-            total_students = cursor.fetchone()[0]  # Fetch the first result of the query
+            total_students = cursor.fetchone()[0]
 
             return total_students
 
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return None  # None if there is an error
+
+
+def get_total_teachers():
+    db_path = connect()
+
+    try:
+        with sqlite3.connect(db_path) as db_connection:
+            cursor = db_connection.cursor()
+
+            #count the total number of teachers
+            cursor.execute("SELECT COUNT(*) FROM teachers")
+            total_teachers = cursor.fetchone()[0]  #
+
+            return total_teachers
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None  #none if there is an error
+
+
+
+def get_total_classes():
+    db_path = connect()
+
+    try:
+        with sqlite3.connect(db_path) as db_connection:
+            cursor = db_connection.cursor()
+
+            # Query to count the total number of classes
+            cursor.execute("SELECT COUNT(*) FROM class")
+            total_classes = cursor.fetchone()[0]  # Fetch the first result of the query
+
+            return total_classes
+
+    except sqlite3.Error as e:
+        return None  # Return None if there is an error
+
+
+
+
 
 ## look up teacher (change info)
     ##add subject /remove

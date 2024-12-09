@@ -93,7 +93,7 @@ class indexSU(QMainWindow):
 
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
-        self.update_students_count()
+        self.update_on_start_up()
 
 
         self.load_inactive_users()
@@ -141,8 +141,18 @@ class indexSU(QMainWindow):
         students = get_total_students()
         self.students_label.setText(f"students | {students}")
 
+    def update_teachers_count(self):
+        teachers = get_total_teachers()
+        self.teachers_label.setText(f"teachers | {teachers}")
 
+    def update_classes_count(self):
+        classes = get_total_classes()
+        self.classes_label.setText(f"classes | {classes}")
 
+    def update_on_start_up(self):
+        self.update_classes_count()
+        self.update_teachers_count()
+        self.update_students_count()
 
     def load_inactive_users(self):
             

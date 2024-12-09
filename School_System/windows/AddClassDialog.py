@@ -7,8 +7,9 @@ from School_System.helpers.db_utils import *
 
 
 class AddClassDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, index_instance, parent=None):
         super().__init__(parent)
+        self.index_instance = index_instance
         ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddClassDialog.ui')
         uic.loadUi(ui_path, self)
 
@@ -142,6 +143,7 @@ class AddClassDialog(QDialog):
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
+            self.index_instance.update_classes_count()
             for teacher_subject in get_selected_teachers_subjects:
                 add_course(teacher_subject,class_name)
                 self.clear_checkbox_selection()
