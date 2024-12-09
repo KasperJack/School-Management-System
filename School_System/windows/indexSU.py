@@ -12,8 +12,7 @@ from School_System.db.dbio import connect
 
 import School_System.resources.qrc.rec_rc
 from School_System.helpers.db_utils import *
-
-
+from School_System.windows.dbtest import students
 
 
 class indexSU(QMainWindow):
@@ -58,7 +57,7 @@ class indexSU(QMainWindow):
         self.load_students_to_table()
         self.students_table.verticalHeader().setVisible(False)
         self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        header = self.students_table.horizontalHeader()
+        #header = self.students_table.horizontalHeader()
         #header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
 
@@ -94,7 +93,9 @@ class indexSU(QMainWindow):
 
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
-        
+        self.update_students_count()
+
+
         self.load_inactive_users()
 
         #self.tableWidget.setColumnWidth(0,150)
@@ -132,6 +133,14 @@ class indexSU(QMainWindow):
     def open_add_student_dialog(self):
         add_student_dialog = AddStudentDialog(self)
         add_student_dialog.exec()
+
+
+
+
+    def update_students_count(self):
+        students = get_total_students()
+        self.students_label.setText(f"students | {students}")
+
 
 
 

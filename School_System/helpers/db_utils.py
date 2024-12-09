@@ -381,7 +381,22 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
 
 
 
+def get_total_students():
+    db_path = connect()
 
+    try:
+        with sqlite3.connect(db_path) as db_connection:
+            cursor = db_connection.cursor()
+
+            #count the total number of students
+            cursor.execute("SELECT COUNT(*) FROM students")
+            total_students = cursor.fetchone()[0]  # Fetch the first result of the query
+
+            return total_students
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None  # None if there is an error
 
 ## look up teacher (change info)
     ##add subject /remove

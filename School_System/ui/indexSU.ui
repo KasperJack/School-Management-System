@@ -745,7 +745,7 @@ border-radius: 10px;
            <string notr="true">color: rgb(0, 0, 0);</string>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="dash">
            <widget class="QLabel" name="label_5">
@@ -780,7 +780,7 @@ border-radius: 10px;
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -819,7 +819,7 @@ color: rgb(255, 255, 255);</string>
                     </spacer>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label">
+                    <widget class="QLabel" name="students_label">
                      <property name="font">
                       <font>
                        <pointsize>15</pointsize>
