@@ -105,6 +105,15 @@ class AddTeacherDialog(QDialog):
 
 
 
+    def clear_fields(self):
+        self.name_field.clear()
+        self.last_name_field.clear()
+        self.phone_field.clear()
+        self.email_field.clear()
+        self.address_field.clear()
+
+
+
 
     def add_teacher(self):
         name =self.name_field.text()
@@ -125,10 +134,7 @@ class AddTeacherDialog(QDialog):
             selected_subjects = self.get_selected_subjects()
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
-                self.name_field.clear()
-                self.last_name_field.clear()
-                self.phone_field.clear()
-                self.email_field.clear()
+                self.clear_fields()
                 teacher_id = get_teachers_sequence()
                 for subject in selected_subjects:
                     add_teacher_subject(teacher_id,subject)
@@ -143,11 +149,7 @@ class AddTeacherDialog(QDialog):
         if evaluate == "Teacher added successfully":
             selected_subjects = self.get_selected_subjects()
             QMessageBox.information(self, "info", f"{evaluate}")
-            self.name_field.clear()
-            self.last_name_field.clear()
-            self.phone_field.clear()
-            self.email_field.clear()
-            self.address_field.clear()
+            self.clear_fields()
             teacher_id = get_teachers_sequence()
             for subject in selected_subjects:
                 add_teacher_subject(teacher_id,subject)

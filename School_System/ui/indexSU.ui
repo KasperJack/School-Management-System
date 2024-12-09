@@ -1202,9 +1202,9 @@ alternate-background-color: #B0EDFB;
            <widget class="QTableWidget" name="students_table">
             <property name="geometry">
              <rect>
-              <x>20</x>
+              <x>10</x>
               <y>410</y>
-              <width>771</width>
+              <width>801</width>
               <height>271</height>
              </rect>
             </property>

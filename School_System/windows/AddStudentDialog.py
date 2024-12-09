@@ -1,13 +1,14 @@
 import os 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
-
 from School_System.helpers.db_utils import get_classes, add_student
 
+#from School_System.windows.indexSU import indexSU
 
 class AddStudentDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, index_instance, parent=None):
         super().__init__(parent)
+        self.index_instance = index_instance
         ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddStudentDialog.ui')
         uic.loadUi(ui_path, self)
 
@@ -19,6 +20,16 @@ class AddStudentDialog(QDialog):
         self.classes_dropdown.addItems(classes)
 
         self.classes_dropdown.setCurrentIndex(0)
+
+
+    def clear_fields(self):
+        self.name_field.clear()
+        self.last_name_field.clear()
+        self.phone_field.clear()
+        self.email_field.clear()
+        self.address_field.clear()
+
+
 
 
 
@@ -44,11 +55,8 @@ class AddStudentDialog(QDialog):
             evaluate = add_student(full_name,phone,email,gender,birth_date,address)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
-                self.name_field.clear()
-                self.last_name_field.clear()
-                self.phone_field.clear()
-                self.email_field.clear()
-                self.address_field.clear()
+                self.clear_fields()
+                self.index_instance.load_students_to_table()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -57,14 +65,13 @@ class AddStudentDialog(QDialog):
         evaluate = add_student(full_name, phone, email, gender, birth_date,address,stdclass)
         if evaluate == "Student added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
-            self.name_field.clear()
-            self.last_name_field.clear()
-            self.phone_field.clear()
-            self.email_field.clear()
-            self.address_field.clear()
+            self.clear_fields()
+            self.index_instance.load_students_to_table()
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
+
+
 
 
 
