@@ -31,34 +31,37 @@ class AddStudentDialog(QDialog):
         phone = self.phone_field.text()
         email = self.email_field.text()
         gender = self.comboBox.currentText()
-        birth_date = self.birth_date.date().toString("dd-MM-yyyy")
+        birth_date = self.birth_date.date().toString("yyyy-MM-dd")
+        address = self.address_field.text()
         stdclass = self.classes_dropdown.currentText()
 
-        if not name or not last_name or not phone or not email:
+        if not name or not last_name or not phone or not email or not address:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
 
         if stdclass == "N/A":
-            evaluate = add_student(full_name,phone,email,gender,birth_date)
+            evaluate = add_student(full_name,phone,email,gender,birth_date,address)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.name_field.clear()
                 self.last_name_field.clear()
                 self.phone_field.clear()
                 self.email_field.clear()
+                self.address_field.clear()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
                 return
 
-        evaluate = add_student(full_name, phone, email, gender, birth_date,stdclass)
+        evaluate = add_student(full_name, phone, email, gender, birth_date,address,stdclass)
         if evaluate == "Student added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.name_field.clear()
             self.last_name_field.clear()
             self.phone_field.clear()
             self.email_field.clear()
+            self.address_field.clear()
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")

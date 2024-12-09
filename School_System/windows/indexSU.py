@@ -217,48 +217,48 @@ class indexSU(QMainWindow):
 
             delete_admin(full_name,email)
             self.load_inactive_users()
-        
 
+        def load_students_to_table():
+            """Fetch student information and populate the students_table."""
+            db_path = connect()
 
+            with sqlite3.connect(db_path) as db_connection:
+                cursor = db_connection.cursor()
+                # Query to get student info along with grade
+                query = """
+                SELECT 
+                    students.student_id,
+                    students.full_name,
+                    students.gender,
+                    grades.grade_name,
+                    students.class_name,
+                    students.birth_date,
+                    students.address,
+                    students.phone,
+                    students.email
+                FROM 
+                    students
+                LEFT JOIN 
+                    class ON students.class_name = class.class_name
+                LEFT JOIN 
+                    grades ON class.grade_name = grades.grade_name
+                """
+                cursor.execute(query)
+                students = cursor.fetchall()
 
+            # Set up the table
+            self.students_table.setRowCount(len(students))
+            self.students_table.setColumnCount(9)
+            self.students_table.setHorizontalHeaderLabels([
+                "Student ID", "Full Name", "Gender", "Grade",
+                "Class Name", "Birth Date", "Address", "Phone", "Email"
+            ])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            # Populate the table
+            for row_idx, student in enumerate(students):
+                for col_idx, data in enumerate(student):
+                    item = QTableWidgetItem(str(data) if data is not None else "")
+                    self.students_table.setItem(row_idx, col_idx, item)
 
         #####################################[switching]#############################################
         

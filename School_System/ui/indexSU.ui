@@ -1097,7 +1097,7 @@ alternate-background-color: #B0EDFB;
              <attribute name="title">
               <string>Tab 1</string>
              </attribute>
-             <widget class="QTableWidget" name="students_table">
+             <widget class="QTableWidget" name="students_table_c">
               <property name="geometry">
                <rect>
                 <x>15</x>
@@ -1157,8 +1157,8 @@ alternate-background-color: #B0EDFB;
            <widget class="QLabel" name="label_7">
             <property name="geometry">
              <rect>
-              <x>280</x>
-              <y>30</y>
+              <x>670</x>
+              <y>0</y>
               <width>111</width>
               <height>51</height>
              </rect>
@@ -1197,6 +1197,49 @@ alternate-background-color: #B0EDFB;
               <width>50</width>
               <height>30</height>
              </size>
+            </property>
+           </widget>
+           <widget class="QTableWidget" name="students_table">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>410</y>
+              <width>771</width>
+              <height>271</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QHeaderView::section{
+font-weight: bold;
+background-color: black;
+color: white;
+
+}
+
+QTableWidget{
+alternate-background-color: #B0EDFB;
+#background-color: #FBFB9A;
+
+
+}</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>mpmp</string>
+             </property>
+            </column>
+           </widget>
+           <widget class="QWidget" name="widget_8" native="true">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>491</width>
+              <height>301</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(98, 160, 234);</string>
             </property>
            </widget>
           </widget>
