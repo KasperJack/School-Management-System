@@ -53,9 +53,13 @@ class indexSU(QMainWindow):
 
         #prevents the table () from being edited
         self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+        ### loads the students table
         self.load_students_to_table()
-        header = self.inactive_admins_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.students_table.verticalHeader().setVisible(False)
+        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        header = self.students_table.horizontalHeader()
+        #header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
 
 
