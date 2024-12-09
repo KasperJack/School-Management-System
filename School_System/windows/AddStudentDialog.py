@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import get_classes, add_student
 
-#from School_System.windows.indexSU import indexSU
+#from School_System.windows.indexSU import indexSU this is  causes an infinite loop  ,Passing index_instance allows the dialog to access the indexSU
 
 class AddStudentDialog(QDialog):
     def __init__(self, index_instance, parent=None):

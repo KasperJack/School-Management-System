@@ -12,7 +12,6 @@ from School_System.db.dbio import connect
 
 import School_System.resources.qrc.rec_rc
 from School_System.helpers.db_utils import *
-from School_System.windows.dbtest import students
 
 
 class indexSU(QMainWindow):
