@@ -349,6 +349,7 @@ def get_classes():
 
 
 
+
 def add_student(full_name, phone, email, gender, birth_date, address, class_name=None):
     """
     Inserts a new student into the `students` table and handles integrity errors.
@@ -433,6 +434,61 @@ def get_total_classes():
 
     except sqlite3.Error as e:
         return None  # Return None if there is an error
+
+
+def get_students_info():
+    """Fetch student information and populate the students_table."""
+    db_path = connect()
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to get student info along with grade
+        query = """
+        SELECT 
+            students.student_id,
+            students.full_name,
+            students.gender,
+            grades.grade_name,
+            students.class_name,
+            students.birth_date,
+            students.address,
+            students.phone,
+            students.email
+        FROM 
+            students
+        LEFT JOIN 
+            class ON students.class_name = class.class_name
+        LEFT JOIN 
+            grades ON class.grade_name = grades.grade_name
+        """
+        cursor.execute(query)
+        students = cursor.fetchall()
+        return students
+
+
+
+
+def get_teachers_subjects():
+    """Fetch teacher-subject pairs from the database and populate the teachers_subjects_scrollArea with checkboxes."""
+    db_path = connect()
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to fetch teacher-subject pairs
+        cursor.execute("""
+            SELECT ts.id, sub.subject_name, t.full_name
+            FROM teachers_subjects ts
+            JOIN subjects sub ON ts.subject_id = sub.subject_id
+            JOIN teachers t ON ts.teacher_id = t.teacher_id
+        """)
+        teachers_subjects = cursor.fetchall()
+        return  teachers_subjects
+
+
+
+
+
+
+
 
 
 

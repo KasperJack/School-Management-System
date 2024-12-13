@@ -28,19 +28,8 @@ class AddClassDialog(QDialog):
 
 
     def load_teachers_subjects(self):
-        """Fetch teacher-subject pairs from the database and populate the teachers_subjects_scrollArea with checkboxes."""
-        db_path = connect()
-        with sqlite3.connect(db_path) as db_connection:
-            cursor = db_connection.cursor()
-            # Query to fetch teacher-subject pairs
-            cursor.execute("""
-                SELECT ts.id, sub.subject_name, t.full_name
-                FROM teachers_subjects ts
-                JOIN subjects sub ON ts.subject_id = sub.subject_id
-                JOIN teachers t ON ts.teacher_id = t.teacher_id
-            """)
-            teachers_subjects = cursor.fetchall()
 
+        teachers_subjects = get_teachers_subjects()
         # Access or create the scroll area widget
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:

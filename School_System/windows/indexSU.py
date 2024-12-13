@@ -193,33 +193,8 @@ class indexSU(QMainWindow):
             #self.tableWidget.resizeColumnsToContents()
 
     def load_students_to_table(self):
-        """Fetch student information and populate the students_table."""
-        db_path = connect()
 
-        with sqlite3.connect(db_path) as db_connection:
-            cursor = db_connection.cursor()
-            # Query to get student info along with grade
-            query = """
-            SELECT 
-                students.student_id,
-                students.full_name,
-                students.gender,
-                grades.grade_name,
-                students.class_name,
-                students.birth_date,
-                students.address,
-                students.phone,
-                students.email
-            FROM 
-                students
-            LEFT JOIN 
-                class ON students.class_name = class.class_name
-            LEFT JOIN 
-                grades ON class.grade_name = grades.grade_name
-            """
-            cursor.execute(query)
-            students = cursor.fetchall()
-
+        students = get_students_info()
         # Set up the table
         self.students_table.setRowCount(len(students))
         self.students_table.setColumnCount(9)
