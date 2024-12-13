@@ -1176,10 +1176,10 @@ alternate-background-color: #B0EDFB;
            <widget class="QToolButton" name="add_student_button">
             <property name="geometry">
              <rect>
-              <x>710</x>
-              <y>110</y>
-              <width>41</width>
-              <height>41</height>
+              <x>260</x>
+              <y>370</y>
+              <width>111</width>
+              <height>31</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1223,6 +1223,9 @@ alternate-background-color: #B0EDFB;
 
 }</string>
             </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
             <column>
              <property name="text">
               <string>mpmp</string>
@@ -1232,8 +1235,8 @@ alternate-background-color: #B0EDFB;
            <widget class="QWidget" name="widget_8" native="true">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>70</y>
+              <x>0</x>
+              <y>30</y>
               <width>491</width>
               <height>301</height>
              </rect>
@@ -1241,12 +1244,128 @@ alternate-background-color: #B0EDFB;
             <property name="styleSheet">
              <string notr="true">background-color: rgb(98, 160, 234);</string>
             </property>
+            <widget class="QLabel" name="label">
+             <property name="geometry">
+              <rect>
+               <x>140</x>
+               <y>50</y>
+               <width>66</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>adem</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_11">
+             <property name="geometry">
+              <rect>
+               <x>130</x>
+               <y>80</y>
+               <width>101</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>boubaker</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_12">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>260</y>
+               <width>81</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>7/08/2001</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_27">
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>180</y>
+               <width>211</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>boubakeradem47@gmail.com</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_28">
+             <property name="geometry">
+              <rect>
+               <x>230</x>
+               <y>210</y>
+               <width>91</width>
+               <height>18</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>29 600 180</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="lineEdit_2">
+             <property name="geometry">
+              <rect>
+               <x>230</x>
+               <y>130</y>
+               <width>113</width>
+               <height>26</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLabel" name="label_29">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>10</y>
+               <width>101</width>
+               <height>131</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(36, 31, 49);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
            </widget>
            <widget class="QLineEdit" name="search_bar">
             <property name="geometry">
              <rect>
-              <x>550</x>
-              <y>360</y>
+              <x>10</x>
+              <y>370</y>
               <width>241</width>
               <height>26</height>
              </rect>

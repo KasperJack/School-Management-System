@@ -230,11 +230,6 @@ class indexSU(QMainWindow):
         self.display_students(filtered_students)
 
     def on_cell_clicked(self, row, column):
-        """
-        Slot for handling cell clicks.
-        :param row: Row index of the clicked cell.
-        :param column: Column index of the clicked cell.
-        """
         item = self.students_table.item(row, column)
         if item:
             print(f"Clicked cell at row {row}, column {column}. Value: {item.text()}")
@@ -242,13 +237,11 @@ class indexSU(QMainWindow):
 
 
 
-    # Methods to handle the buttons' functionality
     def activate_user(self, row_index):
-        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
-        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
+        full_name = self.inactive_admins_table.item(row_index, 0).text()
+        email = self.inactive_admins_table.item(row_index, 1).text()
 
 
-        # Show a confirmation dialog
         confirmation = QMessageBox.question(
         self,
         "Confirm Activation",

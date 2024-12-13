@@ -30,26 +30,25 @@ class AddClassDialog(QDialog):
     def load_teachers_subjects(self):
 
         teachers_subjects = get_teachers_subjects()
-        # Access or create the scroll area widget
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:
             scroll_widget = QWidget()
             self.teachers_subjects_scrollArea.setWidget(scroll_widget)
             self.teachers_subjects_scrollArea.setWidgetResizable(True)
 
-        # Set up a layout if not already present
+        # Set up a layout
         if scroll_widget.layout() is None:
             scroll_widget.setLayout(QVBoxLayout())
 
         layout = scroll_widget.layout()
 
-        # Clear existing widgets in the layout
+        # Clear existing widgets in the layout #????
         while layout.count():
             child = layout.takeAt(0)
             if child.widget():
                 child.widget().deleteLater()
 
-        # Add checkboxes for each teacher-subject pair
+        #add checkboxes for each teacher-subject pair
         for pair_id, subject_name, teacher_name in teachers_subjects:
             display_text = f"{subject_name} ({teacher_name})"  # Format the display
             checkbox = QCheckBox(display_text, self)
