@@ -1176,8 +1176,8 @@ alternate-background-color: #B0EDFB;
            <widget class="QToolButton" name="add_student_button">
             <property name="geometry">
              <rect>
-              <x>260</x>
-              <y>370</y>
+              <x>680</x>
+              <y>360</y>
               <width>111</width>
               <height>31</height>
              </rect>
@@ -1211,17 +1211,14 @@ alternate-background-color: #B0EDFB;
             <property name="styleSheet">
              <string notr="true">QHeaderView::section{
 font-weight: bold;
-background-color: black;
-color: white;
+background-color: green;
+color: green;
 
 }
 
-QTableWidget{
-alternate-background-color: #B0EDFB;
-#background-color: #FBFB9A;
 
 
-}</string>
+</string>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
@@ -1367,6 +1364,16 @@ alternate-background-color: #B0EDFB;
               <x>10</x>
               <y>370</y>
               <width>241</width>
+              <height>26</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="class_combo_box">
+            <property name="geometry">
+             <rect>
+              <x>270</x>
+              <y>370</y>
+              <width>86</width>
               <height>26</height>
              </rect>
             </property>

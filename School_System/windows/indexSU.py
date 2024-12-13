@@ -94,6 +94,10 @@ class indexSU(QMainWindow):
         self.label_user_name.setText(f"Hello, {name}")
         self.update_on_start_up()
         self.search_bar.textChanged.connect(self.filter_students_table)
+        self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
+        self.class_combo_box.addItem("All Classes")  # Default option to show all students
+        self.class_combo_box.addItems(get_classes())  # Populate with class names
+
         self.students_table.cellClicked.connect(self.on_cell_clicked)
 
 
@@ -192,15 +196,15 @@ class indexSU(QMainWindow):
                 # Add the widget to the table
                 self.inactive_admins_table.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
 
+
+
             #self.tableWidget.resizeColumnsToContents()
-
-
-
 
     def load_students_to_table(self):
         """Load all students into the table."""
-        self.students = get_students_info()  # Save the full dataset in an instance variable
-        self.display_students(self.students)
+        self.students = get_students_info()  # Fetch the full dataset
+        #self.display_students(self.students)
+        self.filter_students_table()
 
     def display_students(self, students):
         """Display a given list of students in the table."""
@@ -217,17 +221,31 @@ class indexSU(QMainWindow):
                 self.students_table.setItem(row_idx, col_idx, item)
 
     def filter_students_table(self):
-        """Filter the table based on the search input."""
+        """Filter the table based on the search input and selected class."""
         search_text = self.search_bar.text().strip().lower()
-        if not search_text:
-            self.display_students(self.students)  # Show all students if the search bar is empty
-            return
+        selected_class = self.class_combo_box.currentText()
 
-        # Filter students whose names contain the search text
-        filtered_students = [
-            student for student in self.students if search_text in student[1].lower()
-        ]
+        # Filter based on class and search text
+        filtered_students = self.students
+
+        # If a specific class is selected, filter by class
+        if selected_class != "All Classes":
+            filtered_students = [
+                student for student in filtered_students if student[4] == selected_class
+            ]
+
+        # Further filter by search text
+        if search_text:
+            filtered_students = [
+                student for student in filtered_students if search_text in student[1].lower()
+            ]
+
         self.display_students(filtered_students)
+
+
+
+
+
 
     def on_cell_clicked(self, row, column):
         item = self.students_table.item(row, column)
