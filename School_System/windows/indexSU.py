@@ -93,6 +93,8 @@ class indexSU(QMainWindow):
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
         self.update_on_start_up()
+        self.search_bar.textChanged.connect(self.filter_students_table)
+        self.students_table.cellClicked.connect(self.on_cell_clicked)
 
 
         self.load_inactive_users()
@@ -192,10 +194,16 @@ class indexSU(QMainWindow):
 
             #self.tableWidget.resizeColumnsToContents()
 
-    def load_students_to_table(self):
 
-        students = get_students_info()
-        # Set up the table
+
+
+    def load_students_to_table(self):
+        """Load all students into the table."""
+        self.students = get_students_info()  # Save the full dataset in an instance variable
+        self.display_students(self.students)
+
+    def display_students(self, students):
+        """Display a given list of students in the table."""
         self.students_table.setRowCount(len(students))
         self.students_table.setColumnCount(9)
         self.students_table.setHorizontalHeaderLabels([
@@ -203,11 +211,34 @@ class indexSU(QMainWindow):
             "Class Name", "Birth Date", "Address", "Phone", "Email"
         ])
 
-        # Populate the table
         for row_idx, student in enumerate(students):
             for col_idx, data in enumerate(student):
                 item = QTableWidgetItem(str(data) if data is not None else "")
                 self.students_table.setItem(row_idx, col_idx, item)
+
+    def filter_students_table(self):
+        """Filter the table based on the search input."""
+        search_text = self.search_bar.text().strip().lower()
+        if not search_text:
+            self.display_students(self.students)  # Show all students if the search bar is empty
+            return
+
+        # Filter students whose names contain the search text
+        filtered_students = [
+            student for student in self.students if search_text in student[1].lower()
+        ]
+        self.display_students(filtered_students)
+
+    def on_cell_clicked(self, row, column):
+        """
+        Slot for handling cell clicks.
+        :param row: Row index of the clicked cell.
+        :param column: Column index of the clicked cell.
+        """
+        item = self.students_table.item(row, column)
+        if item:
+            print(f"Clicked cell at row {row}, column {column}. Value: {item.text()}")
+
 
 
 

@@ -745,7 +745,7 @@ border-radius: 10px;
            <string notr="true">color: rgb(0, 0, 0);</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="dash">
            <widget class="QLabel" name="label_5">
@@ -1240,6 +1240,16 @@ alternate-background-color: #B0EDFB;
             </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(98, 160, 234);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="search_bar">
+            <property name="geometry">
+             <rect>
+              <x>550</x>
+              <y>360</y>
+              <width>241</width>
+              <height>26</height>
+             </rect>
             </property>
            </widget>
           </widget>
