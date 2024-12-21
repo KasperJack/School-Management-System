@@ -211,7 +211,7 @@ class indexSU(QMainWindow):
         self.students_table.setRowCount(len(students))
         self.students_table.setColumnCount(9)
         self.students_table.setHorizontalHeaderLabels([
-            "Student ID", "Full Name", "Gender", "Grade",
+            "ID", "Full Name", "Gender", "Grade",
             "Class Name", "Birth Date", "Address", "Phone", "Email"
         ])
 
