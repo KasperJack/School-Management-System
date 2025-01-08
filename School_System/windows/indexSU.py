@@ -98,7 +98,7 @@ class indexSU(QMainWindow):
         self.class_combo_box.addItem("All Classes")  # Default option to show all students
         self.class_combo_box.addItems(get_classes())  # Populate with class names
 
-        self.students_table.cellClicked.connect(self.on_cell_clicked)
+        self.students_table.cellClicked.connect(self.sw_more_about_s) # replaced self.on_cell_clicked
 
 
         self.load_inactive_users()
@@ -352,13 +352,14 @@ class indexSU(QMainWindow):
     def sw_dash(self):
         self.stackedWidget.setCurrentIndex(0)
     def sw_subject(self):
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(5)
     def sw_class(self):
         self.stackedWidget.setCurrentIndex(1)
     def sw_teachers(self):
         self.stackedWidget.setCurrentIndex(3)
     def sw_students(self):
         self.stackedWidget.setCurrentIndex(2)
-
+    def sw_more_about_s(self):
+        self.stackedWidget.setCurrentIndex(4)
 
     
