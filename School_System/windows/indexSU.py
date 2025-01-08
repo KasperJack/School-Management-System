@@ -98,7 +98,7 @@ class indexSU(QMainWindow):
         self.class_combo_box.addItem("All Classes")  # Default option to show all students
         self.class_combo_box.addItems(get_classes())  # Populate with class names
 
-        self.students_table.cellClicked.connect(self.sw_more_about_s) # replaced self.on_cell_clicked
+        self.students_table.cellClicked.connect(self.on_cell_clicked) # replaced self.on_cell_clicked
 
 
         self.load_inactive_users()
@@ -242,15 +242,28 @@ class indexSU(QMainWindow):
 
         self.display_students(filtered_students)
 
-
-
-
-
-
     def on_cell_clicked(self, row, column):
-        item = self.students_table.item(row, column)
-        if item:
-            print(f"Clicked cell at row {row}, column {column}. Value: {item.text()}")
+        full_name_column = 1  # Replace with the index of your specific column
+        if column == full_name_column:
+            # Get the value of the cell next to the clicked cell (e.g., column 3)
+            id_column = column - 1  # Adjust based on direction (+1 for the right, -1 for the left)
+            value = self.students_table.item(row, id_column)
+            sid = value.text()
+            student_info = get_student_details(sid)
+            full_name = student_info['full_name']
+            name_parts = full_name.split(" ", 1)
+            first_name = name_parts[0]
+            last_name = name_parts[1]
+            self.s_name.setText(first_name)
+            self.s_last_name.setText(last_name)
+            self.s_phone.setText(student_info['phone'])
+            self.s_email.setText(student_info['email'])
+            self.s_bd.setText(student_info['birth_date'])
+            self.s_address.setText(student_info['address'])
+            self.s_class.setText(student_info['class_name'])
+            self.s_regestraion.setText(student_info['registration_date'])
+            self.s_additional_info.setText(student_info['additional_info'])
+            self.sw_more_about_s()
 
 
 
@@ -295,7 +308,10 @@ class indexSU(QMainWindow):
             self.load_inactive_users()
 
 
+    def student_info(self, sid):
+        #get info from the db about the selected user
 
+        pass
 
 
 

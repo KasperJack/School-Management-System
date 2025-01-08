@@ -486,12 +486,44 @@ def get_teachers_subjects():
 
 
 
+def get_student_details(student_id):
+    db_path = connect()
+    conn = sqlite3.connect(db_path)  # Replace with your actual database name
+    cursor = conn.cursor()
 
+    try:
+        # SQL query to retrieve all columns except student_id and gender
+        query = """
+        SELECT photo, full_name, phone, email, birth_date, address, class_name, 
+               registration_date, additional_info
+        FROM students
+        WHERE student_id = ?;
+        """
+        cursor.execute(query, (student_id,))
+        result = cursor.fetchone()
 
+        # If a student with the given ID exists, return the details
+        if result:
+            student_details = {
+                "photo": result[0],
+                "full_name": result[1],
+                "phone": result[2],
+                "email": result[3],
+                "birth_date": result[4],
+                "address": result[5],
+                "class_name": result[6],
+                "registration_date": result[7],
+                "additional_info": result[8],
+            }
+            return student_details
+        else:
+            return f"No student found with ID {student_id}"
 
+    except sqlite3.Error as e:
+        return f"Database error: {e}"
 
-
-
+    finally:
+        conn.close()
 
 
 ## look up teacher (change info)
