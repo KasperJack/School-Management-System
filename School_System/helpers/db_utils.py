@@ -488,11 +488,10 @@ def get_teachers_subjects():
 
 def get_student_details(student_id):
     db_path = connect()
-    conn = sqlite3.connect(db_path)  # Replace with your actual database name
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     try:
-        # SQL query to retrieve all columns except student_id and gender
         query = """
         SELECT photo, full_name, phone, email, birth_date, address, class_name, 
                registration_date, additional_info

@@ -276,10 +276,9 @@ class indexSU(QMainWindow):
         self.display_students(filtered_students)
 
     def on_cell_clicked(self, row, column):
-        full_name_column = 1  # Replace with the index of your specific column
+        full_name_column = 1
         if column == full_name_column:
-            # Get the value of the cell next to the clicked cell (e.g., column 3)
-            id_column = column - 1  # Adjust based on direction (+1 for the right, -1 for the left)
+            id_column = column - 1
             value = self.students_table.item(row, id_column)
             sid = value.text()
             student_info = get_student_details(sid)
@@ -340,11 +339,6 @@ class indexSU(QMainWindow):
             delete_admin(full_name,email)
             self.load_inactive_users()
 
-
-    def student_info(self, sid):
-        #get info from the db about the selected user
-
-        pass
 
 
 
