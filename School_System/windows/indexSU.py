@@ -81,7 +81,40 @@ class indexSU(QMainWindow):
         button.clicked.connect(lambda: print("Button clicked!"))
         self.contentLayout.addWidget(button)
 
+###########################################################################################################################"
 
+
+
+
+        self.scrollArea_teachers.setWidgetResizable(True)
+
+
+        # Container widget inside the scroll area
+        container = QWidget()
+        scroll_layout = QVBoxLayout(container)
+        scroll_layout.setSpacing(10)
+
+        # Add multiple TeacherWidget instances dynamically
+        data = [
+            {"name": "Teacher A", "subjects": ["Science", "Math", "Information"],
+             "classes": ["class b01", "class b03", "class b05"]},
+            {"name": "Teacher B", "subjects": ["English", "History"], "classes": ["class b02", "class b04"]},
+            {"name": "Teacher C", "subjects": ["Physics", "Chemistry"], "classes": ["class b01", "class b06"]},
+        ]
+        for teacher in data:
+            teacher_widget = TeacherWidget(
+                name=teacher["name"],
+                subjects=teacher["subjects"],
+                classes=teacher["classes"]
+            )
+            scroll_layout.addWidget(teacher_widget)
+
+        # Add a spacer to push content up if fewer widgets
+        scroll_layout.addStretch()
+
+        # Set container as the widget for the scroll area
+        self.scrollArea_teachers.setWidget(container)
+##################################################################################################################################
 
 
 
@@ -378,4 +411,42 @@ class indexSU(QMainWindow):
     def sw_more_about_s(self):
         self.stackedWidget.setCurrentIndex(4)
 
-    
+
+class TeacherWidget(QWidget):
+    """Custom widget to represent a teacher card."""
+
+    def __init__(self, name, subjects, classes):
+        super().__init__()
+
+        # Set a layout
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+
+        # Teacher's name and subjects
+        teacher_label = QLabel(f"{name} ({', '.join(subjects)})")
+        teacher_label.setStyleSheet("font-weight: bold; font-size: 25px;")
+        layout.addWidget(teacher_label)
+
+        # Classes
+        classes_label = QLabel(" ".join(classes))
+        classes_label.setStyleSheet("font-size: 15px; color: gray;")
+        layout.addWidget(classes_label)
+
+        # Add a button
+        button = QPushButton("Button")
+        button.setFixedSize(80, 30)
+        button.setStyleSheet("background-color: lightgray;")
+
+        # Add the button to a horizontal layout
+        button_layout = QHBoxLayout()
+        button_layout.addStretch()
+        button_layout.addWidget(button)
+        layout.addLayout(button_layout)
+
+        # Set styling directly using setStyleSheet
+        self.setStyleSheet("""
+                    background-color: #ddd;
+                    border-radius: 0px;
+                """)
+        self.setFixedHeight(100)  # Set height for consistent look
