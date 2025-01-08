@@ -35,6 +35,7 @@ class indexSU(QMainWindow):
 
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
+        self.sw_dash()
 ##############################################################
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
@@ -56,8 +57,24 @@ class indexSU(QMainWindow):
         self.load_students_to_table()
         self.students_table.verticalHeader().setVisible(False)
         self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        #header = self.students_table.horizontalHeader()
-        #header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+
+        header = self.students_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(0, 45)
+        header.resizeSection(2, 70)
+        header.resizeSection(3, 80)
+        header.resizeSection(4, 100)
+
+
 
 
 
@@ -242,10 +259,10 @@ class indexSU(QMainWindow):
     def display_students(self, students):
         """Display a given list of students in the table."""
         self.students_table.setRowCount(len(students))
-        self.students_table.setColumnCount(9)
+        self.students_table.setColumnCount(8)
         self.students_table.setHorizontalHeaderLabels([
-            "ID", "Full Name", "Gender", "Grade",
-            "Class Name", "Birth Date", "Address", "Phone", "Email"
+            "ID", "Full Name", "Grade",
+            "Class", "Birth Date", "Address", "Phone", "Email"
         ])
 
         for row_idx, student in enumerate(students):
@@ -264,7 +281,7 @@ class indexSU(QMainWindow):
         # If a specific class is selected, filter by class
         if selected_class != "All Classes":
             filtered_students = [
-                student for student in filtered_students if student[4] == selected_class
+                student for student in filtered_students if student[3] == selected_class
             ]
 
         # Further filter by search text
@@ -414,7 +431,7 @@ class TeacherWidget(QWidget):
 
         # Set a layout
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setContentsMargins(5, 5, 5,5)
         layout.setSpacing(0)
 
         # Teacher's name and subjects
@@ -424,7 +441,7 @@ class TeacherWidget(QWidget):
 
         # Classes
         classes_label = QLabel(" ".join(classes))
-        classes_label.setStyleSheet("font-size: 15px; color: gray;")
+        classes_label.setStyleSheet("font-size: 16px; color: gray;")
         layout.addWidget(classes_label)
 
         # Add a button
@@ -442,5 +459,6 @@ class TeacherWidget(QWidget):
         self.setStyleSheet("""
                     background-color: #ddd;
                     border-radius: 0px;
+                    padding: 7px;
                 """)
-        self.setFixedHeight(100)  # Set height for consistent look
+        self.setFixedHeight(125)  # Set height for consistent look

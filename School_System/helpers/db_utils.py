@@ -447,7 +447,6 @@ def get_students_info():
         SELECT 
             students.student_id,
             students.full_name,
-            students.gender,
             grades.grade_name,
             students.class_name,
             students.birth_date,
