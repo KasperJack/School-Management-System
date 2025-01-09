@@ -65,7 +65,7 @@ def add_account_user(full_name, email, password):
     
 
 #retunrs a list of inactive users (admins)
-def get_inactive_users():
+def get_inactive_admins():
     # Connect to the database
     db_path = connect()  # Replace with your database connection method
     with sqlite3.connect(db_path) as db_connection:

@@ -20,7 +20,7 @@ class indexSU(QMainWindow):
         ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'indexSU.ui')
         uic.loadUi(ui_path, self)
 
-        #side bar buttons#####"
+        #sbuttons#####
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
 
@@ -35,70 +35,38 @@ class indexSU(QMainWindow):
 
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
-        self.sw_dash()
-##############################################################
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
         self.add_student_button.clicked.connect(self.open_add_student_dialog)
+        self.students_table.cellClicked.connect(self.on_cell_clicked)
+
+        #########################[search students table]################################
+        self.search_bar.textChanged.connect(self.filter_students_table)
+        self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
+        ##############################################################
+        self.sw_dash()
+        self.icon_only.setHidden(True)
+        self.greet_user()
+        self.update_on_start_up() #updates the counters
+        self.setup_students_table()
+        self.setup_inactive_admins_table()
 
         #removes the seconds tab in the tab widget for admin access
         #self.tabWidget.removeTab(1)#################"
 
 
-        self.icon_only.setHidden(True)
-        self.inactive_admins_table.verticalHeader().setVisible(False)
-
-        #prevents the table () from being edited
-        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-        ### loads the students table
-        self.load_students_to_table()
-        self.students_table.verticalHeader().setVisible(False)
-        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-
-        header = self.students_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        # Set specific columns to have a fixed size
-        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
-
-        # Set the fixed size for these columns
-        header.resizeSection(0, 45)
-        header.resizeSection(2, 70)
-        header.resizeSection(3, 80)
-        header.resizeSection(4, 100)
 
 
 
 
 
-        # Get the scroll area and its content widget
-        self.scrollAreaWidgetContents = self.scrollArea.widget()
-        if not self.scrollAreaWidgetContents:
-            self.scrollAreaWidgetContents = QWidget()
-            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
-        # Set up a layout for the scroll area's content widget
-        self.contentLayout = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.scrollAreaWidgetContents.setLayout(self.contentLayout)
 
-        # Add some widgets dynamically to test
-        for i in range(55):  # Add 5 test labels
-            label = QLabel(f"Dynamic Label {i + 1}")
-            self.contentLayout.addWidget(label)
 
-        # Add a test button
-        button = QPushButton("Dynamic Button")
-        button.clicked.connect(lambda: print("Button clicked!"))
-        self.contentLayout.addWidget(button)
 
-###########################################################################################################################"
+
 
 
 
@@ -135,60 +103,14 @@ class indexSU(QMainWindow):
 
 
 
-
-
-
-
-
+    def greet_user(self):
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
-        self.update_on_start_up()
-        self.search_bar.textChanged.connect(self.filter_students_table)
-        self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
-        self.class_combo_box.addItem("All Classes")  # Default option to show all students
-        self.class_combo_box.addItems(get_classes())  # Populate with class names
-
-        self.students_table.cellClicked.connect(self.on_cell_clicked) # replaced self.on_cell_clicked
-
-
-        self.load_inactive_users()
-
-        #self.tableWidget.setColumnWidth(0,150)
-        #self.tableWidget.setColumnWidth(1,150)
-        #self.tableWidget.setColumnWidth(2,150)
-        #self.tableWidget.setColumnWidth(3,150)
-        # Set the height of all rows to 50 pixels
-
-        header = self.inactive_admins_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        for row in range(self.inactive_admins_table.rowCount()):
-            self.inactive_admins_table.setRowHeight(row, 40)
 
 
 
-
-
-
-
-
-    def open_add_subject_dialog(self):
-        # Create an instance of the AddSubjectDialog
-        add_subject_dialog = AddSubjectDialog(self)
-        add_subject_dialog.exec()
-
-    def open_add_teacher_dialog(self):
-        # Create an instance of the AddTeacherDialog
-        add_teacher_dialog = AddTeacherDialog(self)
-        add_teacher_dialog.exec()
-
-    def open_add_class_dialog(self):
-        add_class_dialog = AddClassDialog(self)
-        add_class_dialog.exec()
-    def open_add_student_dialog(self):
-        add_student_dialog = AddStudentDialog(self)
-        add_student_dialog.exec()
-
+    def load_classes_student_search(self):
+        self.class_combo_box.addItems(get_classes())
 
 
 
@@ -209,9 +131,15 @@ class indexSU(QMainWindow):
         self.update_teachers_count()
         self.update_students_count()
 
-    def load_inactive_users(self):
+
+
+
+
+####### inactive admins table ###########################
+
+    def load_inactive_admins(self):
             
-            results = get_inactive_users()
+            results = get_inactive_admins()
 
             # Set up the table widget for 3 columns
             self.inactive_admins_table.setRowCount(len(results))  # Set rows based on query result count
@@ -334,7 +262,7 @@ class indexSU(QMainWindow):
         if confirmation == QMessageBox.StandardButton.Yes:
 
             activate_admin(full_name,email)
-            self.load_inactive_users()
+            self.load_inactive_admins()
 
     
     
@@ -354,7 +282,44 @@ class indexSU(QMainWindow):
        
         if confirmation == QMessageBox.StandardButton.Yes:
             delete_admin(full_name,email)
-            self.load_inactive_users()
+            self.load_inactive_admins()
+
+
+    def setup_students_table(self):
+        ### loads the students table
+        self.load_students_to_table()## :load data
+        self.students_table.verticalHeader().setVisible(False)
+        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.class_combo_box.addItem("All Classes")
+        self.load_classes_student_search()
+        # auto adjust the size of the colusmns
+        header = self.students_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(0, 45)
+        header.resizeSection(2, 70)
+        header.resizeSection(3, 80)
+        header.resizeSection(4, 100)
+
+
+    def setup_inactive_admins_table(self):
+        self.inactive_admins_table.verticalHeader().setVisible(False)
+
+        # prevents the table () from being edited
+        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.load_inactive_admins() ###load data
+        header = self.inactive_admins_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        for row in range(self.inactive_admins_table.rowCount()):
+            self.inactive_admins_table.setRowHeight(row, 40)
 
 
 
@@ -400,10 +365,22 @@ class indexSU(QMainWindow):
         #####################################[switching]#############################################
         
 
+    def open_add_subject_dialog(self):
+        # Create an instance of the AddSubjectDialog
+        add_subject_dialog = AddSubjectDialog(self)
+        add_subject_dialog.exec()
 
+    def open_add_teacher_dialog(self):
+        # Create an instance of the AddTeacherDialog
+        add_teacher_dialog = AddTeacherDialog(self)
+        add_teacher_dialog.exec()
 
-
-
+    def open_add_class_dialog(self):
+        add_class_dialog = AddClassDialog(self)
+        add_class_dialog.exec()
+    def open_add_student_dialog(self):
+        add_student_dialog = AddStudentDialog(self)
+        add_student_dialog.exec()
 
 
 
