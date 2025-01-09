@@ -374,17 +374,16 @@ class indexSU(QMainWindow):
 
         row = selected_indexes[0].row()
         id_column = 0
+        name_column = 1
         id_item = self.students_table.item(row, id_column)
+        name_item = self.students_table.item(row, name_column)
         sid = id_item.text()
-        print(sid)
-        #delete_student(sid)
+        sname = name_item.text()
+        #print(sid,sname)
+        delete_student(sid,sname)
         self.load_students_to_table()
         self.update_students_count()
         self.sw_students()
-
-
-
-
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion

@@ -563,14 +563,14 @@ def delete_student(student_id,student_name):
                 entity_name = student_name
                 entity_id = student_id
                 additional_info = "blablabla"
-                #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
+                log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info)
 
                 return f"Student has been deleted successfully."
             else:
                 return f"No student found" #No student found with ID {student_id}
 
     except sqlite3.Error as e:
-        return f"An error occurred: {e}"
+        return print(f"An error occurred: {e}")
 
 
 
@@ -583,7 +583,8 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
 
     # Generate the timestamp in Python
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+    print(timestamp,user_id,user_name, activity_type,affected_entity, entity_name, entity_id, additional_info)
+    #return
     # Database connection
     db_path = connect()  # Assume this function provides the path to the SQLite database
     with sqlite3.connect(db_path) as db_connection:
