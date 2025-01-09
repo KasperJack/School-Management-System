@@ -740,20 +740,14 @@ border-radius: 10px;
 </string>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="dash">
-             <widget class="QTabWidget" name="tabWidget_dash">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>791</width>
-                <height>691</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"> /* TabWidget Styling */
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <widget class="QTabWidget" name="tabWidget_dash">
+                <property name="styleSheet">
+                 <string notr="true"> /* TabWidget Styling */
     QTabWidget::pane {
         border: 2px solid #4CAF50;
         border-radius: 5px;
@@ -794,35 +788,63 @@ border-radius: 10px;
     QTabBar::scroller:pressed {
         background: #388E3C;
     }</string>
-              </property>
-              <property name="currentIndex">
-               <number>2</number>
-              </property>
-              <widget class="QWidget" name="tab">
-               <attribute name="title">
-                <string>Tab 1</string>
-               </attribute>
-               <widget class="QWidget" name="widget" native="true">
-                <property name="geometry">
-                 <rect>
-                  <x>30</x>
-                  <y>60</y>
-                  <width>221</width>
-                  <height>81</height>
-                 </rect>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(97, 53, 131);
+                <property name="currentIndex">
+                 <number>2</number>
+                </property>
+                <widget class="QWidget" name="tab">
+                 <attribute name="title">
+                  <string>Tab 1</string>
+                 </attribute>
+                 <widget class="QWidget" name="widget" native="true">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>60</y>
+                    <width>221</width>
+                    <height>81</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(97, 53, 131);
 
 color: rgb(255, 255, 255);</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_8">
-                 <item>
-                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <layout class="QHBoxLayout" name="horizontalLayout_7">
                      <item>
-                      <spacer name="horizontalSpacer_4">
+                      <layout class="QHBoxLayout" name="horizontalLayout_6">
+                       <item>
+                        <spacer name="horizontalSpacer_4">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="students_label">
+                         <property name="font">
+                          <font>
+                           <pointsize>15</pointsize>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>students | 220</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_5">
                        <property name="orientation">
                         <enum>Qt::Orientation::Horizontal</enum>
                        </property>
@@ -834,175 +856,147 @@ color: rgb(255, 255, 255);</string>
                        </property>
                       </spacer>
                      </item>
-                     <item>
-                      <widget class="QLabel" name="students_label">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>students | 220</string>
-                       </property>
-                      </widget>
-                     </item>
                     </layout>
                    </item>
-                   <item>
-                    <spacer name="horizontalSpacer_5">
-                     <property name="orientation">
-                      <enum>Qt::Orientation::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
                   </layout>
-                 </item>
-                </layout>
-               </widget>
-               <widget class="QWidget" name="widget_2" native="true">
-                <property name="geometry">
-                 <rect>
-                  <x>280</x>
-                  <y>60</y>
-                  <width>231</width>
-                  <height>80</height>
-                 </rect>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(97, 53, 131);
+                 </widget>
+                 <widget class="QWidget" name="widget_2" native="true">
+                  <property name="geometry">
+                   <rect>
+                    <x>280</x>
+                    <y>60</y>
+                    <width>231</width>
+                    <height>80</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(97, 53, 131);
 
 color: rgb(255, 255, 255);</string>
-                </property>
-                <widget class="QLabel" name="classes_label">
-                 <property name="geometry">
-                  <rect>
-                   <x>45</x>
-                   <y>30</y>
-                   <width>121</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>15</pointsize>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>classes | 20</string>
-                 </property>
-                </widget>
-               </widget>
-               <widget class="QWidget" name="widget_3" native="true">
-                <property name="geometry">
-                 <rect>
-                  <x>530</x>
-                  <y>60</y>
-                  <width>231</width>
-                  <height>80</height>
-                 </rect>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(97, 53, 131);
+                  </property>
+                  <widget class="QLabel" name="classes_label">
+                   <property name="geometry">
+                    <rect>
+                     <x>45</x>
+                     <y>30</y>
+                     <width>121</width>
+                     <height>20</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>classes | 20</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="widget_3" native="true">
+                  <property name="geometry">
+                   <rect>
+                    <x>530</x>
+                    <y>60</y>
+                    <width>231</width>
+                    <height>80</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(97, 53, 131);
 
 color: rgb(255, 255, 255);</string>
-                </property>
-                <widget class="QLabel" name="teachers_label">
-                 <property name="geometry">
-                  <rect>
-                   <x>45</x>
-                   <y>30</y>
-                   <width>121</width>
-                   <height>20</height>
-                  </rect>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>15</pointsize>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>teachers | 40</string>
-                 </property>
+                  </property>
+                  <widget class="QLabel" name="teachers_label">
+                   <property name="geometry">
+                    <rect>
+                     <x>45</x>
+                     <y>30</y>
+                     <width>121</width>
+                     <height>20</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>teachers | 40</string>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="QToolButton" name="add_teacher_button_dash">
+                  <property name="geometry">
+                   <rect>
+                    <x>730</x>
+                    <y>210</y>
+                    <width>41</width>
+                    <height>41</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(0, 0, 0);</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../resources/rec.qrc">
+                    <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                 </widget>
                 </widget>
-               </widget>
-               <widget class="QToolButton" name="add_teacher_button_dash">
-                <property name="geometry">
-                 <rect>
-                  <x>730</x>
-                  <y>210</y>
-                  <width>41</width>
-                  <height>41</height>
-                 </rect>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(0, 0, 0);</string>
-                </property>
-                <property name="text">
-                 <string>...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../resources/rec.qrc">
-                  <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-               </widget>
-              </widget>
-              <widget class="QWidget" name="tab_2">
-               <attribute name="title">
-                <string>Tab 2</string>
-               </attribute>
-               <widget class="QGroupBox" name="groupBox">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>240</y>
-                  <width>691</width>
-                  <height>239</height>
-                 </rect>
-                </property>
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="title">
-                 <string>inactive Admins</string>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_2">
-                 <item row="0" column="0">
-                  <widget class="QTableWidget" name="inactive_admins_table">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="autoFillBackground">
-                    <bool>false</bool>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QHeaderView::section{
+                <widget class="QWidget" name="tab_2">
+                 <attribute name="title">
+                  <string>Tab 2</string>
+                 </attribute>
+                 <widget class="QGroupBox" name="groupBox">
+                  <property name="geometry">
+                   <rect>
+                    <x>20</x>
+                    <y>240</y>
+                    <width>691</width>
+                    <height>239</height>
+                   </rect>
+                  </property>
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>13</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="title">
+                   <string>inactive Admins</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_2">
+                   <item row="0" column="0">
+                    <widget class="QTableWidget" name="inactive_admins_table">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QHeaderView::section{
 font-weight: bold;
 background-color: black;
 color: white;
@@ -1015,79 +1009,150 @@ alternate-background-color: #B0EDFB;
 
 
 }</string>
+                     </property>
+                     <property name="alternatingRowColors">
+                      <bool>false</bool>
+                     </property>
+                     <column>
+                      <property name="text">
+                       <string>full name </string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>email</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>regestration date</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>actions</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                 <widget class="QLabel" name="label_5">
+                  <property name="geometry">
+                   <rect>
+                    <x>420</x>
+                    <y>60</y>
+                    <width>111</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>13</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>  Dashboard</string>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QWidget" name="tab_3">
+                 <attribute name="title">
+                  <string>Page</string>
+                 </attribute>
+                 <widget class="QLabel" name="label_7">
+                  <property name="geometry">
+                   <rect>
+                    <x>390</x>
+                    <y>30</y>
+                    <width>111</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>13</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>actvity log</string>
+                  </property>
+                 </widget>
+                 <widget class="QTableWidget" name="students_table_2">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>90</y>
+                    <width>771</width>
+                    <height>551</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">    QTableWidget {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        gridline-color: #ddd;
+        selection-background-color: #4CAF50;
+		 alternate-background-color: #B0EDFB;
+    }
+    QTableWidget::item {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+
+	QTableWidget::item:selected {
+		  background-color: green;
+        color: black;
+    }
+    
+    QHeaderView::section {
+        background-color: black;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        text-align: left;
+		font-weight: bold;
+    }
+    QTableWidget QTableCornerButton::section {
+        background-color: #4CAF50;
+    }
+    QTableWidget::horizontalHeader {
+        background-color: #4CAF50;
+        font-size: 16px;
+        color: white;
+        padding: 10px;
+    }
+    QTableWidget::verticalHeader {
+        background-color: #4CAF50;
+        font-size: 16px;
+        color: white;
+        padding: 10px;
+    }
+    
+
+		QTableWidget::item:hover {
+        background-color: #f2f2f2;
+    }
+</string>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>true</bool>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>mpmp</string>
                    </property>
-                   <property name="alternatingRowColors">
-                    <bool>false</bool>
-                   </property>
-                   <column>
-                    <property name="text">
-                     <string>full name </string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>email</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>regestration date</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>actions</string>
-                    </property>
-                   </column>
-                  </widget>
-                 </item>
-                </layout>
+                  </column>
+                 </widget>
+                </widget>
                </widget>
-               <widget class="QLabel" name="label_5">
-                <property name="geometry">
-                 <rect>
-                  <x>420</x>
-                  <y>60</y>
-                  <width>111</width>
-                  <height>51</height>
-                 </rect>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>  Dashboard</string>
-                </property>
-               </widget>
-              </widget>
-              <widget class="QWidget" name="tab_3">
-               <attribute name="title">
-                <string>Page</string>
-               </attribute>
-               <widget class="QLabel" name="label_7">
-                <property name="geometry">
-                 <rect>
-                  <x>320</x>
-                  <y>190</y>
-                  <width>111</width>
-                  <height>51</height>
-                 </rect>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>actvity log</string>
-                </property>
-               </widget>
-              </widget>
-             </widget>
+              </item>
+             </layout>
             </widget>
             <widget class="QWidget" name="classes">
              <widget class="QLabel" name="label_6">
@@ -1784,7 +1849,7 @@ border-radius: 7px;</string>
                </layout>
               </widget>
              </widget>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="back_to_s_table">
               <property name="geometry">
                <rect>
                 <x>40</x>

@@ -3,7 +3,7 @@ import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
 from datetime import datetime
-
+from PyQt6.QtGui import QColor
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -48,12 +48,27 @@ class indexSU(QMainWindow):
         self.search_bar.textChanged.connect(self.filter_students_table)
         self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
 
+        #################### update delete student tab  ##############################
         self.delete_s.clicked.connect(self.delete_student)
+        self.back_to_s_table.clicked.connect(self.sw_students)
+
+
+
+
+
+
+
+
+
+
+
+
         ##############################################################
         self.greet_user()
         self.update_on_start_up() #updates the counters
         self.setup_students_table()
         self.setup_inactive_admins_table()
+        self.change_row_color(2, "red")
 
         #removes the seconds tab in the tab widget for admin access
         #self.tabWidget.removeTab(1)#################"
@@ -63,18 +78,7 @@ class indexSU(QMainWindow):
 
 
 
-
-
-
-
-
-
-
-
-
-
         self.scrollArea_teachers.setWidgetResizable(True)
-
 
         # Container widget inside the scroll area
         container = QWidget()
@@ -101,9 +105,38 @@ class indexSU(QMainWindow):
 
         # Set container as the widget for the scroll area
         self.scrollArea_teachers.setWidget(container)
+
+
 ##################################################################################################################################
 
 
+    def change_row_color(self, row_index, color):
+        """
+        Changes the background color of a specific row in the QTableWidget.
+
+        Args:
+            row_index (int): The row index of the row to change the color.
+            color (str or QColor): The color to set for the row (can be a color name or QColor object).
+        """
+        # Check if the row_index is valid
+        if row_index < 0 or row_index >= self.students_table.rowCount():
+            print("Invalid row index")
+            return
+
+        # Create a QColor object if a string is passed
+        if isinstance(color, str):
+            color = QColor(color)
+
+        # Loop through each column in the row
+        for column in range(self.students_table.columnCount()):
+            item = self.students_table.item(row_index, column)
+            if item is None:
+                # If the cell is empty, create a new item
+                item = QTableWidgetItem()
+                self.students_table.setItem(row_index, column, item)
+
+            # Set the background color of the item
+            item.setBackground(color)
 
     def greet_user(self):
         name = get_logged_in_user()
@@ -330,7 +363,7 @@ class indexSU(QMainWindow):
             self.sw_more_about_s()
 
 
-#################### update delete student  ##############################
+#################### update delete student tab  ##############################
 
     def delete_student(self):
         selected_indexes = self.students_table.selectedIndexes()
@@ -347,7 +380,8 @@ class indexSU(QMainWindow):
         delete_student(sid)
         self.load_students_to_table()
         self.update_students_count()
-        ## add confermation before deletion
+        self.sw_students()
+        ## add confermation  before deletion
 
 
 
