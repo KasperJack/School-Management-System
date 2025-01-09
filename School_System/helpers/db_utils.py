@@ -243,6 +243,12 @@ def add_teacher(full_name, phone, email, gender, address=None):
 
             # Commit the changes
             db_connection.commit()
+            activity_type = "add"
+            affected_entity = "teacher"
+            entity_name = full_name
+            entity_id = get_teachers_sequence()
+            additional_info = "blablabla"
+            log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
 
         return "Teacher added successfully"
 
@@ -328,6 +334,13 @@ def add_class(class_name, grade_name):
                 (class_name, grade_name)
             )
             db_connection.commit()
+            db_connection.commit()
+            activity_type = "add"
+            affected_entity = "class"
+            entity_name = class_name
+            entity_id = 0
+            additional_info = "blablabla"
+            log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Class added successfully"
         except sqlite3.IntegrityError as e:
             return f"{e}"
