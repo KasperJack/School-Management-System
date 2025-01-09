@@ -42,7 +42,7 @@ class AddStudentDialog(QDialog):
         phone = self.phone_field.text()
         email = self.email_field.text()
         gender = self.comboBox.currentText()
-        birth_date = self.birth_date.date().toString("yyyy-MM-dd")
+        birth_date = self.birth_date.date().toString("dd-MM-yyyy")
         address = self.address_field.text()
         stdclass = self.classes_dropdown.currentText()
 

@@ -2,6 +2,8 @@ import os
 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
+from datetime import datetime
+
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -46,8 +48,6 @@ class indexSU(QMainWindow):
         self.search_bar.textChanged.connect(self.filter_students_table)
         self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
         ##############################################################
-        self.sw_dash()
-        self.icon_only.setHidden(True)
         self.greet_user()
         self.update_on_start_up() #updates the counters
         self.setup_students_table()
@@ -130,6 +130,10 @@ class indexSU(QMainWindow):
         self.update_classes_count()
         self.update_teachers_count()
         self.update_students_count()
+        self.sw_dash()
+        self.tabWidget_dash.setCurrentIndex(0)
+        self.icon_only.setHidden(True)
+
 
 
 
@@ -316,7 +320,10 @@ class indexSU(QMainWindow):
             self.s_bd.setText(student_info['birth_date'])
             self.s_address.setText(student_info['address'])
             self.s_class.setText(student_info['class_name'])
-            self.s_regestraion.setText(student_info['registration_date'])
+            stored_date = student_info['registration_date']
+            date_object = datetime.strptime(stored_date, "%Y-%m-%d")
+            formatted_date = date_object.strftime("%d-%m-%Y")
+            self.s_regestraion.setText(formatted_date)
             self.s_additional_info.setText(student_info['additional_info'])
             self.sw_more_about_s()
 
