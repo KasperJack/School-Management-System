@@ -391,6 +391,12 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
 
             # commit
             db_connection.commit()
+            activity_type = "add"
+            affected_entity = "student"
+            entity_name = full_name
+            entity_id = "55"
+            additional_info = "blablabla"
+            log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Student added successfully"
 
     except sqlite3.IntegrityError as e:
@@ -604,7 +610,6 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
         user_id = get_logged_in_user_id()  # Assume this fetches user ID
         user_name = get_logged_in_user_name()  # Assume this fetches user name
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
         # Execute the query
         cursor.execute(
             insert_query,
