@@ -143,7 +143,7 @@ class indexSU(QMainWindow):
 
 
     def greet_user(self):
-        name = get_logged_in_user()
+        name = get_logged_in_user_name()
         self.label_user_name.setText(f"Hello, {name}")
 
 
@@ -385,6 +385,16 @@ class indexSU(QMainWindow):
         self.load_students_to_table()
         self.update_students_count()
         self.sw_students()
+
+        activity_type = "delte"
+        affected_entity = "student"
+        entity_name = " ahmed"
+        entity_id = "5"
+        additional_info= "blablabla"
+
+
+
+        log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion
 
 
