@@ -212,6 +212,12 @@ def add_subject(subject_name,description=None):
         try:
             cursor.execute(query, (subject_name, description))
             db_connection.commit()
+            activity_type = "add"
+            affected_entity = "subject"
+            entity_name = subject_name
+            entity_id = get_subjects_sequence()
+            additional_info = "blablabla  N/A"
+            log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Subject added successfully"
         except sqlite3.Error as e:
             return f"{e}"
@@ -330,12 +336,7 @@ def add_class(class_name, grade_name):
 
 
 def get_teachers_sequence():
-    """
-    Fetch the sequence number from the sqlite_sequence table for the 'teachers' table.
 
-    Returns:
-        int: The current sequence number for the 'teachers' table, or None if not found.
-    """
     db_path = connect()
 
     with sqlite3.connect(db_path) as db_connection:
@@ -350,6 +351,8 @@ def get_teachers_sequence():
 
     # Return the sequence number if found, else None
     return result[0] if result else None
+
+
 
 
 def get_students_sequence():
@@ -368,6 +371,37 @@ def get_students_sequence():
 
     # Return the sequence number if found, else None
     return result[0] if result else None
+
+
+
+def get_subjects_sequence():
+
+    db_path = connect()
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Query to fetch the sequence number for 'students'
+        query = "SELECT seq FROM sqlite_sequence WHERE name = 'subjects';"
+        cursor.execute(query)
+
+        # Fetch the result
+        result = cursor.fetchone()
+
+    # Return the sequence number if found, else None
+    return result[0] if result else None
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -415,7 +449,7 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
             activity_type = "add"
             affected_entity = "student"
             entity_name = full_name
-            entity_id = "55"
+            entity_id = get_students_sequence()
             additional_info = "blablabla"
             log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Student added successfully"
