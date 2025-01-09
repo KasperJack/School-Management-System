@@ -352,6 +352,27 @@ def get_teachers_sequence():
     return result[0] if result else None
 
 
+def get_students_sequence():
+
+    db_path = connect()
+
+    with sqlite3.connect(db_path) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Query to fetch the sequence number for 'students'
+        query = "SELECT seq FROM sqlite_sequence WHERE name = 'students';"
+        cursor.execute(query)
+
+        # Fetch the result
+        result = cursor.fetchone()
+
+    # Return the sequence number if found, else None
+    return result[0] if result else None
+
+
+
+
+
 
 def get_classes():
     """Fetch a list of class names from the database."""
