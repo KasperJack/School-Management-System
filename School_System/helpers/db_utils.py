@@ -547,50 +547,51 @@ def get_student_details(student_id):
 
 
 
-def delete_student(student_id,student_name):
-
+def delete_student(student_id, student_name):
     try:
         db_path = connect()
         with sqlite3.connect(db_path) as conn:
             cursor = conn.cursor()
 
+            # Delete student query
             delete_query = "DELETE FROM students WHERE student_id = ?"
             cursor.execute(delete_query, (student_id,))
 
             if cursor.rowcount > 0:
+                # Log the activity using the same connection
                 activity_type = "delete"
                 affected_entity = "student"
                 entity_name = student_name
                 entity_id = student_id
                 additional_info = "blablabla"
-                log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info)
+                log_activity(
+                    activity_type,
+                    affected_entity,
+                    entity_name,
+                    entity_id,
+                    additional_info,
+                    conn  # Pass the shared connection
+                )
 
-                return f"Student has been deleted successfully."
+                return "Student has been deleted successfully."
             else:
-                return f"No student found" #No student found with ID {student_id}
+                return "No student found."  # Could include more details if needed
 
     except sqlite3.Error as e:
-        return print(f"An error occurred: {e}")
+        print(f"An error occurred: {e}")
+        return "An error occurred while trying to delete the student."
 
 
+def log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info=None, conn=None):
+    try:
+        # Use the existing connection if provided, otherwise create a new one
+        if conn is None:
+            db_path = connect()
+            conn = sqlite3.connect(db_path)
 
+        cursor = conn.cursor()
 
-
-def log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info=None):
-    # Get logged-in user details
-    user_id = get_logged_in_user_id()  # Assume this function fetches the user ID
-    user_name = get_logged_in_user_name()  # Assume this function fetches the user name
-
-    # Generate the timestamp in Python
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(timestamp,user_id,user_name, activity_type,affected_entity, entity_name, entity_id, additional_info)
-    #return
-    # Database connection
-    db_path = connect()  # Assume this function provides the path to the SQLite database
-    with sqlite3.connect(db_path) as db_connection:
-        cursor = db_connection.cursor()
-
-        # Insert query
+        # Insert activity log query
         insert_query = """
         INSERT INTO activity_log (
             timestamp, user_id, user_name, activity_type, 
@@ -599,6 +600,10 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
             ?, ?, ?, ?, ?, ?, ?, ?
         )
         """
+        # Get logged-in user details
+        user_id = get_logged_in_user_id()  # Assume this fetches user ID
+        user_name = get_logged_in_user_name()  # Assume this fetches user name
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Execute the query
         cursor.execute(
@@ -606,7 +611,17 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
             (timestamp, user_id, user_name, activity_type, affected_entity, entity_name, entity_id, additional_info)
         )
 
+        # Commit only if using a new connection
+        if conn is not conn:
+            conn.commit()
 
+    except sqlite3.Error as e:
+        print(f"An error occurred in log_activity: {e}")
+
+    finally:
+        # Close the connection only if it was created in this function
+        if conn is not conn:
+            conn.close()
 
 ## look up teacher (change info)
     ##add subject /remove
