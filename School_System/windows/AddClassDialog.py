@@ -132,6 +132,7 @@ class AddClassDialog(QDialog):
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
             self.index_instance.update_classes_count()
+            self.index_instance.load_classes_student_search()
             for teacher_subject in get_selected_teachers_subjects:
                 add_course(teacher_subject,class_name)
                 self.clear_checkbox_selection()

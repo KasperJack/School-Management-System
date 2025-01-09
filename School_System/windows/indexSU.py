@@ -135,7 +135,21 @@ class indexSU(QMainWindow):
 
 
 
-####### inactive admins table ###########################
+#################### inactive admins table ###########################
+
+    def setup_inactive_admins_table(self):
+        self.inactive_admins_table.verticalHeader().setVisible(False)
+
+        # prevents the table () from being edited
+        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.load_inactive_admins() ###load data
+        header = self.inactive_admins_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        for row in range(self.inactive_admins_table.rowCount()):
+            self.inactive_admins_table.setRowHeight(row, 40)
+
+
 
     def load_inactive_admins(self):
             
@@ -159,8 +173,8 @@ class indexSU(QMainWindow):
                 delete_button.setStyleSheet("background-color: red; color: white;")
 
                 # Connect buttons to their respective methods
-                activate_button.clicked.connect(lambda _, r=row_index: self.activate_user(r))
-                delete_button.clicked.connect(lambda _, r=row_index: self.delete_user(r))
+                activate_button.clicked.connect(lambda _, r=row_index: self.activate_admin(r))
+                delete_button.clicked.connect(lambda _, r=row_index: self.delete_admin(r))
 
                 # Add buttons to a layout
                 button_layout = QHBoxLayout()
@@ -177,6 +191,70 @@ class indexSU(QMainWindow):
 
 
             #self.tableWidget.resizeColumnsToContents()
+
+    def activate_admin(self, row_index):
+        full_name = self.inactive_admins_table.item(row_index, 0).text()
+        email = self.inactive_admins_table.item(row_index, 1).text()
+
+        confirmation = QMessageBox.question(
+            self,
+            "Confirm Activation",
+            f"Are you sure you want to activate the user:\n\nName: {full_name}\nEmail: {email}?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+
+        if confirmation == QMessageBox.StandardButton.Yes:
+            activate_admin(full_name, email)
+            self.load_inactive_admins()
+
+    def delete_admin(self, row_index):
+        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
+        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
+
+        # Show a confirmation dialog
+        confirmation = QMessageBox.question(
+            self,
+            "Confirm Deletion",
+            f"Are you sure you want to delete the user:\n\nName: {full_name}\nEmail: {email}?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+
+        if confirmation == QMessageBox.StandardButton.Yes:
+            delete_admin(full_name, email)
+            self.load_inactive_admins()
+
+
+
+#################### students table ##############################
+
+    def setup_students_table(self):
+        ### loads the students table
+        self.load_students_to_table()## :load data
+        self.students_table.verticalHeader().setVisible(False)
+        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.class_combo_box.addItem("All Classes")
+        self.load_classes_student_search()
+        # auto adjust the size of the colusmns
+        header = self.students_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(0, 45)
+        header.resizeSection(2, 70)
+        header.resizeSection(3, 80)
+        header.resizeSection(4, 100)
+
+
+
+
 
     def load_students_to_table(self):
         """Load all students into the table."""
@@ -245,81 +323,11 @@ class indexSU(QMainWindow):
 
 
 
-    def activate_user(self, row_index):
-        full_name = self.inactive_admins_table.item(row_index, 0).text()
-        email = self.inactive_admins_table.item(row_index, 1).text()
 
 
-        confirmation = QMessageBox.question(
-        self,
-        "Confirm Activation",
-        f"Are you sure you want to activate the user:\n\nName: {full_name}\nEmail: {email}?",
-        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-        QMessageBox.StandardButton.No
-    )
 
 
-        if confirmation == QMessageBox.StandardButton.Yes:
 
-            activate_admin(full_name,email)
-            self.load_inactive_admins()
-
-    
-    
-    def delete_user(self, row_index):
-        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
-        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
-
-
-        # Show a confirmation dialog
-        confirmation = QMessageBox.question(
-        self,
-        "Confirm Deletion",
-        f"Are you sure you want to delete the user:\n\nName: {full_name}\nEmail: {email}?",
-        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-        QMessageBox.StandardButton.No
-    )   
-       
-        if confirmation == QMessageBox.StandardButton.Yes:
-            delete_admin(full_name,email)
-            self.load_inactive_admins()
-
-
-    def setup_students_table(self):
-        ### loads the students table
-        self.load_students_to_table()## :load data
-        self.students_table.verticalHeader().setVisible(False)
-        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.class_combo_box.addItem("All Classes")
-        self.load_classes_student_search()
-        # auto adjust the size of the colusmns
-        header = self.students_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        # Set specific columns to have a fixed size
-        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
-        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
-
-        # Set the fixed size for these columns
-        header.resizeSection(0, 45)
-        header.resizeSection(2, 70)
-        header.resizeSection(3, 80)
-        header.resizeSection(4, 100)
-
-
-    def setup_inactive_admins_table(self):
-        self.inactive_admins_table.verticalHeader().setVisible(False)
-
-        # prevents the table () from being edited
-        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.load_inactive_admins() ###load data
-        header = self.inactive_admins_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-        for row in range(self.inactive_admins_table.rowCount()):
-            self.inactive_admins_table.setRowHeight(row, 40)
 
 
 
