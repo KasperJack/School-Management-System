@@ -138,6 +138,10 @@ class indexSU(QMainWindow):
             # Set the background color of the item
             item.setBackground(color)
 
+
+
+
+
     def greet_user(self):
         name = get_logged_in_user()
         self.label_user_name.setText(f"Hello, {name}")
