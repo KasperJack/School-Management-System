@@ -372,29 +372,21 @@ class indexSU(QMainWindow):
     def delete_student(self):
         selected_indexes = self.students_table.selectedIndexes()
 
-        #if not selected_indexes:
-            #print("No selection made.")
-            #return
-
         row = selected_indexes[0].row()
-
         id_column = 0
         id_item = self.students_table.item(row, id_column)
         sid = id_item.text()
-        delete_student(sid)
+        print(sid)
+        #delete_student(sid)
         self.load_students_to_table()
         self.update_students_count()
         self.sw_students()
 
-        activity_type = "delte"
-        affected_entity = "student"
-        entity_name = " ahmed"
-        entity_id = "5"
-        additional_info= "blablabla"
 
 
 
-        log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
+
+        #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion
 
 

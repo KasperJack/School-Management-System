@@ -547,7 +547,7 @@ def get_student_details(student_id):
 
 
 
-def delete_student(student_id):
+def delete_student(student_id,student_name):
 
     try:
         db_path = connect()
@@ -558,12 +558,21 @@ def delete_student(student_id):
             cursor.execute(delete_query, (student_id,))
 
             if cursor.rowcount > 0:
+                activity_type = "delete"
+                affected_entity = "student"
+                entity_name = student_name
+                entity_id = student_id
+                additional_info = "blablabla"
+                #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
+
                 return f"Student has been deleted successfully."
             else:
                 return f"No student found" #No student found with ID {student_id}
 
     except sqlite3.Error as e:
         return f"An error occurred: {e}"
+
+
 
 
 
