@@ -524,6 +524,48 @@ def get_student_details(student_id):
         conn.close()
 
 
+
+
+import sqlite3
+
+def delete_student(student_id):
+
+    try:
+        db_path = connect()
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
+
+            delete_query = "DELETE FROM students WHERE student_id = ?"
+            cursor.execute(delete_query, (student_id,))
+
+            if cursor.rowcount > 0:
+                return f"Student has been deleted successfully."
+            else:
+                return f"No student found" #No student found with ID {student_id}
+
+    except sqlite3.Error as e:
+        return f"An error occurred: {e}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## look up teacher (change info)
     ##add subject /remove
     ##

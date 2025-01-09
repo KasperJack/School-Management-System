@@ -47,6 +47,8 @@ class indexSU(QMainWindow):
         #########################[search students table]################################
         self.search_bar.textChanged.connect(self.filter_students_table)
         self.class_combo_box.currentTextChanged.connect(self.filter_students_table)
+
+        self.delete_s.clicked.connect(self.delete_student)
         ##############################################################
         self.greet_user()
         self.update_on_start_up() #updates the counters
@@ -305,7 +307,7 @@ class indexSU(QMainWindow):
     def on_cell_clicked(self, row, column):
         full_name_column = 1
         if column == full_name_column:
-            id_column = column - 1
+            id_column = 0
             value = self.students_table.item(row, id_column)
             sid = value.text()
             student_info = get_student_details(sid)
@@ -328,44 +330,24 @@ class indexSU(QMainWindow):
             self.sw_more_about_s()
 
 
+#################### update delete student  ##############################
 
+    def delete_student(self):
+        selected_indexes = self.students_table.selectedIndexes()
 
+        #if not selected_indexes:
+            #print("No selection made.")
+            #return
 
+        row = selected_indexes[0].row()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        id_column = 0
+        id_item = self.students_table.item(row, id_column)
+        sid = id_item.text()
+        delete_student(sid)
+        self.load_students_to_table()
+        self.update_students_count()
+        ## add confermation before deletion
 
 
 

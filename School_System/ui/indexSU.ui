@@ -1420,8 +1420,8 @@ alternate-background-color: #B0EDFB;
              <widget class="QGroupBox" name="groupBox_2">
               <property name="geometry">
                <rect>
-                <x>10</x>
-                <y>70</y>
+                <x>20</x>
+                <y>50</y>
                 <width>481</width>
                 <height>621</height>
                </rect>
@@ -1429,7 +1429,7 @@ alternate-background-color: #B0EDFB;
               <property name="title">
                <string/>
               </property>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="delete_s">
                <property name="geometry">
                 <rect>
                  <x>150</x>
@@ -1846,8 +1846,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <widget class="QGroupBox" name="groupBox_3">
               <property name="geometry">
                <rect>
-                <x>300</x>
-                <y>680</y>
+                <x>360</x>
+                <y>690</y>
                 <width>481</width>
                 <height>621</height>
                </rect>
