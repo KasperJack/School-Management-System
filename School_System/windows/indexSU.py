@@ -3,8 +3,9 @@ import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
 from datetime import datetime
-from PyQt6.QtGui import QColor
 from PyQt6.QtGui import QIcon, QColor
+from PyQt6.QtGui import QPixmap
+
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -409,6 +410,11 @@ class indexSU(QMainWindow):
         """
         # Fetch the data
         data = fetch_activity_log()  # Replace with your actual database path
+        pixmap = QPixmap("/home/kasper/projects/PYside6/test-app/School_System/ui//add.png")
+        if pixmap.isNull():
+            print("Icon not found or invalid format!")
+        else:
+            print ("found")
 
         if isinstance(data, str):
             # If fetch_activity_log returned an error message
@@ -424,9 +430,9 @@ class indexSU(QMainWindow):
         ])
 
         # Load icons
-        add_icon = QIcon("./add.png")  # Replace with your icon paths
-        delete_icon = QIcon("./del.png")
-        default_icon = QIcon("./update.png")
+        add_icon = QIcon(".add.png")  # Replace with your icon paths
+        delete_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/del.png")
+        default_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/update.png")
 
         # Populate the table
         for row_idx, row in enumerate(data):
@@ -454,6 +460,8 @@ class indexSU(QMainWindow):
 
                 # Apply color to the row
                 table_item.setBackground(row_color)
+                #table_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+
                 self.activity_log_table.setItem(row_idx, col_idx + 1, table_item)
 
             # Add a button at the end
