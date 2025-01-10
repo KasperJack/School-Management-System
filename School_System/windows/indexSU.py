@@ -387,6 +387,24 @@ class indexSU(QMainWindow):
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion
+################################### activity log table  ###########################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
