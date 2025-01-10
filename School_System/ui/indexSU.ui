@@ -740,7 +740,7 @@ border-radius: 10px;
 </string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1517,7 +1517,7 @@ alternate-background-color: #B0EDFB;
                 </rect>
                </property>
                <property name="text">
-                <string>Modefy</string>
+                <string>modify</string>
                </property>
               </widget>
               <widget class="QWidget" name="layoutWidget">
@@ -1911,8 +1911,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <widget class="QGroupBox" name="groupBox_3">
               <property name="geometry">
                <rect>
-                <x>360</x>
-                <y>690</y>
+                <x>320</x>
+                <y>680</y>
                 <width>481</width>
                 <height>621</height>
                </rect>
@@ -2103,6 +2103,9 @@ border-radius: 7px;</string>
                     </property>
                     <property name="displayFormat">
                      <string>dd/MM/yyyy</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
