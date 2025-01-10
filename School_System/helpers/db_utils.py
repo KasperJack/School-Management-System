@@ -696,6 +696,54 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
         if conn is not conn:
             conn.close()
 
+
+
+
+def fetch_activity_log():
+
+    try:
+        db_path = connect()
+        connection = sqlite3.connect(db_path)
+        cursor = connection.cursor()
+
+        #excluding the "additional_info"
+        query = """
+        SELECT log_id, timestamp, user_id, user_name, 
+               activity_type, affected_entity, entity_name, entity_id 
+        FROM activity_log
+        """
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        connection.close()
+        return rows
+
+    except sqlite3.Error as e:
+        return f"Database error: {e}"
+    except Exception as e:
+        return f"Unexpected error: {e}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## look up teacher (change info)
     ##add subject /remove
     ##

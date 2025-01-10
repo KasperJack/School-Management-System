@@ -69,9 +69,19 @@ class indexSU(QMainWindow):
         self.setup_students_table()
         self.setup_inactive_admins_table()
         self.change_row_color(2, "red")
+        # removes the seconds tab in the tab widget for admin access
+        # self.tabWidget.removeTab(1)#################"
 
-        #removes the seconds tab in the tab widget for admin access
-        #self.tabWidget.removeTab(1)#################"
+
+
+        self.activity_log_table.verticalHeader().setVisible(False)
+
+        self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+        self.load_data_to_table()
+
+
+
 
 
 
@@ -390,24 +400,53 @@ class indexSU(QMainWindow):
 ################################### activity log table  ###########################
 
 
+    def load_data_to_table(self):
+        """
+        Loads data into the activity_log_table, adding a label at the beginning and a button at the end of each row.
+        """
+        # Fetch the data
+        data = fetch_activity_log()
+
+        if isinstance(data, str):
+            # If fetch_activity_log returned an error message
+            print(f"Error: {data}")
+            return
+
+        # Set up the table
+        self.activity_log_table.setRowCount(len(data))
+        self.activity_log_table.setColumnCount(10)  # Original columns + Label + Button
+        self.activity_log_table.setHorizontalHeaderLabels([
+            "Label", "Log ID", "Timestamp", "User ID", "User Name",
+            "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "Button"
+        ])
+
+        # Populate the table
+        for row_idx, row in enumerate(data):
+            # Add label (e.g., "Row X")
+            label_item = QTableWidgetItem(f"Row {row_idx + 1}")
+            self.activity_log_table.setItem(row_idx, 0, label_item)
+
+            # Add the rest of the data
+            for col_idx, value in enumerate(row):
+                table_item = QTableWidgetItem(str(value))
+                self.activity_log_table.setItem(row_idx, col_idx + 1, table_item)
+
+            # Add a button at the end
+            button = QPushButton("Action")
+            button.clicked.connect(
+                lambda checked, r=row: self.handle_button_click(r))  # Pass the row data to the handler
+            self.activity_log_table.setCellWidget(row_idx, 9, button)  # Column index for the button
 
 
 
+    def handle_button_click(self, row_data):
+        """
+        Handles the button click for a specific row.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Args:
+            row_data (tuple): The data of the row where the button was clicked.
+        """
+        print(f"Button clicked for row: {row_data}")
 
 
 
