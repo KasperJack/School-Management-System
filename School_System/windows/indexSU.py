@@ -4,8 +4,6 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, Q
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor
-from PyQt6.QtGui import QPixmap
-
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -15,8 +13,8 @@ import sqlite3
 from School_System.db.dbio import connect
 
 import School_System.resources.qrc.rec_rc
+import School_System.resources.TableIcons
 from School_System.helpers.db_utils import *
-
 
 class indexSU(QMainWindow):
     def __init__(self):
@@ -79,6 +77,13 @@ class indexSU(QMainWindow):
         self.activity_log_table.verticalHeader().setVisible(False)
 
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+        package_directory = os.path.dirname(School_System.__file__)
+
+        # Construct the path to the `io` directory
+        io_directory_path = os.path.join(package_directory, "resources", "TableIcons")
+
+        print("Path to 'io' directory:", io_directory_path)
 
         self.load_data_to_table()
 
@@ -404,17 +409,7 @@ class indexSU(QMainWindow):
 
 
     def load_data_to_table(self):
-        """
-        Loads data into the activity_log_table, sets icons for the activity_type column,
-        and colors the row based on the activity type.
-        """
-        # Fetch the data
         data = fetch_activity_log()  # Replace with your actual database path
-        pixmap = QPixmap("/home/kasper/projects/PYside6/test-app/School_System/ui//add.png")
-        if pixmap.isNull():
-            print("Icon not found or invalid format!")
-        else:
-            print ("found")
 
         if isinstance(data, str):
             # If fetch_activity_log returned an error message
@@ -430,7 +425,7 @@ class indexSU(QMainWindow):
         ])
 
         # Load icons
-        add_icon = QIcon(".add.png")  # Replace with your icon paths
+        add_icon = QIcon("./add.png")  # Replace with your icon paths
         delete_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/del.png")
         default_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/update.png")
 
