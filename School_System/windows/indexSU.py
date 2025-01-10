@@ -78,12 +78,8 @@ class indexSU(QMainWindow):
 
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
-        package_directory = os.path.dirname(School_System.__file__)
-
-        # Construct the path to the `io` directory
-        io_directory_path = os.path.join(package_directory, "resources", "TableIcons")
-
-        print("Path to 'io' directory:", io_directory_path)
+        io_path = os.path.join(os.path.dirname(__file__), '..', 'resources', 'TableIcons')
+        print (io_path)
 
         self.load_data_to_table()
 
