@@ -12,6 +12,8 @@ from School_System.windows.AddStudentDialog import AddStudentDialog
 
 from School_System.helpers.db_utils import *
 
+from School_System.ui import INDEX_SU ### ui file
+
 from School_System.resources import  ICONS # gives back the path to the Table Ionds directroy
 import School_System.resources.qrc.rec_rc
 
@@ -19,11 +21,10 @@ import School_System.resources.qrc.rec_rc
 
 
 
-class indexSU(QMainWindow):
+class IndexSU(QMainWindow):
     def __init__(self):
         super().__init__()
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'indexSU.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(INDEX_SU, self)
 
         #sbuttons#####
         self.dashboard_s.clicked.connect(self.sw_dash)

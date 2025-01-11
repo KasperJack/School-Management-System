@@ -1,8 +1,7 @@
-import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
 
-from School_System.ui import LOGIN
+from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.indexSU import indexSU
 from School_System.helpers.db_utils import *
