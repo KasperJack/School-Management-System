@@ -72,6 +72,10 @@ class IndexSU(QMainWindow):
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
         self.load_data_to_table()
+        header = self.activity_log_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(8, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(8, 35)
 
 
 
@@ -358,8 +362,6 @@ class IndexSU(QMainWindow):
 
 ################################### activity log table  ###########################
 
-    from datetime import datetime
-
     def load_data_to_table(self):
         data = database.get_activity_log()  # Replace with your actual database path
 
@@ -372,7 +374,7 @@ class IndexSU(QMainWindow):
         self.activity_log_table.setColumnCount(9)  # Original columns without the Label
         self.activity_log_table.setHorizontalHeaderLabels([
             "Log ID", "Timestamp", "User ID", "User Name",
-            "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "Icon"
+            "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "?"
         ])
 
 
