@@ -21,7 +21,7 @@ class AddTeacherDialog(QDialog):
 
     def load_subjects(self):
 
-        subjects = get_subjects()
+        subjects = database.get_subjects()
 
         # Access or create the scroll area widget
         scroll_widget = self.subjects_scrollArea.widget()

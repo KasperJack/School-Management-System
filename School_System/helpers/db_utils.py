@@ -29,7 +29,8 @@ def login_user(email, password):
             status = result[5]  # Status column
             user_type = result[4] # User type column
             id = result[0]
-            if status == 'inactive':  # explicitly check for inactive users
+            name = result[1]
+            if status == 'inactive':  # explicit check for inactive users
                 return USER_INACTIVE
             if status == 'active':
                 if user_type == 'superadmin':
