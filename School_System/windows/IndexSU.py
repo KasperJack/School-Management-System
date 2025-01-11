@@ -358,11 +358,12 @@ class IndexSU(QMainWindow):
 
 ################################### activity log table  ###########################
 
+    from datetime import datetime
+
     def load_data_to_table(self):
         data = database.get_activity_log()  # Replace with your actual database path
 
         if isinstance(data, str):
-            # If fetch_activity_log returned an error message
             print(f"Error: {data}")
             return
 
@@ -395,9 +396,26 @@ class IndexSU(QMainWindow):
             else:
                 row_color = QColor(255, 255, 200)  # Light yellow for others
 
+
+
+            # Format the timestamp
+            timestamp = row[1]  # Timestamp is at index 1
+            try:
+                timestamp_obj = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')  # Convert string to datetime object
+                formatted_timestamp = timestamp_obj.strftime('%b %d, %H:%M:%S')  # Format as "Jan 11, 17:25:11"
+            except ValueError:
+                formatted_timestamp = timestamp  # Fallback if the timestamp is not in the expected format
+
+
+
             # Populate each column
             for col_idx, value in enumerate(row):
-                table_item = QTableWidgetItem(str(value))
+                if col_idx == 1:
+                    # Use the formatted timestamp for column 1
+                    table_item = QTableWidgetItem(formatted_timestamp)
+                else:
+                    # Otherwise, use the original value
+                    table_item = QTableWidgetItem(str(value))
 
                 # Set icon for the activity_type column
                 if col_idx == 4:  # Adjust the index for your activity_type column
@@ -408,11 +426,18 @@ class IndexSU(QMainWindow):
                 # table_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
                 self.activity_log_table.setItem(row_idx, col_idx, table_item)  # Directly populate without the "+ 1"
-            icon = update_icon
+
+
+            icon = delete_icon
+            # Create an item for the last column (icon column)
             icon_item = QTableWidgetItem()
             icon_item.setIcon(icon)
-            icon_item.setBackground(row_color)
+            icon_item.setBackground(row_color)  # Apply the row color to the icon column
             self.activity_log_table.setItem(row_idx, 8, icon_item)  # Set icon in the last column (index 8)
+
+
+
+
 
     def handle_button_click(self, row_data):
         """
