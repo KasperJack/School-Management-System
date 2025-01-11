@@ -139,46 +139,6 @@ def log_user_in(user_id):
 
 
 
-#add the return of the role here
-def get_logged_in_user_name():
-    # Connect to the database
-    with sqlite3.connect(DB_PATH) as db_connection:
-        cursor = db_connection.cursor()
-
-        # Query to fetch the last logged-in user
-        query = """
-            SELECT full_name 
-            FROM logged_in_user 
-            ORDER BY ROWID DESC 
-            LIMIT 1
-        """
-        cursor.execute(query)
-        result = cursor.fetchone()
-
-        if result:
-            return result[0]  # Return the full name of the last logged-in user
-        else:
-            return None  # Return None if no user is logged in
-
-def get_logged_in_user_id():
-    # Connect to the database
-    with sqlite3.connect(DB_PATH) as db_connection:
-        cursor = db_connection.cursor()
-
-        query = """
-            SELECT id 
-            FROM logged_in_user 
-            ORDER BY ROWID DESC 
-            LIMIT 1
-        """
-        cursor.execute(query)
-        result = cursor.fetchone()
-
-        if result:
-            return result[0]
-        else:
-            return None  # Return None if no user is logged in
-
 
 
 def clear_entry_log():
@@ -665,13 +625,11 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
         )
         """
         # Get logged-in user details
-        user_id = get_logged_in_user_id()  # Assume this fetches user ID
-        user_name = get_logged_in_user_name()  # Assume this fetches user name
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         # Execute the query
         cursor.execute(
             insert_query,
-            (timestamp, user_id, user_name, activity_type, affected_entity, entity_name, entity_id, additional_info)
+            (timestamp, LOGGED_IN_USER_ID, LOGGED_IN_USER_NAME, activity_type, affected_entity, entity_name, entity_id, additional_info)
         )
 
         # Commit only if using a new connection

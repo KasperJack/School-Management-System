@@ -55,16 +55,6 @@ class IndexSU(QMainWindow):
         self.delete_s.clicked.connect(self.delete_student)
         self.back_to_s_table.clicked.connect(self.sw_students)
 
-        print(database.LOGGED_IN_USER_ID)
-        print(database.LOGGED_IN_USER_NAME)
-
-
-
-
-
-
-
-
 
 
         ##############################################################
