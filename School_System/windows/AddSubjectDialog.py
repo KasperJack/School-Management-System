@@ -3,7 +3,7 @@
 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
-from School_System.helpers.db_utils import *
+import School_System.helpers.db_utils as database
 from School_System.ui import ADD_SUBJECT_DIALOG
 
 
@@ -37,7 +37,7 @@ class AddSubjectDialog(QDialog):
             return
 
         if not description:
-            evaluate = add_subject(subject_name)
+            evaluate = database.add_subject(subject_name)
             if evaluate == "Subject added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.subject_name_field.clear()
@@ -48,7 +48,7 @@ class AddSubjectDialog(QDialog):
 
 
 
-        evaluate = add_subject(subject_name,description)
+        evaluate = database.add_subject(subject_name,description)
 
         if evaluate == "Subject added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")

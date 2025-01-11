@@ -2,7 +2,7 @@
 
 from PyQt6.QtWidgets import QDialog, QMessageBox, QComboBox, QCheckBox, QHBoxLayout, QLabel, QVBoxLayout ,QGridLayout
 from PyQt6 import uic
-from School_System.helpers.db_utils import *
+import School_System.helpers.db_utils as database
 from School_System.ui import ADD_TEACHER_DIALOG # UI FILE
 
 
@@ -125,15 +125,15 @@ class AddTeacherDialog(QDialog):
 
 
         if not address:
-            evaluate = add_teacher(full_name,phone,email,gender)
+            evaluate = database.add_teacher(full_name,phone,email,gender)
             selected_subjects = self.get_selected_subjects()
             if evaluate == "Teacher added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.clear_fields()
                 self.index_instance.update_teachers_count()
-                teacher_id = get_teachers_sequence()
+                teacher_id = database.get_teachers_sequence()
                 for subject in selected_subjects:
-                    add_teacher_subject(teacher_id,subject)
+                    database.add_teacher_subject(teacher_id,subject)
                 self.clear_checkbox_selection()
                 return
             else:
@@ -141,15 +141,15 @@ class AddTeacherDialog(QDialog):
                 return
 
 
-        evaluate = add_teacher(full_name, phone, email,gender,address)
+        evaluate = database.add_teacher(full_name, phone, email,gender,address)
         if evaluate == "Teacher added successfully":
             selected_subjects = self.get_selected_subjects()
             QMessageBox.information(self, "info", f"{evaluate}")
             self.clear_fields()
             self.index_instance.update_teachers_count()
-            teacher_id = get_teachers_sequence()
+            teacher_id = database.get_teachers_sequence()
             for subject in selected_subjects:
-                add_teacher_subject(teacher_id,subject)
+                database.add_teacher_subject(teacher_id,subject)
             self.clear_checkbox_selection()
             return
 

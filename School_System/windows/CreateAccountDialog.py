@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
-from School_System.helpers.db_utils import add_account_user
+import School_System.helpers.db_utils as database
 from School_System.ui import CREATE_ACCOUNT_DIALOG
 
 
@@ -41,7 +41,7 @@ class CreateAccountDialog(QDialog):
             return
 
      
-        evaluate = add_account_user(full_name,email,pass1)
+        evaluate = database.add_account_user(full_name,email,pass1)
 
         if evaluate == 'User added successfully':
             QMessageBox.information(self, "info", f"{evaluate}")

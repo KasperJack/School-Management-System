@@ -4,7 +4,7 @@ from PyQt6 import uic
 from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.IndexSU import IndexSU
-from School_System.helpers.db_utils import *
+import School_System.helpers.db_utils as database
 
 
 
@@ -66,9 +66,9 @@ class Login(QMainWindow):
             QMessageBox.warning(self, "Input Error", "Both email and password fields must be filled.")
             return
         
-        evaluate, name = login_user(email,password)
+        evaluate, name = database.login_user(email,password)
 
-        if evaluate == SUPERADMIN:
+        if evaluate == database.SUPERADMIN:
             QMessageBox.information(self, "superadmin",f"Welcome {name}")
             # Load the IndexSU window
             self.index_window = IndexSU()
@@ -77,7 +77,7 @@ class Login(QMainWindow):
 
 
 
-        elif evaluate == ADMIN:
+        elif evaluate == database.ADMIN:
             QMessageBox.information(self, " admin",f"Welcome {name}")
             # Load the IndexSU window(for admins)
             self.index_window = IndexSU()
@@ -85,7 +85,7 @@ class Login(QMainWindow):
             self.close()
 
 
-        elif evaluate == USER_INACTIVE:
+        elif evaluate == database.USER_INACTIVE:
             QMessageBox.critical(self, "Login Failed", f"account {name} is inactive .")
 
         else:

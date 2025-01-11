@@ -1,7 +1,7 @@
 
 from PyQt6.QtWidgets import QDialog, QMessageBox, QVBoxLayout, QCheckBox
 from PyQt6 import uic
-from School_System.helpers.db_utils import *
+import School_System.helpers.db_utils as database
 from School_System.ui import ADD_CLASS_DIALOG
 
 
@@ -14,7 +14,7 @@ class AddClassDialog(QDialog):
         self.setWindowTitle("Add Class")
 
         self.add_class_button.clicked.connect(self.add_class)
-        grades = get_grades()
+        grades = database.get_grades()
         self.grades_dropdown.addItems(grades)
         self.load_teachers_subjects()
 
@@ -27,7 +27,7 @@ class AddClassDialog(QDialog):
 
     def load_teachers_subjects(self):
 
-        teachers_subjects = get_teachers_subjects()
+        teachers_subjects = database.get_teachers_subjects()
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:
             scroll_widget = QWidget()
@@ -124,7 +124,7 @@ class AddClassDialog(QDialog):
             return
 
 
-        evaluate = add_class(class_name,grade_name)
+        evaluate = database.add_class(class_name,grade_name)
         get_selected_teachers_subjects = self.get_selected_teachers_subjects()
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
@@ -132,7 +132,7 @@ class AddClassDialog(QDialog):
             self.index_instance.update_classes_count()
             self.index_instance.load_classes_student_search()
             for teacher_subject in get_selected_teachers_subjects:
-                add_course(teacher_subject,class_name)
+                database.add_course(teacher_subject,class_name)
                 self.clear_checkbox_selection()
             return
         else:

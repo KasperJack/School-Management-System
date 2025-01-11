@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
-from School_System.helpers.db_utils import get_classes, add_student
+import School_System.helpers.db_utils as database
 from School_System.ui import ADD_STUDENT_DIALOG
 #from School_System.windows.indexSU import indexSU this is  causes an infinite loop  ,Passing index_instance allows the dialog to access the indexSU
 
@@ -14,7 +14,7 @@ class AddStudentDialog(QDialog):
 
         self.add_student_button.clicked.connect(self.add_student)
         self.classes_dropdown.addItem("N/A")
-        classes = get_classes()
+        classes = database.get_classes()
         self.classes_dropdown.addItems(classes)
 
         self.classes_dropdown.setCurrentIndex(0)
@@ -50,7 +50,7 @@ class AddStudentDialog(QDialog):
 
 
         if stdclass == "N/A":
-            evaluate = add_student(full_name,phone,email,gender,birth_date,address)
+            evaluate = database.add_student(full_name,phone,email,gender,birth_date,address)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.clear_fields()
@@ -61,7 +61,7 @@ class AddStudentDialog(QDialog):
                 QMessageBox.warning(self, "Error", f"{evaluate}")
                 return
 
-        evaluate = add_student(full_name, phone, email, gender, birth_date,address,stdclass)
+        evaluate = database.add_student(full_name, phone, email, gender, birth_date,address,stdclass)
         if evaluate == "Student added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.clear_fields()
