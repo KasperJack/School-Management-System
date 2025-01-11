@@ -355,9 +355,7 @@ def get_teachers_sequence():
 
 def get_students_sequence():
 
-    db_path = connect()
-
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to fetch the sequence number for 'students'
@@ -374,9 +372,9 @@ def get_students_sequence():
 
 def get_subjects_sequence():
 
-    db_path = connect()
 
-    with sqlite3.connect(db_path) as db_connection:
+
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to fetch the sequence number for 'students'
@@ -408,9 +406,9 @@ def get_subjects_sequence():
 
 def get_classes():
     """Fetch a list of class names from the database."""
-    db_path = connect()
 
-    with sqlite3.connect(db_path) as db_connection:
+
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         # Query to fetch all class names
         cursor.execute("SELECT class_name FROM class")
@@ -427,10 +425,8 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
     """
     Inserts a new student into the `students` table and handles integrity errors.
     """
-    db_path = connect()
-
     try:
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
 
 
@@ -462,10 +458,8 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
 
 
 def get_total_students():
-    db_path = connect()
-
     try:
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
 
             #count the total number of students
@@ -480,10 +474,8 @@ def get_total_students():
 
 
 def get_total_teachers():
-    db_path = connect()
-
     try:
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
 
             #count the total number of teachers
@@ -499,10 +491,8 @@ def get_total_teachers():
 
 
 def get_total_classes():
-    db_path = connect()
-
     try:
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
 
             # Query to count the total number of classes
@@ -517,9 +507,7 @@ def get_total_classes():
 
 def get_students_info():
     """Fetch student information and populate the students_table."""
-    db_path = connect()
-
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         # Query to get student info along with grade
         query = """
@@ -548,8 +536,7 @@ def get_students_info():
 
 def get_teachers_subjects():
     """Fetch teacher-subject pairs from the database and populate the teachers_subjects_scrollArea with checkboxes."""
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         # Query to fetch teacher-subject pairs
         cursor.execute("""
@@ -565,8 +552,7 @@ def get_teachers_subjects():
 
 
 def get_student_details(student_id):
-    db_path = connect()
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     try:
@@ -608,8 +594,7 @@ def get_student_details(student_id):
 
 def delete_student(student_id, student_name):
     try:
-        db_path = connect()
-        with sqlite3.connect(db_path) as conn:
+        with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
 
             # Delete student query
@@ -645,8 +630,7 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
     try:
         # Use the existing connection if provided, otherwise create a new one
         if conn is None:
-            db_path = connect()
-            conn = sqlite3.connect(db_path)
+            conn = sqlite3.connect(DB_PATH)
 
         cursor = conn.cursor()
 
@@ -687,8 +671,7 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
 def fetch_activity_log():
 
     try:
-        db_path = connect()
-        connection = sqlite3.connect(db_path)
+        connection = sqlite3.connect(DB_PATH)
         cursor = connection.cursor()
 
         #excluding the "additional_info"
