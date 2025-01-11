@@ -375,6 +375,14 @@ class IndexSU(QMainWindow):
             "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "Icon"
         ])
 
+
+
+        # Hide ID columns (Log ID, User ID, and Entity ID)
+        self.activity_log_table.setColumnHidden(0, True)  # Hide "Log ID" column
+        self.activity_log_table.setColumnHidden(2, True)  # Hide "User ID" column
+        self.activity_log_table.setColumnHidden(7, True)  # Hide "Entity ID" column
+
+
         # Load icons for each activity type
         add_icon = QIcon(f"{ICONS}/add.png")
         delete_icon = QIcon(f"{ICONS}/del.png")
