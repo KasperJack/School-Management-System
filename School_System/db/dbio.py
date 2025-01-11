@@ -1,3 +1,10 @@
+
+### deprecated
+
+
+""""
+
+
 import os
 
 def connect():
@@ -10,3 +17,4 @@ def connect():
     return db_path
 
 
+"""

@@ -4,8 +4,7 @@ from PyQt6.QtWidgets import QDialog, QMessageBox, QComboBox, QCheckBox, QHBoxLay
 from PyQt6 import uic
 from School_System.helpers.db_utils import *
 
-import sqlite3
-from School_System.db.dbio import connect
+
 
 class AddTeacherDialog(QDialog):
     def __init__(self, index_instance, parent=None):
@@ -22,12 +21,8 @@ class AddTeacherDialog(QDialog):
 
 
     def load_subjects(self):
-        """Fetch subjects from the database and populate the subjects_scrollArea with checkboxes."""
-        db_path = connect()
-        with sqlite3.connect(db_path) as db_connection:
-            cursor = db_connection.cursor()
-            cursor.execute("SELECT subject_id, subject_name FROM subjects")
-            subjects = cursor.fetchall()
+
+        subjects = get_subjects()
 
         # Access or create the scroll area widget
         scroll_widget = self.subjects_scrollArea.widget()

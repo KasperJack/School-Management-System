@@ -249,6 +249,18 @@ def add_teacher(full_name, phone, email, gender, address=None):
 
 
 
+def get_subjects():
+    """Fetch subjects from the database and populate the subjects_scrollArea with checkboxes."""
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT subject_id, subject_name FROM subjects")
+        subjects = cursor.fetchall()
+    return subjects
+
+
+
+
+
 
 def update_teachers_count():
     pass
