@@ -3,6 +3,10 @@ import sqlite3
 from School_System.db import DB_PATH
 from datetime import datetime
 
+LOGGED_IN_USER_NAME = None
+LOGGED_IN_USER_ID = None
+
+
 
 # constants for return values
 SUPERADMIN = "superadmin"
@@ -124,6 +128,11 @@ def log_user_in(user_id):
             """
             cursor.execute(insert_query, user_data)
             db_connection.commit()
+            global LOGGED_IN_USER_ID , LOGGED_IN_USER_NAME
+            LOGGED_IN_USER_ID = user_data[0]
+            LOGGED_IN_USER_NAME = user_data[1]
+            #print(LOGGED_IN_USER_NAME)
+            #print(LOGGED_IN_USER_ID)
         else:
             raise ValueError(f"User with ID {user_id} not found.")
 

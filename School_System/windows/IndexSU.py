@@ -9,8 +9,8 @@ from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
 
-from School_System.helpers.db_utils import *
-
+#from School_System.helpers.db_utils import *
+import School_System.helpers.db_utils as database
 from School_System.ui import INDEX_SU ### ui file
 
 from School_System.resources import  ICONS # gives back the path to the Table Ionds directroy
@@ -55,7 +55,8 @@ class IndexSU(QMainWindow):
         self.delete_s.clicked.connect(self.delete_student)
         self.back_to_s_table.clicked.connect(self.sw_students)
 
-
+        print(database.LOGGED_IN_USER_ID)
+        print(database.LOGGED_IN_USER_NAME)
 
 
 
@@ -82,9 +83,6 @@ class IndexSU(QMainWindow):
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
         self.load_data_to_table()
-
-
-
 
 
 
@@ -156,26 +154,25 @@ class IndexSU(QMainWindow):
 
 
     def greet_user(self):
-        name = get_logged_in_user_name()
-        self.label_user_name.setText(f"Hello, {name}")
+        self.label_user_name.setText(f"Hello, {database.LOGGED_IN_USER_NAME}")
 
 
 
     def load_classes_student_search(self):
-        self.class_combo_box.addItems(get_classes())
+        self.class_combo_box.addItems(database.get_classes())
 
 
 
     def update_students_count(self):
-        students = get_total_students()
+        students = database.get_total_students()
         self.students_label.setText(f"students | {students}")
 
     def update_teachers_count(self):
-        teachers = get_total_teachers()
+        teachers = database.get_total_teachers()
         self.teachers_label.setText(f"teachers | {teachers}")
 
     def update_classes_count(self):
-        classes = get_total_classes()
+        classes = database.get_total_classes()
         self.classes_label.setText(f"classes | {classes}")
 
     def update_on_start_up(self):
@@ -209,7 +206,7 @@ class IndexSU(QMainWindow):
 
     def load_inactive_admins(self):
             
-            results = get_inactive_admins()
+            results = database.get_inactive_admins()
 
             # Set up the table widget for 3 columns
             self.inactive_admins_table.setRowCount(len(results))  # Set rows based on query result count
@@ -261,7 +258,7 @@ class IndexSU(QMainWindow):
         )
 
         if confirmation == QMessageBox.StandardButton.Yes:
-            activate_admin(full_name, email)
+            database.activate_admin(full_name, email)
             self.load_inactive_admins()
 
     def delete_admin(self, row_index):
@@ -278,7 +275,7 @@ class IndexSU(QMainWindow):
         )
 
         if confirmation == QMessageBox.StandardButton.Yes:
-            delete_admin(full_name, email)
+            database.delete_admin(full_name, email)
             self.load_inactive_admins()
 
 
@@ -314,7 +311,7 @@ class IndexSU(QMainWindow):
 
     def load_students_to_table(self):
         """Load all students into the table."""
-        self.students = get_students_info()  # Fetch the full dataset
+        self.students = database.get_students_info()  # Fetch the full dataset
         #self.display_students(self.students)
         self.filter_students_table()
 
@@ -360,7 +357,7 @@ class IndexSU(QMainWindow):
             id_column = 0
             value = self.students_table.item(row, id_column)
             sid = value.text()
-            student_info = get_student_details(sid)
+            student_info = database.get_student_details(sid)
             full_name = student_info['full_name']
             name_parts = full_name.split(" ", 1)
             first_name = name_parts[0]
@@ -393,7 +390,7 @@ class IndexSU(QMainWindow):
         sid = id_item.text()
         sname = name_item.text()
         #print(sid,sname)
-        delete_student(sid,sname)
+        database.delete_student(sid,sname)
         self.load_students_to_table()
         self.update_students_count()
         self.sw_students()
@@ -405,7 +402,7 @@ class IndexSU(QMainWindow):
 
 
     def load_data_to_table(self):
-        data = fetch_activity_log()  # Replace with your actual database path
+        data = database.fetch_activity_log()  # Replace with your actual database path
 
         if isinstance(data, str):
             # If fetch_activity_log returned an error message
