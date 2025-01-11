@@ -1,5 +1,0 @@
-import os
-
-# Define the absolute path to the 'io' directory
-TABLE_ICONS_DIRECTORY = os.path.join(os.path.dirname(__file__), "TableIcons")
-

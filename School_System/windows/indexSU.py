@@ -13,8 +13,15 @@ import sqlite3
 from School_System.db.dbio import connect
 
 import School_System.resources.qrc.rec_rc
-import School_System.resources.TableIcons
 from School_System.helpers.db_utils import *
+
+
+from School_System.resources import  ICONS # gives back the path to the Table Ionds directroy
+
+
+
+
+
 
 class indexSU(QMainWindow):
     def __init__(self):
@@ -77,9 +84,6 @@ class indexSU(QMainWindow):
         self.activity_log_table.verticalHeader().setVisible(False)
 
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-        io_path = os.path.join(os.path.dirname(__file__), '..', 'resources', 'TableIcons')
-        print (io_path)
 
         self.load_data_to_table()
 
@@ -421,9 +425,9 @@ class indexSU(QMainWindow):
         ])
 
         # Load icons
-        add_icon = QIcon("./add.png")  # Replace with your icon paths
-        delete_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/del.png")
-        default_icon = QIcon("/home/kasper/projects/PYside6/test-app/School_System/ui/update.png")
+        add_icon = QIcon(f"{ICONS}/add.png")  # Replace with your icon paths
+        delete_icon = QIcon(f"{ICONS}/del.png")
+        default_icon = QIcon(f"{ICONS}/update.png")
 
         # Populate the table
         for row_idx, row in enumerate(data):

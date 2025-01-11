@@ -1,6 +1,6 @@
 
 import sqlite3
-from School_System.db.dbio import connect
+from School_System.db import DB_PATH
 from datetime import datetime
 
 
@@ -13,8 +13,7 @@ INVALID_CREDENTIALS = "invalid"
 
 def login_user(email, password):
     ######## connect to the database ########
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query the database for the user
@@ -47,9 +46,8 @@ def login_user(email, password):
 #adds a user to the db (admin)
 def add_account_user(full_name, email, password):
 
-    db_path = connect()
     try:
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
             
             # Insert user into the database
@@ -69,8 +67,7 @@ def add_account_user(full_name, email, password):
 #retunrs a list of inactive users (admins)
 def get_inactive_admins():
     # Connect to the database
-    db_path = connect()  # Replace with your database connection method
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to fetch inactive users
@@ -85,8 +82,7 @@ def get_inactive_admins():
 
 
 def delete_admin(full_name,email):
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         cursor.execute("DELETE FROM users WHERE full_name = ? AND email = ?", (full_name, email))
         db_connection.commit()
@@ -97,8 +93,7 @@ def delete_admin(full_name,email):
 
 
 def activate_admin(full_name,email):
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         cursor.execute("UPDATE users SET status = 'active' WHERE full_name = ? AND email = ?", (full_name, email))
         db_connection.commit()
@@ -109,8 +104,7 @@ def activate_admin(full_name,email):
 #adds admin the entry log
 def log_user_in(user_id):
     # Connect to the database
-    db_path = connect()  
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         #cursor.execute("DELETE FROM logged_in_user")
@@ -139,8 +133,7 @@ def log_user_in(user_id):
 #add the return of the role here
 def get_logged_in_user_name():
     # Connect to the database
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to fetch the last logged-in user
@@ -160,8 +153,7 @@ def get_logged_in_user_name():
 
 def get_logged_in_user_id():
     # Connect to the database
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         query = """
@@ -181,9 +173,7 @@ def get_logged_in_user_id():
 
 
 def clear_entry_log():
-    # Connect to the database
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to find the most recent entry by timestamp
@@ -200,8 +190,7 @@ def clear_entry_log():
 
 def add_subject(subject_name,description=None):
     # Connect to the database
-    db_path = connect()
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Insert query to add a new subject
@@ -228,8 +217,7 @@ def add_subject(subject_name,description=None):
 def add_teacher(full_name, phone, email, gender, address=None):
     try:
 
-        db_path = connect()
-        with sqlite3.connect(db_path) as db_connection:
+        with sqlite3.connect(DB_PATH) as db_connection:
             cursor = db_connection.cursor()
 
             # SQL query to insert a teacher
@@ -271,8 +259,7 @@ def add_teacher_subject(teacher_id, subject_id):
     """
     Insert a teacher's subject into the teachers_subjects table.
     """
-    db_path = connect()  # Get the database path
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         try:
@@ -288,8 +275,7 @@ def add_teacher_subject(teacher_id, subject_id):
 
 
 def add_course(teacher_subject,class_name):
-    db_path = connect()  # Get the database path
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         try:
@@ -306,9 +292,8 @@ def add_course(teacher_subject,class_name):
 
 def get_grades():
     """Fetch grade names from the grades table and return them as a list."""
-    db_path = connect()
 
-    with sqlite3.connect(db_path) as db_connection:
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
         cursor.execute("SELECT grade_name FROM grades")
         grades = cursor.fetchall()  # Fetch all grade names
@@ -322,9 +307,9 @@ def add_class(class_name, grade_name):
     """
     Insert a new class with the given class_name and grade_name into the class table.
     """
-    db_path = connect()  # Assuming 'connect()' provides the database path
 
-    with sqlite3.connect(db_path) as db_connection:
+
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         try:
@@ -350,9 +335,9 @@ def add_class(class_name, grade_name):
 
 def get_teachers_sequence():
 
-    db_path = connect()
 
-    with sqlite3.connect(db_path) as db_connection:
+
+    with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
         # Query to fetch the sequence number for 'teachers'
