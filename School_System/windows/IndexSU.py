@@ -9,7 +9,7 @@ from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
 
-#from School_System.helpers.db_utils import *
+#from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
 from School_System.ui import INDEX_SU ### ui file
 
@@ -62,7 +62,6 @@ class IndexSU(QMainWindow):
         self.update_on_start_up() #updates the counters
         self.setup_students_table()
         self.setup_inactive_admins_table()
-        self.change_row_color(2, "red")
         # removes the seconds tab in the tab widget for admin access
         # self.tabWidget.removeTab(1)#################"
 
@@ -109,37 +108,6 @@ class IndexSU(QMainWindow):
 
 
 ##################################################################################################################################
-
-
-    def change_row_color(self, row_index, color):
-        """
-        Changes the background color of a specific row in the QTableWidget.
-
-        Args:
-            row_index (int): The row index of the row to change the color.
-            color (str or QColor): The color to set for the row (can be a color name or QColor object).
-        """
-        # Check if the row_index is valid
-        if row_index < 0 or row_index >= self.students_table.rowCount():
-            print("Invalid row index")
-            return
-
-        # Create a QColor object if a string is passed
-        if isinstance(color, str):
-            color = QColor(color)
-
-        # Loop through each column in the row
-        for column in range(self.students_table.columnCount()):
-            item = self.students_table.item(row_index, column)
-            if item is None:
-                # If the cell is empty, create a new item
-                item = QTableWidgetItem()
-                self.students_table.setItem(row_index, column, item)
-
-            # Set the background color of the item
-            item.setBackground(color)
-
-
 
 
 

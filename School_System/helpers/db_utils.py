@@ -26,23 +26,21 @@ def login_user(email, password):
         result = cursor.fetchone()
 
         if result:
-            # Extract user details
             status = result[5]  # Status column
             user_type = result[4] # User type column
-            name = result[1]
             id = result[0]
             if status == 'inactive':  # explicitly check for inactive users
-                return USER_INACTIVE, name
+                return USER_INACTIVE
             if status == 'active':
                 if user_type == 'superadmin':
                     log_user_in(id)
-                    return SUPERADMIN, name
+                    return SUPERADMIN
                 elif user_type == 'admin':
                     log_user_in(id)
-                    return ADMIN, name
+                    return ADMIN
 
 
-        return INVALID_CREDENTIALS, None  # gitaddno match is found
+        return INVALID_CREDENTIALS  # gitaddno match is found
 
 
 
@@ -121,7 +119,6 @@ def log_user_in(user_id):
         user_data = cursor.fetchone()
 
         if user_data:
-            # Insert or replace the logged-in user entry
             insert_query = """
                 INSERT OR REPLACE INTO logged_in_user (id, full_name, email, type)
                 VALUES (?, ?, ?, ?)

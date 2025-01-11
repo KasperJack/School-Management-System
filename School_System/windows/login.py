@@ -66,10 +66,10 @@ class Login(QMainWindow):
             QMessageBox.warning(self, "Input Error", "Both email and password fields must be filled.")
             return
         
-        evaluate, name = database.login_user(email,password)
+        evaluate = database.login_user(email,password)
 
         if evaluate == database.SUPERADMIN:
-            QMessageBox.information(self, "superadmin",f"Welcome {name}")
+            QMessageBox.information(self, "superadmin",f"Welcome {database.LOGGED_IN_USER_NAME}")
             # Load the IndexSU window
             self.index_window = IndexSU()
             self.index_window.show()   
@@ -78,7 +78,7 @@ class Login(QMainWindow):
 
 
         elif evaluate == database.ADMIN:
-            QMessageBox.information(self, " admin",f"Welcome {name}")
+            QMessageBox.information(self, " admin",f"Welcome {database.LOGGED_IN_USER_NAME}")
             # Load the IndexSU window(for admins)
             self.index_window = IndexSU()
             self.index_window.show()
