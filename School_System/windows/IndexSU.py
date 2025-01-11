@@ -355,12 +355,11 @@ class IndexSU(QMainWindow):
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion
+
 ################################### activity log table  ###########################
 
-
-
     def load_data_to_table(self):
-        data = database.fetch_activity_log()  # Replace with your actual database path
+        data = database.get_activity_log()  # Replace with your actual database path
 
         if isinstance(data, str):
             # If fetch_activity_log returned an error message
@@ -369,23 +368,23 @@ class IndexSU(QMainWindow):
 
         # Set up the table
         self.activity_log_table.setRowCount(len(data))
-        self.activity_log_table.setColumnCount(10)  # Original columns + Empty Label + Button
+        self.activity_log_table.setColumnCount(9)  # Original columns without the Label
         self.activity_log_table.setHorizontalHeaderLabels([
-            "Label", "Log ID", "Timestamp", "User ID", "User Name",
-            "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "Button"
+            "Log ID", "Timestamp", "User ID", "User Name",
+            "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "Icon"
         ])
 
-        # Load icons
-        add_icon = QIcon(f"{ICONS}/add.png")  # Replace with your icon paths
+        # Load icons for each activity type
+        add_icon = QIcon(f"{ICONS}/add.png")
         delete_icon = QIcon(f"{ICONS}/del.png")
-        default_icon = QIcon(f"{ICONS}/update.png")
+        update_icon = QIcon(f"{ICONS}/update.png")
 
         # Populate the table
         for row_idx, row in enumerate(data):
             # Set the row color and icon based on activity_type
             activity_type = row[4]  # Assuming activity_type is the 5th column in the data
             row_color = None
-            icon = default_icon
+            icon = update_icon  # Default icon
 
             if activity_type == "add":
                 row_color = QColor(200, 255, 200)  # Light green for "add"
@@ -406,15 +405,14 @@ class IndexSU(QMainWindow):
 
                 # Apply color to the row
                 table_item.setBackground(row_color)
-                #table_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+                # table_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
-                self.activity_log_table.setItem(row_idx, col_idx + 1, table_item)
-
-            # Add a button at the end
-            button = QPushButton("Action")
-            button.clicked.connect(
-                lambda checked, r=row: self.handle_button_click(r))  # Pass the row data to the handler
-            self.activity_log_table.setCellWidget(row_idx, 9, button)  # Column index for the button
+                self.activity_log_table.setItem(row_idx, col_idx, table_item)  # Directly populate without the "+ 1"
+            icon = update_icon
+            icon_item = QTableWidgetItem()
+            icon_item.setIcon(icon)
+            icon_item.setBackground(row_color)
+            self.activity_log_table.setItem(row_idx, 8, icon_item)  # Set icon in the last column (index 8)
 
     def handle_button_click(self, row_data):
         """

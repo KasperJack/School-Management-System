@@ -645,7 +645,7 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
 
 
 
-def fetch_activity_log():
+def get_activity_log():
 
     try:
         connection = sqlite3.connect(DB_PATH)
