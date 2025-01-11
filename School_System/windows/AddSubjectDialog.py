@@ -1,16 +1,16 @@
-import os
+
+
 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import *
-
+from School_System.ui import ADD_SUBJECT_DIALOG
 
 
 class AddSubjectDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddSubjectDialog.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(ADD_SUBJECT_DIALOG, self)
 
         self.setWindowTitle("Add Subject")
 

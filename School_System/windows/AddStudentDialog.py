@@ -1,16 +1,14 @@
-import os 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import get_classes, add_student
-
+from School_System.ui import ADD_STUDENT_DIALOG
 #from School_System.windows.indexSU import indexSU this is  causes an infinite loop  ,Passing index_instance allows the dialog to access the indexSU
 
 class AddStudentDialog(QDialog):
     def __init__(self, index_instance, parent=None):
         super().__init__(parent)
         self.index_instance = index_instance
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddStudentDialog.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(ADD_STUDENT_DIALOG, self)
 
         self.setWindowTitle("Add Student")
 

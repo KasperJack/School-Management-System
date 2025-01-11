@@ -3,7 +3,7 @@ from PyQt6 import uic
 
 from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
-from School_System.windows.indexSU import indexSU
+from School_System.windows.IndexSU import IndexSU
 from School_System.helpers.db_utils import *
 
 
@@ -71,7 +71,7 @@ class Login(QMainWindow):
         if evaluate == SUPERADMIN:
             QMessageBox.information(self, "superadmin",f"Welcome {name}")
             # Load the IndexSU window
-            self.index_window = indexSU()  
+            self.index_window = IndexSU()
             self.index_window.show()   
             self.close()    
 
@@ -80,7 +80,7 @@ class Login(QMainWindow):
         elif evaluate == ADMIN:
             QMessageBox.information(self, " admin",f"Welcome {name}")
             # Load the IndexSU window(for admins)
-            self.index_window = indexSU()
+            self.index_window = IndexSU()
             self.index_window.show()
             self.close()
 

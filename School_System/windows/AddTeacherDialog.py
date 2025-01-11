@@ -1,17 +1,16 @@
-import os
+
 
 from PyQt6.QtWidgets import QDialog, QMessageBox, QComboBox, QCheckBox, QHBoxLayout, QLabel, QVBoxLayout ,QGridLayout
 from PyQt6 import uic
 from School_System.helpers.db_utils import *
-
+from School_System.ui import ADD_TEACHER_DIALOG # UI FILE
 
 
 class AddTeacherDialog(QDialog):
     def __init__(self, index_instance, parent=None):
         super().__init__(parent)
         self.index_instance = index_instance
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddTeacherDialog.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(ADD_TEACHER_DIALOG, self)
 
         self.setWindowTitle("Add Teacher")
 

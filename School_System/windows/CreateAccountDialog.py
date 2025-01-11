@@ -1,15 +1,13 @@
-import os 
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import add_account_user
-
+from School_System.ui import CREATE_ACCOUNT_DIALOG
 
 
 class CreateAccountDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'CreateAccountDialog.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(CREATE_ACCOUNT_DIALOG, self)
 
         self.setWindowTitle("Create Account")
 

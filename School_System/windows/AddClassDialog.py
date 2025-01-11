@@ -1,17 +1,15 @@
-import os
 
 from PyQt6.QtWidgets import QDialog, QMessageBox, QVBoxLayout, QCheckBox
 from PyQt6 import uic
 from School_System.helpers.db_utils import *
-
+from School_System.ui import ADD_CLASS_DIALOG
 
 
 class AddClassDialog(QDialog):
     def __init__(self, index_instance, parent=None):
         super().__init__(parent)
         self.index_instance = index_instance
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'AddClassDialog.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(ADD_CLASS_DIALOG, self)
 
         self.setWindowTitle("Add Class")
 
