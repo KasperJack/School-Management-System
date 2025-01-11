@@ -2,6 +2,7 @@ import os
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
 from PyQt6 import uic
 
+from School_System.ui import LOGIN
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.indexSU import indexSU
 from School_System.helpers.db_utils import *
@@ -11,8 +12,7 @@ from School_System.helpers.db_utils import *
 class Login(QMainWindow):  
     def __init__(self):
         super().__init__()
-        ui_path = os.path.join(os.path.dirname(__file__), '..', 'ui', 'login.ui')
-        uic.loadUi(ui_path, self)
+        uic.loadUi(LOGIN, self)
 
         self.setWindowTitle("Login")
         self.login_button.clicked.connect(self.authenticate_user)

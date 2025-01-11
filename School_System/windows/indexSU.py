@@ -9,15 +9,11 @@ from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
-import sqlite3
-from School_System.db.dbio import connect
 
-import School_System.resources.qrc.rec_rc
 from School_System.helpers.db_utils import *
 
-
 from School_System.resources import  ICONS # gives back the path to the Table Ionds directroy
-
+import School_System.resources.qrc.rec_rc
 
 
 
