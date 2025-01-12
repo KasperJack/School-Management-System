@@ -362,6 +362,7 @@ class IndexSU(QMainWindow):
         self.load_students_to_table()
         self.update_students_count()
         self.sw_students()
+        self.refresh_setup_activity_log__table()
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
         ## add confermation  before deletion
@@ -540,7 +541,7 @@ class IndexSU(QMainWindow):
                     (selected_activity_type == "All" or selected_activity_type == activity_type):
                 filtered_data.append(row)
 
-        # Reload the table with the filtered data
+        filtered_data.reverse()
         self.load_filtered_data_to_table(filtered_data)
 
 
@@ -549,8 +550,7 @@ class IndexSU(QMainWindow):
     def refresh_setup_activity_log__table(self):
         self.log_data = database.get_activity_log()
         self.populate_filters()
-        self.apply_filters()
-
+        self.load_filtered_data_to_table(self.log_data)
 
 
 

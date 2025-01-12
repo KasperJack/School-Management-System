@@ -131,6 +131,7 @@ class AddClassDialog(QDialog):
             self.class_name_field.clear()
             self.index_instance.update_classes_count()
             self.index_instance.load_classes_student_search()
+            self.index_instance.refresh_setup_activity_log__table()
             for teacher_subject in get_selected_teachers_subjects:
                 database.add_course(teacher_subject,class_name)
                 self.clear_checkbox_selection()
