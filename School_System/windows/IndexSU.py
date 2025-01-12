@@ -71,11 +71,6 @@ class IndexSU(QMainWindow):
 
 
         self.show_ids.stateChanged.connect(self.toggle_id_columns)
-
-
-        ##self.populate_filters()
-        ##"self.apply_filters()
-
         self.filter_activity_type.currentIndexChanged.connect(self.apply_filters)
         self.filter_date.currentIndexChanged.connect(self.apply_filters)
         self.filter_user.currentIndexChanged.connect(self.apply_filters)
@@ -374,8 +369,16 @@ class IndexSU(QMainWindow):
 ################################### activity log table  ###########################
 
     def setup_activity_log__table(self):
+
         self.activity_log_table.verticalHeader().setVisible(False)
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+
+        self.log_data = database.get_activity_log()
+        self.populate_filters()
+        self.load_filtered_data_to_table(self.log_data)
+
+
         header = self.activity_log_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
@@ -390,17 +393,6 @@ class IndexSU(QMainWindow):
 
         header.setSectionResizeMode(7, QHeaderView.ResizeMode.Fixed)
         header.resizeSection(7, 50)  # entity id
-
-
-
-
-        # Fetch data from the database and store it in memory
-        self.log_data = database.get_activity_log()
-        # Populate combo boxes with filter options
-        self.populate_filters()
-
-        # Load the full data into the table
-        self.load_filtered_data_to_table(self.log_data)
 
 
 
@@ -499,17 +491,36 @@ class IndexSU(QMainWindow):
 
 
 
+    def populate_filters(self):
+        # Extract unique values from self.full_data
+        dates = set(row[1][:10] for row in self.log_data)  # Only use the date part of the timestamp
+        users = set(row[3] for row in self.log_data)
+        entities = set(row[5] for row in self.log_data)
+        activity_types = set(row[4] for row in self.log_data)
+
+        # Populate combo boxes with unique values
+        self.filter_date.addItem("All")
+        self.filter_date.addItems(sorted(dates))
+
+        self.filter_user.addItem("All")
+        self.filter_user.addItems(sorted(users))
+
+        self.filter_affected_entity.addItem("All")
+        self.filter_affected_entity.addItems(sorted(entities))
+
+        self.filter_activity_type.addItem("All")
+        self.filter_activity_type.addItems(sorted(activity_types))
+
+
+
+
     def apply_filters(self):
-        #selected values from the combo
+        # Get the selected values from the combo boxes
         selected_date = self.filter_date.currentText()
         selected_user = self.filter_user.currentText()
         selected_entity = self.filter_affected_entity.currentText()
         selected_activity_type = self.filter_activity_type.currentText()
 
-        # Fetch the full data from the database
-        data = database.get_activity_log()
-
-        # Filter the data based on the selected values
         filtered_data = []
         for row in self.log_data:
             timestamp = row[1]  # Assuming timestamp is in column index 1
@@ -530,25 +541,25 @@ class IndexSU(QMainWindow):
 
 
 
-    def populate_filters(self):
+    def refresh_setup_activity_log__table(self):
+        self.log_data = database.get_activity_log()
+        self.populate_filters()
+        self.apply_filters()
 
-        dates = set(row[1][:10] for row in self.log_data)
-        users = set(row[3] for row in self.log_data)
-        entities = set(row[5] for row in self.log_data)
-        activity_types = set(row[4] for row in self.log_data)
 
-        # Populate combo boxes with unique values
-        self.filter_date.addItem("All")
-        self.filter_date.addItems(sorted(dates))
 
-        self.filter_user.addItem("All")
-        self.filter_user.addItems(sorted(users))
 
-        self.filter_affected_entity.addItem("All")
-        self.filter_affected_entity.addItems(sorted(entities))
 
-        self.filter_activity_type.addItem("All")
-        self.filter_activity_type.addItems(sorted(activity_types))
+
+
+
+
+
+
+
+
+
+
 
 
 
