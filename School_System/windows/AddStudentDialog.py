@@ -56,6 +56,7 @@ class AddStudentDialog(QDialog):
                 self.clear_fields()
                 self.index_instance.load_students_to_table()
                 self.index_instance.update_students_count()
+                self.index_instance.refresh_setup_activity_log__table()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")

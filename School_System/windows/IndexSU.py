@@ -492,7 +492,12 @@ class IndexSU(QMainWindow):
 
 
     def populate_filters(self):
-        # Extract unique values from self.full_data
+
+        self.filter_activity_type.clear()
+        self.filter_date.clear()
+        self.filter_user.clear()
+        self.filter_affected_entity.clear()
+
         dates = set(row[1][:10] for row in self.log_data)  # Only use the date part of the timestamp
         users = set(row[3] for row in self.log_data)
         entities = set(row[5] for row in self.log_data)
