@@ -3,7 +3,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, Q
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import pyqtSlot
+
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -614,7 +615,9 @@ class TeacherWidget(QWidget):
 
     def __init__(self, name, subjects, classes):
         super().__init__()
-
+        self.name = name
+        self.subjects = subjects
+        self.classes = classes
         # Set a layout
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5,5)
@@ -635,6 +638,8 @@ class TeacherWidget(QWidget):
         button.setFixedSize(80, 30)
         button.setStyleSheet("background-color: lightgray;")
 
+        button.clicked.connect(self.on_button_click)
+
         # Add the button to a horizontal layout
         button_layout = QHBoxLayout()
         button_layout.addStretch()
@@ -648,3 +653,9 @@ class TeacherWidget(QWidget):
                     padding: 7px;
                 """)
         self.setFixedHeight(125)  # Set height for consistent look
+
+    @pyqtSlot()
+    def on_button_click(self):
+        # Define the action to take when the button is clicked
+        print(f"Button clicked for teacher{self.subjects}")
+        # You can add more functionality here as needed
