@@ -1061,32 +1061,13 @@ alternate-background-color: #B0EDFB;
                  <attribute name="title">
                   <string>Page</string>
                  </attribute>
-                 <widget class="QLabel" name="label_7">
-                  <property name="geometry">
-                   <rect>
-                    <x>390</x>
-                    <y>30</y>
-                    <width>111</width>
-                    <height>51</height>
-                   </rect>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>13</pointsize>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>actvity log</string>
-                  </property>
-                 </widget>
                  <widget class="QTableWidget" name="activity_log_table">
                   <property name="geometry">
                    <rect>
                     <x>10</x>
-                    <y>90</y>
+                    <y>110</y>
                     <width>771</width>
-                    <height>551</height>
+                    <height>531</height>
                    </rect>
                   </property>
                   <property name="styleSheet">
@@ -1143,11 +1124,89 @@ alternate-background-color: #B0EDFB;
                   <property name="alternatingRowColors">
                    <bool>true</bool>
                   </property>
+                  <property name="showGrid">
+                   <bool>true</bool>
+                  </property>
+                  <property name="gridStyle">
+                   <enum>Qt::PenStyle::SolidLine</enum>
+                  </property>
+                  <property name="sortingEnabled">
+                   <bool>false</bool>
+                  </property>
                   <column>
                    <property name="text">
                     <string>mpmp</string>
                    </property>
                   </column>
+                 </widget>
+                 <widget class="QWidget" name="widget_5" native="true">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>771</width>
+                    <height>71</height>
+                   </rect>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(153, 193, 241);</string>
+                  </property>
+                  <widget class="QComboBox" name="comboBox_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>200</x>
+                     <y>20</y>
+                     <width>86</width>
+                     <height>26</height>
+                    </rect>
+                   </property>
+                  </widget>
+                  <widget class="QCheckBox" name="show_ids">
+                   <property name="geometry">
+                    <rect>
+                     <x>610</x>
+                     <y>20</y>
+                     <width>92</width>
+                     <height>24</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>show IDs</string>
+                   </property>
+                  </widget>
+                  <widget class="QComboBox" name="comboBox_3">
+                   <property name="geometry">
+                    <rect>
+                     <x>290</x>
+                     <y>20</y>
+                     <width>86</width>
+                     <height>26</height>
+                    </rect>
+                   </property>
+                  </widget>
+                  <widget class="QComboBox" name="comboBox_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>380</x>
+                     <y>20</y>
+                     <width>86</width>
+                     <height>26</height>
+                    </rect>
+                   </property>
+                  </widget>
+                 </widget>
+                 <widget class="Line" name="line">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>90</y>
+                    <width>771</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
                  </widget>
                 </widget>
                </widget>

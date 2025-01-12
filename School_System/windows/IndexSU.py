@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, Q
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor
+from PyQt6.QtCore import Qt
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -67,6 +68,8 @@ class IndexSU(QMainWindow):
 
 
 
+
+        self.show_ids.stateChanged.connect(self.toggle_id_columns)
         self.activity_log_table.verticalHeader().setVisible(False)
 
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -75,7 +78,7 @@ class IndexSU(QMainWindow):
         header = self.activity_log_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         header.setSectionResizeMode(8, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(8, 35)
+        header.resizeSection(8, 30)
 
 
 
@@ -368,7 +371,7 @@ class IndexSU(QMainWindow):
         if isinstance(data, str):
             print(f"Error: {data}")
             return
-
+        data.reverse() ## reverse the data direction
         # Set up the table
         self.activity_log_table.setRowCount(len(data))
         self.activity_log_table.setColumnCount(9)  # Original columns without the Label
@@ -389,7 +392,7 @@ class IndexSU(QMainWindow):
         add_icon = QIcon(f"{ICONS}/add.png")
         delete_icon = QIcon(f"{ICONS}/del.png")
         update_icon = QIcon(f"{ICONS}/update.png")
-
+        info_icon =  QIcon(f"{ICONS}/info.png")
         # Populate the table
         for row_idx, row in enumerate(data):
             # Set the row color and icon based on activity_type
@@ -438,13 +441,21 @@ class IndexSU(QMainWindow):
                 self.activity_log_table.setItem(row_idx, col_idx, table_item)  # Directly populate without the "+ 1"
 
 
-            icon = delete_icon
+            icon = info_icon
             # Create an item for the last column (icon column)
             icon_item = QTableWidgetItem()
             icon_item.setIcon(icon)
             icon_item.setBackground(row_color)  # Apply the row color to the icon column
             self.activity_log_table.setItem(row_idx, 8, icon_item)  # Set icon in the last column (index 8)
 
+
+
+    def toggle_id_columns(self, state):
+        show = state == 2
+        #print(show)
+        self.activity_log_table.setColumnHidden(0, not show)
+        self.activity_log_table.setColumnHidden(2, not show)
+        self.activity_log_table.setColumnHidden(7, not show)
 
 
 
