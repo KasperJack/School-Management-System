@@ -2,6 +2,8 @@
 import sqlite3
 from School_System.db import DB_PATH
 from datetime import datetime
+from collections import defaultdict
+
 
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
@@ -671,7 +673,6 @@ def get_activity_log():
 
 
 
-from collections import defaultdict
 
 
 def get_teachers_data():
@@ -680,15 +681,14 @@ def get_teachers_data():
 
     query = """
     SELECT 
-        t.full_name,
+        t.full_name AS teacher_name,
         s.subject_name,
         c.class_name
     FROM teachers t
     LEFT JOIN teachers_subjects ts ON t.teacher_id = ts.teacher_id
     LEFT JOIN subjects s ON ts.subject_id = s.subject_id
-    LEFT JOIN course co ON ts.id = co.id  -- This is the key fix - joining on teachers_subjects.id
-    LEFT JOIN class c ON co.class_name = c.class_name
-    WHERE t.full_name IS NOT NULL;
+    LEFT JOIN course co ON ts.id = co.id
+    LEFT JOIN class c ON co.class_name = c.class_name;
     """
 
     cursor = conn.cursor()
@@ -697,20 +697,27 @@ def get_teachers_data():
     teacher_data = defaultdict(lambda: {"subjects": set(), "classes": set()})
 
     for row in cursor.fetchall():
-        name = row['full_name']
-        subject = row['subject_name']
-        class_name = row['class_name']
+        teacher_name = row["teacher_name"]
+        subject_name = row["subject_name"]
+        class_name = row["class_name"]
 
-        if subject:
-            teacher_data[name]['subjects'].add(subject)
+        if subject_name:
+            teacher_data[teacher_name]["subjects"].add(subject_name)
         if class_name:
-            teacher_data[name]['classes'].add(class_name)
+            teacher_data[teacher_name]["classes"].add(class_name)
 
+    # Ensure all teachers are included, even those without subjects or classes
+    for teacher in cursor.execute("SELECT full_name FROM teachers"):
+        teacher_name = teacher["full_name"]
+        if teacher_name not in teacher_data:
+            teacher_data[teacher_name] = {"subjects": set(), "classes": set()}
+
+    # Convert sets to lists for final output
     result = [
         {
             "name": name,
-            "subjects": list(data['subjects']),
-            "classes": list(data['classes'])
+            "subjects": list(data["subjects"]),
+            "classes": list(data["classes"])
         }
         for name, data in teacher_data.items()
     ]
@@ -719,10 +726,6 @@ def get_teachers_data():
     conn.close()
 
     return result
-
-
-
-
 
 
 
