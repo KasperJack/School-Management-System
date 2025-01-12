@@ -86,8 +86,6 @@ class IndexSU(QMainWindow):
 
 
 
-
-
         self.scrollArea_teachers.setWidgetResizable(True)
 
         # Container widget inside the scroll area
@@ -96,12 +94,8 @@ class IndexSU(QMainWindow):
         scroll_layout.setSpacing(10)
 
         # Add multiple TeacherWidget instances dynamically
-        data = [
-            {"name": "Teacher A", "subjects": ["Science", "Math", "Information"],
-             "classes": ["class b01", "class b03", "class b05"]},
-            {"name": "Teacher B", "subjects": ["English", "History"], "classes": ["class b02", "class b04"]},
-            {"name": "Teacher C", "subjects": ["Physics", "Chemistry"], "classes": ["class b01", "class b06"]},
-        ]
+        data = database.get_teachers_data()
+
         for teacher in data:
             teacher_widget = TeacherWidget(
                 name=teacher["name"],

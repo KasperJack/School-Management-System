@@ -671,11 +671,54 @@ def get_activity_log():
 
 
 
+from collections import defaultdict
 
 
+def get_teachers_data():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
 
+    query = """
+    SELECT 
+        t.full_name,
+        s.subject_name,
+        c.class_name
+    FROM teachers t
+    LEFT JOIN teachers_subjects ts ON t.teacher_id = ts.teacher_id
+    LEFT JOIN subjects s ON ts.subject_id = s.subject_id
+    LEFT JOIN course co ON ts.id = co.id  -- This is the key fix - joining on teachers_subjects.id
+    LEFT JOIN class c ON co.class_name = c.class_name
+    WHERE t.full_name IS NOT NULL;
+    """
 
+    cursor = conn.cursor()
+    cursor.execute(query)
 
+    teacher_data = defaultdict(lambda: {"subjects": set(), "classes": set()})
+
+    for row in cursor.fetchall():
+        name = row['full_name']
+        subject = row['subject_name']
+        class_name = row['class_name']
+
+        if subject:
+            teacher_data[name]['subjects'].add(subject)
+        if class_name:
+            teacher_data[name]['classes'].add(class_name)
+
+    result = [
+        {
+            "name": name,
+            "subjects": list(data['subjects']),
+            "classes": list(data['classes'])
+        }
+        for name, data in teacher_data.items()
+    ]
+
+    cursor.close()
+    conn.close()
+
+    return result
 
 
 
