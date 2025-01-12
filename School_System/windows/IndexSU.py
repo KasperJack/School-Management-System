@@ -66,19 +66,41 @@ class IndexSU(QMainWindow):
         # removes the seconds tab in the tab widget for admin access
         # self.tabWidget.removeTab(1)#################"
 
-
-
-
         self.show_ids.stateChanged.connect(self.toggle_id_columns)
-        self.activity_log_table.verticalHeader().setVisible(False)
 
-        self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
-        self.load_data_to_table()
+
+
+
+
+
+        self.populate_filters()
+        self.apply_filters()
+
+        self.filter_activity_type.currentIndexChanged.connect(self.apply_filters)
+        self.filter_date.currentIndexChanged.connect(self.apply_filters)
+        self.filter_user.currentIndexChanged.connect(self.apply_filters)
+        self.filter_affected_entity.currentIndexChanged.connect(self.apply_filters)
+
         header = self.activity_log_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
         header.setSectionResizeMode(8, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(8, 30)
+        header.resizeSection(8, 30) # info coulmn
+
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(0, 50) ### log id
+
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(2, 50)  ### admin id
+
+        header.setSectionResizeMode(7, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(7, 50)  # entity id
+
+
+
+
+
 
 
 
@@ -365,12 +387,32 @@ class IndexSU(QMainWindow):
 
 ################################### activity log table  ###########################
 
-    def load_data_to_table(self):
-        data = database.get_activity_log()  # Replace with your actual database path
+    def setup_activitylog__table(self):
+        self.activity_log_table.verticalHeader().setVisible(False)
+        self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
-        if isinstance(data, str):
-            print(f"Error: {data}")
-            return
+
+
+
+
+
+
+        # Fetch data from the database and store it in memory
+        self.full_data = database.get_activity_log()
+
+        # Populate combo boxes with filter options
+        self.populate_filters()
+
+        # Load the full data into the table
+        self.load_filtered_data_to_table(self.full_data)
+
+
+
+
+
+
+
+    def load_data_to_table(self,data):
         data.reverse() ## reverse the data direction
         # Set up the table
         self.activity_log_table.setRowCount(len(data))
@@ -460,14 +502,70 @@ class IndexSU(QMainWindow):
 
 
 
-    def handle_button_click(self, row_data):
-        """
-        Handles the button click for a specific row.
 
-        Args:
-            row_data (tuple): The data of the row where the button was clicked.
-        """
-        print(f"Button clicked for row: {row_data}")
+    def apply_filters(self):
+        #selected values from the combo
+        selected_date = self.filter_date.currentText()
+        selected_user = self.filter_user.currentText()
+        selected_entity = self.filter_affected_entity.currentText()
+        selected_activity_type = self.filter_activity_type.currentText()
+
+        # Fetch the full data from the database
+        data = database.get_activity_log()
+
+        # Filter the data based on the selected values
+        filtered_data = []
+        for row in data:
+            timestamp = row[1]  # Assuming timestamp is in column index 1
+            user_name = row[3]  # Assuming user name is in column index 3
+            affected_entity = row[5]  # Assuming affected entity is in column index 5
+            activity_type = row[4]  # Assuming activity type is in column index 4
+
+            # Apply filters only if the respective value is not "All"
+            if (selected_date == "All" or selected_date in timestamp) and \
+                    (selected_user == "All" or selected_user == user_name) and \
+                    (selected_entity == "All" or selected_entity == affected_entity) and \
+                    (selected_activity_type == "All" or selected_activity_type == activity_type):
+                filtered_data.append(row)
+
+        # Reload the table with the filtered data
+        self.load_data_to_table(filtered_data)
+
+
+
+
+    def populate_filters(self):
+        data = database.get_activity_log()
+
+        #unique values for each filter
+        dates = set(row[1][:10] for row in data)
+        users = set(row[3] for row in data)
+        entities = set(row[5] for row in data)
+        activity_types = set(row[4] for row in data)
+
+        # Populate combo boxes with unique values
+        self.filter_date.addItem("All")
+        self.filter_date.addItems(sorted(dates))
+
+        self.filter_user.addItem("All")
+        self.filter_user.addItems(sorted(users))
+
+        self.filter_affected_entity.addItem("All")
+        self.filter_affected_entity.addItems(sorted(entities))
+
+        self.filter_activity_type.addItem("All")
+        self.filter_activity_type.addItems(sorted(activity_types))
+
+
+
+
+
+
+
+
+
+
+
 
         #####################################[switching]#############################################
         
