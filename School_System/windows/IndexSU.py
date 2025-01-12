@@ -63,39 +63,25 @@ class IndexSU(QMainWindow):
         self.update_on_start_up() #updates the counters
         self.setup_students_table()
         self.setup_inactive_admins_table()
+        self.setup_activity_log__table()
         # removes the seconds tab in the tab widget for admin access
         # self.tabWidget.removeTab(1)#################"
+
+
+
 
         self.show_ids.stateChanged.connect(self.toggle_id_columns)
 
 
-
-
-
-
-
-        self.populate_filters()
-        self.apply_filters()
+        ##self.populate_filters()
+        ##"self.apply_filters()
 
         self.filter_activity_type.currentIndexChanged.connect(self.apply_filters)
         self.filter_date.currentIndexChanged.connect(self.apply_filters)
         self.filter_user.currentIndexChanged.connect(self.apply_filters)
         self.filter_affected_entity.currentIndexChanged.connect(self.apply_filters)
 
-        header = self.activity_log_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
-        header.setSectionResizeMode(8, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(8, 30) # info coulmn
-
-        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(0, 50) ### log id
-
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(2, 50)  ### admin id
-
-        header.setSectionResizeMode(7, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(7, 50)  # entity id
 
 
 
@@ -387,24 +373,34 @@ class IndexSU(QMainWindow):
 
 ################################### activity log table  ###########################
 
-    def setup_activitylog__table(self):
+    def setup_activity_log__table(self):
         self.activity_log_table.verticalHeader().setVisible(False)
         self.activity_log_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        header = self.activity_log_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
+        header.setSectionResizeMode(8, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(8, 30)  # info coulmn
 
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(0, 50)  ### log id
 
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(2, 50)  ### admin id
+
+        header.setSectionResizeMode(7, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(7, 50)  # entity id
 
 
 
 
         # Fetch data from the database and store it in memory
-        self.full_data = database.get_activity_log()
-
+        self.log_data = database.get_activity_log()
         # Populate combo boxes with filter options
         self.populate_filters()
 
         # Load the full data into the table
-        self.load_filtered_data_to_table(self.full_data)
+        self.load_filtered_data_to_table(self.log_data)
 
 
 
@@ -412,7 +408,7 @@ class IndexSU(QMainWindow):
 
 
 
-    def load_data_to_table(self,data):
+    def load_filtered_data_to_table(self,data):
         data.reverse() ## reverse the data direction
         # Set up the table
         self.activity_log_table.setRowCount(len(data))
@@ -515,7 +511,7 @@ class IndexSU(QMainWindow):
 
         # Filter the data based on the selected values
         filtered_data = []
-        for row in data:
+        for row in self.log_data:
             timestamp = row[1]  # Assuming timestamp is in column index 1
             user_name = row[3]  # Assuming user name is in column index 3
             affected_entity = row[5]  # Assuming affected entity is in column index 5
@@ -529,19 +525,17 @@ class IndexSU(QMainWindow):
                 filtered_data.append(row)
 
         # Reload the table with the filtered data
-        self.load_data_to_table(filtered_data)
+        self.load_filtered_data_to_table(filtered_data)
 
 
 
 
     def populate_filters(self):
-        data = database.get_activity_log()
 
-        #unique values for each filter
-        dates = set(row[1][:10] for row in data)
-        users = set(row[3] for row in data)
-        entities = set(row[5] for row in data)
-        activity_types = set(row[4] for row in data)
+        dates = set(row[1][:10] for row in self.log_data)
+        users = set(row[3] for row in self.log_data)
+        entities = set(row[5] for row in self.log_data)
+        activity_types = set(row[4] for row in self.log_data)
 
         # Populate combo boxes with unique values
         self.filter_date.addItem("All")
