@@ -321,6 +321,13 @@ class IndexSU(QMainWindow):
             id_column = 0
             value = self.students_table.item(row, id_column)
             sid = value.text()
+            new_data = {
+                "email": "74474",
+                "address": "255",
+                "additional_info":"bbbbbbbbbbbb"
+            }
+
+            database.update_student_info(sid,new_data)
             student_info = database.get_student_details(sid)
             full_name = student_info['full_name']
             name_parts = full_name.split(" ", 1)

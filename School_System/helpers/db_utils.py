@@ -734,6 +734,50 @@ def get_teachers_data():
     return result
 
 
+def update_student_info(student_id, new_data):
+    """
+    Updates the student information in the database for the given student_id.
+
+    Args:
+        student_id (int): The ID of the student to update.
+        new_data (dict): A dictionary containing the new field values to update.
+        db_path (str): Path to the SQLite database file.
+    """
+    try:
+        # Fetch current student data
+        current_data_dict = get_student_details(student_id)
+        if not current_data_dict:
+            print(f"No student found with ID: {student_id}")
+            return
+
+        # Identify changes
+        changes = {}
+        for column, new_value in new_data.items():
+            if column in current_data_dict and current_data_dict[column] != new_value:
+                changes[column] = new_value
+
+        if not changes:
+            print("No changes detected.")
+            return
+
+        # Construct the UPDATE query
+        query = "UPDATE students SET "
+        query += ", ".join(f"{col} = ?" for col in changes.keys())
+        query += " WHERE student_id = ?"
+
+        # Execute the query
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(query, (*changes.values(), student_id))
+        conn.commit()
+        #logg
+        print("Student information updated successfully.")
+
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if 'conn' in locals():
+            conn.close()
 
 
 
