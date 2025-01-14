@@ -55,7 +55,7 @@ class IndexSU(QMainWindow):
 
         #################### update delete student tab  ##############################
         self.delete_s.clicked.connect(self.delete_student)
-        self.update_button.clicked.connect(self.update_students_info)
+        self.modify_s.clicked.connect(self.modify_students_info_window)
         self.back_to_s_table.clicked.connect(self.sw_students)
 
 
@@ -367,7 +367,9 @@ class IndexSU(QMainWindow):
         ## add confermation  before deletion
 
 
-    def  update_students_info(self):
+    def  modify_students_info_window(self):
+        ##sw to another tabb or widget
+
         selected_indexes = self.students_table.selectedIndexes()
         row = selected_indexes[0].row()
         id_column = 0
@@ -388,17 +390,15 @@ class IndexSU(QMainWindow):
 
         Bdate = student_info['birth_date']
         date = QDate.fromString(Bdate, "dd-MM-yyyy")
-
-
-
-        self.update_bd.setDate()
+        self.update_bd.setDate(date)
 
 
 
         self.update_address.setText(student_info['address'])
-        self.s_class.setText(student_info['class_name'])
+        #self.s_class.setText(student_info['class_name'])
 
         self.s_additional_info.setText(student_info['additional_info'])
+        self.sw_mod_student()
 
 
 
@@ -641,10 +641,11 @@ class IndexSU(QMainWindow):
 
 
 
+
     def sw_dash(self):
         self.stackedWidget.setCurrentIndex(0)
     def sw_subject(self):
-        self.stackedWidget.setCurrentIndex(5)
+        self.stackedWidget.setCurrentIndex(6)
     def sw_class(self):
         self.stackedWidget.setCurrentIndex(1)
     def sw_teachers(self):
@@ -653,6 +654,14 @@ class IndexSU(QMainWindow):
         self.stackedWidget.setCurrentIndex(2)
     def sw_more_about_s(self):
         self.stackedWidget.setCurrentIndex(4)
+    def sw_mod_student(self):
+        self.stackedWidget.setCurrentIndex(5)
+
+
+
+    #### index 5
+
+
 
 
 class TeacherWidget(QWidget):
