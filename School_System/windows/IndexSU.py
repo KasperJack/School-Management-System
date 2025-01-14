@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, Q
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor
-from PyQt6.QtCore import pyqtSlot
+from PyQt6.QtCore import pyqtSlot, QDate
 
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
@@ -55,6 +55,7 @@ class IndexSU(QMainWindow):
 
         #################### update delete student tab  ##############################
         self.delete_s.clicked.connect(self.delete_student)
+        self.update_button.clicked.connect(self.update_students_info)
         self.back_to_s_table.clicked.connect(self.sw_students)
 
 
@@ -321,13 +322,7 @@ class IndexSU(QMainWindow):
             id_column = 0
             value = self.students_table.item(row, id_column)
             sid = value.text()
-            new_data = {
-                "email": "74474",
-                "address": "255",
-                "additional_info":"bbbbbbbbbbbb"
-            }
 
-            database.update_student_info(sid,new_data)
             student_info = database.get_student_details(sid)
             full_name = student_info['full_name']
             name_parts = full_name.split(" ", 1)
@@ -368,9 +363,51 @@ class IndexSU(QMainWindow):
         self.refresh_setup_activity_log__table()
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
+
         ## add confermation  before deletion
 
-################################### activity log table  ###########################
+
+    def  update_students_info(self):
+        selected_indexes = self.students_table.selectedIndexes()
+        row = selected_indexes[0].row()
+        id_column = 0
+        id_item = self.students_table.item(row, id_column)
+        sid = id_item.text()
+
+        student_info = database.get_student_details(sid)
+
+
+        full_name = student_info['full_name']
+        name_parts = full_name.split(" ", 1)
+        first_name = name_parts[0]
+        last_name = name_parts[1]
+        self.update_f_name.setText(first_name)
+        self.update_l_name.setText(last_name)
+        self.update_phone.setText(student_info['phone'])
+        self.update_email.setText(student_info['email'])
+
+        Bdate = student_info['birth_date']
+        date = QDate.fromString(Bdate, "dd-MM-yyyy")
+
+
+
+        self.update_bd.setDate()
+
+
+
+        self.update_address.setText(student_info['address'])
+        self.s_class.setText(student_info['class_name'])
+
+        self.s_additional_info.setText(student_info['additional_info'])
+
+
+
+
+
+
+
+
+    ################################### activity log table  ###########################
 
     def setup_activity_log__table(self):
 
