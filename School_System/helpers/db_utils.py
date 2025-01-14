@@ -681,6 +681,7 @@ def get_teachers_data():
 
     query = """
     SELECT 
+        t.teacher_id, 
         t.full_name AS teacher_name,
         s.subject_name,
         c.class_name
@@ -694,27 +695,32 @@ def get_teachers_data():
     cursor = conn.cursor()
     cursor.execute(query)
 
-    teacher_data = defaultdict(lambda: {"subjects": set(), "classes": set()})
+    teacher_data = defaultdict(lambda: {"subjects": set(), "classes": set(), "teacher_id": None})
 
     for row in cursor.fetchall():
+        teacher_id = row["teacher_id"]
         teacher_name = row["teacher_name"]
         subject_name = row["subject_name"]
         class_name = row["class_name"]
 
+        if teacher_name not in teacher_data:
+            teacher_data[teacher_name]["teacher_id"] = teacher_id
         if subject_name:
             teacher_data[teacher_name]["subjects"].add(subject_name)
         if class_name:
             teacher_data[teacher_name]["classes"].add(class_name)
 
     # Ensure all teachers are included, even those without subjects or classes
-    for teacher in cursor.execute("SELECT full_name FROM teachers"):
+    for teacher in cursor.execute("SELECT teacher_id, full_name FROM teachers"):
+        teacher_id = teacher["teacher_id"]
         teacher_name = teacher["full_name"]
         if teacher_name not in teacher_data:
-            teacher_data[teacher_name] = {"subjects": set(), "classes": set()}
+            teacher_data[teacher_name] = {"teacher_id": teacher_id, "subjects": set(), "classes": set()}
 
     # Convert sets to lists for final output
     result = [
         {
+            "teacher_id": data["teacher_id"],
             "name": name,
             "subjects": list(data["subjects"]),
             "classes": list(data["classes"])

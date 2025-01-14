@@ -101,7 +101,8 @@ class IndexSU(QMainWindow):
             teacher_widget = TeacherWidget(
                 name=teacher["name"],
                 subjects=teacher["subjects"],
-                classes=teacher["classes"]
+                classes=teacher["classes"],
+                teacher_id=teacher["teacher_id"]
             )
             scroll_layout.addWidget(teacher_widget)
 
@@ -613,11 +614,12 @@ class IndexSU(QMainWindow):
 class TeacherWidget(QWidget):
     """Custom widget to represent a teacher card."""
 
-    def __init__(self, name, subjects, classes):
+    def __init__(self, name, subjects, classes ,teacher_id):
         super().__init__()
         self.name = name
         self.subjects = subjects
         self.classes = classes
+        self.teacher_id = teacher_id
         # Set a layout
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5,5)
@@ -657,5 +659,5 @@ class TeacherWidget(QWidget):
     @pyqtSlot()
     def on_button_click(self):
         # Define the action to take when the button is clicked
-        print(f"Button clicked for teacher{self.subjects}")
+        print(f"Button clicked for teacher{self.teacher_id}")
         # You can add more functionality here as needed
