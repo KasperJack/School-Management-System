@@ -1,9 +1,9 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QStyledItemDelegate
 from PyQt6 import uic
 from datetime import datetime
-from PyQt6.QtGui import QIcon, QColor
-from PyQt6.QtCore import pyqtSlot, QDate
+from PyQt6.QtGui import QIcon, QColor, QBrush, QFont, QPainter
+from PyQt6.QtCore import pyqtSlot, QDate, Qt
 
 
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
@@ -396,12 +396,25 @@ class IndexSU(QMainWindow):
 
         self.update_address.setText(student_info['address'])
         #self.s_class.setText(student_info['class_name'])
-
         self.s_additional_info.setText(student_info['additional_info'])
+
+        self.comboBox_class.clear()
+
+        self.comboBox_class.setItemDelegate(ComboDelegate(student_info['class_name']))
+        #self.comboBox_class.addItem(student_info['class_name'])
+        self.comboBox_class.addItems(database.get_classes())
+        for index in range(self.comboBox_class.count()):
+            item_text = self.comboBox_class.itemText(index)
+            if item_text == student_info['class_name']:
+                self.comboBox_class.setItemData(index, QBrush(QColor(255, 255, 0)), Qt.ItemDataRole.BackgroundRole)
+                self.comboBox_class.setCurrentIndex(index)
+
+
+
         self.sw_mod_student()
 
 
-
+        #### clear the box after
 
 
 
@@ -539,7 +552,7 @@ class IndexSU(QMainWindow):
         self.filter_user.clear()
         self.filter_affected_entity.clear()
 
-        dates = set(row[1][:10] for row in self.log_data)  # Only use the date part of the timestamp
+        dates = set(row[1][:10] for row in self.log_data)
         users = set(row[3] for row in self.log_data)
         entities = set(row[5] for row in self.log_data)
         activity_types = set(row[4] for row in self.log_data)
@@ -569,10 +582,10 @@ class IndexSU(QMainWindow):
 
         filtered_data = []
         for row in self.log_data:
-            timestamp = row[1]  # Assuming timestamp is in column index 1
-            user_name = row[3]  # Assuming user name is in column index 3
-            affected_entity = row[5]  # Assuming affected entity is in column index 5
-            activity_type = row[4]  # Assuming activity type is in column index 4
+            timestamp = row[1]
+            user_name = row[3]
+            affected_entity = row[5]
+            activity_type = row[4]
 
             # Apply filters only if the respective value is not "All"
             if (selected_date == "All" or selected_date in timestamp) and \
@@ -714,3 +727,27 @@ class TeacherWidget(QWidget):
         # Define the action to take when the button is clicked
         print(f"Button clicked for teacher{self.teacher_id}")
         # You can add more functionality here as needed
+
+
+class ComboDelegate(QStyledItemDelegate):
+    def __init__(self, selected_class):
+        super().__init__()
+        self.selected_class = selected_class  # The current class name to compare
+
+    def paint(self, painter, option, index):
+        # Get the item text
+        item_text = index.data(Qt.ItemDataRole.DisplayRole)
+
+        # Call the base class paint method for standard rendering
+        super().paint(painter, option, index)
+
+        # Additional text to indicate the current class, if the item is the selected one
+        if item_text == self.selected_class:
+            additional_text = " (current class)"
+
+            # Set the painter properties for the greyed-out text
+            painter.setPen(QColor(150, 150, 150))  # Grey color
+            painter.setFont(QFont("Arial", 8, QFont.Weight.Normal))  # Small font
+
+            # Draw the additional text beside the item text
+            painter.drawText(option.rect.adjusted(5, 0, 0, 0), Qt.AlignmentFlag.AlignVCenter, additional_text)
