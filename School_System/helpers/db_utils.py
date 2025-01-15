@@ -381,7 +381,7 @@ def get_classes_sequence():
         cursor = db_connection.cursor()
 
         # Query to fetch the sequence number for 'students'
-        query = "SELECT seq FROM sqlite_sequence WHERE name = 'subjects';"
+        query = "SELECT seq FROM sqlite_sequence WHERE name = 'class';"
         cursor.execute(query)
 
         # Fetch the result
