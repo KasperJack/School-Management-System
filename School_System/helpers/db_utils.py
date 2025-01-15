@@ -254,7 +254,7 @@ def add_teacher_subject(teacher_id, subject_id):
         except sqlite3.IntegrityError as e:
             return False
 
-
+#ts_id #class_id
 def add_course(teacher_subject,class_name):
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
@@ -262,7 +262,7 @@ def add_course(teacher_subject,class_name):
         try:
             # Insert the data into the teachers_subjects table
             cursor.execute(
-                "INSERT INTO course (id, class_name) VALUES (?, ?)",
+                "INSERT INTO course (ts_id, class_id) VALUES (?, ?)",
                 (teacher_subject, class_name))
             db_connection.commit()
             return True
@@ -373,6 +373,37 @@ def get_subjects_sequence():
 
 
 
+def get_classes_sequence():
+
+
+
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+
+        # Query to fetch the sequence number for 'students'
+        query = "SELECT seq FROM sqlite_sequence WHERE name = 'subjects';"
+        cursor.execute(query)
+
+        # Fetch the result
+        result = cursor.fetchone()
+
+    # Return the sequence number if found, else None
+    return result[0] if result else None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def get_classes():
     """Fetch a list of class names from the database."""
@@ -410,7 +441,7 @@ def get_classes_ids():
 
 
 
-def add_student(full_name, phone, email, gender, birth_date, address, class_name=None):
+def add_student(full_name, phone, email, gender, birth_date, address, class_id=None):
     """
     Inserts a new student into the `students` table and handles integrity errors.
     """
@@ -421,10 +452,10 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_name
 
             cursor.execute(
                 """
-                INSERT INTO students (full_name, phone, email, gender, birth_date, address, class_name)
+                INSERT INTO students (full_name, phone, email, gender, birth_date, address, class_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
-                (full_name, phone, email, gender, birth_date, address, class_name)
+                (full_name, phone, email, gender, birth_date, address, class_id)
             )
 
             # commit
@@ -530,7 +561,7 @@ def get_teachers_subjects():
         cursor = db_connection.cursor()
         # Query to fetch teacher-subject pairs
         cursor.execute("""
-            SELECT ts.id, sub.subject_name, t.full_name
+            SELECT ts.ts_id, sub.subject_name, t.full_name
             FROM teachers_subjects ts
             JOIN subjects sub ON ts.subject_id = sub.subject_id
             JOIN teachers t ON ts.teacher_id = t.teacher_id

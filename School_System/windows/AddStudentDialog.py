@@ -15,8 +15,10 @@ class AddStudentDialog(QDialog):
         self.add_student_button.clicked.connect(self.add_student)
 
         self.classes_dropdown.addItem("N/A")
-        classes = database.get_classes()
-        self.classes_dropdown.addItems(classes)
+
+        classes = database.get_classes_ids()
+        for class_id, class_name in classes:
+            self.classes_dropdown.addItem(class_name, class_id)
 
         self.classes_dropdown.setCurrentIndex(0)
 
@@ -44,6 +46,7 @@ class AddStudentDialog(QDialog):
         birth_date = self.birth_date.date().toString("dd-MM-yyyy")
         address = self.address_field.text()
         stdclass = self.classes_dropdown.currentText()
+        class_id = self.classes_dropdown.currentData()
 
         if not name or not last_name or not phone or not email or not address:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
@@ -63,7 +66,7 @@ class AddStudentDialog(QDialog):
                 QMessageBox.warning(self, "Error", f"{evaluate}")
                 return
 
-        evaluate = database.add_student(full_name, phone, email, gender, birth_date,address,stdclass)
+        evaluate = database.add_student(full_name, phone, email, gender, birth_date,address,class_id)
         if evaluate == "Student added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.clear_fields()

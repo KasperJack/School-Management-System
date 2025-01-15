@@ -14,7 +14,9 @@ class AddClassDialog(QDialog):
         self.setWindowTitle("Add Class")
 
         self.add_class_button.clicked.connect(self.add_class)
+
         grades = database.get_grades()
+
         self.grades_dropdown.addItems(grades)
         self.load_teachers_subjects()
 
