@@ -749,14 +749,16 @@ def update_student_info(student_id, new_data):
         if not current_data_dict:
             return
 
-        # Identify changes
+            #changes
         changes = {}
+        changes_str = ""
         for column, new_value in new_data.items():
-            if column in current_data_dict and current_data_dict[column] != new_value:
+            current_value = current_data_dict.get(column)
+            if current_value != new_value:
                 changes[column] = new_value
+                changes_str += f"{column}:'{current_value}''{new_value}'\n"
 
         if not changes:
-            print("No changes detected.")
             return
 
         # Construct the UPDATE query
@@ -770,7 +772,19 @@ def update_student_info(student_id, new_data):
         cursor.execute(query, (*changes.values(), student_id))
         conn.commit()
         #logg
-        print("Student information updated successfully.")
+        activity_type = "update"
+        affected_entity = "student"
+        entity_name = student_name
+        entity_id = student_id
+        additional_info = changes_str
+        log_activity(
+            activity_type,
+            affected_entity,
+            entity_name,
+            entity_id,
+            additional_info,
+            conn  # Pass the shared connection
+        )
 
     except sqlite3.Error as e:
         print(f"An error occurred: {e}")
