@@ -747,7 +747,6 @@ def update_student_info(student_id, new_data):
         # Fetch current student data
         current_data_dict = get_student_details(student_id)
         if not current_data_dict:
-            print(f"No student found with ID: {student_id}")
             return
 
         # Identify changes

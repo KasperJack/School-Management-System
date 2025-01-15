@@ -421,6 +421,33 @@ class IndexSU(QMainWindow):
 
         #### clear the box after
 
+    def update_student_info(self):
+
+        name = self.update_f_name.text()
+        last_name = self.update_l_name.text()
+        full_name = f"{name} {last_name}"
+
+        birth_date = self.update_bd.date().toString("dd-MM-yyyy")
+        phone = self.update_phone.text()
+        email = self.update_email.text()
+        address = self.update_address.text()
+        additional_info = self.update_additional_info.text()
+        class_name = self.comboBox_class.currentText()
+
+        if class_name == "NO class":
+            print("g")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
