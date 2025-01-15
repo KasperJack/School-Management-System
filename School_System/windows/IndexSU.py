@@ -97,8 +97,8 @@ class IndexSU(QMainWindow):
         scroll_layout.setSpacing(10)
 
         # Add multiple TeacherWidget instances dynamically
-        data = database.get_teachers_data()
-
+        ###data = database.get_teachers_data()
+        data = ""
         for teacher in data:
             teacher_widget = TeacherWidget(
                 name=teacher["name"],
@@ -317,6 +317,9 @@ class IndexSU(QMainWindow):
 
         self.display_students(filtered_students)
 
+
+
+
     def on_cell_clicked(self, row, column):
         full_name_column = 1
         if column == full_name_column:
@@ -408,8 +411,10 @@ class IndexSU(QMainWindow):
         self.comboBox_class.clear()
 
         if  student_info['class_name']:
-            # self.comboBox_class.addItem(student_info['class_name'])
-            self.comboBox_class.addItems(database.get_classes())
+
+            classes = database.get_classes_ids()
+            for class_id, class_name in classes:
+                self.comboBox_class.addItem(class_name, class_id)
             for index in range(self.comboBox_class.count()):
                 item_text = self.comboBox_class.itemText(index)
                 if item_text == student_info['class_name']:
@@ -417,7 +422,9 @@ class IndexSU(QMainWindow):
                     self.comboBox_class.setCurrentIndex(index)
         else:
             self.comboBox_class.addItem("NO class")
-            self.comboBox_class.addItems(database.get_classes())
+            classes = database.get_classes_ids()
+            for class_id, class_name in classes:
+                self.comboBox_class.addItem(class_name, class_id)  # Add class_name with class_id as userData
 
 
 
@@ -442,13 +449,6 @@ class IndexSU(QMainWindow):
         last_name = self.update_l_name.text()
         full_name = f"{name} {last_name}"
 
-        birth_date = self.update_bd.date().toString("dd-MM-yyyy")
-        phone = self.update_phone.text()
-        email = self.update_email.text()
-        address = self.update_address.text()
-        additional_info = self.update_additional_info.toPlainText()
-        class_name = self.comboBox_class.currentText()
-
         new_data = {
             "full_name": full_name,
             "birth_date": self.update_bd.date().toString("dd-MM-yyyy"),
@@ -456,7 +456,7 @@ class IndexSU(QMainWindow):
             "email": self.update_email.text(),
             "address": self.update_address.text(),
             "additional_info": self.update_additional_info.toPlainText(),
-            "class_name": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentText(),
+            "class_id": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentData(),
         }
 
 

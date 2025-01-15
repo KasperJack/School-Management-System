@@ -374,17 +374,6 @@ def get_subjects_sequence():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 def get_classes():
     """Fetch a list of class names from the database."""
 
@@ -395,6 +384,25 @@ def get_classes():
         cursor.execute("SELECT class_name FROM class")
         classes = cursor.fetchall()
         classes = [class_name[0] for class_name in classes]
+
+    return classes
+
+
+
+
+
+
+
+
+
+
+def get_classes_ids():
+    """Fetch a list of (class_id, class_name) from the database."""
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to fetch class IDs and names
+        cursor.execute("SELECT class_id, class_name FROM class")
+        classes = cursor.fetchall()  # List of tuples (class_id, class_name)
 
     return classes
 
@@ -490,13 +498,13 @@ def get_students_info():
     """Fetch student information and populate the students_table."""
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
-        # Query to get student info along with grade
+        # Corrected query to fetch student info with grade and class name
         query = """
         SELECT 
             students.student_id,
             students.full_name,
             grades.grade_name,
-            students.class_name,
+            class.class_name,
             students.birth_date,
             students.address,
             students.phone,
@@ -504,13 +512,14 @@ def get_students_info():
         FROM 
             students
         LEFT JOIN 
-            class ON students.class_name = class.class_name
+            class ON students.class_id = class.class_id
         LEFT JOIN 
             grades ON class.grade_name = grades.grade_name
         """
         cursor.execute(query)
         students = cursor.fetchall()
         return students
+
 
 
 
@@ -531,17 +540,39 @@ def get_teachers_subjects():
 
 
 
-
 def get_student_details(student_id):
+    """
+    Fetch detailed information about a specific student, including class name.
+
+    Args:
+        student_id (int): The ID of the student to fetch details for.
+
+    Returns:
+        dict: A dictionary containing student details if found.
+        str: An error message if no student is found or a database error occurs.
+    """
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     try:
+        # Query to fetch student details, including the class name
         query = """
-        SELECT photo, full_name, phone, email, birth_date, address, class_name, 
-               registration_date, additional_info
-        FROM students
-        WHERE student_id = ?;
+        SELECT 
+            students.photo, 
+            students.full_name, 
+            students.phone, 
+            students.email, 
+            students.birth_date, 
+            students.address, 
+            class.class_name, 
+            students.registration_date, 
+            students.additional_info
+        FROM 
+            students
+        LEFT JOIN 
+            class ON students.class_id = class.class_id
+        WHERE 
+            students.student_id = ?;
         """
         cursor.execute(query, (student_id,))
         result = cursor.fetchone()
@@ -555,7 +586,7 @@ def get_student_details(student_id):
                 "email": result[3],
                 "birth_date": result[4],
                 "address": result[5],
-                "class_name": result[6],
+                "class_name": result[6],  # Fetched from the class table
                 "registration_date": result[7],
                 "additional_info": result[8],
             }
@@ -568,7 +599,6 @@ def get_student_details(student_id):
 
     finally:
         conn.close()
-
 
 
 

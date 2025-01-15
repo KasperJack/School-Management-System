@@ -13,6 +13,7 @@ class AddStudentDialog(QDialog):
         self.setWindowTitle("Add Student")
 
         self.add_student_button.clicked.connect(self.add_student)
+
         self.classes_dropdown.addItem("N/A")
         classes = database.get_classes()
         self.classes_dropdown.addItems(classes)
