@@ -57,6 +57,7 @@ class IndexSU(QMainWindow):
         self.delete_s.clicked.connect(self.delete_student)
         self.modify_s.clicked.connect(self.modify_students_info_window)
         self.back_to_s_table.clicked.connect(self.sw_students)
+        self.update_button.clicked.connect(self.update_student_info)
 
 
 
@@ -334,7 +335,13 @@ class IndexSU(QMainWindow):
             self.s_email.setText(student_info['email'])
             self.s_bd.setText(student_info['birth_date'])
             self.s_address.setText(student_info['address'])
-            self.s_class.setText(student_info['class_name'])
+
+
+            if not student_info['class_name']:
+                self.s_class.setText("No class")
+            else:
+                self.s_class.setText(student_info['class_name'])
+
             stored_date = student_info['registration_date']
             date_object = datetime.strptime(stored_date, "%Y-%m-%d")
             formatted_date = date_object.strftime("%d-%m-%Y")
@@ -423,6 +430,14 @@ class IndexSU(QMainWindow):
 
     def update_student_info(self):
 
+
+        selected_indexes = self.students_table.selectedIndexes()
+        row = selected_indexes[0].row()
+        id_column = 0
+        id_item = self.students_table.item(row, id_column)
+        sid = id_item.text()
+
+
         name = self.update_f_name.text()
         last_name = self.update_l_name.text()
         full_name = f"{name} {last_name}"
@@ -431,22 +446,21 @@ class IndexSU(QMainWindow):
         phone = self.update_phone.text()
         email = self.update_email.text()
         address = self.update_address.text()
-        additional_info = self.update_additional_info.text()
+        additional_info = self.update_additional_info.toPlainText()
         class_name = self.comboBox_class.currentText()
 
-        if class_name == "NO class":
-            print("g")
+        new_data = {
+            "full_name": full_name,
+            "birth_date": self.update_bd.date().toString("dd-MM-yyyy"),
+            "phone": self.update_phone.text(),
+            "email": self.update_email.text(),
+            "address": self.update_address.text(),
+            "additional_info": self.update_additional_info.toPlainText(),
+            "class_name": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentText(),
+        }
 
 
-
-
-
-
-
-
-
-
-
+        database.update_student_info(sid,new_data)
 
 
 
