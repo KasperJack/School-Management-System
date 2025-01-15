@@ -608,10 +608,25 @@ def delete_student(student_id, student_name):
 
 
 def log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info=None, conn=None):
+    """
+    Logs user activity into the activity_log table.
+
+    Args:
+        activity_type (str): Type of activity performed.
+        affected_entity (str): Entity affected by the activity (e.g., 'student', 'class').
+        entity_name (str): Name of the affected entity.
+        entity_id (int): ID of the affected entity.
+        additional_info (str, optional): Additional information about the activity.
+        conn (sqlite3.Connection, optional): Database connection to use. If not provided, a new one will be created.
+    """
     try:
+        # Track whether the connection was created in this function
+        created_connection = False
+
         # Use the existing connection if provided, otherwise create a new one
         if conn is None:
             conn = sqlite3.connect(DB_PATH)
+            created_connection = True
 
         cursor = conn.cursor()
 
@@ -632,8 +647,8 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
             (timestamp, LOGGED_IN_USER_ID, LOGGED_IN_USER_NAME, activity_type, affected_entity, entity_name, entity_id, additional_info)
         )
 
-        # Commit only if using a new connection
-        if conn is not conn:
+        # Commit changes only if using a new connection
+        if created_connection:
             conn.commit()
 
     except sqlite3.Error as e:
@@ -641,7 +656,7 @@ def log_activity(activity_type, affected_entity, entity_name, entity_id, additio
 
     finally:
         # Close the connection only if it was created in this function
-        if conn is not conn:
+        if created_connection:
             conn.close()
 
 
@@ -771,20 +786,18 @@ def update_student_info(student_id, new_data):
         cursor = conn.cursor()
         cursor.execute(query, (*changes.values(), student_id))
         conn.commit()
-        #logg
+        print("ff")
         activity_type = "update"
         affected_entity = "student"
-        entity_name = student_name
+        entity_name = "student_name"
         entity_id = student_id
-        additional_info = changes_str
+        additional_info = "changes_str"
         log_activity(
             activity_type,
             affected_entity,
             entity_name,
             entity_id,
-            additional_info,
-            conn  # Pass the shared connection
-        )
+            additional_info)
 
     except sqlite3.Error as e:
         print(f"An error occurred: {e}")
