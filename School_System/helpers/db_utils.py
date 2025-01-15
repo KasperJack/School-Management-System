@@ -140,7 +140,7 @@ def log_user_in(user_id):
 
 
 
-
+#### not in use ??
 def clear_entry_log():
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
@@ -764,8 +764,8 @@ def get_teachers_data():
     FROM teachers t
     LEFT JOIN teachers_subjects ts ON t.teacher_id = ts.teacher_id
     LEFT JOIN subjects s ON ts.subject_id = s.subject_id
-    LEFT JOIN course co ON ts.id = co.id
-    LEFT JOIN class c ON co.class_name = c.class_name;
+    LEFT JOIN course co ON ts.ts_id = co.ts_id
+    LEFT JOIN class c ON co.class_id = c.class_name;
     """
 
     cursor = conn.cursor()
@@ -869,61 +869,7 @@ def update_student_info(student_id, new_data):
 
 
 
-def resolve_activity_log():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
 
-    # Step 1: Fetch all rows from activity_log
-    cursor.execute("SELECT * FROM activity_log")
-    logs = cursor.fetchall()
-
-    # Map to hold resolved logs
-    resolved_logs = []
-
-    for log in logs:
-        log_id, timestamp, user_id, user_name, activity_type, affected_entity, entity_name, entity_id, additional_info = log
-
-        # Step 2: Resolve user_name based on user_id (if needed)
-        if not user_name:
-            cursor.execute("SELECT full_name FROM users WHERE user_id = ?", (user_id,))
-            user_result = cursor.fetchone()
-            resolved_user_name = user_result[0] if user_result else "Unknown User"
-        else:
-            resolved_user_name = user_name
-
-        # Step 3: Resolve entity_name based on affected_entity and entity_id
-        if not entity_name:
-            table_mapping = {
-                "student": "students",
-                "teacher": "teachers",
-                "subject": "subjects",
-                # Add other entity types here
-            }
-            entity_table = table_mapping.get(affected_entity, None)
-            if entity_table:
-                query = f"SELECT name FROM {entity_table} WHERE id = ?"
-                cursor.execute(query, (entity_id,))
-                entity_result = cursor.fetchone()
-                resolved_entity_name = entity_result[0] if entity_result else "Unknown Entity"
-            else:
-                resolved_entity_name = "Unknown Entity"
-        else:
-            resolved_entity_name = entity_name
-
-        # Step 4: Append resolved log
-        resolved_logs.append({
-            "log_id": log_id,
-            "timestamp": timestamp,
-            "user_name": resolved_user_name,
-            "activity_type": activity_type,
-            "affected_entity": affected_entity,
-            "entity_name": resolved_entity_name,
-            "entity_id": entity_id,
-            "additional_info": additional_info
-        })
-
-    conn.close()
-    return resolved_logs
 
 
 ## look up teacher (change info)

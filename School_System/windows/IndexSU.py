@@ -97,8 +97,8 @@ class IndexSU(QMainWindow):
         scroll_layout.setSpacing(10)
 
         # Add multiple TeacherWidget instances dynamically
-        ###data = database.get_teachers_data()
-        data = ""
+        data = database.get_teachers_data()
+
         for teacher in data:
             teacher_widget = TeacherWidget(
                 name=teacher["name"],
@@ -125,6 +125,8 @@ class IndexSU(QMainWindow):
 
 
     def load_classes_student_search(self):
+        self.class_combo_box.clear()
+        self.class_combo_box.addItem("All Classes")
         self.class_combo_box.addItems(database.get_classes())
 
 
@@ -253,7 +255,6 @@ class IndexSU(QMainWindow):
         self.load_students_to_table()## :load data
         self.students_table.verticalHeader().setVisible(False)
         self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.class_combo_box.addItem("All Classes")
         self.load_classes_student_search()
         # auto adjust the size of the colusmns
         header = self.students_table.horizontalHeader()
