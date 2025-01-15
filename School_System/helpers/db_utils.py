@@ -765,7 +765,7 @@ def get_teachers_data():
     LEFT JOIN teachers_subjects ts ON t.teacher_id = ts.teacher_id
     LEFT JOIN subjects s ON ts.subject_id = s.subject_id
     LEFT JOIN course co ON ts.ts_id = co.ts_id
-    LEFT JOIN class c ON co.class_id = c.class_name;
+    LEFT JOIN class c ON co.class_id = c.class_id;
     """
 
     cursor = conn.cursor()
