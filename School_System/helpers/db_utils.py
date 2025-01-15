@@ -786,21 +786,21 @@ def update_student_info(student_id, new_data):
         cursor = conn.cursor()
         cursor.execute(query, (*changes.values(), student_id))
         conn.commit()
-        print("ff")
         activity_type = "update"
         affected_entity = "student"
         entity_name = "student_name"
         entity_id = student_id
-        additional_info = "changes_str"
+        additional_info = changes_str
         log_activity(
             activity_type,
             affected_entity,
             entity_name,
             entity_id,
             additional_info)
-
+        #return f"Student information updated successfully"  ###########################
+        #leaves the connection hanging ?
     except sqlite3.Error as e:
-        print(f"An error occurred: {e}")
+        return f"An error occurred: {e}"
     finally:
         if 'conn' in locals():
             conn.close()
