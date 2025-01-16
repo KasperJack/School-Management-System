@@ -284,7 +284,7 @@ def get_grades():
 
 
 
-def add_class(class_name, grade_name):
+def add_class(class_name, grade_name, session, max_students):
     """
     Insert a new class with the given class_name and grade_name into the class table.
     """
@@ -296,8 +296,8 @@ def add_class(class_name, grade_name):
         try:
             # Insert the new class into the class table
             cursor.execute(
-                "INSERT INTO class (class_name, grade_name) VALUES (?, ?)",
-                (class_name, grade_name)
+                "INSERT INTO class (class_name, grade_name, session, max_students) VALUES (?, ?, ?, ?)",
+                (class_name, grade_name, session, max_students)
             )
             db_connection.commit()
             db_connection.commit()

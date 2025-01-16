@@ -119,16 +119,16 @@ class AddClassDialog(QDialog):
         #info from input fields
         class_name = self.class_name_field.text()
         grade_name = self.grades_dropdown.currentText()
-        max_students = self.max_students_field.currentText()
-        session = self.session_field.currentText()
+        max_students = self.max_students_field.text()
+        session = self.session_field.text()
 
         # Validate input fields
-        if not class_name or not grade_name:
+        if not class_name or not grade_name or not max_students or not session:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
 
 
-        evaluate = database.add_class(class_name,grade_name)
+        evaluate = database.add_class(class_name,grade_name,session,max_students)
         get_selected_teachers_subjects = self.get_selected_teachers_subjects()
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")

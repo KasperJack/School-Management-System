@@ -192,22 +192,6 @@ font-size: 15px;</string>
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="max_students_field">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>180</y>
-     <width>201</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="inputMask">
-    <string/>
-   </property>
-   <property name="readOnly">
-    <bool>false</bool>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
@@ -232,6 +216,16 @@ font-size: 15px;</string>
    </property>
    <property name="text">
     <string>session</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="max_students_field">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>180</y>
+     <width>201</width>
+     <height>26</height>
+    </rect>
    </property>
   </widget>
  </widget>
