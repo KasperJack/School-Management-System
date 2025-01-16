@@ -83,7 +83,8 @@ class IndexSU(QMainWindow):
 
 
 
-
+        dataa = database.get_classes_info()
+        print(dataa)
 
 
 

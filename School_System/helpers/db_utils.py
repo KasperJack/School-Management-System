@@ -870,7 +870,28 @@ def update_student_info(student_id, student_name, new_data):
 
 
 
+def get_classes_info():
 
+    try:
+        connection = sqlite3.connect(DB_PATH)
+        cursor = connection.cursor()
+
+        #excluding the "additional_info"
+        query = """
+        SELECT class_id, class_name, grade_name, session, 
+               creation_data, current_students, max_students 
+        FROM class_view
+        """
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        connection.close()
+        return rows
+
+    except sqlite3.Error as e:
+        return f"Database error: {e}"
+    except Exception as e:
+        return f"Unexpected error: {e}"
 
 ## look up teacher (change info)
     ##add subject /remove
