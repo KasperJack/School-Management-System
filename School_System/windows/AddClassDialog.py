@@ -119,6 +119,8 @@ class AddClassDialog(QDialog):
         #info from input fields
         class_name = self.class_name_field.text()
         grade_name = self.grades_dropdown.currentText()
+        max_students = self.max_students_field.currentText()
+        session = self.session_field.currentText()
 
         # Validate input fields
         if not class_name or not grade_name:

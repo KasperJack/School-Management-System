@@ -202,7 +202,7 @@ font-size: 15px;</string>
     </rect>
    </property>
    <property name="inputMask">
-    <string>999</string>
+    <string/>
    </property>
    <property name="readOnly">
     <bool>false</bool>
