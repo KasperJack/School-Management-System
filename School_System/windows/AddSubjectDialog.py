@@ -8,8 +8,9 @@ from School_System.ui import ADD_SUBJECT_DIALOG
 
 
 class AddSubjectDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self,index_instance ,parent=None):
         super().__init__(parent)
+        self.index_instance = index_instance
         uic.loadUi(ADD_SUBJECT_DIALOG, self)
 
         self.setWindowTitle("Add Subject")
@@ -41,6 +42,7 @@ class AddSubjectDialog(QDialog):
             if evaluate == "Subject added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.subject_name_field.clear()
+                self.index_instance.refresh_setup_activity_log__table()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -54,6 +56,7 @@ class AddSubjectDialog(QDialog):
             QMessageBox.information(self, "info", f"{evaluate}")
             self.subject_name_field.clear()
             self.description_field.clear()
+            self.index_instance.refresh_setup_activity_log__table()
             return
 
         else:
