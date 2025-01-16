@@ -304,7 +304,7 @@ def add_class(class_name, grade_name):
             activity_type = "add"
             affected_entity = "class"
             entity_name = class_name
-            entity_id = 0
+            entity_id = get_classes_sequence()
             additional_info = "blablabla"
             log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Class added successfully"
@@ -733,7 +733,7 @@ def get_activity_log():
         query = """
         SELECT log_id, timestamp, user_id, user_name, 
                activity_type, affected_entity, entity_name, entity_id 
-        FROM activity_log
+        FROM activity_log_view
         """
         cursor.execute(query)
         rows = cursor.fetchall()
@@ -810,7 +810,7 @@ def get_teachers_data():
     return result
 
 
-def update_student_info(student_id, new_data):
+def update_student_info(student_id, student_name, new_data):
     """
     Updates the student information in the database for the given student_id.
 
@@ -849,7 +849,7 @@ def update_student_info(student_id, new_data):
         conn.commit()
         activity_type = "update"
         affected_entity = "student"
-        entity_name = "student_name"
+        entity_name = student_name
         entity_id = student_id
         additional_info = changes_str
         log_activity(

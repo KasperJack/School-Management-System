@@ -461,7 +461,7 @@ class IndexSU(QMainWindow):
         }
 
 
-        database.update_student_info(sid,new_data)
+        database.update_student_info(sid,full_name,new_data)
         self.load_students_to_table()
         self.refresh_setup_activity_log__table()
 
