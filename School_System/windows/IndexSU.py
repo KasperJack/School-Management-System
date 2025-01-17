@@ -377,12 +377,13 @@ class IndexSU(QMainWindow):
                 if isinstance(binary_data, str):
                     binary_data = binary_data.encode('utf-8')
 
-                # Load the binary data into a QPixmap
                 pixmap = QPixmap()
                 if pixmap.loadFromData(binary_data):
                     # Set the QPixmap to a QLabel for display
                     self.photo_label.setPixmap(pixmap)
 
+            else:
+                self.photo_label.setPixmap(QPixmap(f"{ICONS}/profile.png"))
 
 
             if not student_info['class_name']:
@@ -472,7 +473,19 @@ class IndexSU(QMainWindow):
                 self.comboBox_class.addItem(class_name, class_id)  # Add class_name with class_id as userData
 
 
+        if student_info['photo']:
+            binary_data = student_info['photo']
 
+            if isinstance(binary_data, str):
+                binary_data = binary_data.encode('utf-8')
+
+            pixmap = QPixmap()
+            if pixmap.loadFromData(binary_data):
+                # Set the QPixmap to a QLabel for display
+                self.update_photo_la.setPixmap(pixmap)
+
+        else:
+            self.update_photo_la.setPixmap(QPixmap(f"{ICONS}/profile.png"))
 
 
         self.sw_mod_student()

@@ -740,7 +740,7 @@ border-radius: 10px;
 </string>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>5</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1877,9 +1877,8 @@ border-radius: 7px;</string>
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">padding-left:5px;
-border: 1px solid gray;
-border-radius: 7px;</string>
+                   <string notr="true">border: 1px solid gray;
+border-radius: 0px;</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -2005,7 +2004,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </property>
                <layout class="QGridLayout" name="gridLayout_5">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label_58">
+                 <widget class="QLabel" name="update_photo_la">
                   <property name="minimumSize">
                    <size>
                     <width>141</width>
@@ -2019,9 +2018,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">padding-left:5px;
-border: 1px solid gray;
-border-radius: 7px;</string>
+                   <string notr="true">border: 1px solid gray;
+border-radius: 0px;</string>
                   </property>
                   <property name="text">
                    <string/>
