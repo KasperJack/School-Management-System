@@ -11,4 +11,6 @@ CREATE_ACCOUNT_DIALOG = os.path.join(os.path.dirname(__file__), "CreateAccountDi
 
 INDEX_SU = os.path.join(os.path.dirname(__file__), "IndexSU.ui")
 
-ADD_CLASS_DIALOG = os.path.join(os.path.dirname(__file__), "AddClassDialog.ui")
+ADD_CLASS_DIALOG = os.path.join(os.path.dirname(__file__), "AddClassDialog.ui") 
+
+VIEW_CLASS_DIALOG = os.path.join(os.path.dirname(__file__), "ViewClassDialog.ui")
