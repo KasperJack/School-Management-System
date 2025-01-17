@@ -2,7 +2,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
 from PyQt6 import uic
 from datetime import datetime
-from PyQt6.QtGui import QIcon, QColor, QBrush
+from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap
 from PyQt6.QtCore import pyqtSlot, QDate, Qt
 
 
@@ -370,6 +370,19 @@ class IndexSU(QMainWindow):
             self.s_email.setText(student_info['email'])
             self.s_bd.setText(student_info['birth_date'])
             self.s_address.setText(student_info['address'])
+
+            if student_info['photo']:
+                binary_data = student_info['photo']
+
+                if isinstance(binary_data, str):
+                    binary_data = binary_data.encode('utf-8')
+
+                # Load the binary data into a QPixmap
+                pixmap = QPixmap()
+                if pixmap.loadFromData(binary_data):
+                    # Set the QPixmap to a QLabel for display
+                    self.photo_label.setPixmap(pixmap)
+
 
 
             if not student_info['class_name']:

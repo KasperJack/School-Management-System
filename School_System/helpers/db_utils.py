@@ -441,7 +441,7 @@ def get_classes_ids():
 
 
 
-def add_student(full_name, phone, email, gender, birth_date, address, class_id=None):
+def add_student(full_name, phone, email, gender, birth_date, address, class_id=None, photo =None):
     """
     Inserts a new student into the `students` table and handles integrity errors.
     """
@@ -452,10 +452,10 @@ def add_student(full_name, phone, email, gender, birth_date, address, class_id=N
 
             cursor.execute(
                 """
-                INSERT INTO students (full_name, phone, email, gender, birth_date, address, class_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO students (full_name, phone, email, gender, birth_date, address, class_id, photo)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (full_name, phone, email, gender, birth_date, address, class_id)
+                (full_name, phone, email, gender, birth_date, address, class_id, photo)
             )
 
             # commit

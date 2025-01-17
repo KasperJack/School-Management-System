@@ -92,7 +92,7 @@ class AddStudentDialog(QDialog):
 
         if self.image_bin:
             if stdclass == "N/A":
-                evaluate = database.add_student(full_name, phone, email, gender, birth_date, address)
+                evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, photo=self.image_bin)
                 if evaluate == "Student added successfully":
                     QMessageBox.information(self, "info", f"{evaluate}")
                     self.clear_fields()
@@ -104,7 +104,7 @@ class AddStudentDialog(QDialog):
                     QMessageBox.warning(self, "Error", f"{evaluate}")
                     return
 
-            evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, class_id)
+            evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, class_id, self.image_bin)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.clear_fields()
