@@ -725,17 +725,24 @@ class IndexSU(QMainWindow):
             # Add the "Actions" buttons
             edit_button = QPushButton("Edit")
             delete_button = QPushButton("Delete")
+            view_button = QPushButton("view")
             edit_button.setStyleSheet("background-color: green; color: white;")
             delete_button.setStyleSheet("background-color: red; color: white;")
 
-            # Connect buttons to their respective methods
+            #button_size = 30  # Set the desired size (e.g., 40x40)
+            #edit_button.setFixedSize(button_size, button_size)
+            #delete_button.setFixedSize(button_size, button_size)
+            #view_button.setFixedSize(button_size, button_size)
+
             edit_button.clicked.connect(lambda _, r=row_index: self.edit_class(r))
             delete_button.clicked.connect(lambda _, r=row_index: self.delete_class(r))
+            view_button.clicked.connect(lambda _, r=row_index: self.view_class(r))
 
             # Add buttons to a layout
             button_layout = QHBoxLayout()
             button_layout.addWidget(edit_button)
             button_layout.addWidget(delete_button)
+            button_layout.addWidget(view_button)
 
             # Create a widget to hold the buttons
             button_widget = QWidget()
@@ -751,12 +758,21 @@ class IndexSU(QMainWindow):
 
 
     def edit_class(self, row_index):
-        print(row_index)
+        id_item = self.classes_table.item(row_index, 0)
+        class_id = id_item.text()
+        print(class_id)
 
 
     def delete_class(self, row_index):
-        print(row_index)
+        id_item = self.classes_table.item(row_index, 0)
+        class_id = id_item.text()
+        print(class_id)
 
+
+    def view_class(self, row_index):
+        id_item = self.classes_table.item(row_index, 0)
+        class_id = id_item.text()
+        print(class_id)
 
 
 
