@@ -121,6 +121,11 @@ class IndexSU(QMainWindow):
 
 
 
+        self.side_widget.hide()
+
+
+
+
 
         self.scrollArea_teachers.setWidgetResizable(True)
 
@@ -226,6 +231,8 @@ class IndexSU(QMainWindow):
         self.sw_dash()
         self.tabWidget_dash.setCurrentIndex(0)
         self.icon_only.setHidden(True)
+        self.side_widget.hide()
+
 
 
 
@@ -441,10 +448,10 @@ class IndexSU(QMainWindow):
             formatted_date = date_object.strftime("%d-%m-%Y")
             self.s_regestraion.setText(formatted_date)
             self.s_additional_info.setText(student_info['additional_info'])
-            self.sw_more_about_s()
+            #self.sw_more_about_s()
+            self.side_widget.show()
 
-
-#################### update delete student tab  ##############################
+    #################### update delete student tab  ##############################
 
     def delete_student(self):
         selected_indexes = self.students_table.selectedIndexes()
@@ -460,8 +467,10 @@ class IndexSU(QMainWindow):
         database.delete_student(sid,sname)
         self.load_students_to_table()
         self.update_students_count()
-        self.sw_students()
         self.refresh_setup_activity_log__table()
+        self.side_widget.hide()
+
+
 
         #log_activity(activity_type,affected_entity,entity_name,entity_id,additional_info)
 
@@ -552,6 +561,27 @@ class IndexSU(QMainWindow):
         last_name = self.update_l_name.text()
         full_name = f"{name} {last_name}"
 
+
+
+        if not hasattr(self, 'image_bin'):
+            new_data = {
+                "full_name": full_name,
+                "birth_date": self.update_bd.date().toString("dd-MM-yyyy"),
+                "phone": self.update_phone.text(),
+                "email": self.update_email.text(),
+                "address": self.update_address.text(),
+                "additional_info": self.update_additional_info.toPlainText(),
+                "class_id": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentData(),
+            }
+            database.update_student_info(sid, full_name, new_data)
+            self.load_students_to_table()
+            self.refresh_setup_activity_log__table()
+            self.on_cell_clicked()
+            return
+
+
+
+
         new_data = {
             "photo": None if self.image_bin is None else self.image_bin,
             "full_name": full_name,
@@ -567,6 +597,8 @@ class IndexSU(QMainWindow):
         database.update_student_info(sid,full_name,new_data)
         self.load_students_to_table()
         self.refresh_setup_activity_log__table()
+        self.on_cell_clicked()
+
 
 
 
