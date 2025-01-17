@@ -1285,10 +1285,10 @@ alternate-background-color: #B0EDFB;
              <widget class="QTableWidget" name="classes_table">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>140</y>
-                <width>781</width>
-                <height>531</height>
+                <x>0</x>
+                <y>100</y>
+                <width>811</width>
+                <height>611</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -1301,7 +1301,7 @@ alternate-background-color: #B0EDFB;
 
             QHeaderView::section {
                 background-color: #F3F4F6;
-                padding: 0px;
+                padding: 10px;
                 border: none;
                 font-weight: bold;
                 color: #374151;
@@ -1311,7 +1311,13 @@ alternate-background-color: #B0EDFB;
     QTableView::item {
         border-bottom: 1px solid #E5E7EB;
         border-right: none;
-    }</string>
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+</string>
               </property>
               <property name="lineWidth">
                <number>1</number>

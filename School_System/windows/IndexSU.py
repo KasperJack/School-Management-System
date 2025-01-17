@@ -86,9 +86,31 @@ class IndexSU(QMainWindow):
 
         self.classes_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.classes_table.setShowGrid(False)
+
+        #self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
+        self.classes_table.setSelectionMode(self.classes_table.SelectionMode.NoSelection)
+        self.classes_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.load_classes_table()
+
         for row in range(self.classes_table.rowCount()):
             self.classes_table.setRowHeight(row, 45)
+
+
+        # auto adjust the size of the colusmns
+        header = self.classes_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        #header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        #header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(6, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(0, 45)
+        #header.resizeSection(2, 70)
+        #header.resizeSection(3, 80)
+        header.resizeSection(6, 190)
 
 
 
@@ -662,20 +684,27 @@ class IndexSU(QMainWindow):
     def load_classes_table(self):
 
         results = database.get_classes_info()
+        info_icon =  QIcon(f"{ICONS}/user.png")
 
         # Set up the table widget for 3 columns
         self.classes_table.setRowCount(len(results))  # Set rows based on query result count
         self.classes_table.setColumnCount(7)  # Set columns for "Full Name", "Email", "Registration Date"
         self.classes_table.setHorizontalHeaderLabels(["id", "class", "Grade", "session","Date","students","Action"])
 
-
-
-
         # Populate the table
         for row_index, row_data in enumerate(results):
             for col_index, data in enumerate(row_data):
-                item = QTableWidgetItem(str(data) if data is not None else "")
-                self.classes_table.setItem(row_index, col_index, item)
+                # Check if it's the column where you want the icon and text, handle None by just using the icon if needed
+                if col_index == 5:  # Assuming column 5 is for the students' data
+                    icon_item = QTableWidgetItem()
+                    if data:
+                        icon_item.setText(str(data))  # Set the text if data exists
+                    icon_item.setIcon(info_icon)  # Always set the icon
+                    self.classes_table.setItem(row_index, col_index, icon_item)
+                else:
+                    item = QTableWidgetItem(str(data) if data is not None else "")
+                    self.classes_table.setItem(row_index, col_index, item)
+
 
             # Add the "Actions" buttons
             edit_button = QPushButton("Edit")
@@ -697,7 +726,7 @@ class IndexSU(QMainWindow):
             button_widget.setLayout(button_layout)
 
             # Add the widget to the table
-            self.classes_table.setCellWidget(row_index, 6, button_widget)  # Column 3 is the "Actions" column
+            self.classes_table.setCellWidget(row_index, 6, button_widget)
 
 
 
