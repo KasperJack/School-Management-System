@@ -881,7 +881,6 @@ class IndexSU(QMainWindow):
     def view_class(self, row_index):
         id_item = self.classes_table.item(row_index, 0)
         class_id = id_item.text()
-        print(class_id)
         self.open_view_class_dialog()
 
 

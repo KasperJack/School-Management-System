@@ -15,23 +15,6 @@ class ViewClassDialog(QDialog):
 
 
 
-        self.add_file.clicked.connect(self.open_image_dialog)
-
-    def open_image_dialog(self):
-        # Open the file dialog
-        file_path, _ = QFileDialog.getOpenFileName(
-            self,
-            "Open Image",
-            "",  # Starting directory
-            "Images (*.png *.jpg *.jpeg *.bmp *.gif)"  # File filter
-        )
-
-        # Validate the file type
-        if file_path and file_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
-            print(f"Valid image selected: {file_path}")
-        else:
-            print("Invalid file selected or canceled.")
-
 
 
         
