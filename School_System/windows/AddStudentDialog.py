@@ -56,13 +56,11 @@ class AddStudentDialog(QDialog):
 
 
 
-
-
-
-
-
-
-
+    def update(self):
+        self.clear_fields()
+        self.index_instance.load_students_to_table()
+        self.index_instance.update_students_count()
+        self.index_instance.refresh_setup_activity_log__table()
 
 
 
@@ -95,10 +93,8 @@ class AddStudentDialog(QDialog):
                 evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, photo=self.image_bin)
                 if evaluate == "Student added successfully":
                     QMessageBox.information(self, "info", f"{evaluate}")
-                    self.clear_fields()
-                    self.index_instance.load_students_to_table()
-                    self.index_instance.update_students_count()
-                    self.index_instance.refresh_setup_activity_log__table()
+                    self.update()
+
                     return
                 else:
                     QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -107,10 +103,7 @@ class AddStudentDialog(QDialog):
             evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, class_id, self.image_bin)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
-                self.clear_fields()
-                self.index_instance.load_students_to_table()
-                self.index_instance.update_students_count()
-                self.index_instance.refresh_setup_activity_log__table()
+                self.update()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -121,10 +114,7 @@ class AddStudentDialog(QDialog):
             evaluate = database.add_student(full_name,phone,email,gender,birth_date,address)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
-                self.clear_fields()
-                self.index_instance.load_students_to_table()
-                self.index_instance.update_students_count()
-                self.index_instance.refresh_setup_activity_log__table()
+                self.update()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -133,10 +123,7 @@ class AddStudentDialog(QDialog):
         evaluate = database.add_student(full_name, phone, email, gender, birth_date,address,class_id)
         if evaluate == "Student added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
-            self.clear_fields()
-            self.index_instance.load_students_to_table()
-            self.index_instance.update_students_count()
-            self.index_instance.refresh_setup_activity_log__table()
+            self.update()
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")

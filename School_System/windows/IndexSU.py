@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap
@@ -59,6 +59,7 @@ class IndexSU(QMainWindow):
         self.modify_s.clicked.connect(self.modify_students_info_window)
         self.back_to_s_table.clicked.connect(self.sw_students)
         self.update_button.clicked.connect(self.update_student_info)
+        self.update_pic.clicked.connect(self.open_image_dialog)
 
 
 
@@ -508,6 +509,7 @@ class IndexSU(QMainWindow):
         full_name = f"{name} {last_name}"
 
         new_data = {
+            "photo": None if self.image_bin is None else self.image_bin,
             "full_name": full_name,
             "birth_date": self.update_bd.date().toString("dd-MM-yyyy"),
             "phone": self.update_phone.text(),
@@ -523,6 +525,42 @@ class IndexSU(QMainWindow):
         self.refresh_setup_activity_log__table()
 
 
+
+
+
+    def open_image_dialog(self):
+        # Open the file dialog
+        image_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Open Image",
+            "",  # Starting directory
+            "Images (*.png *.jpg *.jpeg *.bmp *.gif)"  # File filter
+        )
+
+        # Validate the file type
+        if image_path and image_path.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+            with open(image_path, "rb") as file:
+                binary_data = file.read()
+            self.image_bin = binary_data
+
+
+
+            if isinstance(binary_data, str):
+                binary_data = binary_data.encode('utf-8')
+
+            pixmap = QPixmap()
+            if pixmap.loadFromData(binary_data):
+                 # Set the QPixmap to a QLabel for display
+                self.update_photo_la.setPixmap(pixmap)
+
+
+
+
+
+
+        else:
+            self.image_bin = None
+            self.update_photo_la.setPixmap(QPixmap(f"{ICONS}/profile.png"))
 
 
 
