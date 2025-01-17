@@ -10,6 +10,7 @@ from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
+from School_System.windows.ViewClassDialog import ViewClassDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -773,6 +774,7 @@ class IndexSU(QMainWindow):
         id_item = self.classes_table.item(row_index, 0)
         class_id = id_item.text()
         print(class_id)
+        self.open_view_class_dialog()
 
 
 
@@ -830,7 +832,9 @@ class IndexSU(QMainWindow):
     def open_add_student_dialog(self):
         add_student_dialog = AddStudentDialog(self)
         add_student_dialog.exec()
-
+    def open_view_class_dialog(self):
+        view_class_dialog = ViewClassDialog(self)
+        view_class_dialog.exec()
 
 
 
