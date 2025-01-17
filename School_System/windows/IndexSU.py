@@ -82,10 +82,14 @@ class IndexSU(QMainWindow):
 
 
 
+        self.classes_table.verticalHeader().setVisible(False)
 
-        #dataa = database.get_classes_info()
-        #print(dataa)
+        self.classes_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.classes_table.setShowGrid(False)
         self.load_classes_table()
+        for row in range(self.classes_table.rowCount()):
+            self.classes_table.setRowHeight(row, 45)
+
 
 
 
@@ -664,10 +668,14 @@ class IndexSU(QMainWindow):
         self.classes_table.setColumnCount(7)  # Set columns for "Full Name", "Email", "Registration Date"
         self.classes_table.setHorizontalHeaderLabels(["id", "class", "Grade", "session","Date","students","Action"])
 
+
+
+
         # Populate the table
         for row_index, row_data in enumerate(results):
             for col_index, data in enumerate(row_data):
-                self.classes_table.setItem(row_index, col_index, QTableWidgetItem(str(data)))
+                item = QTableWidgetItem(str(data) if data is not None else "")
+                self.classes_table.setItem(row_index, col_index, item)
 
             # Add the "Actions" buttons
             edit_button = QPushButton("Edit")
