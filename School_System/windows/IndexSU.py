@@ -83,9 +83,9 @@ class IndexSU(QMainWindow):
 
 
 
-        dataa = database.get_classes_info()
-        print(dataa)
-
+        #dataa = database.get_classes_info()
+        #print(dataa)
+        self.load_classes_table()
 
 
 
@@ -647,13 +647,72 @@ class IndexSU(QMainWindow):
         filtered_data.reverse()
         self.load_filtered_data_to_table(filtered_data)
 
-
-
-
     def refresh_setup_activity_log__table(self):
         self.log_data = database.get_activity_log()
         self.populate_filters()
         self.load_filtered_data_to_table(self.log_data)
+
+
+
+
+    def load_classes_table(self):
+
+        results = database.get_classes_info()
+
+        # Set up the table widget for 3 columns
+        self.classes_table.setRowCount(len(results))  # Set rows based on query result count
+        self.classes_table.setColumnCount(7)  # Set columns for "Full Name", "Email", "Registration Date"
+        self.classes_table.setHorizontalHeaderLabels(["id", "class", "Grade", "session","Date","students","Action"])
+
+        # Populate the table
+        for row_index, row_data in enumerate(results):
+            for col_index, data in enumerate(row_data):
+                self.classes_table.setItem(row_index, col_index, QTableWidgetItem(str(data)))
+
+            # Add the "Actions" buttons
+            edit_button = QPushButton("Edit")
+            delete_button = QPushButton("Delete")
+            edit_button.setStyleSheet("background-color: green; color: white;")
+            delete_button.setStyleSheet("background-color: red; color: white;")
+
+            # Connect buttons to their respective methods
+            edit_button.clicked.connect(lambda _, r=row_index: self.edit_class(r))
+            delete_button.clicked.connect(lambda _, r=row_index: self.delete_class(r))
+
+            # Add buttons to a layout
+            button_layout = QHBoxLayout()
+            button_layout.addWidget(edit_button)
+            button_layout.addWidget(delete_button)
+
+            # Create a widget to hold the buttons
+            button_widget = QWidget()
+            button_widget.setLayout(button_layout)
+
+            # Add the widget to the table
+            self.classes_table.setCellWidget(row_index, 6, button_widget)  # Column 3 is the "Actions" column
+
+
+
+
+    def edit_class(self, row_index):
+        print(row_index)
+
+
+    def delete_class(self, row_index):
+        print(row_index)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

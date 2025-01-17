@@ -740,7 +740,7 @@ border-radius: 10px;
 </string>
             </property>
             <property name="currentIndex">
-             <number>5</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1282,86 +1282,18 @@ alternate-background-color: #B0EDFB;
                </size>
               </property>
              </widget>
-             <widget class="QTabWidget" name="tab_9">
+             <widget class="QTableWidget" name="classes_table">
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>50</y>
-                <width>741</width>
-                <height>651</height>
+                <y>140</y>
+                <width>771</width>
+                <height>531</height>
                </rect>
               </property>
-              <property name="currentIndex">
-               <number>0</number>
+              <property name="lineWidth">
+               <number>1</number>
               </property>
-              <widget class="QWidget" name="tab_6">
-               <attribute name="title">
-                <string>Tab 1</string>
-               </attribute>
-               <widget class="QTableWidget" name="tableWidget">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>30</y>
-                  <width>691</width>
-                  <height>561</height>
-                 </rect>
-                </property>
-                <row>
-                 <property name="text">
-                  <string>class 0212</string>
-                 </property>
-                </row>
-                <row>
-                 <property name="text">
-                  <string>dazdaz</string>
-                 </property>
-                </row>
-               </widget>
-              </widget>
-              <widget class="QWidget" name="tab_7">
-               <attribute name="title">
-                <string>Tab 2</string>
-               </attribute>
-               <widget class="QTableWidget" name="teachers_table">
-                <property name="geometry">
-                 <rect>
-                  <x>30</x>
-                  <y>30</y>
-                  <width>401</width>
-                  <height>251</height>
-                 </rect>
-                </property>
-               </widget>
-              </widget>
-              <widget class="QWidget" name="tab_8">
-               <attribute name="title">
-                <string>Page</string>
-               </attribute>
-               <widget class="QTableWidget" name="subjects_table">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>20</y>
-                  <width>401</width>
-                  <height>261</height>
-                 </rect>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="geometry">
-                 <rect>
-                  <x>540</x>
-                  <y>100</y>
-                  <width>131</width>
-                  <height>51</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </widget>
              </widget>
             </widget>
             <widget class="QWidget" name="students">
