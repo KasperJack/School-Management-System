@@ -2,10 +2,10 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog
 from PyQt6 import uic
 from datetime import datetime
-from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap
+from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
 from PyQt6.QtCore import pyqtSlot, QDate, Qt
 
-
+from School_System.helpers.db_utils import PROFILE_PIC
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
@@ -16,7 +16,7 @@ from School_System.windows.ViewClassDialog import ViewClassDialog
 import School_System.helpers.db_utils as database
 from School_System.ui import INDEX_SU ### ui file
 
-from School_System.resources import  ICONS # gives back the path to the Table Ionds directroy
+from School_System.resources import  ICONS #path to the Table Ionds directroy
 import School_System.resources.qrc.rec_rc
 
 
@@ -49,6 +49,7 @@ class IndexSU(QMainWindow):
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
         self.add_student_button.clicked.connect(self.open_add_student_dialog)
         self.students_table.cellClicked.connect(self.on_cell_clicked)
+        self.profile_pic_user.clicked.connect(self.printff)
 
         #########################[search students table]################################
         self.search_bar.textChanged.connect(self.filter_students_table)
@@ -149,10 +150,53 @@ class IndexSU(QMainWindow):
 
 ##################################################################################################################################
 
+    def printff(self):
+        print("cc")
 
 
     def greet_user(self):
         self.label_user_name.setText(f"Hello, {database.LOGGED_IN_USER_NAME}")
+
+        if PROFILE_PIC:
+            default_pixmap = QPixmap(f"{ICONS}/camu.jpg")
+            # Get the button size and ensure it's square
+            button_size = self.profile_pic_user.size()
+            diameter = min(button_size.width(), button_size.height())
+
+            # Create a new pixmap for the circular image
+            circular_pixmap = QPixmap(diameter, diameter)
+            circular_pixmap.fill(Qt.GlobalColor.transparent)  # Transparent background
+
+            # Use QPainter to draw the circular image
+            painter = QPainter(circular_pixmap)
+            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+            painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)  # Smooth transformation
+
+            # Create a clipping path for the circle
+            path = QPainterPath()
+            path.addEllipse(0, 0, diameter, diameter)
+            painter.setClipPath(path)
+
+            # Draw the original pixmap scaled to fit within the circle
+            scaled_pixmap = default_pixmap.scaled(
+                diameter, diameter, Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+                Qt.TransformationMode.SmoothTransformation
+            )
+            painter.drawPixmap(0, 0, scaled_pixmap)
+
+            painter.end()
+
+            # Set the circular pixmap as the button icon
+            self.profile_pic_user.setIcon(QIcon(circular_pixmap))
+            self.profile_pic_user.setIconSize(button_size)
+            return
+
+
+        default_pixmap = QPixmap(f"{ICONS}/profile.png")
+        self.profile_pic_user.setIcon(QIcon(default_pixmap))
+
+
+
 
 
 
@@ -881,12 +925,10 @@ class IndexSU(QMainWindow):
         
 
     def open_add_subject_dialog(self):
-        # Create an instance of the AddSubjectDialog
         add_subject_dialog = AddSubjectDialog(self)
         add_subject_dialog.exec()
 
     def open_add_teacher_dialog(self):
-        # Create an instance of the AddTeacherDialog
         add_teacher_dialog = AddTeacherDialog(self)
         add_teacher_dialog.exec()
 
@@ -935,7 +977,7 @@ class TeacherWidget(QWidget):
         self.subjects = subjects
         self.classes = classes
         self.teacher_id = teacher_id
-        # Set a layout
+        #layout
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5,5)
         layout.setSpacing(0)
@@ -963,19 +1005,18 @@ class TeacherWidget(QWidget):
         button_layout.addWidget(button)
         layout.addLayout(button_layout)
 
-        # Set styling directly using setStyleSheet
         self.setStyleSheet("""
                     background-color: #ddd;
                     border-radius: 0px;
                     padding: 7px;
                 """)
-        self.setFixedHeight(125)  # Set height for consistent look
+        self.setFixedHeight(125)  #height
 
     @pyqtSlot()
     def on_button_click(self):
         # Define the action to take when the button is clicked
         print(f"Button clicked for teacher{self.teacher_id}")
-        # You can add more functionality here as needed
+
 
 
 #class ComboDelegate(QStyledItemDelegate):

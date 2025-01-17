@@ -7,6 +7,7 @@ from collections import defaultdict
 
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
+PROFILE_PIC = None
 
 
 
