@@ -290,7 +290,7 @@ font-size: 15px;</string>
      <second>0</second>
      <year>1999</year>
      <month>12</month>
-     <day>30</day>
+     <day>29</day>
     </datetime>
    </property>
    <property name="displayFormat">
@@ -327,6 +327,19 @@ font-size: 15px;</string>
      <widget class="QLineEdit" name="address_field"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="add_pic">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>420</y>
+     <width>88</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>add pic</string>
+   </property>
   </widget>
  </widget>
  <resources/>
