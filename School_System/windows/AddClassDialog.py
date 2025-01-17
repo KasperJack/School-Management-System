@@ -133,6 +133,7 @@ class AddClassDialog(QDialog):
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
+            self.index_instance.load_classes_table()
             self.index_instance.update_classes_count()
             self.index_instance.load_classes_student_search()
             self.index_instance.refresh_setup_activity_log__table()

@@ -90,10 +90,13 @@ class IndexSU(QMainWindow):
         #self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
         self.classes_table.setSelectionMode(self.classes_table.SelectionMode.NoSelection)
         self.classes_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-        self.load_classes_table()
 
-        for row in range(self.classes_table.rowCount()):
-            self.classes_table.setRowHeight(row, 45)
+
+
+        self.load_classes_table()
+        #left Alignment for everything
+        #self.classes_table.horizontalHeader().setDefaultAlignment(
+            #Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
 
         # auto adjust the size of the colusmns
@@ -314,7 +317,7 @@ class IndexSU(QMainWindow):
         self.students_table.setRowCount(len(students))
         self.students_table.setColumnCount(8)
         self.students_table.setHorizontalHeaderLabels([
-            "ID", "Full Name", "Grade",
+            "#", "Full Name", "Grade",
             "Class", "Birth Date", "Address", "Phone", "Email"
         ])
 
@@ -536,7 +539,7 @@ class IndexSU(QMainWindow):
         self.activity_log_table.setRowCount(len(data))
         self.activity_log_table.setColumnCount(9)  # Original columns without the Label
         self.activity_log_table.setHorizontalHeaderLabels([
-            "Log ID", "Timestamp", "User ID", "User Name",
+            "#", "Timestamp", "User ID", "User Name",
             "Activity Type", "Affected Entity", "Entity Name", "Entity ID", "?"
         ])
 
@@ -689,9 +692,22 @@ class IndexSU(QMainWindow):
         # Set up the table widget for 3 columns
         self.classes_table.setRowCount(len(results))  # Set rows based on query result count
         self.classes_table.setColumnCount(7)  # Set columns for "Full Name", "Email", "Registration Date"
-        self.classes_table.setHorizontalHeaderLabels(["id", "class", "Grade", "session","Date","students","Action"])
+        #self.classes_table.setHorizontalHeaderLabels(["id", "class", "Grade", "session","Date","students","Action"])
 
-        # Populate the table
+        header_labels = ["#", "class", "Grade", "session", "Date", "students", "Action"]
+        for col_index, label in enumerate(header_labels):
+            header_item = QTableWidgetItem(label)
+            if col_index == 6:  # Example: Center alignment for the first column
+                header_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            else:  # Left alignment for other columns
+                header_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+            self.classes_table.setHorizontalHeaderItem(col_index, header_item)
+
+
+
+
+
+
         for row_index, row_data in enumerate(results):
             for col_index, data in enumerate(row_data):
                 # Check if it's the column where you want the icon and text, handle None by just using the icon if needed
@@ -727,6 +743,9 @@ class IndexSU(QMainWindow):
 
             # Add the widget to the table
             self.classes_table.setCellWidget(row_index, 6, button_widget)
+
+        for row in range(self.classes_table.rowCount()):
+            self.classes_table.setRowHeight(row, 45)
 
 
 
