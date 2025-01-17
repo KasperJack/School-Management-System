@@ -404,52 +404,64 @@ class IndexSU(QMainWindow):
 
 
 
-    def on_cell_clicked(self, row, column):
-        full_name_column = 1
-        if column == full_name_column:
+    def on_cell_clicked(self, row=None, column=None):
+
+        if row is None or column is None:
+            selected_indexes = self.students_table.selectedIndexes()
+            row = selected_indexes[0].row()
             id_column = 0
-            value = self.students_table.item(row, id_column)
-            sid = value.text()
+            id_item = self.students_table.item(row, id_column)
+            sid = id_item.text()
 
-            student_info = database.get_student_details(sid)
-            full_name = student_info['full_name']
-            name_parts = full_name.split(" ", 1)
-            first_name = name_parts[0]
-            last_name = name_parts[1]
-            self.s_name.setText(first_name)
-            self.s_last_name.setText(last_name)
-            self.s_phone.setText(student_info['phone'])
-            self.s_email.setText(student_info['email'])
-            self.s_bd.setText(student_info['birth_date'])
-            self.s_address.setText(student_info['address'])
-
-            if student_info['photo']:
-                binary_data = student_info['photo']
-
-                if isinstance(binary_data, str):
-                    binary_data = binary_data.encode('utf-8')
-
-                pixmap = QPixmap()
-                if pixmap.loadFromData(binary_data):
-                    # Set the QPixmap to a QLabel for display
-                    self.photo_label.setPixmap(pixmap)
-
+        else:
+            full_name_column = 1
+            if column == full_name_column:
+                id_column = 0
+                value = self.students_table.item(row, id_column)
+                sid = value.text()
             else:
-                self.photo_label.setPixmap(QPixmap(f"{ICONS}/profile.png"))
+                return
 
 
-            if not student_info['class_name']:
-                self.s_class.setText("No class")
-            else:
-                self.s_class.setText(student_info['class_name'])
+        student_info = database.get_student_details(sid)
+        full_name = student_info['full_name']
+        name_parts = full_name.split(" ", 1)
+        first_name = name_parts[0]
+        last_name = name_parts[1]
+        self.s_name.setText(first_name)
+        self.s_last_name.setText(last_name)
+        self.s_phone.setText(student_info['phone'])
+        self.s_email.setText(student_info['email'])
+        self.s_bd.setText(student_info['birth_date'])
+        self.s_address.setText(student_info['address'])
 
-            stored_date = student_info['registration_date']
-            date_object = datetime.strptime(stored_date, "%Y-%m-%d")
-            formatted_date = date_object.strftime("%d-%m-%Y")
-            self.s_regestraion.setText(formatted_date)
-            self.s_additional_info.setText(student_info['additional_info'])
-            #self.sw_more_about_s()
-            self.side_widget.show()
+        if student_info['photo']:
+            binary_data = student_info['photo']
+
+            if isinstance(binary_data, str):
+                binary_data = binary_data.encode('utf-8')
+
+            pixmap = QPixmap()
+            if pixmap.loadFromData(binary_data):
+                # Set the QPixmap to a QLabel for display
+                self.photo_label.setPixmap(pixmap)
+
+        else:
+            self.photo_label.setPixmap(QPixmap(f"{ICONS}/profile.png"))
+
+        if not student_info['class_name']:
+            self.s_class.setText("No class")
+        else:
+            self.s_class.setText(student_info['class_name'])
+
+        stored_date = student_info['registration_date']
+        date_object = datetime.strptime(stored_date, "%Y-%m-%d")
+        formatted_date = date_object.strftime("%d-%m-%Y")
+        self.s_regestraion.setText(formatted_date)
+        self.s_additional_info.setText(student_info['additional_info'])
+        if row is not None or column is not None: self.side_widget.show()
+
+
 
     #################### update delete student tab  ##############################
 
@@ -576,6 +588,7 @@ class IndexSU(QMainWindow):
             database.update_student_info(sid, full_name, new_data)
             self.load_students_to_table()
             self.refresh_setup_activity_log__table()
+            self.sw_students()
             self.on_cell_clicked()
             return
 
