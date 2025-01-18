@@ -906,7 +906,7 @@ class IndexSU(QMainWindow):
     def view_class(self, row_index):
         id_item = self.classes_table.item(row_index, 0)
         class_id = id_item.text()
-        self.open_view_class_dialog()
+        self.open_view_class_dialog(class_id)
 
 
 
@@ -962,8 +962,8 @@ class IndexSU(QMainWindow):
     def open_add_student_dialog(self):
         add_student_dialog = AddStudentDialog(self)
         add_student_dialog.exec()
-    def open_view_class_dialog(self):
-        view_class_dialog = ViewClassDialog(self)
+    def open_view_class_dialog(self ,class_id):
+        view_class_dialog = ViewClassDialog(self, class_id)
         view_class_dialog.exec()
 
 
