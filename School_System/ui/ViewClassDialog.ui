@@ -49,16 +49,6 @@ background-color: rgb(255, 255, 255);</string>
     <string>Class TSIG4</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>90</y>
-     <width>291</width>
-     <height>511</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
@@ -157,6 +147,29 @@ background-color: rgb(255, 255, 255);</string>
      <height>192</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea_students">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>90</y>
+     <width>281</width>
+     <height>521</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>279</width>
+      <height>519</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

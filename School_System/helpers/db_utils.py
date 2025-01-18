@@ -962,8 +962,9 @@ def get_class_info_edit(class_id):
    teachers_query = """
    SELECT 
        ts.ts_id,
-       t.full_name,
-       s.subject_name
+       t.teacher_id,
+       s.subject_name,
+       t.full_name
    FROM course c
    JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
    JOIN teachers t ON ts.teacher_id = t.teacher_id
@@ -975,7 +976,7 @@ def get_class_info_edit(class_id):
 
    # Get students with student_id
    students_query = """
-   SELECT student_id, full_name, photo
+   SELECT student_id, photo, full_name
    FROM students
    WHERE class_id = ?
    """
