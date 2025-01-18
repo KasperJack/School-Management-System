@@ -121,7 +121,6 @@ class IndexSU(QMainWindow):
 
 
 
-        self.side_widget.hide()
 
 
 
@@ -334,10 +333,15 @@ class IndexSU(QMainWindow):
 #################### students table ##############################
 
     def setup_students_table(self):
+        self.students_table.setSelectionBehavior(self.students_table.SelectionBehavior.SelectItems)
+        self.students_table.setSelectionMode(self.students_table.SelectionMode.SingleSelection) ## only cells selection
+
         ### loads the students table
-        self.load_students_to_table()## :load data
+        self.load_students_to_table()
         self.students_table.verticalHeader().setVisible(False)
         self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+
         self.load_classes_student_search()
         # auto adjust the size of the colusmns
         header = self.students_table.horizontalHeader()
@@ -417,8 +421,11 @@ class IndexSU(QMainWindow):
             full_name_column = 1
             if column == full_name_column:
                 id_column = 0
-                value = self.students_table.item(row, id_column)
-                sid = value.text()
+                id = self.students_table.item(row, id_column)
+                name = self.students_table.item(row, full_name_column)
+                sid = id.text()
+                sname = name.text()
+                print(sname)
             else:
                 return
 
@@ -466,17 +473,17 @@ class IndexSU(QMainWindow):
     #################### update delete student tab  ##############################
 
     def delete_student(self):
-        selected_indexes = self.students_table.selectedIndexes()
+       ## selected_indexes = self.students_table.selectedIndexes()
 
-        row = selected_indexes[0].row()
-        id_column = 0
-        name_column = 1
-        id_item = self.students_table.item(row, id_column)
-        name_item = self.students_table.item(row, name_column)
-        sid = id_item.text()
-        sname = name_item.text()
+      ##  row = selected_indexes[0].row()
+      ##  id_column = 0
+      ##  name_column = 1
+      ##  id_item = self.students_table.item(row, id_column)
+      ##  name_item = self.students_table.item(row, name_column)
+      ##  sid = id_item.text()
+      ##  sname = name_item.text()
         #print(sid,sname)
-        database.delete_student(sid,sname)
+        database.delete_student(self.sid,sname)
         self.load_students_to_table()
         self.update_students_count()
         self.refresh_setup_activity_log__table()
