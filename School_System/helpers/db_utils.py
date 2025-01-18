@@ -899,6 +899,118 @@ def get_classes_info():
 
 
 
+
+
+
+def get_class_info(class_id):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Get class info
+    class_query = """
+    SELECT * FROM class_view WHERE class_id = ?
+    """
+    cursor.execute(class_query, (class_id,))
+    class_data = cursor.fetchone()
+
+    # Get teachers and subjects for this class
+    teachers_query = """
+    SELECT 
+        t.full_name,
+        s.subject_name
+    FROM course c
+    JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
+    JOIN teachers t ON ts.teacher_id = t.teacher_id
+    JOIN subjects s ON ts.subject_id = s.subject_id
+    WHERE c.class_id = ?
+    """
+    cursor.execute(teachers_query, (class_id,))
+    teachers_data = cursor.fetchall()
+
+    # Get students in this class
+    students_query = """
+    SELECT full_name, photo
+    FROM students
+    WHERE class_id = ?
+    """
+    cursor.execute(students_query, (class_id,))
+    students_data = cursor.fetchall()
+
+    conn.close()
+    return class_data, teachers_data, students_data
+
+
+
+
+
+
+
+
+
+def get_class_info_edit(class_id):
+   conn = sqlite3.connect(DB_PATH)
+   cursor = conn.cursor()
+
+   # Get class info
+   class_query = """
+   SELECT * FROM class_view WHERE class_id = ?
+   """
+   cursor.execute(class_query, (class_id,))
+   class_data = cursor.fetchone()
+
+   # Get teachers and subjects with ts_id
+   teachers_query = """
+   SELECT 
+       ts.ts_id,
+       t.full_name,
+       s.subject_name
+   FROM course c
+   JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
+   JOIN teachers t ON ts.teacher_id = t.teacher_id
+   JOIN subjects s ON ts.subject_id = s.subject_id
+   WHERE c.class_id = ?
+   """
+   cursor.execute(teachers_query, (class_id,))
+   teachers_data = cursor.fetchall()
+
+   # Get students with student_id
+   students_query = """
+   SELECT student_id, full_name, photo
+   FROM students
+   WHERE class_id = ?
+   """
+   cursor.execute(students_query, (class_id,))
+   students_data = cursor.fetchall()
+
+   conn.close()
+   return class_data, teachers_data, students_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## look up teacher (change info)
     ##add subject /remove
     ##

@@ -30,12 +30,12 @@ background-color: rgb(255, 255, 255);</string>
     <enum>Qt::Orientation::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="class_name">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>221</width>
+     <width>251</width>
      <height>31</height>
     </rect>
    </property>
@@ -46,7 +46,7 @@ background-color: rgb(255, 255, 255);</string>
     </font>
    </property>
    <property name="text">
-    <string>Class name</string>
+    <string>Class TSIG4</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="tableWidget">
@@ -71,12 +71,88 @@ background-color: rgb(255, 255, 255);</string>
    <property name="title">
     <string/>
    </property>
+   <widget class="QLabel" name="max_stud">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>30/30</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
+  <widget class="QLabel" name="grade">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>430</y>
+     <x>210</x>
+     <y>20</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Inter</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>BTSS</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sesstion">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>20</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Inter</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>sesstion</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="creation_date">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>10</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Inter</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>7/08/20011</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="teachers_table">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>440</y>
      <width>256</width>
      <height>192</height>
     </rect>
