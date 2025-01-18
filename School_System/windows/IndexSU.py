@@ -411,11 +411,7 @@ class IndexSU(QMainWindow):
     def on_cell_clicked(self, row=None, column=None):
 
         if row is None or column is None:
-            selected_indexes = self.students_table.selectedIndexes()
-            row = selected_indexes[0].row()
-            id_column = 0
-            id_item = self.students_table.item(row, id_column)
-            sid = id_item.text()
+            sid = self.sid
 
         else:
             full_name_column = 1
@@ -425,7 +421,8 @@ class IndexSU(QMainWindow):
                 name = self.students_table.item(row, full_name_column)
                 sid = id.text()
                 sname = name.text()
-                print(sname)
+                self.sname = sname
+                self.sid = sid
             else:
                 return
 
@@ -473,17 +470,8 @@ class IndexSU(QMainWindow):
     #################### update delete student tab  ##############################
 
     def delete_student(self):
-       ## selected_indexes = self.students_table.selectedIndexes()
 
-      ##  row = selected_indexes[0].row()
-      ##  id_column = 0
-      ##  name_column = 1
-      ##  id_item = self.students_table.item(row, id_column)
-      ##  name_item = self.students_table.item(row, name_column)
-      ##  sid = id_item.text()
-      ##  sname = name_item.text()
-        #print(sid,sname)
-        database.delete_student(self.sid,sname)
+        database.delete_student(self.sid,self.sname)
         self.load_students_to_table()
         self.update_students_count()
         self.refresh_setup_activity_log__table()
@@ -497,15 +485,8 @@ class IndexSU(QMainWindow):
 
 
     def  modify_students_info_window(self):
-        ##sw to another tabb or widget
 
-        selected_indexes = self.students_table.selectedIndexes()
-        row = selected_indexes[0].row()
-        id_column = 0
-        id_item = self.students_table.item(row, id_column)
-        sid = id_item.text()
-
-        student_info = database.get_student_details(sid)
+        student_info = database.get_student_details(self.sid)
 
 
         full_name = student_info['full_name']
@@ -568,14 +549,6 @@ class IndexSU(QMainWindow):
 
     def update_student_info(self):
 
-
-        selected_indexes = self.students_table.selectedIndexes()
-        row = selected_indexes[0].row()
-        id_column = 0
-        id_item = self.students_table.item(row, id_column)
-        sid = id_item.text()
-
-
         name = self.update_f_name.text()
         last_name = self.update_l_name.text()
         full_name = f"{name} {last_name}"
@@ -592,7 +565,7 @@ class IndexSU(QMainWindow):
                 "additional_info": self.update_additional_info.toPlainText(),
                 "class_id": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentData(),
             }
-            database.update_student_info(sid, full_name, new_data)
+            database.update_student_info(self.sid, full_name, new_data)
             self.load_students_to_table()
             self.refresh_setup_activity_log__table()
             self.sw_students()
@@ -614,7 +587,7 @@ class IndexSU(QMainWindow):
         }
 
 
-        database.update_student_info(sid,full_name,new_data)
+        database.update_student_info(self.sid,full_name,new_data)
         self.load_students_to_table()
         self.refresh_setup_activity_log__table()
         self.on_cell_clicked()
