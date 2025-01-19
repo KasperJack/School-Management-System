@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
+    <width>1070</width>
     <height>638</height>
    </rect>
   </property>
@@ -52,9 +52,9 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>90</y>
-     <width>321</width>
+     <width>421</width>
      <height>311</height>
     </rect>
    </property>
@@ -141,8 +141,8 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QTableWidget" name="teachers_table">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>421</y>
+     <x>10</x>
+     <y>410</y>
      <width>431</width>
      <height>211</height>
     </rect>
@@ -151,7 +151,7 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QTableWidget" name="students_table">
    <property name="geometry">
     <rect>
-     <x>540</x>
+     <x>800</x>
      <y>90</y>
      <width>251</width>
      <height>531</height>
@@ -199,6 +199,16 @@ background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>Edit</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="teachers_table_2">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>90</y>
+     <width>331</width>
+     <height>531</height>
+    </rect>
    </property>
   </widget>
  </widget>
