@@ -76,7 +76,7 @@ class ViewClassDialog(QDialog):
         self.students_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         self.load_students(students_data)
-        self.students_table.setWordWrap(True)
+        #self.students_table.setWordWrap(True)
 
         header = self.students_table.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
@@ -95,6 +95,9 @@ class ViewClassDialog(QDialog):
 
 
 
+    def view_student(self, student_id):
+        """Handle the 'View' button click."""
+        print(f"View Student ID: {student_id}")
 
 
 
@@ -111,8 +114,8 @@ class ViewClassDialog(QDialog):
         self.students_table.setColumnCount(4)  # Add an extra column for actions
         self.students_table.setHorizontalHeaderLabels(["ID", "Photo", "Name", "Actions"])
         self.students_table.setColumnHidden(0, True)  # Hide the "ID" column
+        circular_default_pixmap_no_pic = self.create_mask_no_pic()
 
-        # Populate the table
         for row_index, (student_id, photo, name) in enumerate(students_data):
             namer = name.replace(" ", "\n")  # Replace spaces with line breaks
             id_item = QTableWidgetItem(str(student_id))
@@ -158,41 +161,9 @@ class ViewClassDialog(QDialog):
                 # Add the label to the table widget
                 self.students_table.setCellWidget(row_index, 1, label)
             else:
-                default_pixmap = QPixmap(f"{ICONS}/profile.png")
-
-                # Set the desired size for the circular image
-                diameter = 60  # Diameter of the circular mask
-
-                # Create a new pixmap for the circular image
-                circular_pixmap = QPixmap(diameter, diameter)
-                circular_pixmap.fill(Qt.GlobalColor.transparent)  # Transparent background
-
-                # Use QPainter to draw the circular image
-                painter = QPainter(circular_pixmap)
-                painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-                painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)  # Smooth transformation
-
-                # Create a clipping path for the circle
-                path = QPainterPath()
-                path.addEllipse(0, 0, diameter, diameter)
-                painter.setClipPath(path)
-
-                # Draw the original pixmap scaled to fit within the circle
-                scaled_pixmap = default_pixmap.scaled(
-                    diameter, diameter,
-                    Qt.AspectRatioMode.KeepAspectRatioByExpanding,
-                    Qt.TransformationMode.SmoothTransformation
-                )
-                painter.drawPixmap(0, 0, scaled_pixmap)
-
-                painter.end()
-
-                # Add the circular image to a QLabel
                 placeholder = QLabel()
-                placeholder.setPixmap(circular_pixmap)
+                placeholder.setPixmap(circular_default_pixmap_no_pic)
                 placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-                # Set the placeholder as the cell widget
                 self.students_table.setCellWidget(row_index, 1, placeholder)
 
             # Name Column
@@ -227,21 +198,45 @@ class ViewClassDialog(QDialog):
 
 
 
-        # Create a table widget
-
-
-
-
-
-    def view_student(self, student_id):
-        """Handle the 'View' button click."""
-        print(f"View Student ID: {student_id}")
 
 
 
 
 
 
+
+
+
+
+    def create_mask_no_pic(self):
+        # Prepare the masked default photo once
+        default_pixmap = QPixmap(f"{ICONS}/profile.png")
+        diameter = 60  # Diameter of the circular mask
+
+        # Create a new pixmap for the circular image
+        circular_default_pixmap = QPixmap(diameter, diameter)
+        circular_default_pixmap.fill(Qt.GlobalColor.transparent)  # Transparent background
+
+        # Use QPainter to draw the circular image
+        painter = QPainter(circular_default_pixmap)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)  # Smooth transformation
+
+        # Create a clipping path for the circle
+        path = QPainterPath()
+        path.addEllipse(0, 0, diameter, diameter)
+        painter.setClipPath(path)
+
+        # Draw the original pixmap scaled to fit within the circle
+        scaled_pixmap = default_pixmap.scaled(
+            diameter, diameter,
+            Qt.AspectRatioMode.KeepAspectRatioByExpanding,
+            Qt.TransformationMode.SmoothTransformation
+        )
+        painter.drawPixmap(0, 0, scaled_pixmap)
+
+        painter.end()
+        return circular_default_pixmap
 
 
 
