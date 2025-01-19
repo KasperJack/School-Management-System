@@ -54,7 +54,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>20</x>
      <y>90</y>
-     <width>451</width>
+     <width>321</width>
      <height>311</height>
     </rect>
    </property>
@@ -148,28 +148,45 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
   </widget>
-  <widget class="QScrollArea" name="scrollArea_students">
+  <widget class="QTableWidget" name="students_table">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>540</x>
      <y>90</y>
-     <width>281</width>
-     <height>521</height>
+     <width>251</width>
+     <height>491</height>
     </rect>
    </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
+   <property name="styleSheet">
+    <string notr="true">            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+                border: none;
+       		alternate-background-color: #F9FAFB;
+				        font-size: 16px;  /* Set font size */
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+</string>
    </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>279</width>
-      <height>519</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
  </widget>
  <resources/>

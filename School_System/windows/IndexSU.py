@@ -126,6 +126,12 @@ class IndexSU(QMainWindow):
 
 
 
+
+
+
+
+
+
         self.scrollArea_teachers.setWidgetResizable(True)
 
         # Container widget inside the scroll area
@@ -464,7 +470,6 @@ class IndexSU(QMainWindow):
         self.s_regestraion.setText(formatted_date)
         self.s_additional_info.setText(student_info['additional_info'])
         if row is not None or column is not None: self.side_widget.show()
-
 
 
     #################### update delete student tab  ##############################
@@ -987,7 +992,6 @@ class IndexSU(QMainWindow):
 
 
 
-    #### index 5
 
 
 

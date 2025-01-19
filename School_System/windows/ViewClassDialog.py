@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QToolButton
+from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt, pyqtSignal
@@ -27,7 +27,10 @@ class ViewClassDialog(QDialog):
         #print(teachers_data) = [('Aron Smith', 'math'), ('John Doe', 'science')]
         #print(students_data)
 
-        print(students_data)
+        self.setup_students_table(students_data)
+
+
+        #print(students_data)
         self.class_name.setText(class_data[1])
         self.grade.setText(class_data[2])
         self.sesstion.setText(class_data[3])
@@ -53,35 +56,6 @@ class ViewClassDialog(QDialog):
         self.teachers_table.setColumnHidden(0, True)
         self.teachers_table.setColumnHidden(1, True)
 
-        students_data = [
-            (225, None, "Jacob Seed"),
-            (226, None, "Hope Smith")
-        ]
-
-
-
-
-        # Set up a container widget for the scroll area
-        container_widget = QWidget()
-        layout = QVBoxLayout(container_widget)
-
-        # Create student cards and add to the layout
-        for student_id, photo_data, full_name in students_data:
-            student_card = StudentCard(student_id, photo_data, full_name)
-            student_card.button_clicked.connect(
-                self.on_student_card_button_click)  # Connect to the button click handler
-            layout.addWidget(student_card)
-
-        # Add stretch at the end of the layout
-        layout.addStretch()
-
-        # Set the container widget as the scroll area's widget
-        self.scrollArea_students.setWidget(container_widget)
-        self.scrollArea_students.setWidgetResizable(True)
-
-    def on_student_card_button_click(self, student_id):
-        print(f"Button clicked for student ID: {student_id}")
-        # Now you can handle the student_id in the main class or perform other actions
 
 
 
@@ -89,6 +63,33 @@ class ViewClassDialog(QDialog):
 
 
 
+    def setup_students_table(self, students_data):
+        self.students_table.verticalHeader().setVisible(False)
+
+        self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.students_table.setShowGrid(False)
+
+        #self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
+        self.students_table.setSelectionMode(self.students_table.SelectionMode.NoSelection)
+        self.students_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+
+        self.load_students(students_data)
+        self.students_table.setWordWrap(True)
+
+        header = self.students_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
+        #header.setSectionResizeMode(6, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(1, 70)
+        header.resizeSection(2, 100)
+        header.resizeSection(3, 50)
+        #header.resizeSection(6, 190)
 
 
 
@@ -97,54 +98,83 @@ class ViewClassDialog(QDialog):
 
 
 
-class StudentCard(QWidget):
-    # Signal to emit when the button is clicked, passing the student_id
-    button_clicked = pyqtSignal(int)
 
-    def __init__(self, student_id, photo_data, full_name, parent=None):
-        super().__init__(parent)
 
-        self.student_id = student_id  # Store the student_id
 
-        # Split full_name into first name and last name
-        name_parts = full_name.split(" ", 1)
-        first_name = name_parts[0]
-        last_name = name_parts[1] if len(name_parts) > 1 else ""
 
-        # Layouts
-        main_layout = QHBoxLayout()
-        info_layout = QVBoxLayout()
 
-        # Photo Label
-        self.photo_label = QLabel(self)
-        self.photo_label.setFixedSize(64, 64)
-        if photo_data:
-            pixmap = QPixmap()
-            pixmap.loadFromData(photo_data)
-            self.photo_label.setPixmap(pixmap.scaled(64, 64, Qt.AspectRatioMode.KeepAspectRatio))
-        else:
-            self.photo_label.setText("No Photo")  # Placeholder if no photo
 
-        # Name Labels
-        self.first_name_label = QLabel(first_name, self)
-        self.last_name_label = QLabel(last_name, self)
+    def load_students(self, students_data):
+        self.students_table.setRowCount(len(students_data))
+        self.students_table.setColumnCount(4)  # Add an extra column for actions
+        self.students_table.setHorizontalHeaderLabels(["ID", "Photo", "Name", "Actions"])
+        self.students_table.setColumnHidden(0, True)  # Hide the "ID" column
 
-        # Add to info layout
-        info_layout.addWidget(self.first_name_label)
-        info_layout.addWidget(self.last_name_label)
+        # Populate the table
+        for row_index, (student_id, photo, name) in enumerate(students_data):
+            namer = name.replace(" ", "\n")  # Replace spaces with line breaks
+            id_item = QTableWidgetItem(str(student_id))
+            self.students_table.setItem(row_index, 0, id_item)
 
-        # Tool Button
-        self.tool_button = QToolButton(self)
-        self.tool_button.setText("...")
-        self.tool_button.setFixedSize(24, 24)
-        self.tool_button.clicked.connect(self.on_button_clicked)  # Connect button click
+            # Photo Column
+            if photo is not None:
+                pixmap = QPixmap()
+                pixmap.loadFromData(photo)  # Assuming `photo` is binary image data
+                label = QLabel()
+                label.setPixmap(pixmap.scaled(50, 50))  # Resize the image to 50x50
+                self.students_table.setCellWidget(row_index, 1, label)
+            else:
+                placeholder = QLabel("No Photo")
+                self.students_table.setCellWidget(row_index, 1, placeholder)
 
-        # Combine layouts
-        main_layout.addWidget(self.photo_label)
-        main_layout.addLayout(info_layout)
-        main_layout.addWidget(self.tool_button)
-        self.setLayout(main_layout)
+            # Name Column
+            name_item = QTableWidgetItem(namer)
+            self.students_table.setItem(row_index, 2, name_item)
 
-    def on_button_clicked(self):
-        """Emit signal with student_id when the button is clicked."""
-        self.button_clicked.emit(self.student_id)
+            # Actions Column
+            view_button = QPushButton("?")
+            view_button.setStyleSheet("background-color: blue; color: white;")
+
+            # Connect buttons to their respective methods
+            view_button.clicked.connect(lambda _, sid=student_id: self.view_student(sid))
+
+            # Add buttons to a layout
+            button_layout = QHBoxLayout()
+            button_layout.addWidget(view_button)
+
+            # Create a widget to hold the buttons
+            button_widget = QWidget()
+            button_widget.setLayout(button_layout)
+
+            # Add the widget to the table
+            self.students_table.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
+            for row in range(self.students_table.rowCount()):
+                self.students_table.setRowHeight(row, 55)
+
+
+
+
+
+
+
+
+
+        # Create a table widget
+
+
+
+
+
+    def view_student(self, student_id):
+        """Handle the 'View' button click."""
+        print(f"View Student ID: {student_id}")
+
+
+
+
+
+
+
+
+
+
