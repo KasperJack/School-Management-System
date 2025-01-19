@@ -5,7 +5,7 @@ from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
 from PyQt6.QtCore import pyqtSlot, QDate, Qt
 
-from School_System.helpers.db_utils import PROFILE_PIC
+#from School_System.helpers.db_utils import PROFILE_PIC
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
@@ -167,7 +167,7 @@ class IndexSU(QMainWindow):
     def greet_user(self):
         self.label_user_name.setText(f"Hello, {database.LOGGED_IN_USER_NAME}")
 
-        if PROFILE_PIC:
+        if database.PROFILE_PIC:
             default_pixmap = QPixmap(f"{ICONS}/camu.jpg")
             # Get the button size and ensure it's square
             button_size = self.profile_pic_user.size()
