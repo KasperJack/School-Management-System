@@ -11,6 +11,7 @@ from School_System.windows.AddTeacherDialog import AddTeacherDialog
 from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
 from School_System.windows.ViewClassDialog import ViewClassDialog
+from School_System.windows.EditClassDialog import EditClassDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -899,7 +900,7 @@ class IndexSU(QMainWindow):
     def edit_class(self, row_index):
         id_item = self.classes_table.item(row_index, 0)
         class_id = id_item.text()
-        print(class_id)
+        self.open_edit_class_dialog(class_id)
 
 
     def delete_class(self, row_index):
@@ -956,11 +957,9 @@ class IndexSU(QMainWindow):
     def open_add_subject_dialog(self):
         add_subject_dialog = AddSubjectDialog(self)
         add_subject_dialog.exec()
-
     def open_add_teacher_dialog(self):
         add_teacher_dialog = AddTeacherDialog(self)
         add_teacher_dialog.exec()
-
     def open_add_class_dialog(self):
         add_class_dialog = AddClassDialog(self)
         add_class_dialog.exec()
@@ -970,6 +969,9 @@ class IndexSU(QMainWindow):
     def open_view_class_dialog(self ,class_id):
         view_class_dialog = ViewClassDialog(self, class_id)
         view_class_dialog.exec()
+    def open_edit_class_dialog(self, class_id):
+        edit_class_dialog = EditClassDialog(self, class_id)
+        edit_class_dialog.exec()
 
 
 
