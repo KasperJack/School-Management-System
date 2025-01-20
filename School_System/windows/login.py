@@ -21,6 +21,7 @@ class Login(QMainWindow):
         self.remember_me_button.toggled.connect(self.remember_me)
 
 
+
     def remember_me(self, checked):
         if checked:
             self.email_field.setText("Button is checked")

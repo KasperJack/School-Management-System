@@ -18,7 +18,7 @@ class EditClassDialog(QDialog):
 
         self.setWindowTitle("Edit Class")
 
-        print(f"Class ID: {self.class_id}")
+        #print(f"Class ID: {self.class_id}")
 
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
 

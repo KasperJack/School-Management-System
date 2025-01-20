@@ -76,7 +76,6 @@ class IndexSU(QMainWindow):
 
 
 
-
         self.show_ids.stateChanged.connect(self.toggle_id_columns)
         self.filter_activity_type.currentIndexChanged.connect(self.apply_filters)
         self.filter_date.currentIndexChanged.connect(self.apply_filters)
