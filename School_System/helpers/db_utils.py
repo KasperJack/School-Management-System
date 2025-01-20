@@ -1245,9 +1245,100 @@ def add_subject_to_default_teacher():
         conn.close()
 
 
+def remove_class_course(teacher_id, subject_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # First get the ts_id from teachers_subjects
+        find_ts_id_query = """
+       SELECT ts_id 
+       FROM teachers_subjects
+       WHERE teacher_id = ? AND subject_id = ?
+       """
+        cursor.execute(find_ts_id_query, (teacher_id, subject_id))
+        ts_id_result = cursor.fetchone()
+
+        if ts_id_result:
+            ts_id = ts_id_result[0]
+
+            # Delete the course entry with this ts_id
+            delete_query = """
+           DELETE FROM course 
+           WHERE ts_id = ?
+           """
+            cursor.execute(delete_query, (ts_id,))
+
+            # Commit the changes
+            conn.commit()
+
+            # Return True if any rows were affected
+            success = cursor.rowcount > 0
+
+        else:
+            success = False
+
+        conn.close()
+        return success
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
 
 
 
+
+
+def change_course_teacher(teacher_id, subject_id, class_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # First delete any existing course entries for this subject in this class
+        delete_query = """
+        DELETE FROM course 
+        WHERE ts_id IN (
+            SELECT ts.ts_id 
+            FROM teachers_subjects ts 
+            WHERE ts.subject_id = ?
+        ) 
+        """
+        cursor.execute(delete_query, (subject_id,))
+
+        # Then get the ts_id for the new teacher-subject combination
+        find_ts_id_query = """
+        SELECT ts_id 
+        FROM teachers_subjects
+        WHERE teacher_id = ? AND subject_id = ?
+        """
+        cursor.execute(find_ts_id_query, (teacher_id, subject_id))
+        ts_id_result = cursor.fetchone()
+
+        if ts_id_result:
+            ts_id = ts_id_result[0]
+
+            # Add new course entry
+            insert_query = """
+            INSERT INTO course (ts_id, class_id)
+            VALUES (?, ?)
+            """
+            cursor.execute(insert_query, (ts_id, class_id))
+
+            # Commit the changes
+            conn.commit()
+
+            # Return True if insertion was successful
+            success = cursor.rowcount > 0
+
+        else:
+            success = False
+
+        conn.close()
+        return success
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
 
 
 ## look up teacher (change info)

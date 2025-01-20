@@ -6,6 +6,7 @@ from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt
 
 import School_System.helpers.db_utils as database
+from School_System.helpers.db_utils import add_subject_to_default_teacher
 from School_System.ui import EDIT_CLASS_DIALOG
 from School_System.resources import  ICONS
 
@@ -221,6 +222,7 @@ class EditClassDialog(QDialog):
             teacher_id = combo_box.currentData()  # Retrieve hidden userData (teacher ID)
 
             print(f"Subject ID: {subject_id}, Selected Teacher ID: {teacher_id}, Teacher Name: {teacher_name}")
+            database.change_course_teacher(teacher_id,subject_id,self.class_id)
 
 
     def remove_teacher(self, row_index):
@@ -235,9 +237,9 @@ class EditClassDialog(QDialog):
             teacher_name = combo_box.currentText()
 
             print(f"Remove Teacher: {teacher_name} (ID: {teacher_id}) from Subject ID: {subject_id}")
+            database.remove_class_course(teacher_id,subject_id)
+            self.reload()
 
-            # Optional: Reset combo box selection
-            #combo_box.setCurrentIndex(-1)
 
     def load_subjects_with_add_button(self, subjects_data, excluded_subjects):
         # Extract the subject IDs from the excluded_subjects list
