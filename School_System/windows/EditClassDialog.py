@@ -1,3 +1,4 @@
+from time import sleep
 
 from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
 from PyQt6 import uic
@@ -27,19 +28,17 @@ class EditClassDialog(QDialog):
         self.no_class_table.cellClicked.connect(self.on_cell_clicked_no_class)
         self.this_class_table.cellClicked.connect(self.on_cell_clicked_class)
 
-
         self.add_std_button.clicked.connect(self.add_student_to_class)
         self.remove_std_button.clicked.connect(self.remove_student_from_class)
 
+
+
+
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
         #print(teachers_data)
-        data = database.get_class_subjects_and_all_teachers(self.class_id)
-        ids = database.get_class_subjects_and_teachers(self.class_id)
+        self.reload()
 
-        self.load_subjects_with_teachers(data,ids)
 
-        subjects = database.get_subjects()
-        print(subjects)
 
 
     def on_cell_clicked_no_class(self, row, column):
@@ -240,3 +239,47 @@ class EditClassDialog(QDialog):
             # Optional: Reset combo box selection
             #combo_box.setCurrentIndex(-1)
 
+    def load_subjects_with_add_button(self, subjects_data, excluded_subjects):
+        # Extract the subject IDs from the excluded_subjects list
+        excluded_ids = {subject_id for subject_id, _ in excluded_subjects}
+
+        # Filter out subjects that are in the excluded list
+        filtered_subjects = [subject for subject in subjects_data if subject[0] not in excluded_ids]
+
+        # Set up the table
+        self.new_subjects_table.setRowCount(len(filtered_subjects))
+        self.new_subjects_table.setColumnCount(3)
+        self.new_subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject Name", "Actions"])
+
+        # Populate the table with filtered subjects
+        for row_index, (subject_id, subject_name) in enumerate(filtered_subjects):
+            # Add Subject ID
+            subject_id_item = QTableWidgetItem(str(subject_id))
+            subject_id_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.new_subjects_table.setItem(row_index, 0, subject_id_item)
+
+            # Add Subject Name
+            subject_name_item = QTableWidgetItem(subject_name)
+            subject_name_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.new_subjects_table.setItem(row_index, 1, subject_name_item)
+
+            # Add an "Add" button
+            add_button = QPushButton("Add")
+            add_button.setStyleSheet("color: green; font-weight: bold;")  # Optional: Style the button
+            add_button.clicked.connect(lambda _, row=row_index: self.add_subject(row))  # Connect to a custom method
+            self.new_subjects_table.setCellWidget(row_index, 2, add_button)
+
+    def add_subject(self, row):
+        subject_id = self.new_subjects_table.item(row, 0).text()
+        database.add_subject_to_class(subject_id, self.class_id)
+        self.reload()
+
+
+
+    def reload(self):
+        data = database.get_class_subjects_and_all_teachers(self.class_id)
+        ids = database.get_class_subjects_and_teachers(self.class_id)
+        self.load_subjects_with_teachers(data,ids)
+
+        subjects = database.get_subjects()
+        self.load_subjects_with_add_button(subjects,ids)

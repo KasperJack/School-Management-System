@@ -175,6 +175,7 @@ def add_subject(subject_name,description=None):
             affected_entity = "subject"
             entity_name = subject_name
             entity_id = get_subjects_sequence()
+
             additional_info = "blablabla  N/A"
             log_activity(activity_type, affected_entity, entity_name, entity_id, additional_info,db_connection)
             return "Subject added successfully"
@@ -1185,7 +1186,63 @@ def get_class_subjects_and_all_teachers(class_id):
 
 
 
+def add_subject_to_class(subject_id, class_id):
+    try:
 
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        # Step 1: Fetch ts_id from teachers_subjects table for a specific teacher_id (62)
+        query_ts_id = """
+            SELECT ts_id 
+            FROM teachers_subjects 
+            WHERE subject_id = ? AND teacher_id = 62
+        """
+        cursor.execute(query_ts_id, (subject_id,))
+        ts_id = cursor.fetchone()
+
+        if not ts_id:
+            return
+
+        # Step 2: Insert the ts_id and class_id into the course table
+        query_insert_course = """
+            INSERT INTO course (ts_id, class_id)
+            VALUES (?, ?)
+        """
+        cursor.execute(query_insert_course, (ts_id[0], class_id))
+
+        # Commit the transaction
+        conn.commit()
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+
+
+
+def add_subject_to_default_teacher():
+    subject_id = get_subjects_sequence()
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        query = """
+            INSERT INTO teachers_subjects (subject_id, teacher_id)
+            VALUES (?, 62)
+        """
+        cursor.execute(query, (subject_id,))
+
+        conn.commit()
+
+    except sqlite3.Error as e:
+        # Handle any database errors
+        print(f"An error occurred: {e}")
+        conn.rollback()
+
+    finally:
+        # Close the connection
+        conn.close()
 
 
 

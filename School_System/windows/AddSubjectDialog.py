@@ -43,6 +43,7 @@ class AddSubjectDialog(QDialog):
                 QMessageBox.information(self, "info", f"{evaluate}")
                 self.subject_name_field.clear()
                 self.index_instance.refresh_setup_activity_log__table()
+                database.add_subject_to_default_teacher()
                 return
             else:
                 QMessageBox.warning(self, "Error", f"{evaluate}")
@@ -57,6 +58,7 @@ class AddSubjectDialog(QDialog):
             self.subject_name_field.clear()
             self.description_field.clear()
             self.index_instance.refresh_setup_activity_log__table()
+            database.add_subject_to_default_teacher()
             return
 
         else:
