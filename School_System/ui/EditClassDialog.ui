@@ -170,6 +170,35 @@ background-color: rgb(255, 255, 255);</string>
      <height>531</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+                border: none;
+       		alternate-background-color: #F9FAFB;
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+</string>
+   </property>
   </widget>
   <widget class="QTableWidget" name="this_class_table">
    <property name="geometry">
