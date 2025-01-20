@@ -51,7 +51,7 @@ class EditClassDialog(QDialog):
 
 
         self.add_std_button.clicked.connect(self.add_student_to_class)
-        #self.remove_std_button.clicked.connect()
+        self.remove_std_button.clicked.connect(self.remove_student_from_class)
 
 
 
@@ -60,7 +60,9 @@ class EditClassDialog(QDialog):
 
 
     def on_cell_clicked_no_class(self, row, column):
-        #remove selection frol the other tabe
+        # Deselect all selected cells in the table
+        self.this_class_table.clearSelection()
+
         self.remove_std_button.setEnabled(False)
         #light the add  button
         self.add_std_button.setEnabled(True)  # Re-enables the button
@@ -74,7 +76,17 @@ class EditClassDialog(QDialog):
         print(id)
 
 
+    def remove_student_from_class(self):
+        selected_row = self.this_class_table.currentRow()
+
+        item = self.this_class_table.item(selected_row, 0)
+        id = item.text()
+        print(id)
+
+
+
     def on_cell_clicked_class(self, row, column):
+        self.no_class_table.clearSelection()
         #remove selection frol the other tabe
         self.add_std_button.setEnabled(False)
         #light the add  button
