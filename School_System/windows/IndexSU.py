@@ -29,7 +29,7 @@ class IndexSU(QMainWindow):
         super().__init__()
         uic.loadUi(INDEX_SU, self)
 
-        #sbuttons#####
+        print(School_System.__version__)
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
 

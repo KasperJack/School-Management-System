@@ -1046,6 +1046,71 @@ def get_students_in_class(class_id):
         return []
 
 
+def assign_student_to_class(student_id, class_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # Update the student's class_id
+        update_query = """
+        UPDATE students 
+        SET class_id = ? 
+        WHERE student_id = ?
+        """
+        cursor.execute(update_query, (class_id, student_id))
+
+        # Commit the changes
+        conn.commit()
+
+        # Return True if a row was affected (update successful)
+        success = cursor.rowcount > 0
+
+        conn.close()
+        return success
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+
+
+
+def remove_student_from_class(student_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # Set class_id to NULL for the student
+        update_query = """
+       UPDATE students 
+       SET class_id = NULL 
+       WHERE student_id = ?
+       """
+        cursor.execute(update_query, (student_id,))
+
+        # Commit the changes
+        conn.commit()
+
+        # Return True if a row was affected (update successful)
+        success = cursor.rowcount > 0
+
+        conn.close()
+        return success
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## look up teacher (change info)

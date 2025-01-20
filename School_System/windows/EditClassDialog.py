@@ -73,7 +73,10 @@ class EditClassDialog(QDialog):
 
         item = self.no_class_table.item(selected_row, 0)
         id = item.text()
-        print(id)
+        database.assign_student_to_class(id, self.class_id)
+        self.load_students_no_class()
+        self.load_students_in_class()
+
 
 
     def remove_student_from_class(self):
@@ -81,7 +84,10 @@ class EditClassDialog(QDialog):
 
         item = self.this_class_table.item(selected_row, 0)
         id = item.text()
-        print(id)
+        database.remove_student_from_class(id)
+        self.load_students_no_class()
+        self.load_students_in_class()
+
 
 
 
