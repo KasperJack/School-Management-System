@@ -38,6 +38,9 @@ class EditClassDialog(QDialog):
 
         self.load_subjects_with_teachers(data,ids)
 
+        subjects = database.get_subjects()
+        print(subjects)
+
 
     def on_cell_clicked_no_class(self, row, column):
         # Deselect all selected cells in the table
@@ -219,6 +222,7 @@ class EditClassDialog(QDialog):
             teacher_id = combo_box.currentData()  # Retrieve hidden userData (teacher ID)
 
             print(f"Subject ID: {subject_id}, Selected Teacher ID: {teacher_id}, Teacher Name: {teacher_name}")
+
 
     def remove_teacher(self, row_index):
         # Get Subject ID from the first column
