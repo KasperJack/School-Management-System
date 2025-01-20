@@ -55,7 +55,7 @@ background-color: rgb(255, 255, 255);</string>
      <x>10</x>
      <y>90</y>
      <width>421</width>
-     <height>311</height>
+     <height>231</height>
     </rect>
    </property>
    <property name="title">
@@ -83,8 +83,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="creation_date">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>80</y>
+      <x>30</x>
+      <y>60</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -138,7 +138,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>sesstion</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="teachers_table">
+  <widget class="QTableWidget" name="subjects_table">
    <property name="geometry">
     <rect>
      <x>10</x>

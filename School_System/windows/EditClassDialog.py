@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget
+from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt
@@ -35,7 +35,7 @@ class EditClassDialog(QDialog):
         #print(teachers_data)
         data = database.get_class_subjects_and_all_teachers(self.class_id)
         print(data)
-
+        self.load_subjects_with_teachers(data)
 
 
 
@@ -149,4 +149,72 @@ class EditClassDialog(QDialog):
         self.this_class_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection) ## only one selection
         self.load_students_in_class()
         self.this_class_table.setColumnHidden(0, True)
+
+#######################################################################################################################
+
+    def load_subjects_with_teachers(self, subjects_data):
+        # Set up the table
+        self.subjects_table.setRowCount(len(subjects_data))
+        self.subjects_table.setColumnCount(4)
+        self.subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject Name", "Teachers", "Actions"])
+
+        # Populate the table
+        for row_index, subject in enumerate(subjects_data):
+            # Add Subject ID
+            subject_id_item = QTableWidgetItem(str(subject['subject_id']))
+            subject_id_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.subjects_table.setItem(row_index, 0, subject_id_item)
+
+            # Add Subject Name
+            subject_name_item = QTableWidgetItem(subject['subject_name'])
+            subject_name_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.subjects_table.setItem(row_index, 1, subject_name_item)
+
+            # Add a combo box for Teachers
+            teachers_combo = QComboBox()
+            for teacher_id, teacher_name in subject['teachers']:
+                teachers_combo.addItem(teacher_name, userData=teacher_id)  # Store teacher ID as userData
+            teachers_combo.currentIndexChanged.connect(self.teacher_selection_changed)
+            self.subjects_table.setCellWidget(row_index, 2, teachers_combo)
+
+            # Add a "Remove" button
+            remove_button = QPushButton("Remove")
+            remove_button.setStyleSheet("color: red; font-weight: bold;")  # Optional: Style the button
+            remove_button.clicked.connect(lambda _, row=row_index: self.remove_teacher(row))
+
+            # Add the button to the table
+            self.subjects_table.setCellWidget(row_index, 3, remove_button)
+
+    def teacher_selection_changed(self):
+        # Get the sender (the combo box that triggered the signal)
+        combo_box = self.sender()
+        if combo_box:
+            # Find the row where the combo box is located
+            row = self.subjects_table.indexAt(combo_box.pos()).row()
+
+            # Get Subject ID from the first column of the row
+            subject_id_item = self.subjects_table.item(row, 0)
+            subject_id = int(subject_id_item.text()) if subject_id_item else None
+
+            # Get selected Teacher Name and ID
+            teacher_name = combo_box.currentText()
+            teacher_id = combo_box.currentData()  # Retrieve hidden userData (teacher ID)
+
+            print(f"Subject ID: {subject_id}, Selected Teacher ID: {teacher_id}, Teacher Name: {teacher_name}")
+
+    def remove_teacher(self, row_index):
+        # Get Subject ID from the first column
+        subject_id_item = self.subjects_table.item(row_index, 0)
+        subject_id = int(subject_id_item.text()) if subject_id_item else None
+
+        # Get the teacher combo box from the row
+        combo_box = self.subjects_table.cellWidget(row_index, 2)
+        if combo_box and isinstance(combo_box, QComboBox):
+            teacher_id = combo_box.currentData()  # Retrieve hidden userData (teacher ID)
+            teacher_name = combo_box.currentText()
+
+            print(f"Remove Teacher: {teacher_name} (ID: {teacher_id}) from Subject ID: {subject_id}")
+
+            # Optional: Reset combo box selection
+            #combo_box.setCurrentIndex(-1)
 
