@@ -1045,7 +1045,7 @@ def get_students_in_class(class_id):
         print(f"Database error: {e}")
         return []
 
-
+#### add loggs #################
 def assign_student_to_class(student_id, class_id):
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -1073,7 +1073,7 @@ def assign_student_to_class(student_id, class_id):
         return False
 
 
-
+#### add loggs #################
 def remove_student_from_class(student_id):
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -1099,6 +1099,88 @@ def remove_student_from_class(student_id):
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return False
+
+### might be useful [(58, 'math', 52, 'lili lili'), (61, 'piano', 56, 'hamid hamid'), (63, 'dance', 56, 'hamid hamid')]
+def get_class_subjects_and_teachers(class_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        query = """
+       SELECT 
+           s.subject_id,
+           s.subject_name,
+           t.teacher_id,
+           t.full_name
+       FROM course c
+       JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
+       JOIN subjects s ON ts.subject_id = s.subject_id
+       JOIN teachers t ON ts.teacher_id = t.teacher_id
+       WHERE c.class_id = ?
+       """
+
+        cursor.execute(query, (class_id,))
+        results = cursor.fetchall()
+
+        conn.close()
+        return results
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None
+
+
+def get_class_subjects_and_all_teachers(class_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # First, get all subjects for the class
+        subjects_query = """
+        SELECT DISTINCT
+            s.subject_id,
+            s.subject_name
+        FROM course c
+        JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
+        JOIN subjects s ON ts.subject_id = s.subject_id
+        WHERE c.class_id = ?
+        """
+
+        cursor.execute(subjects_query, (class_id,))
+        subjects = cursor.fetchall()
+
+        result = []
+
+        # For each subject, get all teachers who can teach it
+        for subject_id, subject_name in subjects:
+            teachers_query = """
+            SELECT 
+                t.teacher_id,
+                t.full_name
+            FROM teachers_subjects ts
+            JOIN teachers t ON ts.teacher_id = t.teacher_id
+            WHERE ts.subject_id = ?
+            """
+
+            cursor.execute(teachers_query, (subject_id,))
+            teachers = cursor.fetchall()
+
+            # Create entry with subject info and list of teachers
+            result.append({
+                'subject_id': subject_id,
+                'subject_name': subject_name,
+                'teachers': teachers
+            })
+
+        conn.close()
+        return result
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None
+
+
+
 
 
 

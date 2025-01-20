@@ -18,32 +18,10 @@ class EditClassDialog(QDialog):
 
         self.setWindowTitle("Edit Class")
 
-        #print(f"Class ID: {self.class_id}")
-
-        #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
-
-
-        #print(class_data)  = (27, 'class 44', 'CAP', 'october', 70, '2025-01-18', 2)
-
-        #print(teachers_data) = [('Aron Smith', 'math'), ('John Doe', 'science')]
-        #print(students_data)
-
-
-        #get_students_no_class
-        #get_students_in_class
-
-
-
-
-
-        # Set the header labels
-        #self.students_in_class.setColumnHidden(0, True)
-        #self.students_in_class.setColumnHidden(1, True)
 
         self.setup_class_transfer_tables()
 
-        self.add_std_button.setEnabled(False)
-        self.remove_std_button.setEnabled(False)
+
 
 
         self.no_class_table.cellClicked.connect(self.on_cell_clicked_no_class)
@@ -53,8 +31,10 @@ class EditClassDialog(QDialog):
         self.add_std_button.clicked.connect(self.add_student_to_class)
         self.remove_std_button.clicked.connect(self.remove_student_from_class)
 
-
-
+        #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
+        #print(teachers_data)
+        data = database.get_class_subjects_and_all_teachers(self.class_id)
+        print(data)
 
 
 
@@ -142,6 +122,8 @@ class EditClassDialog(QDialog):
 
 
     def setup_class_transfer_tables(self):
+        self.add_std_button.setEnabled(False)
+        self.remove_std_button.setEnabled(False)
         self.no_class_table.verticalHeader().setVisible(False)
         #self.no_class_table.horizontalHeader().hide()
 
@@ -153,8 +135,6 @@ class EditClassDialog(QDialog):
 
         self.load_students_no_class()
         self.no_class_table.setColumnHidden(0, True)
-
-
 
 
 
