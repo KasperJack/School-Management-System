@@ -148,46 +148,6 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
   </widget>
-  <widget class="QTableWidget" name="students_table">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>90</y>
-     <width>251</width>
-     <height>531</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">            QTableWidget {
-                background-color: white;
-                gridline-color: #E5E7EB;
-                border: none;
-       		alternate-background-color: #F9FAFB;
-				        font-size: 16px;  /* Set font size */
-            }
-
-            QHeaderView::section {
-                background-color: #F3F4F6;
-                padding: 10px;
-					padding-left: 5px;
-                border: none;
-                font-weight: bold;
-                color: #374151;
-            }
-
-
-    QTableView::item {
-        border-bottom: 1px solid #E5E7EB;
-        border-right: none;
-    }
-
-/*
-        QTableWidget::item {
-            selection-background-color: transparent;
-            selection-color: black;  */
-</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -201,14 +161,53 @@ background-color: rgb(255, 255, 255);</string>
     <string>Edit</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="teachers_table_2">
+  <widget class="QTableWidget" name="no_class_table">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>90</y>
-     <width>331</width>
+     <x>800</x>
+     <y>80</y>
+     <width>251</width>
      <height>531</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="this_class_table">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>80</y>
+     <width>251</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>280</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>360</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&gt;</string>
    </property>
   </widget>
  </widget>

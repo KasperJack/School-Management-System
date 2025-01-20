@@ -991,23 +991,59 @@ def get_class_info_edit(class_id):
 
 
 
+def get_students_no_class():
+
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        query = """
+        SELECT student_id, full_name, birth_date
+        FROM students
+        WHERE class_id IS NULL;
+        """
+        cursor.execute(query)
+
+        students = cursor.fetchall()
+
+        conn.close()
+
+        return students
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return []
 
 
 
 
+def get_students_in_class(class_id):
 
+    try:
+        # Connect to the SQLite database
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
 
+        # Execute the query
+        query = """
+        SELECT student_id, full_name, birth_date
+        FROM students
+        WHERE class_id = ?;
+        """
+        cursor.execute(query, (class_id,))
 
+        # Fetch all results
+        students = cursor.fetchall()
 
+        # Close the connection
+        conn.close()
 
+        return students
 
-
-
-
-
-
-
-
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return []
 
 
 
