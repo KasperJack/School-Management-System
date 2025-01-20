@@ -1109,9 +1109,7 @@ def get_class_subjects_and_teachers(class_id):
         query = """
        SELECT 
            s.subject_id,
-           s.subject_name,
-           t.teacher_id,
-           t.full_name
+           t.teacher_id
        FROM course c
        JOIN teachers_subjects ts ON c.ts_id = ts.ts_id
        JOIN subjects s ON ts.subject_id = s.subject_id

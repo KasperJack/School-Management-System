@@ -34,9 +34,9 @@ class EditClassDialog(QDialog):
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
         #print(teachers_data)
         data = database.get_class_subjects_and_all_teachers(self.class_id)
-        print(data)
-        self.load_subjects_with_teachers(data)
+        ids = database.get_class_subjects_and_teachers(self.class_id)
 
+        self.load_subjects_with_teachers(data,ids)
 
 
     def on_cell_clicked_no_class(self, row, column):
@@ -152,7 +152,9 @@ class EditClassDialog(QDialog):
 
 #######################################################################################################################
 
-    def load_subjects_with_teachers(self, subjects_data):
+    def load_subjects_with_teachers(self, subjects_data, teacher_assignments):
+        # teacher_assignments: List of tuples (subject_id, teacher_id)
+
         # Set up the table
         self.subjects_table.setRowCount(len(subjects_data))
         self.subjects_table.setColumnCount(4)
@@ -174,6 +176,20 @@ class EditClassDialog(QDialog):
             teachers_combo = QComboBox()
             for teacher_id, teacher_name in subject['teachers']:
                 teachers_combo.addItem(teacher_name, userData=teacher_id)  # Store teacher ID as userData
+
+            # Check if this subject has an assigned teacher
+            assigned_teacher_id = next(
+                (teacher_id for subj_id, teacher_id in teacher_assignments if subj_id == subject['subject_id']),
+                None
+            )
+            if assigned_teacher_id is not None:
+                # Set the combo box to the assigned teacher
+                for i in range(teachers_combo.count()):
+                    if teachers_combo.itemData(i) == assigned_teacher_id:
+                        teachers_combo.setCurrentIndex(i)
+                        break
+
+            # Connect signal for teacher selection
             teachers_combo.currentIndexChanged.connect(self.teacher_selection_changed)
             self.subjects_table.setCellWidget(row_index, 2, teachers_combo)
 
@@ -184,6 +200,8 @@ class EditClassDialog(QDialog):
 
             # Add the button to the table
             self.subjects_table.setCellWidget(row_index, 3, remove_button)
+
+
 
     def teacher_selection_changed(self):
         # Get the sender (the combo box that triggered the signal)
