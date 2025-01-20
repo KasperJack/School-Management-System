@@ -42,22 +42,51 @@ class EditClassDialog(QDialog):
 
         self.setup_class_transfer_tables()
 
-        self.add_std_button.setEnabled(False)  # Grays out the button and disables it
-        self.remove_std_button.setEnabled(False)  # Grays out the button and disables it
+        self.add_std_button.setEnabled(False)
+        self.remove_std_button.setEnabled(False)
 
-        self.add_std_button.clicked.connect(self.res)
 
-        self.no_class_table.cellClicked.connect(self.on_cell_clicked)
+        self.no_class_table.cellClicked.connect(self.on_cell_clicked_no_class)
+        self.this_class_table.cellClicked.connect(self.on_cell_clicked_class)
 
-    def res(self):
-        print("f")
 
-    def on_cell_clicked(self, row, column):
-        # Retrieve the text from the first column (index 0) of the clicked row
-        item = self.no_class_table.item(row, 0)  # Access the item in the first column (index 0)
-        if item:
-            first_column_text = item.text()  # Get the text from the item
-            print(f"Text in the first column of row {row}: {first_column_text}")
+        self.add_std_button.clicked.connect(self.add_student_to_class)
+        #self.remove_std_button.clicked.connect()
+
+
+
+
+
+
+
+    def on_cell_clicked_no_class(self, row, column):
+        #remove selection frol the other tabe
+        self.remove_std_button.setEnabled(False)
+        #light the add  button
+        self.add_std_button.setEnabled(True)  # Re-enables the button
+
+
+    def add_student_to_class(self):
+        selected_row = self.no_class_table.currentRow()
+
+        item = self.no_class_table.item(selected_row, 0)
+        id = item.text()
+        print(id)
+
+
+    def on_cell_clicked_class(self, row, column):
+        #remove selection frol the other tabe
+        self.add_std_button.setEnabled(False)
+        #light the add  button
+        self.remove_std_button.setEnabled(True)  # Re-enables the button
+
+
+
+
+
+
+
+
 
 
 
