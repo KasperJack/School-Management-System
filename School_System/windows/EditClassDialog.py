@@ -42,9 +42,22 @@ class EditClassDialog(QDialog):
 
         self.setup_class_transfer_tables()
 
+        self.add_std_button.setEnabled(False)  # Grays out the button and disables it
+        self.remove_std_button.setEnabled(False)  # Grays out the button and disables it
 
+        self.add_std_button.clicked.connect(self.res)
 
+        self.no_class_table.cellClicked.connect(self.on_cell_clicked)
 
+    def res(self):
+        print("f")
+
+    def on_cell_clicked(self, row, column):
+        # Retrieve the text from the first column (index 0) of the clicked row
+        item = self.no_class_table.item(row, 0)  # Access the item in the first column (index 0)
+        if item:
+            first_column_text = item.text()  # Get the text from the item
+            print(f"Text in the first column of row {row}: {first_column_text}")
 
 
 
@@ -93,4 +106,20 @@ class EditClassDialog(QDialog):
 
         self.load_students_no_class()
         self.no_class_table.setColumnHidden(0, True)
+
+
+
+
+
+
+        self.this_class_table.verticalHeader().setVisible(False)
+        #self.no_class_table.horizontalHeader().hide()
+
+        self.this_class_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.this_class_table.setShowGrid(False)
+        # Set selection behavior to select rows
+        self.this_class_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.this_class_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection) ## only one selection
         self.load_students_in_class()
+        self.this_class_table.setColumnHidden(0, True)
+

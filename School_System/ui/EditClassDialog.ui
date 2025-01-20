@@ -210,10 +210,39 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+                border: none;
+       		alternate-background-color: #F9FAFB;
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="add_std_button">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>720</x>
@@ -222,11 +251,41 @@ background-color: rgb(255, 255, 255);</string>
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QPushButton {
+        background-color: #4CAF50;       /* Green background */
+        color: white;                   /* White text */
+        border: 2px solid #4CAF50;      /* Border matching the background */
+        border-radius: 8px;             /* Rounded corners */
+        padding: 8px 16px;              /* Padding for size */
+        font-size: 14px;                /* Font size */
+        font-weight: bold;              /* Bold text */
+    }
+    QPushButton:hover {
+        background-color: #45a049;      /* Slightly darker green on hover */
+        border-color: #45a049;          /* Matching border for hover effect */
+    }
+    QPushButton:pressed {
+        background-color: #388E3C;      /* Darker green when pressed */
+        border-color: #2E7D32;          /* Darker border when pressed */
+    }
+    QPushButton:disabled {
+        background-color: #d3d3d3;      /* Light gray background when disabled */
+        color: #a0a0a0;                 /* Gray text when disabled */
+        border-color: #d3d3d3;          /* No contrasting border when disabled */
+    }
+
+</string>
+   </property>
    <property name="text">
     <string>&lt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="remove_std_button">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>720</x>
@@ -234,6 +293,33 @@ background-color: rgb(255, 255, 255);</string>
      <width>71</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QPushButton {
+        background-color: #F44336;       /* Red background */
+        color: white;                   /* White text */
+        border: 2px solid #F44336;      /* Border matching the background */
+        border-radius: 8px;             /* Rounded corners */
+        padding: 8px 16px;              /* Padding for size */
+        font-size: 14px;                /* Font size */
+        font-weight: bold;              /* Bold text */
+    }
+    QPushButton:hover {
+        background-color: #E53935;      /* Slightly darker red on hover */
+        border-color: #E53935;          /* Matching border for hover effect */
+    }
+    QPushButton:pressed {
+        background-color: #D32F2F;      /* Darker red when pressed */
+        border-color: #C62828;          /* Darker border when pressed */
+    }
+    QPushButton:disabled {
+        background-color: #f2a5a0;      /* Light red/gray background when disabled */
+        color: #ffffff;                 /* Soft white text when disabled */
+        border-color: #f2a5a0;          /* No contrasting border when disabled */
+    }
+
+</string>
    </property>
    <property name="text">
     <string>&gt;</string>
