@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>435</width>
-    <height>533</height>
+    <width>738</width>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(222, 221, 218);
-color: rgb(0, 0, 0);</string>
+   <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -278,40 +278,83 @@ font-size: 15px;</string>
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="subjects_widget" native="true">
+  <widget class="QScrollArea" name="subjects_scrollArea">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>400</y>
-     <width>321</width>
-     <height>131</height>
+     <x>430</x>
+     <y>120</y>
+     <width>261</width>
+     <height>291</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(153, 193, 241);</string>
+    <string notr="true">    QScrollArea {
+        border: 1px solid #cccccc;
+        background: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
+    }
+
+    /* Items inside the Scroll Area */
+    QWidget {
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        color: #333333;
+        background: transparent;
+    }
+
+    QCheckBox {
+        spacing: 10px;
+        padding: 5px;
+    }
+    QCheckBox::indicator {
+        width: 16px;
+        height: 16px;
+    }
+    QCheckBox::indicator:checked {
+        background-color: #0078d4;
+        border: 1px solid #0078d4;
+        border-radius: 4px;
+    }
+    QCheckBox::indicator:unchecked {
+        background-color: #f0f0f0;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+    }</string>
    </property>
-   <widget class="QScrollArea" name="subjects_scrollArea">
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>261</width>
-      <height>111</height>
+      <x>0</x>
+      <y>0</y>
+      <width>259</width>
+      <height>289</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>259</width>
-       <height>109</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
  </widget>

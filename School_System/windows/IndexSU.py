@@ -346,6 +346,7 @@ class IndexSU(QMainWindow):
         self.load_students_to_table()
         self.students_table.verticalHeader().setVisible(False)
         self.students_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.students_table.setSelectionMode(self.students_table.SelectionMode.NoSelection)
 
 
         self.load_classes_student_search()

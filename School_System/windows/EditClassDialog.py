@@ -306,7 +306,7 @@ class EditClassDialog(QDialog):
 
             # Add an "Add" button
             add_button = QPushButton("Add")
-            #add_button.setStyleSheet("color: green; font-weight: bold;")
+            add_button.setStyleSheet("color: green; font-weight: bold;")
             # Optional: Style the button
             add_button.clicked.connect(lambda _, row=row_index: self.add_subject(row))  # Connect to a custom method
             self.new_subjects_table.setCellWidget(row_index, 2, add_button)
