@@ -746,7 +746,7 @@ border-radius: 10px;
 </string>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1354,7 +1354,31 @@ QScrollBar::sub-page:vertical {
         QTableWidget::item {
             selection-background-color: transparent;
             selection-color: black;  */
-</string>
+
+
+
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
+    }</string>
               </property>
               <property name="lineWidth">
                <number>1</number>
@@ -1472,6 +1496,31 @@ QScrollBar::sub-page:vertical {
     }
     
 
+
+
+
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
+    }
 </string>
                 </property>
                 <property name="alternatingRowColors">

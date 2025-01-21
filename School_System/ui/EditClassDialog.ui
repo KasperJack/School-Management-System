@@ -333,6 +333,9 @@ background-color: rgb(255, 255, 255);</string>
         padding: 0px 5px; /* Adjust padding for text */
         font-size: 14px; /* Adjust font size */
         color: #333; /* Text color */
+
+
+
     }
 
     QComboBox::drop-down {
