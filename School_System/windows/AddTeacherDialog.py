@@ -133,13 +133,12 @@ class AddTeacherDialog(QDialog):
                 self.index_instance.update_teachers_count()
                 self.index_instance.refresh_setup_activity_log__table()
 
-
                 if selected_subjects:
                     teacher_id = database.get_teachers_sequence()
                     for subject in selected_subjects:
                         database.add_teacher_subject(teacher_id, subject)
 
-
+                self.index_instance.setup_teachers_scroll()
                 self.clear_checkbox_selection()
                 return
             else:
@@ -160,7 +159,7 @@ class AddTeacherDialog(QDialog):
                 for subject in selected_subjects:
                     database.add_teacher_subject(teacher_id, subject)
 
-
+            self.index_instance.setup_teachers_scroll()
             self.clear_checkbox_selection()
             return
 

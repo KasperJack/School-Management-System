@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
@@ -12,6 +12,7 @@ from School_System.windows.AddClassDialog import AddClassDialog
 from School_System.windows.AddStudentDialog import AddStudentDialog
 from School_System.windows.ViewClassDialog import ViewClassDialog
 from School_System.windows.EditClassDialog import EditClassDialog
+from School_System.windows.EditTeacherDialog import EditTeacherDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -121,41 +122,10 @@ class IndexSU(QMainWindow):
 
 
 
+        self.setup_teachers_scroll()
+        self.search_edit_teachers.textChanged.connect(self.filter_teachers)
 
 
-
-
-
-
-
-
-
-
-
-        self.scrollArea_teachers.setWidgetResizable(True)
-
-        # Container widget inside the scroll area
-        container = QWidget()
-        scroll_layout = QVBoxLayout(container)
-        scroll_layout.setSpacing(10)
-
-        # Add multiple TeacherWidget instances dynamically
-        data = database.get_teachers_data()
-
-        for teacher in data:
-            teacher_widget = TeacherWidget(
-                name=teacher["name"],
-                subjects=teacher["subjects"],
-                classes=teacher["classes"],
-                teacher_id=teacher["teacher_id"]
-            )
-            scroll_layout.addWidget(teacher_widget)
-
-        # Add a spacer to push content up if fewer widgets
-        scroll_layout.addStretch()
-
-        # Set container as the widget for the scroll area
-        self.scrollArea_teachers.setWidget(container)
 
 
 ##################################################################################################################################
@@ -972,6 +942,10 @@ class IndexSU(QMainWindow):
     def open_edit_class_dialog(self, class_id):
         edit_class_dialog = EditClassDialog(self, class_id)
         edit_class_dialog.exec()
+    def open_edit_teacher_dialog(self, teacher_id):
+        edit_teacher_dialog = EditTeacherDialog(self, teacher_id)
+        edit_teacher_dialog.exec()
+
 
 
 
@@ -998,35 +972,117 @@ class IndexSU(QMainWindow):
 
 
 
+
+    def setup_teachers_scroll(self):
+        self.scrollArea_teachers.setWidgetResizable(True)
+        self.scrollArea_teachers.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.scrollArea_teachers.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+
+
+        # Store the original data for reuse
+        self.teachers_data = database.get_teachers_data()
+
+        # Initial display of teachers
+        self.display_teachers(self.teachers_data)
+
+
+
+
+
+    def filter_teachers(self, search_text):
+        # Filter teachers based on search text
+        filtered_data = [
+            teacher for teacher in self.teachers_data
+            if search_text.lower() in teacher["name"].lower()
+               and teacher["teacher_id"] != 62  # Keep your existing filter
+        ]
+
+        # Clear and redisplay teachers
+        self.display_teachers(filtered_data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def display_teachers(self, data):
+        # Configure scroll area
+
+
+        # Container widget inside the scroll area
+        container = QWidget()
+        container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+
+        # Setup layout
+        scroll_layout = QVBoxLayout(container)
+        scroll_layout.setSpacing(10)
+        scroll_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+
+        # Add multiple TeacherWidget instances dynamically
+        for teacher in data:
+            if teacher["teacher_id"] == 62:
+                continue
+            teacher_widget = TeacherWidget(
+                self,
+                name=teacher["name"],
+                subjects=teacher["subjects"],
+                classes=teacher["classes"],
+                teacher_id=teacher["teacher_id"]
+            )
+            scroll_layout.addWidget(teacher_widget)
+
+        # Add a spacer to push content up if fewer widgets
+        scroll_layout.addStretch()
+
+        # Set container as the widget for the scroll area
+        self.scrollArea_teachers.setWidget(container)
+
+
+
+
 class TeacherWidget(QWidget):
     """Custom widget to represent a teacher card."""
 
-    def __init__(self, name, subjects, classes ,teacher_id):
+    def __init__(self, index_instance, name, subjects, classes, teacher_id):
         super().__init__()
         self.name = name
         self.subjects = subjects
         self.classes = classes
         self.teacher_id = teacher_id
-        #layout
+        self.index_instance = index_instance
+
+        # Set size policy for the widget
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+
+        # Layout
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5,5)
+        layout.setContentsMargins(5, 5, 5, 5)
         layout.setSpacing(0)
 
         # Teacher's name and subjects
         teacher_label = QLabel(f"{name} ({', '.join(subjects)})")
         teacher_label.setStyleSheet("font-weight: bold; font-size: 25px;")
+        teacher_label.setWordWrap(True)  # Allow text wrapping
         layout.addWidget(teacher_label)
 
         # Classes
         classes_label = QLabel(" ".join(classes))
         classes_label.setStyleSheet("font-size: 16px; color: gray;")
+        classes_label.setWordWrap(True)  # Allow text wrapping
         layout.addWidget(classes_label)
 
         # Add a button
         button = QPushButton("Button")
         button.setFixedSize(80, 30)
         button.setStyleSheet("background-color: lightgray;")
-
         button.clicked.connect(self.on_button_click)
 
         # Add the button to a horizontal layout
@@ -1036,17 +1092,16 @@ class TeacherWidget(QWidget):
         layout.addLayout(button_layout)
 
         self.setStyleSheet("""
-                    background-color: #ddd;
-                    border-radius: 0px;
-                    padding: 7px;
-                """)
-        self.setFixedHeight(125)  #height
+            background-color: #ddd;
+            border-radius: 0px;
+            padding: 7px;
+        """)
+        self.setFixedHeight(125)
 
     @pyqtSlot()
     def on_button_click(self):
-        # Define the action to take when the button is clicked
-        print(f"Button clicked for teacher{self.teacher_id}")
-
+        #print(f"Button clicked for teacher{self.teacher_id}")
+        self.index_instance.open_edit_teacher_dialog(self.teacher_id)
 
 
 #class ComboDelegate(QStyledItemDelegate):
