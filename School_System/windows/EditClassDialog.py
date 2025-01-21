@@ -38,6 +38,8 @@ class EditClassDialog(QDialog):
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
         #print(teachers_data)
         self.reload()
+        self.new_subjects_table.setColumnHidden(0, True)
+
 
 
 
@@ -153,6 +155,17 @@ class EditClassDialog(QDialog):
         self.load_students_in_class()
         self.this_class_table.setColumnHidden(0, True)
 
+
+
+        self.subjects_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.subjects_table.setShowGrid(False)
+        self.subjects_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+        self.subjects_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
+        self.subjects_table.verticalHeader().setVisible(False)
+
+
+
+
 #######################################################################################################################
 
     def load_subjects_with_teachers(self, subjects_data, teacher_assignments):
@@ -161,7 +174,7 @@ class EditClassDialog(QDialog):
         # Set up the table
         self.subjects_table.setRowCount(len(subjects_data))
         self.subjects_table.setColumnCount(4)
-        self.subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject Name", "Teachers", "Actions"])
+        self.subjects_table.setHorizontalHeaderLabels(["#", "Subject Name", "Teacher", "Actions"])
 
         # Populate the table
         for row_index, subject in enumerate(subjects_data):
@@ -281,6 +294,7 @@ class EditClassDialog(QDialog):
     def reload(self):
         data = database.get_class_subjects_and_all_teachers(self.class_id)
         ids = database.get_class_subjects_and_teachers(self.class_id)
+
         self.load_subjects_with_teachers(data,ids)
 
         subjects = database.get_subjects()

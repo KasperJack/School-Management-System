@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1070</width>
-    <height>877</height>
+    <width>1107</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,45 +17,13 @@
    <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>-10</x>
-     <y>50</y>
-     <width>781</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="class_name">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Class TSIG4</string>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="groupBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>421</width>
-     <height>231</height>
+     <width>391</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="title">
@@ -64,8 +32,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="max_stud">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
+      <x>260</x>
+      <y>370</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -83,8 +51,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="creation_date">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>60</y>
+      <x>20</x>
+      <y>120</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -99,79 +67,91 @@ background-color: rgb(255, 255, 255);</string>
      <string>7/08/20011</string>
     </property>
    </widget>
+   <widget class="QLabel" name="sesstion">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>70</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>sesstion</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="grade">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>BTSS</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="class_name">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Class TSIG4</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QLabel" name="grade">
+  <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>430</x>
      <y>20</y>
-     <width>251</width>
-     <height>31</height>
+     <width>661</width>
+     <height>631</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
+   <property name="currentIndex">
+    <number>1</number>
    </property>
-   <property name="text">
-    <string>BTSS</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="sesstion">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>20</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>sesstion</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="subjects_table">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>410</y>
-     <width>431</width>
-     <height>211</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>670</x>
-     <y>20</y>
-     <width>88</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edit</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="no_class_table">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>80</y>
-     <width>251</width>
-     <height>531</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">            QTableWidget {
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+    <widget class="QTableWidget" name="this_class_table">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>251</width>
+       <height>531</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">            QTableWidget {
                 background-color: white;
                 gridline-color: #E5E7EB;
                 border: none;
@@ -198,61 +178,35 @@ background-color: rgb(255, 255, 255);</string>
             selection-background-color: transparent;
             selection-color: black;  */
 </string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="this_class_table">
-   <property name="geometry">
-    <rect>
-     <x>460</x>
-     <y>80</y>
-     <width>251</width>
-     <height>531</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">            QTableWidget {
-                background-color: white;
-                gridline-color: #E5E7EB;
-                border: none;
-       		alternate-background-color: #F9FAFB;
-            }
-
-            QHeaderView::section {
-                background-color: #F3F4F6;
-                padding: 10px;
-					padding-left: 5px;
-                border: none;
-                font-weight: bold;
-                color: #374151;
-            }
-
-
-    QTableView::item {
-        border-bottom: 1px solid #E5E7EB;
-        border-right: none;
-    }
-
-/*
-        QTableWidget::item {
-            selection-background-color: transparent;
-            selection-color: black;  */
-</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_std_button">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>280</y>
-     <width>71</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="no_class_table">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>70</y>
+       <width>251</width>
+       <height>531</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="add_std_button">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>360</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
     QPushButton {
         background-color: #4CAF50;       /* Green background */
         color: white;                   /* White text */
@@ -277,25 +231,25 @@ background-color: rgb(255, 255, 255);</string>
     }
 
 </string>
-   </property>
-   <property name="text">
-    <string>&lt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="remove_std_button">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>360</y>
-     <width>71</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
+     </property>
+     <property name="text">
+      <string>&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="remove_std_button">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>430</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
     QPushButton {
         background-color: #F44336;       /* Red background */
         color: white;                   /* White text */
@@ -320,20 +274,136 @@ background-color: rgb(255, 255, 255);</string>
     }
 
 </string>
-   </property>
-   <property name="text">
-    <string>&gt;</string>
-   </property>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+    <widget class="QTableWidget" name="subjects_table">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>30</y>
+       <width>411</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+                border: none;
+       		alternate-background-color: #F9FAFB;
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="new_subjects_table">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>20</y>
+       <width>231</width>
+       <height>571</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
-  <widget class="QTableWidget" name="new_subjects_table">
+  <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>640</y>
-     <width>431</width>
+     <x>20</x>
+     <y>430</y>
+     <width>391</width>
      <height>211</height>
     </rect>
    </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QLabel" name="max_stud_2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>370</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>30/30</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="sesstion_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>sesstion</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="grade_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>70</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Inter</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>BTSS</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
