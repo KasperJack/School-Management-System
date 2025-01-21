@@ -3,7 +3,7 @@ from time import sleep
 from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath, QIcon
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt,QSize
 
 import School_System.helpers.db_utils as database
 from School_System.helpers.db_utils import add_subject_to_default_teacher
@@ -19,6 +19,8 @@ class EditClassDialog(QDialog):
         uic.loadUi(EDIT_CLASS_DIALOG, self)
 
         self.setWindowTitle("Edit Class")
+        self.tabWidget.setTabText(0, "students")
+        self.tabWidget.setTabText(1, "subjects")
 
 
         self.setup_class_transfer_tables()
@@ -38,6 +40,7 @@ class EditClassDialog(QDialog):
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
         #print(teachers_data)
         self.reload()
+        self.adjust_tables_subjects()
         self.new_subjects_table.setColumnHidden(0, True)
 
 
@@ -162,6 +165,8 @@ class EditClassDialog(QDialog):
         self.subjects_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.subjects_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         self.subjects_table.verticalHeader().setVisible(False)
+       ########## self.subjects_table.setSelectionMode(self.subjects_table.SelectionMode.NoSelection)
+
 
 
 
@@ -174,7 +179,7 @@ class EditClassDialog(QDialog):
         # Update the column count to include two extra columns (empty before and after "Teacher")
         self.subjects_table.setRowCount(len(subjects_data))
         self.subjects_table.setColumnCount(6)
-        self.subjects_table.setHorizontalHeaderLabels(["#", "Subject Name", "Before", "Teacher", "After", "Actions"])
+        self.subjects_table.setHorizontalHeaderLabels(["#", "Subject ", "", "Teacher", "", ""])
 
         # Populate the table
         for row_index, subject in enumerate(subjects_data):
@@ -221,8 +226,12 @@ class EditClassDialog(QDialog):
             self.subjects_table.setItem(row_index, 4, after_item)
 
             # Add a "Remove" button
-            remove_button = QPushButton("Remove")
-            remove_button.setStyleSheet("color: red; font-weight: bold;")  # Optional: Style the button
+            remove_button = QPushButton("")
+            #remove_button.setStyleSheet("color: red; font-weight: bold;")  # Optional: Style the button
+            remove_button.setIcon(QIcon(f'{ICONS}/del.png'))
+
+            # Optionally adjust the size of the icon on the button
+            remove_button.setIconSize(QSize(24, 24))
             remove_button.clicked.connect(lambda _, row=row_index: self.remove_teacher(row))
 
             # Add the button to the table
@@ -281,7 +290,7 @@ class EditClassDialog(QDialog):
         # Set up the table
         self.new_subjects_table.setRowCount(len(filtered_subjects))
         self.new_subjects_table.setColumnCount(3)
-        self.new_subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject Name", "Actions"])
+        self.new_subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject", "Actions"])
 
         # Populate the table with filtered subjects
         for row_index, (subject_id, subject_name) in enumerate(filtered_subjects):
@@ -297,7 +306,8 @@ class EditClassDialog(QDialog):
 
             # Add an "Add" button
             add_button = QPushButton("Add")
-            add_button.setStyleSheet("color: green; font-weight: bold;")  # Optional: Style the button
+            #add_button.setStyleSheet("color: green; font-weight: bold;")
+            # Optional: Style the button
             add_button.clicked.connect(lambda _, row=row_index: self.add_subject(row))  # Connect to a custom method
             self.new_subjects_table.setCellWidget(row_index, 2, add_button)
 
@@ -316,3 +326,23 @@ class EditClassDialog(QDialog):
 
         subjects = database.get_subjects()
         self.load_subjects_with_add_button(subjects,ids)
+
+
+
+
+    def adjust_tables_subjects(self):
+        # auto adjust the size of the colusmns
+        header = self.subjects_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        # Set specific columns to have a fixed size
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+        header.setSectionResizeMode(5, QHeaderView.ResizeMode.Fixed)
+
+        # Set the fixed size for these columns
+        header.resizeSection(0, 45)
+        header.resizeSection(2, 35)
+        header.resizeSection(4, 30)
+        header.resizeSection(5, 50)

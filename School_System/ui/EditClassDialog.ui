@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1107</width>
+    <width>1192</width>
     <height>672</height>
    </rect>
   </property>
@@ -130,7 +130,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>430</x>
      <y>20</y>
-     <width>661</width>
+     <width>741</width>
      <height>631</height>
     </rect>
    </property>
@@ -289,8 +289,8 @@ background-color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>30</y>
-       <width>411</width>
-       <height>211</height>
+       <width>471</width>
+       <height>551</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -320,13 +320,138 @@ background-color: rgb(255, 255, 255);</string>
         QTableWidget::item {
             selection-background-color: transparent;
             selection-color: black;  */
+
+
+
+
+
+
+    QComboBox {
+        border: 1px solid #ccc; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        background: #fff; /* White background */
+        padding: 0px 5px; /* Adjust padding for text */
+        font-size: 14px; /* Adjust font size */
+        color: #333; /* Text color */
+    }
+
+    QComboBox::drop-down {
+        border: none; /* No border for the drop-down button */
+        background: transparent; /* Transparent background for drop-down */
+        width: 20px; /* Adjust drop-down button width */
+    }
+
+    QComboBox::down-arrow {
+        width: 10px; /* Default arrow width */
+        height: 10px; /* Default arrow height */
+    }
+
+    QComboBox QAbstractItemView {
+        border: 1px solid #ccc; /* Border around dropdown list */
+        background-color: #f5f5f5; /* Light gray background for dropdown */
+        color: #333; /* Text color in dropdown */
+        selection-background-color: #0078d7; /* Highlight color */
+        selection-color: white; /* Highlighted text color */
+    }
+
+    QComboBox QAbstractItemView::item {
+        padding: 5px; /* Padding for dropdown items */
+    }
+
+    QComboBox QAbstractItemView::item:hover {
+        background-color: #e0e0e0; /* Slightly darker gray on hover */
+        color: #000; /* Black text on hover */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QPushButton {
+    border: 2px solid rgb(255, 85, 85); /* Lighter red border */
+    border-radius: 5px;    
+    color: rgb(255, 255, 255); /* White text */
+    background-color: rgb(255, 85, 85); /* Lighter red background */
+}
+
+QPushButton:hover {
+    border: 2px solid rgb(255, 150, 150); /* Light red border on hover */
+    background-color: rgb(255, 150, 150); /* Lighter red background on hover */
+}
+
+QPushButton:pressed {    
+    border: 2px solid rgb(255, 40, 40); /* Darker red border when pressed */
+    background-color: rgb(255, 40, 40); /* Darker red background when pressed */
+}
+
+QPushButton:disabled {    
+    border-radius: 5px;    
+    border: 2px solid rgb(170, 170, 170); /* Gray border */
+    background-color: rgb(170, 170, 170); /* Gray background */
+    color: rgb(120, 120, 120); /* Gray text */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </string>
      </property>
     </widget>
     <widget class="QTableWidget" name="new_subjects_table">
      <property name="geometry">
       <rect>
-       <x>420</x>
+       <x>490</x>
        <y>20</y>
        <width>231</width>
        <height>571</height>
