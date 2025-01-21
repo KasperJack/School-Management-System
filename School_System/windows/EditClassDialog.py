@@ -2,7 +2,7 @@ from time import sleep
 
 from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
 from PyQt6 import uic
-from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
+from PyQt6.QtGui import QPixmap, QPainter, QPainterPath, QIcon
 from PyQt6.QtCore import Qt
 
 import School_System.helpers.db_utils as database
@@ -171,10 +171,10 @@ class EditClassDialog(QDialog):
     def load_subjects_with_teachers(self, subjects_data, teacher_assignments):
         # teacher_assignments: List of tuples (subject_id, teacher_id)
 
-        # Set up the table
+        # Update the column count to include two extra columns (empty before and after "Teacher")
         self.subjects_table.setRowCount(len(subjects_data))
-        self.subjects_table.setColumnCount(4)
-        self.subjects_table.setHorizontalHeaderLabels(["#", "Subject Name", "Teacher", "Actions"])
+        self.subjects_table.setColumnCount(6)
+        self.subjects_table.setHorizontalHeaderLabels(["#", "Subject Name", "Before", "Teacher", "After", "Actions"])
 
         # Populate the table
         for row_index, subject in enumerate(subjects_data):
@@ -187,6 +187,12 @@ class EditClassDialog(QDialog):
             subject_name_item = QTableWidgetItem(subject['subject_name'])
             subject_name_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
             self.subjects_table.setItem(row_index, 1, subject_name_item)
+
+            # Add empty "Before" column with an icon
+            before_item = QTableWidgetItem()
+            before_item.setIcon(QIcon(f"{ICONS}/user.png"))  # Replace with the actual path to your icon
+            before_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)  # Non-editable cell
+            self.subjects_table.setItem(row_index, 2, before_item)
 
             # Add a combo box for Teachers
             teachers_combo = QComboBox()
@@ -207,7 +213,12 @@ class EditClassDialog(QDialog):
 
             # Connect signal for teacher selection
             teachers_combo.currentIndexChanged.connect(self.teacher_selection_changed)
-            self.subjects_table.setCellWidget(row_index, 2, teachers_combo)
+            self.subjects_table.setCellWidget(row_index, 3, teachers_combo)
+
+            # Add empty "After" column
+            after_item = QTableWidgetItem("")
+            after_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.subjects_table.setItem(row_index, 4, after_item)
 
             # Add a "Remove" button
             remove_button = QPushButton("Remove")
@@ -215,7 +226,7 @@ class EditClassDialog(QDialog):
             remove_button.clicked.connect(lambda _, row=row_index: self.remove_teacher(row))
 
             # Add the button to the table
-            self.subjects_table.setCellWidget(row_index, 3, remove_button)
+            self.subjects_table.setCellWidget(row_index, 5, remove_button)
 
 
 
@@ -238,20 +249,26 @@ class EditClassDialog(QDialog):
             database.change_course_teacher(teacher_id,subject_id,self.class_id)
 
 
+
     def remove_teacher(self, row_index):
         # Get Subject ID from the first column
-        subject_id_item = self.subjects_table.item(row_index, 0)
+        subject_id_item = self.subjects_table.item(row_index, 0)  # Column 0 for Subject ID
         subject_id = int(subject_id_item.text()) if subject_id_item else None
 
-        # Get the teacher combo box from the row
-        combo_box = self.subjects_table.cellWidget(row_index, 2)
+        # Get the teacher combo box from the "Teacher" column (column 3)
+        combo_box = self.subjects_table.cellWidget(row_index, 3)  # Column 3 for Teacher
         if combo_box and isinstance(combo_box, QComboBox):
             teacher_id = combo_box.currentData()  # Retrieve hidden userData (teacher ID)
             teacher_name = combo_box.currentText()
 
             print(f"Remove Teacher: {teacher_name} (ID: {teacher_id}) from Subject ID: {subject_id}")
-            database.remove_class_course(teacher_id,subject_id)
+
+            # Call the database function to remove the teacher assignment
+            database.remove_class_course(teacher_id, subject_id)
+
+            # Reload the table to reflect changes
             self.reload()
+
 
 
     def load_subjects_with_add_button(self, subjects_data, excluded_subjects):
