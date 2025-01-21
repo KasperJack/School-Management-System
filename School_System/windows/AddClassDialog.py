@@ -29,7 +29,8 @@ class AddClassDialog(QDialog):
 
     def load_teachers_subjects(self):
 
-        teachers_subjects = database.get_teachers_subjects()
+        teachers_subjects = database.get_teachers_subjects_default()
+        print(teachers_subjects)
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:
             scroll_widget = QWidget()
@@ -50,7 +51,7 @@ class AddClassDialog(QDialog):
 
         #add checkboxes for each teacher-subject pair
         for pair_id, subject_name, teacher_name in teachers_subjects:
-            display_text = f"{subject_name} ({teacher_name})"  # Format the display
+            display_text = f"{subject_name}"  # Format the display
             checkbox = QCheckBox(display_text, self)
             checkbox.setObjectName(f"checkbox_{pair_id}")  # Use pair ID in the object name
             checkbox.setProperty("pair_id", pair_id)  # Store the pair ID as a property

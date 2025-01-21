@@ -573,6 +573,34 @@ def get_teachers_subjects():
 
 
 
+
+
+def get_teachers_subjects_default():
+    """Fetch teacher-subject pairs where teacher_id is 62 and populate the teachers_subjects_scrollArea with checkboxes."""
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to fetch teacher-subject pairs for teacher_id 62
+        cursor.execute("""
+            SELECT ts.ts_id, sub.subject_name, t.full_name
+            FROM teachers_subjects ts
+            JOIN subjects sub ON ts.subject_id = sub.subject_id
+            JOIN teachers t ON ts.teacher_id = t.teacher_id
+            WHERE ts.teacher_id = 62
+        """)
+        teachers_subjects = cursor.fetchall()
+        return teachers_subjects
+
+
+
+
+
+
+
+
+
+
+
+
 def get_student_details(student_id):
     """
     Fetch detailed information about a specific student, including class name.
