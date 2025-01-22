@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QDialog, QMessageBox, QFileDialog
+from PyQt6.QtWidgets import QDialog, QMessageBox, QFileDialog,QVBoxLayout,QWidget,QRadioButton,QPushButton,QButtonGroup
 from PyQt6 import uic
 import School_System.helpers.db_utils as database
 from School_System.ui import ADD_STUDENT_DIALOG
@@ -25,6 +25,17 @@ class AddStudentDialog(QDialog):
 
         self.classes_dropdown.setCurrentIndex(0)
 
+        self.load_classes()
+
+
+
+
+
+
+
+
+
+
 
     def clear_fields(self):
         self.name_field.clear()
@@ -32,6 +43,16 @@ class AddStudentDialog(QDialog):
         self.phone_field.clear()
         self.email_field.clear()
         self.address_field.clear()
+
+        self.m_radioButton.setAutoExclusive(False)
+        self.f_radioButton.setAutoExclusive(False)
+
+
+        self.m_radioButton.setChecked(False)
+        self.f_radioButton.setChecked(False)
+
+        self.m_radioButton.setAutoExclusive(True)
+        self.f_radioButton.setAutoExclusive(True)
 
 
 
@@ -76,11 +97,27 @@ class AddStudentDialog(QDialog):
         full_name = f"{name} {last_name}"
         phone = self.phone_field.text()
         email = self.email_field.text()
-        gender = self.comboBox.currentText()
         birth_date = self.birth_date.date().toString("dd-MM-yyyy")
         address = self.address_field.text()
-        stdclass = self.classes_dropdown.currentText()
-        class_id = self.classes_dropdown.currentData()
+
+        #stdclass = self.classes_dropdown.currentText()
+        #class_id = self.classes_dropdown.currentData()
+
+
+        self.get_selected_class_id()
+
+        if self.m_radioButton.isChecked():
+            gender = "M"
+        elif self.f_radioButton.isChecked():
+            gender = "F"
+
+        else:
+            QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
+            return
+
+
+
+
 
 
         if not name or not last_name or not phone or not email or not address:
@@ -131,8 +168,45 @@ class AddStudentDialog(QDialog):
 
 
 
+    def get_selected_class_id(self):
+        selected_button = self.button_group.checkedButton()
+
+        if selected_button:
+            class_id = self.button_group.id(selected_button)
+            return class_id
+        else:
+            return "N/A"
 
 
 
-        
+
+
+    def load_classes(self):
+
+                classes = classes = database.get_classes_ids()
+
+
+                #self.scrollArea_class.setWidgetResizable(True)  # Allow the widget to resize
+
+                # Create a container widget for the radio buttons
+                self.radio_container = QWidget()
+                self.radio_layout = QVBoxLayout(self.radio_container)
+
+                # Add radio buttons for each class
+                self.button_group = QButtonGroup()  # To manage radio buttons
+                for class_id, class_name in classes:
+                    radio_button = QRadioButton(class_name)  # Display class name
+                    self.button_group.addButton(radio_button, class_id)  # Associate class ID with the button
+                    self.radio_layout.addWidget(radio_button)
+
+                # Set the container widget as the content of the scroll area
+                self.scrollArea_class.setWidget(self.radio_container)
+
+
+
+                # Create a button to get the selected class ID
+                #self.get_selection_button = QPushButton("Get Selected Class ID")
+                #self.get_selection_button.clicked.connect(self.get_selected_class_id)
+
+
 
