@@ -1,7 +1,11 @@
 
 
-from PyQt6.QtWidgets import QDialog, QMessageBox, QComboBox, QCheckBox, QHBoxLayout, QLabel, QVBoxLayout ,QGridLayout
+from PyQt6.QtWidgets import QDialog, QMessageBox, QComboBox, QCheckBox, QHBoxLayout, QLabel, QVBoxLayout ,QGridLayout,QWidget,QGraphicsDropShadowEffect
 from PyQt6 import uic
+from PyQt6.QtGui import QColor
+from PyQt6.QtCore import Qt
+
+
 import School_System.helpers.db_utils as database
 from School_System.ui import ADD_TEACHER_DIALOG # UI FILE
 
@@ -16,6 +20,34 @@ class AddTeacherDialog(QDialog):
 
         self.add_teacher_button.clicked.connect(self.add_teacher)
         self.load_subjects()
+
+
+
+
+        self.apply_floating_effect(self.add_teacher_button)
+        #self.apply_floating_effect(self.pushButton)
+        self.apply_floating_effect(self.email_field)
+        self.apply_floating_effect(self.widget)
+        self.apply_floating_effect(self.widget_2)
+        self.apply_floating_effect(self.lineEdit)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -107,6 +139,42 @@ class AddTeacherDialog(QDialog):
         self.email_field.clear()
         self.address_field.clear()
 
+        self.m_radioButton.setAutoExclusive(False)
+        self.f_radioButton.setAutoExclusive(False)
+
+
+        self.m_radioButton.setChecked(False)
+        self.f_radioButton.setChecked(False)
+
+        self.m_radioButton.setAutoExclusive(True)
+        self.f_radioButton.setAutoExclusive(True)
+
+
+
+
+    def apply_floating_effect(self, widget):
+        # Create a subtle shadow effect
+        shadow_effect = QGraphicsDropShadowEffect()
+
+        # Make the shadow effect more subtle
+        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 50))  # Lighter shadow color (lower alpha for subtlety)
+
+        # Apply the effect to the widget
+        widget.setGraphicsEffect(shadow_effect)
+
+        # Optional: Slightly raise the widget to enhance the floating effect
+        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,8 +184,21 @@ class AddTeacherDialog(QDialog):
         full_name = f"{name} {last_name}"
         phone = self.phone_field.text()
         email = self.email_field.text()
-        gender = self.comboBox.currentText()
         address = self.address_field.text()
+
+        if self.m_radioButton.isChecked():
+            gender = "M"
+        elif self.f_radioButton.isChecked():
+            gender = "F"
+
+        else:
+            QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
+            return
+
+
+
+
+
 
         if not name or not last_name or not email or not phone or not gender:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")

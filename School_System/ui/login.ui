@@ -166,6 +166,9 @@ border-bottom-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 
              </item>
              <item>
               <widget class="QPushButton" name="forget_password_button">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">color: rgb(53, 132, 228);</string>
                </property>
@@ -223,6 +226,9 @@ border-bottom-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 
                  <pointsize>10</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(0, 0, 0);

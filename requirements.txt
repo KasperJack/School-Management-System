@@ -1,2 +1,5 @@
-pyqt6
-sip
+PyQt6
+pyqt6-tools
+
+
+

@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit,QGraphicsDropShadowEffect
 from PyQt6 import uic
+from PyQt6.QtGui import QColor
 
 from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
@@ -17,8 +18,10 @@ class Login(QMainWindow):
         self.login_button.clicked.connect(self.authenticate_user)
         self.create_account_button.clicked.connect(self.open_create_account_dialog)
         self.forget_password_button.clicked.connect(self.forget_password)
-        self.view_password_button.clicked.connect(self.toggle_password_visibility)
+        #aself.view_password_button.clicked.connect(self.toggle_password_visibility)
         self.remember_me_button.toggled.connect(self.remember_me)
+        self.apply_floating_effect(self.widget)
+
 
 
 
@@ -103,7 +106,21 @@ class Login(QMainWindow):
 
 
 
-        
+    def apply_floating_effect(self, widget):
+        # Create a subtle shadow effect
+        shadow_effect = QGraphicsDropShadowEffect()
+
+        # Make the shadow effect more subtle
+        shadow_effect.setBlurRadius(8)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(2, 2)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 80))  # Lighter shadow color (lower alpha for subtlety)
+
+        # Apply the effect to the widget
+        widget.setGraphicsEffect(shadow_effect)
+
+        # Optional: Slightly raise the widget to enhance the floating effect
+        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
+
             
 
     
