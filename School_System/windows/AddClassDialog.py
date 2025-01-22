@@ -30,7 +30,7 @@ class AddClassDialog(QDialog):
     def load_teachers_subjects(self):
 
         teachers_subjects = database.get_teachers_subjects_default()
-        print(teachers_subjects)
+        #print(teachers_subjects)
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None:
             scroll_widget = QWidget()
@@ -49,7 +49,7 @@ class AddClassDialog(QDialog):
             if child.widget():
                 child.widget().deleteLater()
 
-        #add checkboxes for each teacher-subject pair
+        #checkboxes for each teacher-subject pair
         for pair_id, subject_name, teacher_name in teachers_subjects:
             display_text = f"{subject_name}"  # Format the display
             checkbox = QCheckBox(display_text, self)
@@ -61,10 +61,10 @@ class AddClassDialog(QDialog):
         """Retrieve IDs of selected teacher-subject pairs from the scroll area."""
         selected_pair_ids = []
 
-        # Access the widget inside the scroll area
+        # widget inside the scroll area
         scroll_widget = self.teachers_subjects_scrollArea.widget()
         if scroll_widget is None or scroll_widget.layout() is None:
-            print("Error: Scroll area does not have a proper widget or layout.")
+            #print(" nolayout.")
             return selected_pair_ids  # Return an empty list if layout is missing
 
         layout = scroll_widget.layout()
@@ -91,7 +91,7 @@ class AddClassDialog(QDialog):
         scroll_widget = self.teachers_subjects_scrollArea.widget()
 
         if scroll_widget is None or scroll_widget.layout() is None:
-            print("Error: Scroll area does not have a proper widget or layout.")
+            # print(" nolayout.")
             return
 
         layout = scroll_widget.layout()
@@ -134,6 +134,9 @@ class AddClassDialog(QDialog):
         if evaluate == "Class added successfully":
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
+            self.max_students_field.clear()
+            self.session_field.clear()
+
             self.index_instance.load_classes_table()
             self.index_instance.update_classes_count()
             self.index_instance.load_classes_student_search()
@@ -141,7 +144,8 @@ class AddClassDialog(QDialog):
             class_id = database.get_classes_sequence()
             for teacher_subject in get_selected_teachers_subjects:
                 database.add_course(teacher_subject,class_id)
-                self.clear_checkbox_selection()
+
+            self.clear_checkbox_selection()
             return
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
