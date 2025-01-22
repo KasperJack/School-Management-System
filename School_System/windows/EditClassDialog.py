@@ -1,9 +1,8 @@
-from time import sleep
 
 from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath, QIcon
-from PyQt6.QtCore import Qt,QSize
+from PyQt6.QtCore import Qt,QSize, QTimer
 
 import School_System.helpers.db_utils as database
 from School_System.helpers.db_utils import add_subject_to_default_teacher
@@ -56,25 +55,40 @@ class EditClassDialog(QDialog):
         self.add_std_button.setEnabled(True)  # Re-enables the button
 
 
-    def add_student_to_class(self):
-        selected_row = self.no_class_table.currentRow()
 
-        item = self.no_class_table.item(selected_row, 0)
-        id = item.text()
-        database.assign_student_to_class(id, self.class_id)
-        self.load_students_no_class()
-        self.load_students_in_class()
+    def add_student_to_class(self):
+        # Disable the button to prevent spam
+        #self.add_std_button.setEnabled(False)
+
+        selected_row = self.no_class_table.currentRow()
+        if selected_row >= 0:
+            item = self.no_class_table.item(selected_row, 0)
+            if item:  # Check if the item exists
+                id = item.text()
+                database.assign_student_to_class(id, self.class_id)
+                self.load_students_no_class()
+                self.load_students_in_class()
+
+        # Re-enable the button after a short delay (e.g., 1 second)
+        #QTimer.singleShot(500, lambda: self.add_std_button.setEnabled(True))
+
+
+
+
 
 
 
     def remove_student_from_class(self):
         selected_row = self.this_class_table.currentRow()
+        if selected_row >= 0:
+            item = self.this_class_table.item(selected_row, 0)
+            if item:
+                id = item.text()
+                database.remove_student_from_class(id)
+                self.load_students_no_class()
+                self.load_students_in_class()
 
-        item = self.this_class_table.item(selected_row, 0)
-        id = item.text()
-        database.remove_student_from_class(id)
-        self.load_students_no_class()
-        self.load_students_in_class()
+
 
 
 
