@@ -279,7 +279,7 @@ class AddStudentDialog(QDialog):
         widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
 
     def why_not_float(self):
-        self.apply_floating_effect(self.widget_2)
+        #self.apply_floating_effect(self.widget_2)
         self.apply_floating_effect(self.widget)
         self.apply_floating_effect(self.serach_class)
         #self.apply_floating_effect(self.name_field)

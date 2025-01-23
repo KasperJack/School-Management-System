@@ -14,6 +14,8 @@ class AddSubjectDialog(QDialog):
         uic.loadUi(ADD_SUBJECT_DIALOG, self)
 
         self.setWindowTitle("Add Subject")
+        self.close_button.clicked.connect(self.close)
+
 
         self.add_subject_button.clicked.connect(self.add_subject)
 

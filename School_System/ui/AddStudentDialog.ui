@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>749</width>
-    <height>632</height>
+    <height>638</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -337,56 +337,22 @@ border-radius: 0px;</string>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>20</x>
+     <y>20</y>
      <width>241</width>
-     <height>671</height>
+     <height>601</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 0px;</string>
+</string>
    </property>
-   <widget class="QWidget" name="widget_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>-1</x>
-      <y>0</y>
-      <width>251</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: #bababa;
-border-radius: 0px;</string>
-    </property>
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>20</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Segoe UI</family>
-       <pointsize>13</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>classes</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QLineEdit" name="serach_class">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>191</width>
+      <x>20</x>
+      <y>60</y>
+      <width>201</width>
       <height>26</height>
      </rect>
     </property>
@@ -409,16 +375,16 @@ QLineEdit:focus {
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>100</y>
       <width>201</width>
-      <height>491</height>
+      <height>481</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">    QScrollArea {
         border: 1px solid #cccccc;
         background: #f9f9f9;
-        border-radius: 0px;
+        border-radius: 4px;
     }
 
     /* Scroll Bar */
@@ -482,10 +448,46 @@ QRadioButton::indicator:unchecked {
        <x>0</x>
        <y>0</y>
        <width>199</width>
-       <height>489</height>
+       <height>479</height>
       </rect>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>20</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>13</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>classes</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>50</y>
+      <width>221</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(192, 191, 188);</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -668,7 +670,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>20</day>
+        <day>19</day>
        </datetime>
       </property>
       <property name="displayFormat">
