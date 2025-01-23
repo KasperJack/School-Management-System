@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect
 from PyQt6 import uic
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
@@ -126,7 +126,15 @@ class IndexSU(QMainWindow):
         self.search_edit_teachers.textChanged.connect(self.filter_teachers)
 
 
+        #self.apply_floating_effect(self.icon_text)
+        #self.apply_floating_effect(self.icon_only)
+        self.apply_floating_effect(self.main_screen)
 
+
+
+        #blur_effect = QGraphicsBlurEffect()
+        #blur_effect.setBlurRadius(2)  # Adjust the radius for more/less blur
+        #self.icon_text.setGraphicsEffect(blur_effect)
 
 ##################################################################################################################################
 
@@ -1044,6 +1052,23 @@ class IndexSU(QMainWindow):
 
         # Set container as the widget for the scroll area
         self.scrollArea_teachers.setWidget(container)
+
+
+    def apply_floating_effect(self, widget):
+        # Create a subtle shadow effect
+        shadow_effect = QGraphicsDropShadowEffect()
+
+        # Make the shadow effect more subtle
+        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 50))  # Lighter shadow color (lower alpha for subtlety)
+
+        # Apply the effect to the widget
+        widget.setGraphicsEffect(shadow_effect)
+
+        # Optional: Slightly raise the widget to enhance the floating effect
+        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
+
 
 
 

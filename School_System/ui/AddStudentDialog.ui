@@ -305,8 +305,8 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>20</y>
-     <width>88</width>
+     <y>180</y>
+     <width>101</width>
      <height>26</height>
     </rect>
    </property>
@@ -318,7 +318,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>50</y>
+     <y>40</y>
      <width>131</width>
      <height>131</height>
     </rect>
@@ -670,7 +670,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>19</day>
+        <day>18</day>
        </datetime>
       </property>
       <property name="displayFormat">
