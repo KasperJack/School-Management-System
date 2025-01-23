@@ -23,16 +23,7 @@ class AddStudentDialog(QDialog):
         # Set the container widget as the content of the scroll area
         self.scrollArea_class.setWidget(self.radio_container)
 
-
-
-
-        self.apply_floating_effect(self.widget_2)
-        self.apply_floating_effect(self.widget)
-        self.apply_floating_effect(self.serach_class)
-        self.apply_floating_effect(self.name_field)
-        self.apply_floating_effect(self.last_name_field)
-        self.apply_floating_effect(self.update_photo_la)
-
+        self.why_not_float()
 
 
 
@@ -51,6 +42,8 @@ class AddStudentDialog(QDialog):
 
         self.add_pic.clicked.connect(self.open_image_dialog)
         self.serach_class.textChanged.connect(self.filter_classes)
+        self.close_button.clicked.connect(self.close)  # Connect to the close method
+
 
 
 
@@ -275,12 +268,20 @@ class AddStudentDialog(QDialog):
         shadow_effect = QGraphicsDropShadowEffect()
 
         # Make the shadow effect more subtle
-        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
-        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
-        shadow_effect.setColor(QColor(0, 0, 0, 200))  # Lighter shadow color (lower alpha for subtlety)
+        shadow_effect.setBlurRadius(4)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(2, 2)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 70))  # Lighter shadow color (lower alpha for subtlety)
 
         # Apply the effect to the widget
         widget.setGraphicsEffect(shadow_effect)
 
         # Optional: Slightly raise the widget to enhance the floating effect
         widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
+
+    def why_not_float(self):
+        self.apply_floating_effect(self.widget_2)
+        self.apply_floating_effect(self.widget)
+        self.apply_floating_effect(self.serach_class)
+        #self.apply_floating_effect(self.name_field)
+        #self.apply_floating_effect(self.last_name_field)
+        self.apply_floating_effect(self.update_photo_la)

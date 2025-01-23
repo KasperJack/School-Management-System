@@ -14,6 +14,8 @@ class AddClassDialog(QDialog):
         self.setWindowTitle("Add Class")
 
         self.add_class_button.clicked.connect(self.add_class)
+        self.close_button.clicked.connect(self.close)  # Connect to the close method
+
 
         grades = database.get_grades()
 

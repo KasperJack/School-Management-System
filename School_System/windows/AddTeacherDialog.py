@@ -17,8 +17,10 @@ class AddTeacherDialog(QDialog):
         uic.loadUi(ADD_TEACHER_DIALOG, self)
 
         self.setWindowTitle("Add Teacher")
+        self.close_button.clicked.connect(self.close)  # Connect to the close method
 
         self.add_teacher_button.clicked.connect(self.add_teacher)
+
         self.load_subjects()
 
 
