@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>749</width>
-    <height>671</height>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,8 +175,8 @@ QScrollBar::handle:vertical:hover {
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>550</y>
+     <x>380</x>
+     <y>560</y>
      <width>241</width>
      <height>32</height>
     </rect>
@@ -272,64 +272,6 @@ QPushButton:pressed {
      <widget class="QLineEdit" name="last_name_field"/>
     </item>
    </layout>
-  </widget>
-  <widget class="QComboBox" name="classes_dropdown">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>630</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">            QComboBox {
-                background-color: #0078d7;  /* Blue background */
-                color: white;              /* White text */
-                border: none;
-                border-radius: 5px;        /* Rounded corners */
-                font-size: 10pt;
-            }
-            QComboBox:hover {
-                background-color: #005a9e; /* Darker blue on hover */
-            }
- 
-
-
-            QComboBox QAbstractItemView {
-                background-color: #bababa; /* White background for drop-down menu */
-                color: black;              /* Black text in drop-down */
-
-            }
-
-
-
-            QComboBox::down-arrow {
-                width: 8px;
-                height: 8px;
-                margin: 0px;
-            }
-
-
-           QComboBox::drop-down {
-                width: 25px;
-
-            }
-</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>630</y>
-     <width>51</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>class</string>
-   </property>
   </widget>
   <widget class="QDateEdit" name="birth_date">
    <property name="geometry">
@@ -585,7 +527,7 @@ border-radius: 0px;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="serach_class">
     <property name="geometry">
      <rect>
       <x>30</x>

@@ -12,20 +12,41 @@ class AddStudentDialog(QDialog):
 
         self.setWindowTitle("Add Student")
 
+        self.button_group = QButtonGroup()
+        self.radio_container = QWidget()
+        self.radio_layout = QVBoxLayout(self.radio_container)
+
+        # Set the container widget as the content of the scroll area
+        self.scrollArea_class.setWidget(self.radio_container)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         self.add_student_button.clicked.connect(self.add_student)
+
         self.add_pic.clicked.connect(self.open_image_dialog)
+        self.serach_class.textChanged.connect(self.filter_classes)
 
-        self.classes_dropdown.addItem("N/A")
+
+
+
         self.image_bin = None
+        self.classes = database.get_classes_ids()
 
 
-        classes = database.get_classes_ids()
-        for class_id, class_name in classes:
-            self.classes_dropdown.addItem(class_name, class_id)
 
-        self.classes_dropdown.setCurrentIndex(0)
 
-        self.load_classes()
+        self.load_classes(self.classes)
 
 
 
@@ -43,6 +64,7 @@ class AddStudentDialog(QDialog):
         self.phone_field.clear()
         self.email_field.clear()
         self.address_field.clear()
+        self.clear_selection_class()
 
         self.m_radioButton.setAutoExclusive(False)
         self.f_radioButton.setAutoExclusive(False)
@@ -104,7 +126,7 @@ class AddStudentDialog(QDialog):
         #class_id = self.classes_dropdown.currentData()
 
 
-        self.get_selected_class_id()
+        class_id = self.get_selected_class_id()
 
         if self.m_radioButton.isChecked():
             gender = "M"
@@ -126,7 +148,7 @@ class AddStudentDialog(QDialog):
 
 
         if self.image_bin:
-            if stdclass == "N/A":
+            if class_id == "N/A":
                 evaluate = database.add_student(full_name, phone, email, gender, birth_date, address, photo=self.image_bin)
                 if evaluate == "Student added successfully":
                     QMessageBox.information(self, "info", f"{evaluate}")
@@ -147,7 +169,7 @@ class AddStudentDialog(QDialog):
 
 
 
-        if stdclass == "N/A":
+        if class_id == "N/A":
             evaluate = database.add_student(full_name,phone,email,gender,birth_date,address)
             if evaluate == "Student added successfully":
                 QMessageBox.information(self, "info", f"{evaluate}")
@@ -179,34 +201,48 @@ class AddStudentDialog(QDialog):
 
 
 
+    def clear_selection_class(self):
+        # Temporarily disable exclusive behavior
+        self.button_group.setExclusive(False)
 
+        # Deselect all radio buttons
+        for button in self.button_group.buttons():
+            button.setChecked(False)
 
-    def load_classes(self):
-
-                classes = classes = database.get_classes_ids()
-
-
-                #self.scrollArea_class.setWidgetResizable(True)  # Allow the widget to resize
-
-                # Create a container widget for the radio buttons
-                self.radio_container = QWidget()
-                self.radio_layout = QVBoxLayout(self.radio_container)
-
-                # Add radio buttons for each class
-                self.button_group = QButtonGroup()  # To manage radio buttons
-                for class_id, class_name in classes:
-                    radio_button = QRadioButton(class_name)  # Display class name
-                    self.button_group.addButton(radio_button, class_id)  # Associate class ID with the button
-                    self.radio_layout.addWidget(radio_button)
-
-                # Set the container widget as the content of the scroll area
-                self.scrollArea_class.setWidget(self.radio_container)
+        # Re-enable exclusive behavior
+        self.button_group.setExclusive(True)
 
 
 
-                # Create a button to get the selected class ID
-                #self.get_selection_button = QPushButton("Get Selected Class ID")
-                #self.get_selection_button.clicked.connect(self.get_selected_class_id)
 
+
+    def load_classes(self, classes):
+        # self.scrollArea_class.setWidgetResizable(True)  # Allow the widget to resize
+
+        # Create a container widget for the radio buttons
+        self.radio_container = QWidget()
+        self.radio_layout = QVBoxLayout(self.radio_container)
+
+        # Add radio buttons for each class
+        self.button_group = QButtonGroup()  # To manage radio buttons
+        for class_id, class_name in classes:
+            radio_button = QRadioButton(class_name)  # Display class name
+            self.button_group.addButton(radio_button, class_id)  # Associate class ID with the button
+            self.radio_layout.addWidget(radio_button)
+
+
+
+        # Set the container widget as the content of the scroll area
+        self.scrollArea_class.setWidget(self.radio_container)
+
+    def filter_classes(self, search_text):
+        # Filter classes based on search text (case-insensitive)
+        filtered_data = [
+            (class_id, class_name) for class_id, class_name in self.classes
+            if search_text.lower() in class_name.lower()
+        ]
+
+        # Clear and redisplay classes
+        self.load_classes(filtered_data)
 
 
