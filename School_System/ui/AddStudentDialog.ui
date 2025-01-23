@@ -301,7 +301,7 @@ QPushButton:pressed {
      <second>0</second>
      <year>1999</year>
      <month>12</month>
-     <day>22</day>
+     <day>21</day>
     </datetime>
    </property>
    <property name="displayFormat">
@@ -464,7 +464,7 @@ QRadioButton::indicator:checked:disabled {
     <string>Female</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="update_photo_la">
    <property name="geometry">
     <rect>
      <x>320</x>
@@ -474,10 +474,14 @@ QRadioButton::indicator:checked:disabled {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(87, 227, 137);</string>
+    <string notr="true">border: 1px solid gray;
+border-radius: 0px;</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
@@ -498,7 +502,7 @@ border-radius: 0px;</string>
      <rect>
       <x>-1</x>
       <y>0</y>
-      <width>241</width>
+      <width>251</width>
       <height>61</height>
      </rect>
     </property>

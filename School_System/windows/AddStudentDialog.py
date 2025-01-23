@@ -1,6 +1,9 @@
-from PyQt6.QtWidgets import QDialog, QMessageBox, QFileDialog,QVBoxLayout,QWidget,QRadioButton,QPushButton,QButtonGroup
+from PyQt6.QtWidgets import QDialog, QMessageBox, QFileDialog,QVBoxLayout,QWidget,QRadioButton,QPushButton,QButtonGroup,QGraphicsDropShadowEffect
 from PyQt6 import uic
+from PyQt6.QtGui import QPixmap,QColor
+
 import School_System.helpers.db_utils as database
+from School_System.resources import  ICONS
 from School_System.ui import ADD_STUDENT_DIALOG
 #from School_System.windows.indexSU import indexSU this is  causes an infinite loop  ,Passing index_instance allows the dialog to access the indexSU
 
@@ -11,6 +14,7 @@ class AddStudentDialog(QDialog):
         uic.loadUi(ADD_STUDENT_DIALOG, self)
 
         self.setWindowTitle("Add Student")
+        self.update_photo_la.setPixmap(QPixmap(f"{ICONS}/profile.png"))
 
         self.button_group = QButtonGroup()
         self.radio_container = QWidget()
@@ -18,6 +22,17 @@ class AddStudentDialog(QDialog):
 
         # Set the container widget as the content of the scroll area
         self.scrollArea_class.setWidget(self.radio_container)
+
+
+
+
+        self.apply_floating_effect(self.widget_2)
+        self.apply_floating_effect(self.widget)
+        self.apply_floating_effect(self.serach_class)
+        self.apply_floating_effect(self.name_field)
+        self.apply_floating_effect(self.last_name_field)
+        self.apply_floating_effect(self.update_photo_la)
+
 
 
 
@@ -93,9 +108,18 @@ class AddStudentDialog(QDialog):
                 binary_data = file.read()
             self.image_bin = binary_data
 
+            if isinstance(binary_data, str):
+                binary_data = binary_data.encode('utf-8')
+
+            pixmap = QPixmap()
+            if pixmap.loadFromData(binary_data):
+                 # Set the QPixmap to a QLabel for display
+                self.update_photo_la.setPixmap(pixmap)
+
 
         else:
             self.image_bin = None
+            self.update_photo_la.setPixmap(QPixmap(f"{ICONS}/profile.png"))
 
 
 
@@ -246,3 +270,17 @@ class AddStudentDialog(QDialog):
         self.load_classes(filtered_data)
 
 
+    def apply_floating_effect(self, widget):
+        # Create a subtle shadow effect
+        shadow_effect = QGraphicsDropShadowEffect()
+
+        # Make the shadow effect more subtle
+        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 200))  # Lighter shadow color (lower alpha for subtlety)
+
+        # Apply the effect to the widget
+        widget.setGraphicsEffect(shadow_effect)
+
+        # Optional: Slightly raise the widget to enhance the floating effect
+        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit

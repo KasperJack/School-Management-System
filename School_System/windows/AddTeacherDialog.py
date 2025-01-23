@@ -29,7 +29,7 @@ class AddTeacherDialog(QDialog):
         self.apply_floating_effect(self.email_field)
         self.apply_floating_effect(self.widget)
         self.apply_floating_effect(self.widget_2)
-        self.apply_floating_effect(self.lineEdit)
+        self.apply_floating_effect(self.serach_subject)
 
 
 
