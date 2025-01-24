@@ -134,8 +134,66 @@ background-color: rgb(255, 255, 255);</string>
      <height>631</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">
+QTabBar::tab {
+    background: #E5E5E5; /* Light gray background for unselected tabs */
+    color: #000000; /* Black text color */
+    border: 1px solid #C8C8C8; /* Light border around tabs */
+    border-bottom: none; /* Remove bottom border for seamless alignment with content */
+    padding: 4px 12px; /* Padding for consistent size */
+    min-width: 100px; /* Minimum tab width */
+    border-top-left-radius: 5px; /* Rounded top-left corner */
+    border-top-right-radius: 5px; /* Rounded top-right corner */
+    margin-left: 0px; /* Adjust spacing between tabs */
+}
+
+/* Selected Tab */
+QTabBar::tab:selected {
+    background: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:1,
+        stop:0 #0078D4, stop:1 #005A9E
+    ); /* Gradient for selected tab */
+    border: 1px solid #0078D4; /* Blue border for selected tab */
+    color: white; /* White text for contrast */
+    border-top-left-radius: 5px; /* Match rounded corners */
+    border-top-right-radius: 5px;
+    padding: 4px 12px; /* Match padding to ensure consistent size */
+}
+
+/* Hover Effect */
+QTabBar::tab:hover {
+    background: #F0F0F0; /* Light gray hover effect */
+    color: #000000; /* Ensure text stays visible */
+}
+
+/* Tab Bar Scroll Buttons (if tabs don't fit) */
+QTabBar::scroller {
+    border: none;
+}
+
+/* Tab Widget Panel */
+QTabWidget::pane {
+    border: 1px solid #C8C8C8; /* Light border for the content area */
+    background: #FFFFFF; /* White content area background */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: -1px; /* Align pane with tabs */
+}
+
+/* Tab Bar Alignment */
+QTabWidget::tab-bar {
+    alignment: left; /* Align tabs to the left */
+}
+
+/* Optional: Reduce Tab Height (Override default height) */
+QTabBar::tab {
+    height: 24px; /* Reduce the height of tabs */
+}
+
+</string>
+   </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -144,53 +202,243 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QTableWidget" name="this_class_table">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>50</y>
+       <x>50</x>
+       <y>30</y>
        <width>251</width>
        <height>531</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">            QTableWidget {
-                background-color: white;
-                gridline-color: #E5E7EB;
-                border: none;
-       		alternate-background-color: #F9FAFB;
-            }
+      <string notr="true">
+QTableWidget, QTableView {
+    background-color: #FFFFFF; /* White background */
+    border: 1px solid #C8C8C8; /* Light border around the table */
+    font-family: 'Segoe UI'; /* Windows-supported font */
+    font-size: 10pt; /* Readable font size */
+    color: #000000; /* Black text color */
+    selection-background-color: #0078D4; /* Windows accent color for selection */
+    selection-color: #FFFFFF; /* Ensure text is visible when selected */
+    border-radius: 5px; /* Rounded corners for the table */
+}
 
-            QHeaderView::section {
-                background-color: #F3F4F6;
-                padding: 10px;
-					padding-left: 5px;
-                border: none;
-                font-weight: bold;
-                color: #374151;
-            }
+/* Header Styles */
+QHeaderView::section {
+    background-color: #F3F3F3; /* Light gray background for headers */
+    color: #000000; /* Black text for headers */
+    padding: 8px; /* Padding inside header cells */
+    font-family: 'Segoe UI'; /* Match table font */
+    font-size: 10pt; /* Match table font size */
+    font-weight: bold; /* Bold header text */
+    border: 1px solid #E0E0E0; /* Light border for headers */
 
+}
 
-    QTableView::item {
-        border-bottom: 1px solid #E5E7EB;
-        border-right: none;
+/* Alternating Row Colors */
+QTableWidget::item, QTableView::item {
+    background-color: #FFFFFF; /* Default row background */
+    border: none; /* Remove cell borders */
+}
+QTableWidget::item:alternate, QTableView::item:alternate {
+    background-color: #F9F9F9; /* Slightly darker alternate row background */
+}
+
+/* Selection */
+QTableWidget::item:selected, QTableView::item:selected {
+    background-color: #0078D4; /* Windows accent color */
+    color: #FFFFFF; /* White text when selected */
+    border: none; /* Clean look for selected cells */
+}
+
+/* Focus (Active cell, even when not selected) */
+QTableWidget::item:focus, QTableView::item:focus {
+    border: 1px solid #0078D4; /* Accent color for focus */
+}
+
+/* Horizontal Lines Only */
+QHeaderView {
+    border: none;
+    border-bottom: 1px solid #E0E0E0; /* Horizontal lines */
+}
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
     }
 
-/*
-        QTableWidget::item {
-            selection-background-color: transparent;
-            selection-color: black;  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QTableWidget" name="no_class_table">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>70</y>
+       <x>440</x>
+       <y>30</y>
        <width>251</width>
        <height>531</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">
+QTableWidget, QTableView {
+    background-color: #FFFFFF; /* White background */
+    border: 1px solid #C8C8C8; /* Light border around the table */
+    font-family: 'Segoe UI'; /* Windows-supported font */
+    font-size: 10pt; /* Readable font size */
+    color: #000000; /* Black text color */
+    selection-background-color: #0078D4; /* Windows accent color for selection */
+    selection-color: #FFFFFF; /* Ensure text is visible when selected */
+    border-radius: 5px; /* Rounded corners for the table */
+}
+
+/* Header Styles */
+QHeaderView::section {
+    background-color: #F3F3F3; /* Light gray background for headers */
+    color: #000000; /* Black text for headers */
+    padding: 8px; /* Padding inside header cells */
+    font-family: 'Segoe UI'; /* Match table font */
+    font-size: 10pt; /* Match table font size */
+    font-weight: bold; /* Bold header text */
+    border: 1px solid #E0E0E0; /* Light border for headers */
+
+}
+
+/* Alternating Row Colors */
+QTableWidget::item, QTableView::item {
+    background-color: #FFFFFF; /* Default row background */
+    border: none; /* Remove cell borders */
+}
+QTableWidget::item:alternate, QTableView::item:alternate {
+    background-color: #F9F9F9; /* Slightly darker alternate row background */
+}
+
+/* Selection */
+QTableWidget::item:selected, QTableView::item:selected {
+    background-color: #0078D4; /* Windows accent color */
+    color: #FFFFFF; /* White text when selected */
+    border: none; /* Clean look for selected cells */
+}
+
+/* Focus (Active cell, even when not selected) */
+QTableWidget::item:focus, QTableView::item:focus {
+    border: 1px solid #0078D4; /* Accent color for focus */
+}
+
+/* Horizontal Lines Only */
+QHeaderView {
+    border: none;
+    border-bottom: 1px solid #E0E0E0; /* Horizontal lines */
+}
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
+    }
+
+</string>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="add_std_button">
@@ -199,8 +447,8 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>360</y>
+       <x>330</x>
+       <y>260</y>
        <width>71</width>
        <height>41</height>
       </rect>
@@ -242,8 +490,8 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>430</y>
+       <x>330</x>
+       <y>320</y>
        <width>71</width>
        <height>41</height>
       </rect>

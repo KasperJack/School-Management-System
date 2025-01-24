@@ -21,3 +21,4 @@ class EditTeacherDialog(QDialog):
         print(f"t ID: {self.teacher_id}")
 
 
+
