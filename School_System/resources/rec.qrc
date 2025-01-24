@@ -46,4 +46,8 @@
     <file>icons/dashboard1.png</file>
     <file>icons/add student.png</file>
   </qresource>
+  <qresource prefix="newPrefix">
+    <file>blue_icons/dashboardsmall1g.png</file>
+    <file>blue_icons/dashboardsmall1b.png</file>
+  </qresource>
 </RCC>
