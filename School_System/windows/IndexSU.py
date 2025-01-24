@@ -54,7 +54,7 @@ class IndexSU(QMainWindow):
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
         self.add_student_button.clicked.connect(self.open_add_student_dialog)
         self.students_table.cellClicked.connect(self.on_cell_clicked)
-        self.profile_pic_user.clicked.connect(self.printff)
+        self.profile_pic_user.clicked.connect(lambda: print("F"))
 
         #########################[search students table]################################
         self.search_bar.textChanged.connect(self.filter_students_table)
@@ -143,9 +143,6 @@ class IndexSU(QMainWindow):
         self.tabWidget_dash.setTabText(1, "Admins")
         self.tabWidget_dash.setTabText(2, "Activity")
 ##################################################################################################################################
-
-    def printff(self):
-        print("cc")
 
 
     def greet_user(self):
@@ -691,13 +688,13 @@ class IndexSU(QMainWindow):
             icon = update_icon  # Default icon
 
             if activity_type == "add":
-                row_color = QColor(200, 255, 200)  # Light green for "add"
+                row_color = QColor(200, 255, 200)
                 icon = add_icon
             elif activity_type == "delete":
-                row_color = QColor(255, 200, 200)  # Light red for "delete"
+                row_color = QColor(255, 200, 200)
                 icon = delete_icon
             else:
-                row_color = QColor(255, 255, 200)  # Light yellow for others
+                row_color = QColor(255, 255, 200)
 
 
 

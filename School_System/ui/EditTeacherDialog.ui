@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>421</width>
-    <height>545</height>
+    <width>759</width>
+    <height>788</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,11 @@
   <property name="styleSheet">
    <string notr="true">/* General Window */
 QWidget {
-    background-color: rgb(255, 255, 255);
+    background-color:rgb(255, 255, 255); /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
+border-radius: 10px;
 }
 
 /* Dark Mode (Toggle this for dark theme) */
@@ -34,10 +35,10 @@ QWidget {
 QPushButton {
     background-color: #0078d7; /* Windows Blue */
     color: white;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 8px 16px;
     border: none;
-    font-size: 10pt;
+    font-size: 11pt;
 }
 QPushButton:hover {
     background-color: #005a9e; /* Darker Blue on Hover */
@@ -61,7 +62,7 @@ QLineEdit:focus {
 
 /* Labels */
 QLabel {
-    font-size: 10pt;
+    font-size: 13pt;
     color: #333333; /* Dark Gray */
 }
 
@@ -87,225 +88,13 @@ QScrollBar::handle:vertical:hover {
 }
 </string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>120</y>
-     <width>171</width>
-     <height>56</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>name</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="name_field"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>80</y>
-     <width>86</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Segoe UI</family>
-     <pointsize>12</pointsize>
-     <strikeout>false</strikeout>
-    </font>
-   </property>
-   <item>
-    <property name="text">
-     <string>M</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>F</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QWidget" name="layoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>120</y>
-     <width>171</width>
-     <height>56</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>last name</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="last_name_field"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget_3">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>190</y>
-     <width>361</width>
-     <height>56</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>email</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="email_field"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget_4">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>260</y>
-     <width>361</width>
-     <height>56</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>phone</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="phone_field"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget_5">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>340</y>
-     <width>361</width>
-     <height>56</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_5">
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="font">
-       <font>
-        <family>Segoe UI</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>address *</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="address_field"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QComboBox" name="subject_dropdown">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>80</y>
-     <width>86</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>410</y>
-     <width>88</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_teacher_button">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>460</y>
-     <width>239</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string>Add Teacher</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>-50</x>
      <y>0</y>
-     <width>901</width>
-     <height>51</height>
+     <width>951</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -316,24 +105,268 @@ QScrollBar::handle:vertical:hover {
     font-size: 12pt;
 }</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>221</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Edit Teacher</string>
-    </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>781</width>
+     <height>701</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTabBar::tab {
+    background: #E5E5E5; /* Light gray background for unselected tabs */
+    color: #000000; /* Black text color */
+    border: 1px solid transparent; /* Transparent border to prevent outlines */
+    border-bottom: none; /* Remove bottom border for seamless alignment with content */
+    padding: 4px 12px; /* Padding for consistent size */
+    min-width: 100px; /* Minimum tab width */
+    border-top-left-radius: 5px; /* Rounded top-left corner */
+    border-top-right-radius: 5px; /* Rounded top-right corner */
+    margin-left: 0px; /* Adjust spacing between tabs */
+    outline: none; /* Remove focus outline */
+}
+
+/* Selected Tab */
+QTabBar::tab:selected {
+    background: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:1,
+        stop:0 #0078D4, stop:1 #005A9E
+    ); /* Gradient for selected tab */
+    border: 1px solid transparent; /* Transparent border */
+    color: white; /* White text for contrast */
+    border-top-left-radius: 5px; /* Match rounded corners */
+    border-top-right-radius: 5px;
+    padding: 4px 12px; /* Match padding to ensure consistent size */
+    outline: none; /* Remove focus outline */
+}
+
+/* Prevent Hover Effect on Selected Tab */
+QTabBar::tab:hover:!selected {
+    background: #F0F0F0; /* Light gray hover effect */
+    color: #000000; /* Ensure text stays visible */
+    border: 1px solid transparent; /* Transparent border to match other tabs */
+}
+
+/* Tab Bar Scroll Buttons (if tabs don't fit) */
+QTabBar::scroller {
+    border: none;
+}
+
+/* Tab Widget Panel */
+QTabWidget::pane {
+    border: 1px solid transparent; /* Transparent border for panel */
+    background: #FFFFFF; /* White content area background */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: -1px; /* Align pane with tabs */
+    outline: none; /* Remove focus outline */
+}
+
+/* Center Align the Tab Bar */
+QTabWidget::tab-bar {
+    alignment: center; /* Center align the tabs */
+}
+
+/* Optional: Reduce Tab Height (Override default height) */
+QTabBar::tab {
+    height: 24px; /* Reduce the height of tabs */
+}
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>450</y>
+       <width>88</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>300</y>
+       <width>361</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>phone</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="phone_field"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>380</y>
+       <width>361</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>address *</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="address_field"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="add_teacher_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>500</y>
+       <width>239</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Add Teacher</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>230</y>
+       <width>361</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>email</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="email_field"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>160</y>
+       <width>171</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="name_field"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>160</y>
+       <width>171</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>last name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="last_name_field"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Page</string>
+    </attribute>
    </widget>
   </widget>
  </widget>

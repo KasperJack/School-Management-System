@@ -18,7 +18,6 @@ class EditTeacherDialog(QDialog):
 
         self.setWindowTitle("Edit Teacher")
 
-        print(f"t ID: {self.teacher_id}")
 
 
 
