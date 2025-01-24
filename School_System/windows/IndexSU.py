@@ -139,7 +139,9 @@ class IndexSU(QMainWindow):
         #blur_effect = QGraphicsBlurEffect()
         #blur_effect.setBlurRadius(2)  # Adjust the radius for more/less blur
         #self.icon_text.setGraphicsEffect(blur_effect)
-
+        self.tabWidget_dash.setTabText(0, "Dash")
+        self.tabWidget_dash.setTabText(1, "Admins")
+        self.tabWidget_dash.setTabText(2, "Activity")
 ##################################################################################################################################
 
     def printff(self):
