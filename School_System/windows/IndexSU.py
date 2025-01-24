@@ -66,7 +66,8 @@ class IndexSU(QMainWindow):
         self.back_to_s_table.clicked.connect(self.sw_students)
         self.update_button.clicked.connect(self.update_student_info)
         self.update_pic.clicked.connect(self.open_image_dialog)
-
+        self.hide_side_widget.clicked.connect(lambda:self.side_widget.hide()
+)
 
 
         ##############################################################

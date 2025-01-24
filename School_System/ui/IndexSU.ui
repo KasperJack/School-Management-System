@@ -78,6 +78,9 @@ QWidget {
             <property name="enabled">
              <bool>true</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">border: none; </string>
+            </property>
             <property name="text">
              <string>...</string>
             </property>
@@ -577,6 +580,10 @@ QWidget {
            <widget class="QToolButton" name="toolButton_2">
             <property name="enabled">
              <bool>true</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">   /* background: transparent;*/
+border: none; </string>
             </property>
             <property name="text">
              <string>...</string>
@@ -1256,8 +1263,8 @@ QLineEdit:focus {
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);
-
 border-radius: 10px;
+
 </string>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
@@ -1286,9 +1293,21 @@ border-radius: 10px;
              <layout class="QGridLayout" name="gridLayout_7">
               <item row="0" column="0">
                <widget class="QTabWidget" name="tabWidget_dash">
+                <property name="font">
+                 <font>
+                  <bold>false</bold>
+                  <stylestrategy>PreferDefault</stylestrategy>
+                  <kerning>false</kerning>
+                 </font>
+                </property>
+                <property name="acceptDrops">
+                 <bool>false</bool>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">
-QTabBar::tab {
+                 <string notr="true">QTabBar::tab {
     background: #E5E5E5; /* Light gray background for unselected tabs */
     color: #000000; /* Black text color */
     border: 1px solid #C8C8C8; /* Light border around tabs */
@@ -1298,6 +1317,7 @@ QTabBar::tab {
     border-top-left-radius: 5px; /* Rounded top-left corner */
     border-top-right-radius: 5px; /* Rounded top-right corner */
     margin-left: 0px; /* Adjust spacing between tabs */
+    outline: none; /* Remove outline */
 }
 
 /* Selected Tab */
@@ -1311,6 +1331,7 @@ QTabBar::tab:selected {
     border-top-left-radius: 5px; /* Match rounded corners */
     border-top-right-radius: 5px;
     padding: 4px 12px; /* Match padding to ensure consistent size */
+    outline: none; /* Remove outline */
 }
 
 /* Hover Effect */
@@ -1330,6 +1351,7 @@ QTabWidget::pane {
     background: #FFFFFF; /* White content area background */
     border-radius: 5px; /* Rounded corners */
     margin-top: -1px; /* Align pane with tabs */
+    outline: none; /* Remove outline */
 }
 
 /* Tab Bar Alignment */
@@ -1341,11 +1363,10 @@ QTabWidget::tab-bar {
 QTabBar::tab {
     height: 24px; /* Reduce the height of tabs */
 }
-
 </string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="tab">
                  <attribute name="title">
@@ -1519,10 +1540,7 @@ color: rgb(255, 255, 255);</string>
                    </rect>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">    background: qlineargradient(
-        spread:pad, x1:0, y1:0, x2:1, y2:1,
-        stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */</string>
+                   <string notr="true">background-color: #0078d7; </string>
                   </property>
                  </widget>
                 </widget>
@@ -1637,10 +1655,15 @@ alternate-background-color: #B0EDFB;
                    </rect>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">    background: qlineargradient(
+                   <string notr="true">   /* background: qlineargradient(
         spread:pad, x1:0, y1:0, x2:1, y2:1,
         stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */</string>
+    ); /* Gradient for selected tab */
+
+
+
+
+background-color: #0078d7; </string>
                   </property>
                  </widget>
                 </widget>
@@ -2251,7 +2274,7 @@ QComboBox {
     border: 1px solid #cccccc; /* Light gray border */
     border-radius: 0px; /* Slightly rounded corners */
     font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Standard font size */
+    font-size: 15px; /* Standard font size */
     padding: 2px; /* Keep original padding */
 }
 
@@ -2953,7 +2976,35 @@ QPushButton:disabled {
                     </rect>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true"/>
+                    <string notr="true">/* Base Style for QTextEdit */
+QTextEdit {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #cccccc; /* Light gray border */
+    border-radius: 6px; /* Rounded corners */
+    padding: 6px; /* Inner padding for text */
+    font-family: &quot;Segoe UI&quot;; /* Windows system font */
+    font-size: 12px; /* Standard font size for readability */
+    line-height: 1.5; /* Improve readability with line spacing */
+}
+
+/* Focused State */
+QTextEdit:focus {
+    border: 1px solid #0078D4; /* Fluent blue border when focused */
+    outline: none; /* Remove default outline */
+    background-color: #f7f9fc; /* Slightly tinted background */
+}
+
+/* Disabled State */
+QTextEdit:disabled {
+    background-color: #f0f0f0; /* Light gray background for disabled state */
+    color: #aaaaaa; /* Gray text color */
+    border: 1px solid #dddddd; /* Subtle border for disabled state */
+}
+</string>
+                   </property>
+                   <property name="readOnly">
+                    <bool>true</bool>
                    </property>
                    <property name="html">
                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -2962,21 +3013,21 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI','Arial','sans-serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Open Sans','Arial','sans-serif'; font-size:14pt; font-weight:700; color:#000000; background-color:#ffffff;&quot;&gt;Lorem Ipsum&lt;/span&gt;&lt;span style=&quot; font-family:'Open Sans','Arial','sans-serif'; font-size:14pt; color:#000000; background-color:#ffffff;&quot;&gt; is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
-                  <widget class="QPushButton" name="pushButton_5">
+                  <widget class="QPushButton" name="hide_side_widget">
                    <property name="geometry">
                     <rect>
-                     <x>-3</x>
+                     <x>17</x>
                      <y>700</y>
-                     <width>301</width>
+                     <width>261</width>
                      <height>41</height>
                     </rect>
                    </property>
                    <property name="text">
-                    <string>&gt;</string>
+                    <string> &gt;&gt;&gt;</string>
                    </property>
                   </widget>
                  </widget>
@@ -3196,11 +3247,85 @@ QPushButton:pressed {
              <widget class="QGroupBox" name="groupBox_3">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>40</y>
+                <x>60</x>
+                <y>70</y>
                 <width>481</width>
                 <height>621</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">/* General Window */
+QWidget {
+    background-color:#f3f3f3; /* Light Gray for Light Mode */
+    color: #000000;           /* Black Text */
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 12pt;
+border-radius: 10px;
+}
+
+/* Dark Mode (Toggle this for dark theme) */
+/*
+QWidget {
+    background-color: #2b2b2b; 
+    color: #ffffff;           
+}
+*/
+
+/* Buttons */
+QPushButton {
+    background-color: #0078d7; /* Windows Blue */
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+    border: none;
+    font-size: 11pt;
+}
+QPushButton:hover {
+    background-color: #005a9e; /* Darker Blue on Hover */
+}
+QPushButton:pressed {
+    background-color: #004578; /* Even Darker Blue on Click */
+}
+
+/* Input Fields */
+QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}
+
+/* Labels */
+QLabel {
+    font-size: 13pt;
+    color: #333333; /* Dark Gray */
+}
+
+/* Checkboxes and Radio Buttons */
+QCheckBox, QRadioButton {
+    spacing: 6px;
+    color: #333333;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    border: none;
+    background: #f3f3f3;
+    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {
+    background: #cccccc;
+    border-radius: 4px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #aaaaaa;
+}</string>
               </property>
               <property name="title">
                <string/>
@@ -3208,8 +3333,8 @@ QPushButton:pressed {
               <widget class="QPushButton" name="update_button">
                <property name="geometry">
                 <rect>
-                 <x>150</x>
-                 <y>560</y>
+                 <x>140</x>
+                 <y>580</y>
                  <width>88</width>
                  <height>26</height>
                 </rect>
@@ -3222,7 +3347,7 @@ QPushButton:pressed {
                <property name="geometry">
                 <rect>
                  <x>250</x>
-                 <y>560</y>
+                 <y>580</y>
                  <width>88</width>
                  <height>26</height>
                 </rect>
@@ -3235,7 +3360,7 @@ QPushButton:pressed {
                <property name="geometry">
                 <rect>
                  <x>52</x>
-                 <y>73</y>
+                 <y>50</y>
                  <width>381</width>
                  <height>143</height>
                 </rect>
@@ -3276,7 +3401,8 @@ border-radius: 0px;</string>
                    <widget class="QLabel" name="label_59">
                     <property name="font">
                      <font>
-                      <pointsize>11</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -3297,9 +3423,7 @@ border-radius: 0px;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">padding-left:5px;
-border: 1px solid gray;
-border-radius: 7px;</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -3312,10 +3436,7 @@ border-radius: 7px;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -3341,7 +3462,7 @@ QComboBox {
     border: 1px solid #cccccc; /* Light gray border */
     border-radius: 0px; /* Slightly rounded corners */
     font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Standard font size */
+    font-size: 15px; /* Standard font size */
     padding: 2px; /* Keep original padding */
 }
 
@@ -3389,8 +3510,8 @@ QComboBox:focus {
                <property name="geometry">
                 <rect>
                  <x>50</x>
-                 <y>232</y>
-                 <width>371</width>
+                 <y>230</y>
+                 <width>381</width>
                  <height>311</height>
                 </rect>
                </property>
@@ -3401,7 +3522,8 @@ QComboBox:focus {
                    <widget class="QLabel" name="label_50">
                     <property name="font">
                      <font>
-                      <pointsize>11</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -3428,10 +3550,52 @@ QComboBox:focus {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+                     <string notr="true">/* Base Style for QDateEdit */
+QDateEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+    selection-background-color: #0078d7; /* Highlight color for selected text */
+    selection-color: white; /* Text color for selected text */
+}
+
+/* Hover State */
+QDateEdit:hover {
+    border: 1px solid #999999; /* Slightly darker border on hover */
+}
+
+/* Focus State */
+QDateEdit:focus {
+    border: 1px solid #0078d7; /* Blue border on focus */
+    background-color: #ffffff;
+}
+
+/* Drop-down Calendar Button */
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: center right;
+    width: 24px; /* Width of the drop-down button */
+    border-left: 1px solid #cccccc; /* Separator between the input and button */
+}
+
+/* Drop-down Calendar Button Icon */
+QDateEdit::down-arrow {
+    image: url(:/icons/calendar.png); /* Replace with your calendar icon */
+    width: 16px;
+    height: 16px;
+}
+
+/* Drop-down Calendar Button Hover State */
+QDateEdit::drop-down:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+/* Drop-down Calendar Button Pressed State */
+QDateEdit::drop-down:pressed {
+    background-color: #e0e0e0; /* Slightly darker gray when pressed */
+}</string>
                     </property>
                     <property name="displayFormat">
                      <string>dd/MM/yyyy</string>
@@ -3449,7 +3613,8 @@ QComboBox:focus {
                    <widget class="QLabel" name="label_52">
                     <property name="font">
                      <font>
-                      <pointsize>11</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -3470,10 +3635,7 @@ QComboBox:focus {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -3485,7 +3647,8 @@ QComboBox:focus {
                    <widget class="QLabel" name="label_54">
                     <property name="font">
                      <font>
-                      <pointsize>11</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -3506,10 +3669,7 @@ QComboBox:focus {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -3521,7 +3681,8 @@ QComboBox:focus {
                    <widget class="QLabel" name="label_56">
                     <property name="font">
                      <font>
-                      <pointsize>11</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
@@ -3542,10 +3703,7 @@ QComboBox:focus {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -3556,31 +3714,56 @@ QComboBox:focus {
               <widget class="QPushButton" name="update_pic">
                <property name="geometry">
                 <rect>
-                 <x>80</x>
-                 <y>40</y>
-                 <width>88</width>
-                 <height>26</height>
+                 <x>90</x>
+                 <y>200</y>
+                 <width>71</width>
+                 <height>31</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>pic</string>
                </property>
               </widget>
              </widget>
              <widget class="QTextEdit" name="update_additional_info">
               <property name="geometry">
                <rect>
-                <x>520</x>
+                <x>570</x>
                 <y>350</y>
                 <width>271</width>
                 <height>311</height>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">                background-color: #F3F4F6;
-                color: #374151;
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;</string>
+               <string notr="true">/* Base Style for QTextEdit */
+QTextEdit {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #cccccc; /* Light gray border */
+    border-radius: 6px; /* Rounded corners */
+    padding: 6px; /* Inner padding for text */
+    font-family: &quot;Segoe UI&quot;; /* Windows system font */
+    font-size: 12px; /* Standard font size for readability */
+    line-height: 1.5; /* Improve readability with line spacing */
+}
+
+/* Focused State */
+QTextEdit:focus {
+    border: 1px solid #0078D4; /* Fluent blue border when focused */
+    outline: none; /* Remove default outline */
+    background-color: #f7f9fc; /* Slightly tinted background */
+}
+
+/* Disabled State */
+QTextEdit:disabled {
+    background-color: #f0f0f0; /* Light gray background for disabled state */
+    color: #aaaaaa; /* Gray text color */
+    border: 1px solid #dddddd; /* Subtle border for disabled state */
+}
+</string>
               </property>
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -3589,7 +3772,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Open Sans','Arial','sans-serif'; font-size:14pt; font-weight:700; color:#000000; background-color:#ffffff;&quot;&gt;Lorem Ipsum&lt;/span&gt;&lt;span style=&quot; font-family:'Open Sans','Arial','sans-serif'; font-size:14pt; color:#000000; background-color:#ffffff;&quot;&gt; is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
