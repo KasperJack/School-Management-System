@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLay
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt, QPoint
-from PyQt6.QtGui import QColor
+from PyQt6.QtGui import QColor ,QBrush
 
 
 import School_System.helpers.db_utils as database
@@ -23,10 +23,7 @@ class EditTeacherDialog(QDialog):
 
         self.setWindowTitle("Edit Teacher")
 
-        test = database.get_teacher_classes(self.teacher_id)
-        print(test)
-        all_subjects = database.get_teacher_subjects(self.teacher_id)
-        print(all_subjects)
+
 
         self.tree_widget.setHeaderLabel("Subjects and Classes")  # Se
         self.tree_widget.setColumnCount(2)
@@ -41,13 +38,6 @@ class EditTeacherDialog(QDialog):
 
 
 
-
-
-
-
-
-
-
     def add_subjects(self):
         all_subjects = database.get_teacher_subjects(self.teacher_id)
         for subject_id, subject_name in all_subjects:
@@ -57,10 +47,6 @@ class EditTeacherDialog(QDialog):
             # Store the subject ID in the item
             subject_item.setData(0, Qt.ItemDataRole.UserRole, subject_id)
 
-            # Highlight the entire row
-            for column in range(self.tree_widget.columnCount()):
-                subject_item.setBackground(column, QColor(200, 255, 200))
-                subject_item.setForeground(column, QColor(200, 255, 200))
 
 
 
