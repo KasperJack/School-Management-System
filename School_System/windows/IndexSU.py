@@ -259,8 +259,8 @@ class IndexSU(QMainWindow):
                 # Add the "Actions" buttons
                 activate_button = QPushButton("Activate")
                 delete_button = QPushButton("Delete")
-                activate_button.setStyleSheet("background-color: green; color: white;")
-                delete_button.setStyleSheet("background-color: red; color: white;")
+                activate_button.setStyleSheet(edit_button_style_sheet)
+                delete_button.setStyleSheet(delete_button_style_sheet)
 
                 # Connect buttons to their respective methods
                 activate_button.clicked.connect(lambda _, r=row_index: self.activate_admin(r))
@@ -508,7 +508,7 @@ class IndexSU(QMainWindow):
             for index in range(self.comboBox_class.count()):
                 item_text = self.comboBox_class.itemText(index)
                 if item_text == student_info['class_name']:
-                    self.comboBox_class.setItemData(index, QBrush(QColor(255, 255, 0)), Qt.ItemDataRole.BackgroundRole)
+                    self.comboBox_class.setItemData(index, QBrush(QColor(0, 120, 212)), Qt.ItemDataRole.BackgroundRole)
                     self.comboBox_class.setCurrentIndex(index)
         else:
             self.comboBox_class.addItem("NO class")
@@ -871,8 +871,9 @@ class IndexSU(QMainWindow):
             # Add buttons to a layout
             button_layout = QHBoxLayout()
             button_layout.addWidget(edit_button)
-            button_layout.addWidget(delete_button)
             button_layout.addWidget(view_button)
+            button_layout.addWidget(delete_button)
+
 
             # Create a widget to hold the buttons
             button_widget = QWidget()

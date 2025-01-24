@@ -201,43 +201,56 @@ QPushButton:pressed {
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>10</pointsize>
+     <pointsize>-1</pointsize>
      <strikeout>false</strikeout>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">            QComboBox {
-                background-color: #0078d7;  /* Blue background */
-                color: white;              /* White text */
-                border: none;
-                border-radius: 5px;        /* Rounded corners */
-                font-size: 10pt;
-            }
-            QComboBox:hover {
-                background-color: #005a9e; /* Darker blue on hover */
-            }
- 
+    <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #cccccc; /* Light gray border */
+    border-radius: 0px; /* Slightly rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* Windows system font */
+    font-size: 12px; /* Standard font size */
+    padding: 2px; /* Keep original padding */
+}
 
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #f0f0f0; /* Light gray background for the arrow */
+    border-left: 1px solid #cccccc; /* Add a separator for the arrow */
+    width: 20px; /* Keep original width */
+}
 
-            QComboBox QAbstractItemView {
-                background-color: #bababa; /* White background for drop-down menu */
-                color: black;              /* Black text in drop-down */
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Use a custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
 
-            }
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #f9f9f9; /* Light gray background for the menu */
+    color: #000000; /* Black text */
+    border: 0px solid #cccccc; /* Light gray border around the menu */
+    selection-background-color: #0078d4; /* Blue highlight for selected items */
+    selection-color: #ffffff; /* White text for selected items */
+}
 
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #0078d4; /* Blue border on hover */
+}
 
-
-            QComboBox::down-arrow {
-                width: 8px;
-                height: 8px;
-                margin: 0px;
-            }
-
-
-           QComboBox::drop-down {
-                width: 25px;
-
-            }
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #005a9e; /* Darker blue border when focused */
+}
+&quot;&quot;&quot;
 </string>
    </property>
   </widget>
