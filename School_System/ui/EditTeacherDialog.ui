@@ -365,11 +365,14 @@ QTabBar::tab {
     <widget class="QTreeWidget" name="tree_widget">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>40</y>
-       <width>691</width>
+       <x>50</x>
+       <y>50</y>
+       <width>291</width>
        <height>611</height>
       </rect>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">/* General TreeWidget Style */
@@ -401,7 +404,8 @@ QHeaderView::section:hover {
 /* Tree Items */
 QTreeWidget::item {
     padding: 4px; /* Padding for items */
-    border: none; /* No border around items */
+    border: none;
+
 }
 
 /* Selected Item */

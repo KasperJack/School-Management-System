@@ -1377,6 +1377,75 @@ def get_teacher_classes(teacher_id):
 
         query = """
        SELECT DISTINCT
+           s.subject_id,
+           c.class_name,
+           c.class_id,
+           c.grade_name,
+           ts.ts_id
+       FROM course co
+       JOIN teachers_subjects ts ON co.ts_id = ts.ts_id
+       JOIN class c ON co.class_id = c.class_id
+       JOIN subjects s ON ts.subject_id = s.subject_id
+       WHERE ts.teacher_id = ?
+       """
+
+        cursor.execute(query, (teacher_id,))
+        results = cursor.fetchall()
+
+        conn.close()
+        return results
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")## remove this and all print statements
+        return None
+
+
+
+
+def get_teacher_subjects(teacher_id):
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    query = """
+    SELECT DISTINCT s.subject_id, s.subject_name 
+    FROM teachers_subjects ts
+    JOIN subjects s ON ts.subject_id = s.subject_id
+    WHERE ts.teacher_id = ?
+    """
+
+
+    cursor.execute(query, (teacher_id,))
+    results = cursor.fetchall()
+    conn.close()
+
+    return results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_teacher_classes_dep(teacher_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        query = """
+       SELECT DISTINCT
            c.class_id,
            ts.ts_id,
            s.subject_id,
@@ -1401,21 +1470,9 @@ def get_teacher_classes(teacher_id):
 
 
 
-def get_teacher_subjects(teacher_id):
-
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    query = """
-    SELECT DISTINCT s.subject_id, s.subject_name 
-    FROM teachers_subjects ts
-    JOIN subjects s ON ts.subject_id = s.subject_id
-    WHERE ts.teacher_id = ?
-    """
 
 
-    cursor.execute(query, (teacher_id,))
-    results = cursor.fetchall()
-    conn.close()
 
-    return results
+
+
+
