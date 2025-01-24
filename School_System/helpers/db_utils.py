@@ -573,7 +573,7 @@ def get_teachers_subjects():
 
 
 
-
+# ? ??????? ??????????? w
 
 def get_teachers_subjects_default():
     """Fetch teacher-subject pairs where teacher_id is 62 and populate the teachers_subjects_scrollArea with checkboxes."""
@@ -1322,16 +1322,16 @@ def change_course_teacher(teacher_id, subject_id, class_id):
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
-        # First delete any existing course entries for this subject in this class
+        # Delete only the course entry for this specific class and subject
         delete_query = """
         DELETE FROM course 
         WHERE ts_id IN (
             SELECT ts.ts_id 
             FROM teachers_subjects ts 
             WHERE ts.subject_id = ?
-        ) 
+        ) AND class_id = ?
         """
-        cursor.execute(delete_query, (subject_id,))
+        cursor.execute(delete_query, (subject_id, class_id))
 
         # Then get the ts_id for the new teacher-subject combination
         find_ts_id_query = """
@@ -1369,13 +1369,53 @@ def change_course_teacher(teacher_id, subject_id, class_id):
         return False
 
 
-## look up teacher (change info)
-    ##add subject /remove
-    ##
 
-## look up student (change info)
-    ## add  /remove class
+def get_teacher_classes(teacher_id):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
 
- ## look up class
-    ## add /remove couses
-    ##
+        query = """
+       SELECT DISTINCT
+           c.class_id,
+           ts.ts_id,
+           s.subject_id,
+           c.class_name,
+           s.subject_name
+       FROM course co
+       JOIN teachers_subjects ts ON co.ts_id = ts.ts_id
+       JOIN class c ON co.class_id = c.class_id
+       JOIN subjects s ON ts.subject_id = s.subject_id
+       WHERE ts.teacher_id = ?
+       """
+
+        cursor.execute(query, (teacher_id,))
+        results = cursor.fetchall()
+
+        conn.close()
+        return results
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")## remove this and all print statemintes
+        return None
+
+
+
+def get_teacher_subjects(teacher_id):
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    query = """
+    SELECT DISTINCT s.subject_id, s.subject_name 
+    FROM teachers_subjects ts
+    JOIN subjects s ON ts.subject_id = s.subject_id
+    WHERE ts.teacher_id = ?
+    """
+
+
+    cursor.execute(query, (teacher_id,))
+    results = cursor.fetchall()
+    conn.close()
+
+    return results

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
+    <width>775</width>
     <height>788</height>
    </rect>
   </property>
@@ -176,7 +176,7 @@ QTabBar::tab {
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -362,6 +362,110 @@ QTabBar::tab {
     <attribute name="title">
      <string>Tab 2</string>
     </attribute>
+    <widget class="QTreeWidget" name="tree_widget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>691</width>
+       <height>611</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* General TreeWidget Style */
+QTreeWidget {
+    background-color: #f3f3f3; /* Light gray background */
+    color: #000000; /* Black text */
+    border: 1px solid #c8c8c8; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif; /* Windows-style font */
+    font-size: 18px; /* Larger font size for readability */
+    padding: 4px; /* Padding for better spacing */
+}
+
+/* Header Style */
+QHeaderView::section {
+    background-color: #e5e5e5; /* Light gray header */
+    color: #000000; /* Black text */
+    font-weight: bold; /* Bold font for header */
+    border: 1px solid #c8c8c8; /* Light border */
+    padding: 6px; /* Padding for header sections */
+    font-size: 15px; /* Slightly larger font size for header */
+}
+
+/* Hover Effect on Header */
+QHeaderView::section:hover {
+    background-color: #dcdcdc; /* Slightly darker gray on hover */
+}
+
+/* Tree Items */
+QTreeWidget::item {
+    padding: 4px; /* Padding for items */
+    border: none; /* No border around items */
+}
+
+/* Selected Item */
+QTreeWidget::item:selected {
+    background-color: #0078D4; /* Windows blue for selected item */
+    color: white; /* White text for contrast */
+    border-radius: 3px; /* Subtle rounded corners for selection */
+}
+
+/* Hover Effect on Item (Non-Selected Only) */
+QTreeWidget::item:hover {
+    background-color: #e0e0e0; /* Slightly darker gray hover effect */
+    color: #000000; /* Black text */
+}
+
+/* Prevent Hover from Overriding Selection */
+QTreeWidget::item:selected:hover {
+    background-color: #005A9E; /* Slightly darker blue for selected hover */
+    color: white; /* Keep text white for contrast */
+}
+
+/* Branch Indicator (Expand/Collapse Icons) */
+QTreeView::branch:has-siblings:!adjoins-item {
+    border-image: image: url(:/newPrefix/blue_icons/60995.png) 0; /* Custom branch line */
+}
+
+QTreeView::branch:closed:has-children {
+    border-image: none;
+    image: image: url(:/newPrefix/blue_icons/60995.png);
+/* Custom closed icon */
+}
+
+QTreeView::branch:open:has-children {
+    border-image: none;
+    image:image: url(:/newPrefix/blue_icons/60995.png);
+/* Custom open icon */
+}
+
+/* Scroll Bar Style */
+QTreeWidget QScrollBar:vertical {
+    border: none;
+    background: #f0f0f0; /* Light gray background for scrollbar */
+    width: 12px; /* Width of scrollbar */
+    margin: 0px; /* No margins */
+}
+
+QTreeWidget QScrollBar::handle:vertical {
+    background: #c8c8c8; /* Gray scrollbar handle */
+    border-radius: 6px; /* Rounded corners */
+}
+
+QTreeWidget QScrollBar::add-line:vertical,
+QTreeWidget QScrollBar::sub-line:vertical {
+    height: 0px; /* Remove arrow buttons */
+    background: none;
+}
+</string>
+     </property>
+     <column>
+      <property name="text">
+       <string notr="true">1</string>
+      </property>
+     </column>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -370,6 +474,8 @@ QTabBar::tab {
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/test.qrc"/>
+ </resources>
  <connections/>
 </ui>
