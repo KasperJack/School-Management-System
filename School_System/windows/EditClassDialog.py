@@ -22,6 +22,9 @@ class EditClassDialog(QDialog):
         self.tabWidget.setTabText(1, "subjects")
 
 
+        class_data = database.get_class_data(self.class_id)
+        print(class_data)
+
         self.setup_class_transfer_tables()
 
 
@@ -40,7 +43,6 @@ class EditClassDialog(QDialog):
         #print(teachers_data)
         self.reload()
         self.adjust_tables_subjects()
-        self.new_subjects_table.setColumnHidden(0, True)
 
 
 
@@ -157,6 +159,7 @@ class EditClassDialog(QDialog):
 
         self.load_students_no_class()
         self.no_class_table.setColumnHidden(0, True)
+
 
 
 
@@ -325,6 +328,8 @@ class EditClassDialog(QDialog):
             add_button.clicked.connect(lambda _, row=row_index: self.add_subject(row))  # Connect to a custom method
             self.new_subjects_table.setCellWidget(row_index, 2, add_button)
 
+
+
     def add_subject(self, row):
         subject_id = self.new_subjects_table.item(row, 0).text()
         database.add_subject_to_class(subject_id, self.class_id)
@@ -340,6 +345,15 @@ class EditClassDialog(QDialog):
 
         subjects = database.get_subjects()
         self.load_subjects_with_add_button(subjects,ids)
+        self.new_subjects_table.setColumnHidden(0, True)
+
+
+
+
+
+
+
+
 
 
 

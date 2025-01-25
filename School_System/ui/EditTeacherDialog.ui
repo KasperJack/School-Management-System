@@ -475,17 +475,6 @@ QTreeWidget QScrollBar::sub-line:vertical {
       </property>
      </column>
     </widget>
-    <widget class="QWidget" name="gridLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>210</y>
-       <width>271</width>
-       <height>351</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="gridLayout"/>
-    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">

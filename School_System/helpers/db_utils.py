@@ -1074,6 +1074,9 @@ def get_students_in_class(class_id):
         print(f"Database error: {e}")
         return []
 
+
+
+
 #### add loggs #################
 def assign_student_to_class(student_id, class_id):
     try:
@@ -1100,6 +1103,7 @@ def assign_student_to_class(student_id, class_id):
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return False
+
 
 
 #### add loggs #################
@@ -1155,6 +1159,9 @@ def get_class_subjects_and_teachers(class_id):
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return None
+
+
+
 
 
 def get_class_subjects_and_all_teachers(class_id):
@@ -1472,6 +1479,21 @@ def get_teacher_classes_dep(teacher_id):
 
 
 
+
+
+def get_class_data(class_id):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Get class info
+    class_query = """
+    SELECT * FROM class_view WHERE class_id = ?
+    """
+    cursor.execute(class_query, (class_id,))
+    class_data = cursor.fetchone()
+
+    conn.close()
+    return class_data
 
 
 
