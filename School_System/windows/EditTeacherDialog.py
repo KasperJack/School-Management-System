@@ -24,10 +24,18 @@ class EditTeacherDialog(QDialog):
 
         self.tree_widget.setHeaderLabel("Adem Boubaker")  # Se
         self.tree_widget.setColumnCount(2)
-
         self.add_subjects()
         self.add_classes_and_grades()
+        self.rearrange_tree()
+        self.tree_widget.setColumnWidth(0, 200)  # Set width of the first column to 200 pixels
+        self.tree_widget.setColumnWidth(1, 90)  # Set width of the second column to 150 pixel
         self.tree_widget.expandAll()
+
+
+
+
+
+
         self.tree_widget.itemClicked.connect(lambda : print("f"))
 
         #self.highlight_top_level_items()
@@ -38,9 +46,10 @@ class EditTeacherDialog(QDialog):
         self.tree_widget.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.tree_widget.customContextMenuRequested.connect(self.show_context_menu)
 
-    from PyQt6.QtGui import QFont
-    from PyQt6.QtWidgets import QTreeWidgetItem
-    from PyQt6.QtCore import Qt
+
+
+
+
 
     def add_subjects(self):
         all_subjects = database.get_teacher_subjects(self.teacher_id)
@@ -63,6 +72,8 @@ class EditTeacherDialog(QDialog):
             # If you want to make it dynamic, check if it has children (if applicable)
             if subject_item.childCount() > 0:
                 subject_item.setFont(0, font)  # Make sure parent items are bold
+
+
 
     def add_classes_and_grades(self):
         test = database.get_teacher_classes(self.teacher_id)
@@ -131,3 +142,25 @@ class EditTeacherDialog(QDialog):
             for column in range(self.tree_widget.columnCount()):
                 top_item.setBackground(column, QBrush(QColor(255, 230, 200)))  # Light orange background
                 top_item.setForeground(column, QBrush(QColor(128, 0, 0)))
+
+
+
+    def rearrange_tree(self):
+        parent_items = []
+        leaf_items = []
+
+        # Separate parent and leaf items
+        for i in range(self.tree_widget.topLevelItemCount() - 1, -1, -1):  # Iterate backward
+            item = self.tree_widget.takeTopLevelItem(i)  #detach
+            if item.childCount() > 0:
+                parent_items.append(item)
+            else:
+                leaf_items.append(item)
+
+        # Add parent items first
+        for parent_item in parent_items:
+            self.tree_widget.addTopLevelItem(parent_item)
+
+        # Add leaf items at the bottom
+        for leaf_item in leaf_items:
+            self.tree_widget.addTopLevelItem(leaf_item)
