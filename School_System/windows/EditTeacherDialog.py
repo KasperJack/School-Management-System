@@ -11,7 +11,7 @@ from School_System.ui import EDIT_TEACHER_DIALOG
 from School_System.resources import  ICONS
 from School_System.resources import  ICONS
 
-# best
+# best candidates ## book.png and 90Darrow.png
 
 class EditTeacherDialog(QDialog):
     def __init__(self, index_instance, teacher_id=None, parent=None):
