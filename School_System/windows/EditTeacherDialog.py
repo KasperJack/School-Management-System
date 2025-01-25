@@ -3,13 +3,13 @@ from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLay
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt, QPoint
-from PyQt6.QtGui import QColor ,QBrush
+from PyQt6.QtGui import QColor ,QBrush,QIcon
 
 
 import School_System.helpers.db_utils as database
 from School_System.ui import EDIT_TEACHER_DIALOG
 from School_System.resources import  ICONS
-
+from School_System.resources import  ICONS
 
 class EditTeacherDialog(QDialog):
 
@@ -23,15 +23,19 @@ class EditTeacherDialog(QDialog):
 
         self.setWindowTitle("Edit Teacher")
 
-
-
+        self.tree_widget.setStyleSheet("")  # Reset the style sheet to default
         self.tree_widget.setHeaderLabel("Subjects and Classes")  # Se
         self.tree_widget.setColumnCount(2)
 
         self.add_subjects()
         self.add_classes_and_grades()
+        self.tree_widget.expandAll()
+        self.tree_widget.itemClicked.connect(lambda : print("f"))
 
+        #self.highlight_top_level_items()
 
+        #self.tree_widget.setRootIsDecorated(True)  # Show expand/collapse icons and tree lines
+        #self.tree_widget.setIndentation(20)
 
         self.tree_widget.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.tree_widget.customContextMenuRequested.connect(self.show_context_menu)
@@ -40,9 +44,14 @@ class EditTeacherDialog(QDialog):
 
     def add_subjects(self):
         all_subjects = database.get_teacher_subjects(self.teacher_id)
+        folder_icon = QIcon(f"{ICONS}/info.png")
+
+
         for subject_id, subject_name in all_subjects:
             subject_item = QTreeWidgetItem(self.tree_widget)
-            subject_item.setText(0, subject_name)  # Set the subject name
+            subject_item.setText(0, subject_name)
+            subject_item.setIcon(0, folder_icon)  # Set icon for the first column
+            # Set the subject name
 
             # Store the subject ID in the item
             subject_item.setData(0, Qt.ItemDataRole.UserRole, subject_id)
@@ -52,6 +61,7 @@ class EditTeacherDialog(QDialog):
 
     def add_classes_and_grades(self):
         test = database.get_teacher_classes(self.teacher_id)
+        folder_icon = QIcon(f"{ICONS}/del.png")
 
         for subject_id, class_name, class_id, grade, ts_id in test:
             # Find the subject item by its ID
@@ -59,7 +69,9 @@ class EditTeacherDialog(QDialog):
             if subject_item:
                 # Add the class and grade as a child item under the subject
                 class_item = QTreeWidgetItem(subject_item)
-                class_item.setText(0, class_name)  # Set the class name in the second column
+                class_item.setText(0, class_name)
+                class_item.setIcon(0, folder_icon)  # Set icon for the first column
+
                 class_item.setText(1, grade)  # Set the grade in the third column
 
                 # Store the class_id and ts_id in the item
@@ -99,3 +111,18 @@ class EditTeacherDialog(QDialog):
             elif action == delete_action:
                 print("Delete action triggered")
                 # Implement delete functionality
+
+
+
+
+
+
+    def highlight_top_level_items(self):
+        # Loop through all top-level items
+        for i in range(self.tree_widget.topLevelItemCount()):
+            top_item = self.tree_widget.topLevelItem(i)
+
+            # Highlight only the top-level item
+            for column in range(self.tree_widget.columnCount()):
+                top_item.setBackground(column, QBrush(QColor(255, 230, 200)))  # Light orange background
+                top_item.setForeground(column, QBrush(QColor(128, 0, 0)))

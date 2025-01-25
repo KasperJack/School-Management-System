@@ -461,8 +461,7 @@ QTreeWidget QScrollBar::add-line:vertical,
 QTreeWidget QScrollBar::sub-line:vertical {
     height: 0px; /* Remove arrow buttons */
     background: none;
-}
-</string>
+}</string>
      </property>
      <column>
       <property name="text">
