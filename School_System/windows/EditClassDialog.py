@@ -7,7 +7,7 @@ from PyQt6.QtCore import Qt,QSize, QTimer
 import School_System.helpers.db_utils as database
 from School_System.helpers.db_utils import add_subject_to_default_teacher
 from School_System.ui import EDIT_CLASS_DIALOG
-from School_System.resources import  ICONS
+from School_System.resources import  ICONS, edit_s_button_style_sheet, delete_s_button_style_sheet
 
 
 class EditClassDialog(QDialog):
@@ -16,7 +16,7 @@ class EditClassDialog(QDialog):
         self.index_instance = index_instance  #main class instance
         self.class_id = class_id
         uic.loadUi(EDIT_CLASS_DIALOG, self)
-
+        self.setFixedSize(1192, 672)
         self.setWindowTitle("Edit Class")
         self.tabWidget.setTabText(0, "students")
         self.tabWidget.setTabText(1, "subjects")
@@ -244,8 +244,9 @@ class EditClassDialog(QDialog):
 
             # Add a "Remove" button
             remove_button = QPushButton("")
-            #remove_button.setStyleSheet("color: red; font-weight: bold;")  # Optional: Style the button
-            remove_button.setIcon(QIcon(f'{ICONS}/del.png'))
+            remove_button.setStyleSheet(delete_s_button_style_sheet)
+
+            remove_button.setIcon(QIcon(f'{ICONS}/rm.png'))
 
             # Optionally adjust the size of the icon on the button
             remove_button.setIconSize(QSize(24, 24))
@@ -307,7 +308,7 @@ class EditClassDialog(QDialog):
         # Set up the table
         self.new_subjects_table.setRowCount(len(filtered_subjects))
         self.new_subjects_table.setColumnCount(3)
-        self.new_subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject", "Actions"])
+        self.new_subjects_table.setHorizontalHeaderLabels(["Subject ID", "Subject", ""])
 
         # Populate the table with filtered subjects
         for row_index, (subject_id, subject_name) in enumerate(filtered_subjects):
@@ -322,9 +323,9 @@ class EditClassDialog(QDialog):
             self.new_subjects_table.setItem(row_index, 1, subject_name_item)
 
             # Add an "Add" button
-            add_button = QPushButton("Add")
-            add_button.setStyleSheet("color: green; font-weight: bold;")
-            # Optional: Style the button
+            add_button = QPushButton("")
+            add_button.setStyleSheet(edit_s_button_style_sheet)
+            add_button.setIcon(QIcon(f"{ICONS}/plus.png"))
             add_button.clicked.connect(lambda _, row=row_index: self.add_subject(row))  # Connect to a custom method
             self.new_subjects_table.setCellWidget(row_index, 2, add_button)
 
@@ -334,6 +335,7 @@ class EditClassDialog(QDialog):
         subject_id = self.new_subjects_table.item(row, 0).text()
         database.add_subject_to_class(subject_id, self.class_id)
         self.reload()
+        self.last_selection()
 
 
 
@@ -346,6 +348,8 @@ class EditClassDialog(QDialog):
         subjects = database.get_subjects()
         self.load_subjects_with_add_button(subjects,ids)
         self.new_subjects_table.setColumnHidden(0, True)
+        self.new_subjects_table.verticalHeader().setVisible(False)
+
 
 
 
@@ -374,3 +378,19 @@ class EditClassDialog(QDialog):
         header.resizeSection(2, 35)
         header.resizeSection(4, 30)
         header.resizeSection(5, 50)
+
+        headern = self.new_subjects_table.horizontalHeader()
+        headern.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+
+        headern.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        headern.resizeSection(2, 70)
+
+
+    def last_selection(self):
+        ## change the table the last row
+        # Select the last row in a QTableWidget
+        last_row = self.subjects_table.rowCount() - 1
+        print(last_row)
+        if last_row >= 0:  # Ensure the table is not empty
+            self.subjects_table.selectRow(last_row)

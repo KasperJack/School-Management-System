@@ -275,10 +275,10 @@ QHeaderView {
     <widget class="QTableWidget" name="no_class_table">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>30</y>
+       <x>450</x>
+       <y>70</y>
        <width>271</width>
-       <height>531</height>
+       <height>491</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -447,6 +447,32 @@ QHeaderView {
       <string>&gt;</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="lineEdit_3">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>30</y>
+       <width>201</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}</string>
+     </property>
+     <property name="text">
+      <string>search</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -462,7 +488,8 @@ QHeaderView {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">            QTableWidget {
+      <string notr="true">
+            QTableWidget {
                 background-color: white;
                 gridline-color: #E5E7EB;
        		alternate-background-color: #F9FAFB;
@@ -565,30 +592,6 @@ QHeaderView {
 
 
 
-
-QPushButton {
-    border: 2px solid rgb(255, 85, 85); /* Lighter red border */
-    border-radius: 5px;    
-    color: rgb(255, 255, 255); /* White text */
-    background-color: rgb(255, 85, 85); /* Lighter red background */
-}
-
-QPushButton:hover {
-    border: 2px solid rgb(255, 150, 150); /* Light red border on hover */
-    background-color: rgb(255, 150, 150); /* Lighter red background on hover */
-}
-
-QPushButton:pressed {    
-    border: 2px solid rgb(255, 40, 40); /* Darker red border when pressed */
-    background-color: rgb(255, 40, 40); /* Darker red background when pressed */
-}
-
-QPushButton:disabled {    
-    border-radius: 5px;    
-    border: 2px solid rgb(170, 170, 170); /* Gray border */
-    background-color: rgb(170, 170, 170); /* Gray background */
-    color: rgb(120, 120, 120); /* Gray text */
-}
 
 
 
@@ -624,7 +627,7 @@ QPushButton:disabled {
        <x>510</x>
        <y>70</y>
        <width>231</width>
-       <height>521</height>
+       <height>511</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -732,30 +735,6 @@ QPushButton:disabled {
 
 
 
-QPushButton {
-    border: 2px solid rgb(255, 85, 85); /* Lighter red border */
-    border-radius: 5px;    
-    color: rgb(255, 255, 255); /* White text */
-    background-color: rgb(255, 85, 85); /* Lighter red background */
-}
-
-QPushButton:hover {
-    border: 2px solid rgb(255, 150, 150); /* Light red border on hover */
-    background-color: rgb(255, 150, 150); /* Lighter red background on hover */
-}
-
-QPushButton:pressed {    
-    border: 2px solid rgb(255, 40, 40); /* Darker red border when pressed */
-    background-color: rgb(255, 40, 40); /* Darker red background when pressed */
-}
-
-QPushButton:disabled {    
-    border-radius: 5px;    
-    border: 2px solid rgb(170, 170, 170); /* Gray border */
-    background-color: rgb(170, 170, 170); /* Gray background */
-    color: rgb(120, 120, 120); /* Gray text */
-}
-
 
 
 
@@ -788,9 +767,9 @@ QPushButton:disabled {
      <property name="geometry">
       <rect>
        <x>530</x>
-       <y>30</y>
+       <y>25</y>
        <width>201</width>
-       <height>26</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -987,7 +966,7 @@ QScrollBar::handle:vertical:hover {
       <x>60</x>
       <y>50</y>
       <width>113</width>
-      <height>26</height>
+      <height>41</height>
      </rect>
     </property>
    </widget>
