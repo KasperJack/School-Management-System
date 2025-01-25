@@ -1130,7 +1130,10 @@ class TeacherWidget(QWidget):
         layout.addLayout(button_layout)
 
         self.setStyleSheet("""
-            background-color: #ddd;
+            background-color:#f3f3f3; /* Light Gray for Light Mode */
+            font-family: "Segoe UI", Arial, sans-serif;
+
+
             border-radius: 0px;
             padding: 7px;
         """)

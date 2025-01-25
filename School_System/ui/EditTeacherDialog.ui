@@ -382,7 +382,7 @@ QTreeWidget {
     border: 1px solid #c8c8c8; /* Light gray border */
     border-radius: 5px; /* Rounded corners */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif; /* Windows-style font */
-    font-size: 18px; /* Larger font size for readability */
+    font-size: 19px; /* Larger font size for readability */
     padding: 4px; /* Padding for better spacing */
 }
 
@@ -463,11 +463,28 @@ QTreeWidget QScrollBar::sub-line:vertical {
     background: none;
 }</string>
      </property>
+     <property name="iconSize">
+      <size>
+       <width>40</width>
+       <height>40</height>
+      </size>
+     </property>
      <column>
       <property name="text">
        <string notr="true">1</string>
       </property>
      </column>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>210</y>
+       <width>271</width>
+       <height>351</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout"/>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_3">

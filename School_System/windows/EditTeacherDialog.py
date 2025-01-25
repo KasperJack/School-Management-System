@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLay
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt, QPoint
-from PyQt6.QtGui import QColor ,QBrush,QIcon
+from PyQt6.QtGui import QColor ,QBrush,QIcon,QFont
 
 
 import School_System.helpers.db_utils as database
@@ -11,10 +11,9 @@ from School_System.ui import EDIT_TEACHER_DIALOG
 from School_System.resources import  ICONS
 from School_System.resources import  ICONS
 
+# best
+
 class EditTeacherDialog(QDialog):
-
-
-
     def __init__(self, index_instance, teacher_id=None, parent=None):
         super().__init__(parent)
         self.index_instance = index_instance  #main class instance
@@ -23,8 +22,7 @@ class EditTeacherDialog(QDialog):
 
         self.setWindowTitle("Edit Teacher")
 
-        self.tree_widget.setStyleSheet("")  # Reset the style sheet to default
-        self.tree_widget.setHeaderLabel("Subjects and Classes")  # Se
+        self.tree_widget.setHeaderLabel("Adem Boubaker")  # Se
         self.tree_widget.setColumnCount(2)
 
         self.add_subjects()
@@ -40,12 +38,13 @@ class EditTeacherDialog(QDialog):
         self.tree_widget.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.tree_widget.customContextMenuRequested.connect(self.show_context_menu)
 
-
+    from PyQt6.QtGui import QFont
+    from PyQt6.QtWidgets import QTreeWidgetItem
+    from PyQt6.QtCore import Qt
 
     def add_subjects(self):
         all_subjects = database.get_teacher_subjects(self.teacher_id)
-        folder_icon = QIcon(f"{ICONS}/info.png")
-
+        folder_icon = QIcon(f"{ICONS}/book.png")
 
         for subject_id, subject_name in all_subjects:
             subject_item = QTreeWidgetItem(self.tree_widget)
@@ -56,12 +55,18 @@ class EditTeacherDialog(QDialog):
             # Store the subject ID in the item
             subject_item.setData(0, Qt.ItemDataRole.UserRole, subject_id)
 
+            # Set the font to bold for parent items
+            font = QFont()
+            font.setBold(True)
+            subject_item.setFont(0, font)  # Apply bold font to the parent item (subject)
 
-
+            # If you want to make it dynamic, check if it has children (if applicable)
+            if subject_item.childCount() > 0:
+                subject_item.setFont(0, font)  # Make sure parent items are bold
 
     def add_classes_and_grades(self):
         test = database.get_teacher_classes(self.teacher_id)
-        folder_icon = QIcon(f"{ICONS}/del.png")
+        folder_icon = QIcon(f"{ICONS}/90Darrow.png")
 
         for subject_id, class_name, class_id, grade, ts_id in test:
             # Find the subject item by its ID
