@@ -1,5 +1,7 @@
 PyQt6
 pyqt6-tools
+flask
+flask-cors
 
 
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var calendarEl = document.getElementById("calendar");
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                events: "/events", // Fetch events from Flask API
+                selectable: true,
+                select: function (info) {
+                    var title = prompt("Enter event title:");
+                    if (title) {
+                        $.ajax({
+                            url: "/events",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                title: title,
+                                start: info.startStr,
+                                end: info.endStr
+                            }),
+                            success: function () {
+                                calendar.refetchEvents();
+                            }
+                        });
+                    }
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+</body>
+</html>
+

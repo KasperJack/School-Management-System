@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
+from School_System.db import DB_PATH
 import sqlite3
+
 
 app = Flask(__name__)
 
@@ -9,7 +11,7 @@ CORS(app)
 
 # Initialize the database
 def init_db():
-    conn = sqlite3.connect("events.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS events (
@@ -25,7 +27,7 @@ def init_db():
 # Route to fetch events
 @app.route("/events", methods=["GET"])
 def get_events():
-    conn = sqlite3.connect("events.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("SELECT id, title, start, end FROM events")
     events = [{"id": row[0], "title": row[1], "start": row[2], "end": row[3]} for row in cursor.fetchall()]
@@ -36,7 +38,7 @@ def get_events():
 @app.route("/events", methods=["POST"])
 def add_event():
     data = request.json
-    conn = sqlite3.connect("events.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("INSERT INTO events (title, start, end) VALUES (?, ?, ?)",
                    (data["title"], data["start"], data["end"]))
