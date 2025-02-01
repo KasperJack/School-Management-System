@@ -176,7 +176,7 @@ QTabBar::tab {
 </string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -480,6 +480,26 @@ QTreeWidget QScrollBar::sub-line:vertical {
     <attribute name="title">
      <string>Page</string>
     </attribute>
+    <widget class="QLineEdit" name="line_edit">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>100</y>
+       <width>221</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="list_widget">
+     <property name="geometry">
+      <rect>
+       <x>245</x>
+       <y>130</y>
+       <width>211</width>
+       <height>192</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

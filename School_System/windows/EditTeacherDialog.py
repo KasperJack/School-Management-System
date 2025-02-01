@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView,QTreeWidget, QTreeWidgetItem,QMenu
+from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView,QTreeWidget, QTreeWidgetItem,QMenu,QFrame,QListWidget
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath
 from PyQt6.QtCore import Qt, QPoint
@@ -22,21 +22,37 @@ class EditTeacherDialog(QDialog):
 
         self.setWindowTitle("Edit Teacher")
 
+
         self.tree_widget.setHeaderLabel("Adem Boubaker")  # Se
         self.tree_widget.setColumnCount(2)
         self.add_subjects()
         self.add_classes_and_grades()
         self.rearrange_tree()
-        self.tree_widget.setColumnWidth(0, 200)  # Set width of the first column to 200 pixels
-        self.tree_widget.setColumnWidth(1, 90)  # Set width of the second column to 150 pixel
+        self.tree_widget.setColumnWidth(0, 200)
+        self.tree_widget.setColumnWidth(1, 90)
         self.tree_widget.expandAll()
 
 
+##################################
 
 
 
 
-        self.tree_widget.itemClicked.connect(lambda : print("f"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         #self.highlight_top_level_items()
 
@@ -164,3 +180,5 @@ class EditTeacherDialog(QDialog):
         # Add leaf items at the bottom
         for leaf_item in leaf_items:
             self.tree_widget.addTopLevelItem(leaf_item)
+
+
