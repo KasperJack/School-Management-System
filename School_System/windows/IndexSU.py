@@ -1,6 +1,8 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget
 from PyQt6 import uic
+import calendar
+
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
 from PyQt6.QtCore import pyqtSlot, QDate, Qt
@@ -68,7 +70,6 @@ class IndexSU(QMainWindow):
         self.update_pic.clicked.connect(self.open_image_dialog)
         self.hide_side_widget.clicked.connect(lambda:self.side_widget.hide()
 )
-
 
         ##############################################################
         self.greet_user()
@@ -1081,6 +1082,7 @@ class IndexSU(QMainWindow):
 
         # Optional: Slightly raise the widget to enhance the floating effect
         widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
+
 
 
 

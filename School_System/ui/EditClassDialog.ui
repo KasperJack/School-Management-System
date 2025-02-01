@@ -960,14 +960,69 @@ QScrollBar::handle:vertical:hover {
 }
 </string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="class_name">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>50</y>
+      <x>20</x>
+      <y>40</y>
       <width>113</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>class 475</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="class_grade">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BTS</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="class_settion">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>mars</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="class_c_date">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>190</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>2025-01-17</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_7">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>330</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>10/23</string>
     </property>
    </widget>
   </widget>
