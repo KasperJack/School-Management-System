@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
-from School_System.db import DB_PATH
 import sqlite3
-
+DB_PATH = "/home/kasper/projects/PYside6/test-app/School_System/db/school.db"
 
 app = Flask(__name__)
 
