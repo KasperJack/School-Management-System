@@ -3,8 +3,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, Q
 from PyQt6 import uic
 
 from datetime import datetime
-from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
-from PyQt6.QtCore import pyqtSlot, QDate, Qt
+from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath,QTextCharFormat,QPen
+from PyQt6.QtCore import pyqtSlot, QDate, Qt,QRect
 
 #from School_System.helpers.db_utils import PROFILE_PIC
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
@@ -144,6 +144,7 @@ class IndexSU(QMainWindow):
         self.tabWidget_dash.setTabText(2, "Activity")
 
         self.setup_calendar()
+        self.add_test_events()
 ##################################################################################################################################
 
 
@@ -910,27 +911,92 @@ class IndexSU(QMainWindow):
 
 
 
+
     def setup_calendar(self):
-        self.calendar.setGridVisible(True)  # Enable grid
-        self.calendar.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
-        self.events = {
-            QDate.currentDate(): "Meeting",
-            QDate.currentDate().addDays(3): "Conference",
-            QDate.currentDate().addDays(7): "Doctor's Appointment"
-        }
+        self.calendar = CustomCalendarWidget(self)
+
+        layout = QVBoxLayout(self.cal_widget)  # or another layout type you're using
+        layout.addWidget(self.calendar)
+        #self.calendar.setShowWeekNumbers(False)
+        self.calendar.setGridVisible(True)
+        self.calendar.setFirstDayOfWeek(Qt.DayOfWeek.Monday)
+        # Enable grid
 
 
+        self.calendar.setStyleSheet("""  QCalendarWidget {
+                background-color: #E3E3E3;  /* Light gray background */
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            QCalendarWidget QWidget {
+                alternate-background-color: #FFFFFF;
+            }
+            QCalendarWidget QToolButton {
+                background-color: #1E3A8A; /* Dark blue header */
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            QCalendarWidget QToolButton:hover {
+                background-color: #122659;
+            }
+            QCalendarWidget QTableView {
+                border: none;
+                background-color: white;
+            }
+            QCalendarWidget QHeaderView {
+                background-color: white;
+                color: black;
+                font-weight: bold;
+            }
+            QCalendarWidget QAbstractItemView:enabled {
+                color: black;
+                font-size: 15px;
+                selection-background-color: transparent;
+                selection-color: black;
+            }
+                        /* Full header (Month/Year + Weekday names) */
+            QCalendarWidget QWidget#qt_calendar_navigationbar {
+                background-color: #1E3A8A; /* Dark blue full header */
+                color: white;
+                border-radius: 0px;
+            }
+            QCalendarWidget QHeaderView {
+                gridline-color: transparent;
+                border: none;
+    }
+            
+            """)
+
+        # If you want to set cal_widget as the main widget
+        #self.setCentralWidget(self.cal_widget)
+        #self.calendar.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
 
 
+    def add_test_events(self):
+        # Single events
+        self.calendar.add_event(QDate(2025, 2, 18),
+                                Event("aaaaaaaa", QColor(255, 165, 0, 180)))
+        self.calendar.add_event(QDate(2025, 2, 20),
+                                Event("Meeting", QColor(255, 100, 100, 180)))
+        self.calendar.add_event(QDate(2025, 2, 22),
+                                Event("Conference", QColor(100, 100, 255, 180)))
 
+        # Multiple events on same day
+        self.calendar.add_event(QDate(2025, 2, 24),
+                                Event("Team Syc", QColor(100, 200, 100, 180)))
+        self.calendar.add_event(QDate(2025, 2, 24),
+                                Event("Intededdadrview", QColor(200, 100, 200, 180)))
+        self.calendar.add_event(QDate(2025, 2, 24),
+                                Event("Deadldddddddine", QColor(255, 165, 0, 180)))
+        self.calendar.add_event(QDate(2025, 2, 24),
+                                Event("Extra Event", QColor(100, 200, 255, 180)))
 
-
-
-
-
-
-
-
+        # Events for today
+        today = QDate.currentDate()
+        self.calendar.add_event(today, Event("Today's Event", QColor(255, 100, 100, 180)))
 
 
         #####################################[switching]#############################################
@@ -1145,3 +1211,71 @@ class TeacherWidget(QWidget):
 #    def paint(self, painter, option, index):
 #        pass
 
+
+
+class Event:
+    def __init__(self, title, color=QColor(255, 100, 100, 180)):
+        self.title = title
+        self.color = color
+
+class CustomCalendarWidget(QCalendarWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        # Dictionary mapping QDate to a list of events
+        self.events = {}
+
+    def add_event(self, date: QDate, event: Event):
+        """Add an event to a specific date."""
+        if date not in self.events:
+            self.events[date] = []
+        self.events[date].append(event)
+        self.update()  # Repaint the calendar
+
+    def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
+        """
+        Paint the cell using the default drawing,
+        then paint a single event card if the date has events.
+        """
+        # First, let QCalendarWidget draw the cell (date number, etc.)
+        super().paintCell(painter, rect, date)
+
+        if date in self.events:
+            painter.save()
+
+            # Use the first event as the main event to display.
+            events = self.events[date]
+            main_event = events[0]
+            extra_count = len(events) - 1
+
+            # Create the text to display.
+            event_text = main_event.title
+            if extra_count > 0:
+                event_text += f" +{extra_count}"
+
+            # Define a rectangle at the bottom of the cell for the event card.
+            card_height = 15
+            card_rect = QRect(
+                rect.left() + 2,
+                rect.bottom() - card_height - 2,
+                rect.width() - 4,
+                card_height
+            )
+
+            # Draw the event card background.
+            painter.setBrush(main_event.color)
+            painter.setPen(Qt.PenStyle.NoPen)
+            painter.drawRoundedRect(card_rect, 3, 3)
+
+            # Draw the event text.
+            painter.setPen(QPen(Qt.GlobalColor.black))
+            font = painter.font()
+            font.setPointSize(10)
+            painter.setFont(font)
+            text_rect = card_rect.adjusted(2, 0, -2, 0)
+            painter.drawText(
+                text_rect,
+                Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft,
+                event_text
+            )
+
+            painter.restore()

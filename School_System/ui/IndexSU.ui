@@ -1620,70 +1620,27 @@ QWidget {
 </string>
                   </property>
                  </widget>
-                 <widget class="QCalendarWidget" name="calendar">
+                 <widget class="QPushButton" name="pushButton_5">
                   <property name="geometry">
                    <rect>
-                    <x>13</x>
-                    <y>98</y>
-                    <width>631</width>
-                    <height>571</height>
+                    <x>40</x>
+                    <y>110</y>
+                    <width>88</width>
+                    <height>26</height>
                    </rect>
                   </property>
-                  <property name="font">
-                   <font>
-                    <bold>true</bold>
-                   </font>
+                  <property name="text">
+                   <string>Add event</string>
                   </property>
-                  <property name="styleSheet">
-                   <string notr="true">QCalendarWidget {
-                background-color: #E3E3E3;  /* Light gray background */
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
-            QCalendarWidget QWidget {
-                alternate-background-color: #FFFFFF;
-            }
-            QCalendarWidget QToolButton {
-                background-color: #1E3A8A; /* Dark blue header */
-                color: white;
-                font-size: 16px;
-                font-weight: bold;
-                border-radius: 5px;
-                padding: 5px;
-            }
-            QCalendarWidget QToolButton:hover {
-                background-color: #122659;
-            }
-            QCalendarWidget QTableView {
-                border: none;
-                background-color: white;
-            }
-            QCalendarWidget QHeaderView {
-                background-color: white;
-                color: black;
-                font-weight: bold;
-            }
-            QCalendarWidget QAbstractItemView:enabled {
-                color: black;
-                font-size: 14px;
-                selection-background-color: transparent;
-                selection-color: black;
-            }
-           QCalendarWidget QWidget#qt_calendar_navigationbar {
-                background-color: #1E3A8A; /* Dark blue full header */
-                color: white;
-                border-radius: 0px;
-			}
-</string>
-                  </property>
-                  <property name="firstDayOfWeek">
-                   <enum>Qt::DayOfWeek::Monday</enum>
-                  </property>
-                  <property name="gridVisible">
-                   <bool>true</bool>
-                  </property>
-                  <property name="dateEditEnabled">
-                   <bool>true</bool>
+                 </widget>
+                 <widget class="QWidget" name="cal_widget" native="true">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>140</y>
+                    <width>641</width>
+                    <height>551</height>
+                   </rect>
                   </property>
                  </widget>
                 </widget>
@@ -4036,32 +3993,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <property name="text">
                <string>subject</string>
               </property>
-             </widget>
-             <widget class="QScrollArea" name="scrollArea">
-              <property name="geometry">
-               <rect>
-                <x>30</x>
-                <y>90</y>
-                <width>721</width>
-                <height>611</height>
-               </rect>
-              </property>
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>719</width>
-                 <height>609</height>
-                </rect>
-               </property>
-               <property name="contextMenuPolicy">
-                <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
-               </property>
-              </widget>
              </widget>
              <widget class="QToolButton" name="add_subject_button">
               <property name="geometry">
