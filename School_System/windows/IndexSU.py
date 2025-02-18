@@ -1,7 +1,6 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget,QCalendarWidget
 from PyQt6 import uic
-import calendar
 
 from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath
@@ -143,6 +142,8 @@ class IndexSU(QMainWindow):
         self.tabWidget_dash.setTabText(0, "Dash")
         self.tabWidget_dash.setTabText(1, "Admins")
         self.tabWidget_dash.setTabText(2, "Activity")
+
+        self.setup_calendar()
 ##################################################################################################################################
 
 
@@ -909,25 +910,14 @@ class IndexSU(QMainWindow):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def setup_calendar(self):
+        self.calendar.setGridVisible(True)  # Enable grid
+        self.calendar.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
+        self.events = {
+            QDate.currentDate(): "Meeting",
+            QDate.currentDate().addDays(3): "Conference",
+            QDate.currentDate().addDays(7): "Doctor's Appointment"
+        }
 
 
 
@@ -1154,3 +1144,4 @@ class TeacherWidget(QWidget):
 #
 #    def paint(self, painter, option, index):
 #        pass
+

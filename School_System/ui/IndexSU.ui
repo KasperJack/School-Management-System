@@ -1620,14 +1620,70 @@ QWidget {
 </string>
                   </property>
                  </widget>
-                 <widget class="QTableWidget" name="calendar_table">
+                 <widget class="QCalendarWidget" name="calendar">
                   <property name="geometry">
                    <rect>
-                    <x>20</x>
-                    <y>130</y>
+                    <x>13</x>
+                    <y>98</y>
                     <width>631</width>
-                    <height>541</height>
+                    <height>571</height>
                    </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QCalendarWidget {
+                background-color: #E3E3E3;  /* Light gray background */
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            QCalendarWidget QWidget {
+                alternate-background-color: #FFFFFF;
+            }
+            QCalendarWidget QToolButton {
+                background-color: #1E3A8A; /* Dark blue header */
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            QCalendarWidget QToolButton:hover {
+                background-color: #122659;
+            }
+            QCalendarWidget QTableView {
+                border: none;
+                background-color: white;
+            }
+            QCalendarWidget QHeaderView {
+                background-color: white;
+                color: black;
+                font-weight: bold;
+            }
+            QCalendarWidget QAbstractItemView:enabled {
+                color: black;
+                font-size: 14px;
+                selection-background-color: transparent;
+                selection-color: black;
+            }
+           QCalendarWidget QWidget#qt_calendar_navigationbar {
+                background-color: #1E3A8A; /* Dark blue full header */
+                color: white;
+                border-radius: 0px;
+			}
+</string>
+                  </property>
+                  <property name="firstDayOfWeek">
+                   <enum>Qt::DayOfWeek::Monday</enum>
+                  </property>
+                  <property name="gridVisible">
+                   <bool>true</bool>
+                  </property>
+                  <property name="dateEditEnabled">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </widget>
