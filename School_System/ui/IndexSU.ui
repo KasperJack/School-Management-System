@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1352</width>
-    <height>861</height>
+    <height>836</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -76,25 +76,25 @@ QWidget {
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border: none; </string>
-            </property>
+           <widget class="QPushButton" name="pushButton_6">
             <property name="text">
-             <string>...</string>
+             <string/>
             </property>
             <property name="icon">
              <iconset resource="../resources/rec.qrc">
-              <normaloff>:/icons/icons/logo.png</normaloff>:/icons/icons/logo.png</iconset>
+              <normaloff>:/icons/icons/menu.png</normaloff>:/icons/icons/menu.png</iconset>
             </property>
             <property name="iconSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>29</width>
+              <height>25</height>
              </size>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -614,6 +614,29 @@ border: none; </string>
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/rec.qrc">
+              <normaloff>:/icons/icons/menu.png</normaloff>:/icons/icons/menu.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>29</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -1082,184 +1105,6 @@ QPushButton:checked {
      <item row="0" column="2">
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
-        <widget class="QWidget" name="widget_4" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">/* General Window */
-QWidget {
-    background-color:#2e3440
-
-; /* Light Gray for Light Mode */
-    color: #000000;           /* Black Text */
-    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
-    font-size: 12pt;
-}
-</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../resources/rec.qrc">
-                <normaloff>:/icons/icons/menu.png</normaloff>:/icons/icons/menu.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>29</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <property name="spacing">
-               <number>8</number>
-              </property>
-              <property name="topMargin">
-               <number>5</number>
-              </property>
-              <property name="bottomMargin">
-               <number>5</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_user_name">
-                <property name="font">
-                 <font>
-                  <family>Segoe UI</family>
-                  <pointsize>12</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
-                </property>
-                <property name="text">
-                 <string>Hello, User</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
-                </property>
-                <property name="text">
-                 <string>Welcome to your page</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>301</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLineEdit" name="lineEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>260</width>
-                <height>31</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}</string>
-              </property>
-              <property name="placeholderText">
-               <string>search...here</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="profile_pic_user">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: rgb(153, 193, 241);</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QWidget" name="main_screen" native="true">
          <property name="minimumSize">
           <size>
@@ -1378,17 +1223,23 @@ QTabBar::tab {
                  <attribute name="title">
                   <string>Tab 1</string>
                  </attribute>
-                 <widget class="QWidget" name="widget" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>0</y>
-                    <width>931</width>
-                    <height>81</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                 <layout class="QGridLayout" name="gridLayout_9">
+                  <item row="0" column="0" colspan="2">
+                   <widget class="QWidget" name="widget" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1396,79 +1247,105 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                  <widget class="QLabel" name="students_label">
-                   <property name="geometry">
-                    <rect>
-                     <x>20</x>
-                     <y>30</y>
-                     <width>107</width>
-                     <height>18</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI</family>
-                     <pointsize>12</pointsize>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>students | 220</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="classes_label">
-                   <property name="geometry">
-                    <rect>
-                     <x>440</x>
-                     <y>30</y>
-                     <width>121</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI</family>
-                     <pointsize>12</pointsize>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>classes | 20</string>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="teachers_label">
-                   <property name="geometry">
-                    <rect>
-                     <x>190</x>
-                     <y>30</y>
-                     <width>121</width>
-                     <height>20</height>
-                    </rect>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI</family>
-                     <pointsize>12</pointsize>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>teachers | 40</string>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_3" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>670</x>
-                    <y>100</y>
-                    <width>150</width>
-                    <height>150</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                    </property>
+                    <widget class="QLabel" name="students_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>40</x>
+                       <y>30</y>
+                       <width>107</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>students | 220</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="classes_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>440</x>
+                       <y>30</y>
+                       <width>121</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>classes | 20</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="teachers_label">
+                     <property name="geometry">
+                      <rect>
+                       <x>190</x>
+                       <y>30</y>
+                       <width>121</width>
+                       <height>20</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>teachers | 40</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_5">
+                      <property name="text">
+                       <string>Add event</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="cal_widget" native="true">
+                      <property name="font">
+                       <font>
+                        <bold>false</bold>
+                        <strikeout>false</strikeout>
+                        <kerning>true</kerning>
+                       </font>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="1" column="1">
+                   <layout class="QVBoxLayout" name="verticalLayout_15">
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_8">
+                      <item row="0" column="0">
+                       <widget class="QWidget" name="widget_3" native="true">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1476,45 +1353,45 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                  <widget class="QToolButton" name="add_teacher_button_dash_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>40</y>
-                     <width>41</width>
-                     <height>41</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(0, 0, 0);</string>
-                   </property>
-                   <property name="text">
-                    <string>...</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../resources/rec.qrc">
-                     <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>50</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_5" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>830</x>
-                    <y>100</y>
-                    <width>150</width>
-                    <height>150</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                        </property>
+                        <widget class="QToolButton" name="add_teacher_button_dash_3">
+                         <property name="geometry">
+                          <rect>
+                           <x>50</x>
+                           <y>40</y>
+                           <width>41</width>
+                           <height>41</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(0, 0, 0);</string>
+                         </property>
+                         <property name="text">
+                          <string>...</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>50</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QWidget" name="widget_5" native="true">
+                        <property name="minimumSize">
+                         <size>
+                          <width>120</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1522,45 +1399,39 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                  <widget class="QToolButton" name="add_teacher_button_dash">
-                   <property name="geometry">
-                    <rect>
-                     <x>60</x>
-                     <y>40</y>
-                     <width>41</width>
-                     <height>41</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(0, 0, 0);</string>
-                   </property>
-                   <property name="text">
-                    <string>...</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../resources/rec.qrc">
-                     <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>50</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_6" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>670</x>
-                    <y>260</y>
-                    <width>150</width>
-                    <height>150</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                        </property>
+                        <widget class="QToolButton" name="add_teacher_button_dash">
+                         <property name="geometry">
+                          <rect>
+                           <x>60</x>
+                           <y>40</y>
+                           <width>41</width>
+                           <height>41</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(0, 0, 0);</string>
+                         </property>
+                         <property name="text">
+                          <string>...</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>50</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QWidget" name="widget_6" native="true">
+                        <property name="styleSheet">
+                         <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1568,45 +1439,39 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                  <widget class="QToolButton" name="add_teacher_button_dash_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>50</y>
-                     <width>41</width>
-                     <height>41</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(0, 0, 0);</string>
-                   </property>
-                   <property name="text">
-                    <string>...</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="../resources/rec.qrc">
-                     <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>50</width>
-                     <height>30</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_9" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>830</x>
-                    <y>260</y>
-                    <width>150</width>
-                    <height>150</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                        </property>
+                        <widget class="QToolButton" name="add_teacher_button_dash_2">
+                         <property name="geometry">
+                          <rect>
+                           <x>50</x>
+                           <y>50</y>
+                           <width>41</width>
+                           <height>41</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(0, 0, 0);</string>
+                         </property>
+                         <property name="text">
+                          <string>...</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>50</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QWidget" name="widget_9" native="true">
+                        <property name="styleSheet">
+                         <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1614,19 +1479,15 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                 </widget>
-                 <widget class="QWidget" name="widget_10" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>670</x>
-                    <y>420</y>
-                    <width>311</width>
-                    <height>271</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* General Window */
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QWidget" name="widget_10" native="true">
+                      <property name="styleSheet">
+                       <string notr="true">/* General Window */
 QWidget {
     background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
@@ -1634,41 +1495,22 @@ QWidget {
     font-size: 12pt;
 }
 </string>
-                  </property>
-                  <widget class="QTextEdit" name="textEdit">
-                   <property name="geometry">
-                    <rect>
-                     <x>30</x>
-                     <y>30</y>
-                     <width>261</width>
-                     <height>201</height>
-                    </rect>
-                   </property>
-                  </widget>
-                 </widget>
-                 <widget class="QPushButton" name="pushButton_5">
-                  <property name="geometry">
-                   <rect>
-                    <x>40</x>
-                    <y>110</y>
-                    <width>88</width>
-                    <height>26</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Add event</string>
-                  </property>
-                 </widget>
-                 <widget class="QWidget" name="cal_widget" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>140</y>
-                    <width>641</width>
-                    <height>551</height>
-                   </rect>
-                  </property>
-                 </widget>
+                      </property>
+                      <widget class="QTextEdit" name="textEdit">
+                       <property name="geometry">
+                        <rect>
+                         <x>30</x>
+                         <y>30</y>
+                         <width>151</width>
+                         <height>201</height>
+                        </rect>
+                       </property>
+                      </widget>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
                 </widget>
                 <widget class="QWidget" name="tab_2">
                  <attribute name="title">
@@ -4046,6 +3888,167 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </size>
               </property>
              </widget>
+             <widget class="QWidget" name="widget_4" native="true">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>250</y>
+                <width>1000</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">/* General Window */
+QWidget {
+    background-color:#2e3440
+
+; /* Light Gray for Light Mode */
+    color: #000000;           /* Black Text */
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 12pt;
+}
+</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <property name="spacing">
+                    <number>8</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>5</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_user_name">
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Hello, User</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Welcome to your page</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>301</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>31</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>260</width>
+                     <height>31</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">/* Input Fields */
+QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>search...here</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="profile_pic_user">
+                   <property name="minimumSize">
+                    <size>
+                     <width>50</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>50</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(153, 193, 241);</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>50</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </widget>
           </item>
@@ -4103,8 +4106,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>256</y>
+     <x>229</x>
+     <y>294</y>
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
@@ -4119,12 +4122,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>312</y>
+     <x>242</x>
+     <y>359</y>
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
-     <y>312</y>
+     <y>347</y>
     </hint>
    </hints>
   </connection>
@@ -4135,12 +4138,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>151</x>
-     <y>377</y>
+     <x>239</x>
+     <y>424</y>
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
-     <y>372</y>
+     <y>412</y>
     </hint>
    </hints>
   </connection>
@@ -4156,7 +4159,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
-     <y>780</y>
+     <y>778</y>
     </hint>
    </hints>
   </connection>
@@ -4177,34 +4180,178 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>logout_s</sender>
    <signal>toggled(bool)</signal>
-   <receiver>icon_text</receiver>
-   <slot>setHidden(bool)</slot>
+   <receiver>logout_b</receiver>
+   <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>332</x>
-     <y>53</y>
+     <x>65</x>
+     <y>813</y>
     </hint>
     <hint type="destinationlabel">
-     <x>297</x>
-     <y>52</y>
+     <x>156</x>
+     <y>807</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>settings_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>settings_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>749</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>760</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>students_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>students_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>49</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>204</x>
+     <y>403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>teachers_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>teachers_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>126</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>classes_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>classes_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>47</x>
+     <y>249</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>subject_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>subject_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>47</x>
+     <y>213</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>223</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dashboard_s</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>dashboard_b</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>151</x>
+     <y>155</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>pushButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>icon_only</receiver>
-   <slot>setVisible(bool)</slot>
+   <signal>clicked()</signal>
+   <receiver>icon_text</receiver>
+   <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>331</x>
-     <y>33</y>
+     <x>326</x>
+     <y>70</y>
     </hint>
     <hint type="destinationlabel">
-     <x>59</x>
-     <y>24</y>
+     <x>322</x>
+     <y>104</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>icon_only</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>68</x>
+     <y>29</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>icon_only</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>28</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>icon_text</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>46</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>131</x>
+     <y>16</y>
     </hint>
    </hints>
   </connection>

@@ -32,7 +32,6 @@ class IndexSU(QMainWindow):
         uic.loadUi(INDEX_SU, self)
 
         print(School_System.__version__)
-        self.setStatusBar(None)
 
 
         self.dashboard_s.clicked.connect(self.sw_dash)
@@ -219,7 +218,10 @@ class IndexSU(QMainWindow):
         self.update_students_count()
         self.sw_dash()
         self.tabWidget_dash.setCurrentIndex(0)
+        self.dashboard_b.setChecked(True)
         self.icon_only.setHidden(True)
+        self.setStatusBar(None)
+
         self.side_widget.hide()
 
 
