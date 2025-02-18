@@ -1012,7 +1012,7 @@ QScrollBar::handle:vertical:hover {
      <string>2025-01-17</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_7">
+   <widget class="QLineEdit" name="students_count">
     <property name="geometry">
      <rect>
       <x>280</x>

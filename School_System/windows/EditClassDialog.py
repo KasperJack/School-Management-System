@@ -20,10 +20,11 @@ class EditClassDialog(QDialog):
         self.setWindowTitle("Edit Class")
         self.tabWidget.setTabText(0, "students")
         self.tabWidget.setTabText(1, "subjects")
+        self.current_students = 0
+        self.max_students= 0
 
 
-        class_data = database.get_class_data(self.class_id)
-        print(class_data)
+        self.display_class_info()
 
         self.setup_class_transfer_tables()
 
@@ -352,8 +353,19 @@ class EditClassDialog(QDialog):
 
 
 
+    def display_class_info(self):
+        class_data = database.get_class_data(self.class_id)
+        self.max_students = class_data[4]
+        self.current_students = class_data[6]
+        self.class_grade.setText(class_data[2])
+        self.class_name.setText(class_data[1])
+        self.class_settion.setText(class_data[3])
+        self.class_c_date.setText(str(class_data[5]))
+        self.students_count.setText(f"{class_data[6]}/{class_data[4]}")
+        print(class_data)
 
 
+    def update_count(self):
 
 
 
