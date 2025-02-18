@@ -186,7 +186,7 @@ class IndexSU(QMainWindow):
             return
 
 
-        default_pixmap = QPixmap(f"{ICONS}/profile.png")
+        default_pixmap = QPixmap(f"{ICONS}/profile_v.pnga")
         self.profile_pic_user.setIcon(QIcon(default_pixmap))
 
 

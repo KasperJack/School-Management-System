@@ -14,7 +14,9 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">    background-color:#f3f3f3; /* Light Gray for Light Mode */
+   <string notr="true">    background-color:#2e3440
+
+; /* Light Gray for Light Mode */
 
 </string>
   </property>
@@ -47,7 +49,7 @@
         <string notr="true">
 /* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+    background-color:#2e3440; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
 }
@@ -544,7 +546,9 @@ QPushButton:checked {
       <widget class="QWidget" name="icon_text" native="true">
        <property name="styleSheet">
         <string notr="true">QWidget {
-    background-color:#f3f3f3;; /* Light Gray for Light Mode */
+    background-color:#2e3440
+
+; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
 }
@@ -599,6 +603,9 @@ border: none; </string>
               <bold>true</bold>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
             <property name="text">
              <string>School</string>
             </property>
@@ -631,7 +638,8 @@ border: none; </string>
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -694,7 +702,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -754,7 +763,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -814,7 +824,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -874,7 +885,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -951,7 +963,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -1011,7 +1024,8 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #3c4043; /* Darker gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
     border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
@@ -1084,7 +1098,9 @@ QPushButton:checked {
          <property name="styleSheet">
           <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+    background-color:#2e3440
+
+; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1138,7 +1154,7 @@ QWidget {
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0);</string>
+                 <string notr="true">color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="text">
                  <string>Hello, User</string>
@@ -1148,7 +1164,7 @@ QWidget {
               <item>
                <widget class="QLabel" name="label_2">
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0);</string>
+                 <string notr="true">color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="text">
                  <string>Welcome to your page</string>
@@ -1619,6 +1635,16 @@ QWidget {
 }
 </string>
                   </property>
+                  <widget class="QTextEdit" name="textEdit">
+                   <property name="geometry">
+                    <rect>
+                     <x>30</x>
+                     <y>30</y>
+                     <width>261</width>
+                     <height>201</height>
+                    </rect>
+                   </property>
+                  </widget>
                  </widget>
                  <widget class="QPushButton" name="pushButton_5">
                   <property name="geometry">
