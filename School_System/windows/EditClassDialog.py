@@ -20,9 +20,12 @@ class EditClassDialog(QDialog):
         self.setWindowTitle("Edit Class")
         self.tabWidget.setTabText(0, "students")
         self.tabWidget.setTabText(1, "subjects")
+
         self.current_students = 0
         self.max_students= 0
+        self.class_name_v = None
 
+        self.button_box.hide()
 
         self.display_class_info()
 
@@ -36,9 +39,13 @@ class EditClassDialog(QDialog):
 
         self.add_std_button.clicked.connect(self.add_student_to_class)
         self.remove_std_button.clicked.connect(self.remove_student_from_class)
+        self.edit_button.clicked.connect(self.edit_class_info)
 
 
+        # Debug: Check standard buttons
 
+        self.button_box.accepted.connect(self.save)
+        self.button_box.rejected.connect(self.close)
 
         #class_data, teachers_data, students_data = database.get_class_info_edit(self.class_id)
         #print(teachers_data)
@@ -178,9 +185,11 @@ class EditClassDialog(QDialog):
         self.load_students_no_class()
         self.no_class_table.setColumnHidden(0, True)
 
+        header1 = self.no_class_table.horizontalHeader()
+        header1.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        header1.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
 
-
-
+        header1.resizeSection(2, 85)
 
         self.this_class_table.verticalHeader().setVisible(False)
         #self.no_class_table.horizontalHeader().hide()
@@ -192,6 +201,13 @@ class EditClassDialog(QDialog):
         self.this_class_table.setSelectionMode(QTableWidget.SelectionMode.SingleSelection) ## only one selection
         self.load_students_in_class()
         self.this_class_table.setColumnHidden(0, True)
+
+        header2 = self.this_class_table.horizontalHeader()
+        header2.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        header2.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+
+        header2.resizeSection(2, 85)
 
 
 
@@ -379,13 +395,80 @@ class EditClassDialog(QDialog):
         self.class_settion.setText(class_data[3])
         self.class_c_date.setText(str(class_data[5]))
         self.students_count.setText(f"{class_data[6]}/{class_data[4]}")
-        print(class_data)
+
+        self.class_grade.setReadOnly(True)
+        self.class_name.setReadOnly(True)
+        self.class_settion.setReadOnly(True)
+        self.class_c_date.setReadOnly(True)
+        self.students_count.setReadOnly(True)
+
+
 
 
     def update_count(self):
         self.students_count.setText(f"{self.current_students}/{self.max_students}")
 
 
+
+    def edit_class_info(self):
+        self.class_name_v = self.class_name.text()
+        self.students_count.setText(f"{self.max_students}")
+        self.class_name.setReadOnly(False)
+        self.students_count.setReadOnly(False)
+        self.edit_button.hide()
+        self.button_box.show()
+
+
+
+    def close(self):
+        self.students_count.setText(f"{self.current_students}/{self.max_students}")
+        self.class_name.setText(self.class_name_v)
+
+        self.class_name.setReadOnly(False)
+        self.students_count.setReadOnly(False)
+        self.button_box.hide()
+        self.edit_button.show()
+
+
+
+    def save(self):
+
+        if self.class_name_v != self.class_name.text():
+            if self.max_students != int(self.students_count.text()):
+                print("tow changed")
+                self.update()
+                return
+            else:
+                print("only class name changed")
+                self.update()
+                return
+
+        if self.max_students != int(self.students_count.text()):
+            print("only student count changed")
+            self.update()
+
+
+
+    def update(self):
+        class_data = database.get_class_data(self.class_id)
+
+        self.max_students = class_data[4]
+        self.current_students = class_data[6]
+        self.class_name_v = class_data[1]
+
+
+
+
+
+
+
+        self.students_count.setText(f"{self.current_students}/{self.max_students}")
+        self.class_name.setText(self.class_name_v)
+
+        self.class_name.setReadOnly(False)
+        self.students_count.setReadOnly(False)
+        self.button_box.hide()
+        self.edit_button.show()
 
 
 
