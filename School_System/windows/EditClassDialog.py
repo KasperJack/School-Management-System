@@ -21,6 +21,8 @@ class EditClassDialog(QDialog):
         self.tabWidget.setTabText(0, "students")
         self.tabWidget.setTabText(1, "subjects")
 
+        self.is_modified = False
+
         self.current_students = 0
         self.max_students= 0
         self.class_name_v = None
@@ -79,9 +81,9 @@ class EditClassDialog(QDialog):
             )
 
             if confirmation == QMessageBox.StandardButton.No:
-                return 
+                return
 
-
+        self.is_modified = True
         selected_row = self.no_class_table.currentRow()
         if selected_row >= 0:
             item = self.no_class_table.item(selected_row, 0)
@@ -104,6 +106,7 @@ class EditClassDialog(QDialog):
 
 
     def remove_student_from_class(self):
+        self.is_modified = True
         selected_row = self.this_class_table.currentRow()
         if selected_row >= 0:
             item = self.this_class_table.item(selected_row, 0)
@@ -292,6 +295,8 @@ class EditClassDialog(QDialog):
 
 
     def teacher_selection_changed(self):
+        #self.is_modified = True
+
         # Get the sender (the combo box that triggered the signal)
         combo_box = self.sender()
         if combo_box:
@@ -312,6 +317,7 @@ class EditClassDialog(QDialog):
 
 
     def remove_teacher(self, row_index):
+        #self.is_modified = True
         # Get Subject ID from the first column
         subject_id_item = self.subjects_table.item(row_index, 0)  # Column 0 for Subject ID
         subject_id = int(subject_id_item.text()) if subject_id_item else None
@@ -366,6 +372,7 @@ class EditClassDialog(QDialog):
 
 
     def add_subject(self, row):
+        #self.is_modified = True
         subject_id = self.new_subjects_table.item(row, 0).text()
         database.add_subject_to_class(subject_id, self.class_id)
         self.reload()
@@ -436,16 +443,19 @@ class EditClassDialog(QDialog):
         if self.class_name_v != self.class_name.text():
             if self.max_students != int(self.students_count.text()):
                 database.update_class_n_m(self.class_id, self.class_name.text(),self.students_count.text() )
+                self.is_modified = True
                 self.update()
                 return
             else:
                 database.update_class_n_m(self.class_id,class_name=self.class_name.text())
+                self.is_modified = True
                 self.update()
                 return
 
         if self.max_students != int(self.students_count.text()):
             database.update_class_n_m(self.class_id, max_students=self.students_count.text())
 
+            self.is_modified = True
             self.update()
 
 

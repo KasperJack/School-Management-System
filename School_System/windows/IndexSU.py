@@ -1029,13 +1029,18 @@ class IndexSU(QMainWindow):
         edit_teacher_dialog = EditTeacherDialog(self, teacher_id)
         edit_teacher_dialog.exec()
 
+
     def edit_class_dialog_closed(self):
-        # This method will run when the dialog is closed (even via the "X" button)
-        print("Dialog closed!")
-        self.load_classes_table()
-        #self.update_classes_count()
-        self.load_classes_student_search()
-        #self.index_instance.refresh_setup_activity_log__table()
+        #print("Dialog closed")
+        edit_class_dialog = self.sender()
+
+        if edit_class_dialog.is_modified:
+            self.load_classes_table()
+            # self.update_classes_count()
+            self.load_classes_student_search()
+            # self.index_instance.refresh_setup_activity_log__table()
+            self.load_students_to_table()
+
 
 
 
