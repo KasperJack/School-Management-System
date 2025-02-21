@@ -27,7 +27,7 @@
       <x>10</x>
       <y>10</y>
       <width>1340</width>
-      <height>871</height>
+      <height>930</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -1222,7 +1222,8 @@ QTabBar::tab {
                     <property name="styleSheet">
                      <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+      background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1321,14 +1322,15 @@ QWidget {
                        <widget class="QWidget" name="widget_3" native="true">
                         <property name="minimumSize">
                          <size>
-                          <width>120</width>
+                          <width>160</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+           background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1338,8 +1340,8 @@ QWidget {
                         <widget class="QToolButton" name="add_teacher_button_dash_3">
                          <property name="geometry">
                           <rect>
-                           <x>50</x>
-                           <y>40</y>
+                           <x>90</x>
+                           <y>80</y>
                            <width>41</width>
                            <height>41</height>
                           </rect>
@@ -1367,14 +1369,14 @@ QWidget {
                        <widget class="QWidget" name="widget_5" native="true">
                         <property name="minimumSize">
                          <size>
-                          <width>120</width>
+                          <width>160</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">/* General Window */
-QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+QWidget {        background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1384,8 +1386,8 @@ QWidget {
                         <widget class="QToolButton" name="add_teacher_button_dash">
                          <property name="geometry">
                           <rect>
-                           <x>60</x>
-                           <y>40</y>
+                           <x>80</x>
+                           <y>90</y>
                            <width>41</width>
                            <height>41</height>
                           </rect>
@@ -1414,7 +1416,8 @@ QWidget {
                         <property name="styleSheet">
                          <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+         background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1454,7 +1457,8 @@ QWidget {
                         <property name="styleSheet">
                          <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+            background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1470,7 +1474,8 @@ QWidget {
                       <property name="styleSheet">
                        <string notr="true">/* General Window */
 QWidget {
-    background-color:#f3f3f3; /* Light Gray for Light Mode */
+        background-color:#eceff4;
+
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
@@ -1620,118 +1625,367 @@ background-color: #0078d7; </string>
                  <attribute name="title">
                   <string>Page</string>
                  </attribute>
-                 <widget class="QTableWidget" name="activity_log_table">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>60</y>
-                    <width>771</width>
-                    <height>631</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true"/>
-                  </property>
-                  <property name="alternatingRowColors">
-                   <bool>true</bool>
-                  </property>
-                  <property name="showGrid">
-                   <bool>true</bool>
-                  </property>
-                  <property name="gridStyle">
-                   <enum>Qt::PenStyle::SolidLine</enum>
-                  </property>
-                  <property name="sortingEnabled">
-                   <bool>false</bool>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>mpmp</string>
-                   </property>
-                  </column>
-                 </widget>
-                 <widget class="QWidget" name="widget_8" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>-10</x>
-                    <y>0</y>
-                    <width>1001</width>
-                    <height>51</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">    background: qlineargradient(
-        spread:pad, x1:0, y1:0, x2:1, y2:1,
-        stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */</string>
-                  </property>
-                  <widget class="QComboBox" name="filter_user">
-                   <property name="geometry">
-                    <rect>
-                     <x>260</x>
-                     <y>10</y>
-                     <width>86</width>
-                     <height>26</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="filter_date">
-                   <property name="geometry">
-                    <rect>
-                     <x>150</x>
-                     <y>10</y>
-                     <width>86</width>
-                     <height>26</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="filter_affected_entity">
-                   <property name="geometry">
-                    <rect>
-                     <x>380</x>
-                     <y>10</y>
-                     <width>86</width>
-                     <height>26</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="filter_activity_type">
-                   <property name="geometry">
-                    <rect>
-                     <x>500</x>
-                     <y>10</y>
-                     <width>86</width>
-                     <height>26</height>
-                    </rect>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="pushButton_3">
-                   <property name="geometry">
-                    <rect>
-                     <x>610</x>
-                     <y>10</y>
-                     <width>88</width>
-                     <height>26</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>clear log</string>
-                   </property>
-                  </widget>
-                  <widget class="QCheckBox" name="show_ids">
-                   <property name="geometry">
-                    <rect>
-                     <x>720</x>
-                     <y>10</y>
-                     <width>92</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="text">
-                    <string>show IDs</string>
-                   </property>
-                  </widget>
-                 </widget>
+                 <layout class="QGridLayout" name="gridLayout_12">
+                  <item row="0" column="0">
+                   <widget class="QFrame" name="frame">
+                    <property name="styleSheet">
+                     <string notr="true">
+background-color: #d8dee9;</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_11">
+                     <item row="0" column="0">
+                      <widget class="QComboBox" name="filter_date">
+                       <property name="styleSheet">
+                        <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="filter_user">
+                       <property name="styleSheet">
+                        <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QComboBox" name="filter_affected_entity">
+                       <property name="styleSheet">
+                        <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QComboBox" name="filter_activity_type">
+                       <property name="styleSheet">
+                        <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="4">
+                      <widget class="QPushButton" name="pushButton_3">
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
+                       </property>
+                       <property name="text">
+                        <string>clear log</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="5">
+                      <widget class="QCheckBox" name="show_ids">
+                       <property name="styleSheet">
+                        <string notr="true">QCheckBox {
+    spacing: 10px;
+    padding: 5px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+/* Checked state */
+QCheckBox::indicator:checked {
+    background-color: #5e81ac; /* Nord9 - Blue for checked state */
+    border: 1px solid #5e81ac; /* Matching border color */
+    border-radius: 4px;
+}
+
+/* Unchecked state */
+QCheckBox::indicator:unchecked {
+    background-color: #f0f0f0; /* Light background for unchecked */
+    border: 1px solid #cccccc; /* Light gray border */
+    border-radius: 4px;
+}</string>
+                       </property>
+                       <property name="text">
+                        <string>show IDs</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QTableWidget" name="activity_log_table">
+                    <property name="styleSheet">
+                     <string notr="true">
+/* Table Header */
+QTableWidget QHeaderView::section {
+    background-color: #3b4252; /* Nord1 - Darker header background */
+    color: #eceff4; /* Light text color for header */
+    font-weight: bold;
+    padding: 6px;
+    border: 1px solid #d8dee9; /* Border to match cell borders */
+}
+
+/* Scrollbar */
+QScrollBar:vertical {
+    border: none;
+    background: #e6e6e6; /* Light background for scrollbar */
+    width: 12px;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #4c566a; /* Nord3 - Darker gray for the scrollbar handle */
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #81a1c1; /* Nord8 - Light blue for handle hover */
+}
+
+QScrollBar::sub-line:vertical,
+QScrollBar::add-line:vertical {
+    background: none;
+    height: 0;
+}
+</string>
+                    </property>
+                    <property name="alternatingRowColors">
+                     <bool>true</bool>
+                    </property>
+                    <property name="showGrid">
+                     <bool>true</bool>
+                    </property>
+                    <property name="gridStyle">
+                     <enum>Qt::PenStyle::SolidLine</enum>
+                    </property>
+                    <property name="sortingEnabled">
+                     <bool>false</bool>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string>mpmp</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </widget>
               </item>
@@ -2149,7 +2403,7 @@ QWidget {
                      <widget class="QPushButton" name="add_student_button">
                       <property name="minimumSize">
                        <size>
-                        <width>86</width>
+                        <width>130</width>
                         <height>38</height>
                        </size>
                       </property>
@@ -2161,7 +2415,7 @@ QWidget {
                       </property>
                       <property name="baseSize">
                        <size>
-                        <width>70</width>
+                        <width>130</width>
                         <height>50</height>
                        </size>
                       </property>
@@ -2173,44 +2427,43 @@ QWidget {
                       </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
-    background-color: #f0f0f0; /* Light gray background */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 6px 12px; /* Padding inside the button */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Small font size */
-    min-width: 60px; /* Minimum width for consistency */
-    min-height: 24px; /* Minimum height for consistency */
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-height: 24px;
 }
 
 /* Hover State */
 QPushButton:hover {
-    background-color: #e0e0e0; /* Slightly darker gray on hover */
-    border: 1px solid #999999; /* Darker border on hover */
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
 }
 
 /* Pressed State */
 QPushButton:pressed {
-    background-color: #d0d0d0; /* Even darker gray when pressed */
-    border: 1px solid #777777; /* Darker border when pressed */
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
 }
 
 /* Edit Button Specific Style */
-QPushButton {
-    background-color: #0078d7; /* Blue background for Edit */
-    color: white; /* White text for Edit */
-    border: 1px solid #005a9e; /* Darker blue border */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
 }
 
-QPushButton:hover {
-    background-color: #005a9e; /* Darker blue on hover */
-    border: 1px solid #004578; /* Even darker blue border on hover */
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
 }
 
-QPushButton:pressed {
-    background-color: #004578; /* Even darker blue when pressed */
-    border: 1px solid #003366; /* Darkest blue border when pressed */
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
 }
 </string>
                       </property>
@@ -2237,46 +2490,52 @@ QPushButton:pressed {
                     </item>
                     <item>
                      <widget class="QPushButton" name="pushButton_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>86</width>
+                        <height>38</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
-    background-color: #f0f0f0; /* Light gray background */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 6px 12px; /* Padding inside the button */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Small font size */
-    min-width: 60px; /* Minimum width for consistency */
-    min-height: 24px; /* Minimum height for consistency */
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
 }
 
 /* Hover State */
 QPushButton:hover {
-    background-color: #e0e0e0; /* Slightly darker gray on hover */
-    border: 1px solid #999999; /* Darker border on hover */
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
 }
 
 /* Pressed State */
 QPushButton:pressed {
-    background-color: #d0d0d0; /* Even darker gray when pressed */
-    border: 1px solid #777777; /* Darker border when pressed */
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
 }
 
 /* Edit Button Specific Style */
-QPushButton {
-    background-color: #0078d7; /* Blue background for Edit */
-    color: white; /* White text for Edit */
-    border: 1px solid #005a9e; /* Darker blue border */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
 }
 
-QPushButton:hover {
-    background-color: #005a9e; /* Darker blue on hover */
-    border: 1px solid #004578; /* Even darker blue border on hover */
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
 }
 
-QPushButton:pressed {
-    background-color: #004578; /* Even darker blue when pressed */
-    border: 1px solid #003366; /* Darkest blue border when pressed */
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
 }
 </string>
                       </property>
@@ -2303,46 +2562,52 @@ QPushButton:pressed {
                     </item>
                     <item>
                      <widget class="QPushButton" name="pushButton_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>86</width>
+                        <height>38</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">QPushButton {
-    background-color: #f0f0f0; /* Light gray background */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 6px 12px; /* Padding inside the button */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Small font size */
-    min-width: 60px; /* Minimum width for consistency */
-    min-height: 24px; /* Minimum height for consistency */
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
 }
 
 /* Hover State */
 QPushButton:hover {
-    background-color: #e0e0e0; /* Slightly darker gray on hover */
-    border: 1px solid #999999; /* Darker border on hover */
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
 }
 
 /* Pressed State */
 QPushButton:pressed {
-    background-color: #d0d0d0; /* Even darker gray when pressed */
-    border: 1px solid #777777; /* Darker border when pressed */
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
 }
 
 /* Edit Button Specific Style */
-QPushButton {
-    background-color: #0078d7; /* Blue background for Edit */
-    color: white; /* White text for Edit */
-    border: 1px solid #005a9e; /* Darker blue border */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
 }
 
-QPushButton:hover {
-    background-color: #005a9e; /* Darker blue on hover */
-    border: 1px solid #004578; /* Even darker blue border on hover */
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
 }
 
-QPushButton:pressed {
-    background-color: #004578; /* Even darker blue when pressed */
-    border: 1px solid #003366; /* Darkest blue border when pressed */
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
 }
 </string>
                       </property>
@@ -2378,49 +2643,48 @@ QPushButton:pressed {
                       <property name="styleSheet">
                        <string notr="true">/* Base ComboBox */
 QComboBox {
-    background-color: #ffffff; /* White background */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 0px; /* Slightly rounded corners */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
     font-size: 15px; /* Standard font size */
-    padding: 6px; /* Keep original padding */
+    padding: 6px; /* Maintain padding */
 }
 
 /* Arrow Button */
 QComboBox::drop-down {
     border: none; /* Remove border around the drop-down button */
-    background-color: #f0f0f0; /* Light gray background for the arrow */
-    border-left: 1px solid #cccccc; /* Add a separator for the arrow */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
     width: 20px; /* Keep original width */
 }
 
 /* Drop-down Arrow */
 QComboBox::down-arrow {
-    image: url(down-arrow-icon.png); /* Use a custom arrow icon if needed */
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
     width: 10px;
     height: 10px;
 }
 
 /* Drop-down List (Popup Menu) */
 QComboBox QAbstractItemView {
-    background-color: #f9f9f9; /* Light gray background for the menu */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border around the menu */
-    selection-background-color: #0078d4; /* Blue highlight for selected items */
-    selection-color: #ffffff; /* White text for selected items */
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
 }
 
 /* Hover Effect */
 QComboBox:hover {
-    border: 1px solid #0078d4; /* Blue border on hover */
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
 }
 
 /* Focused ComboBox */
 QComboBox:focus {
-    border: 1px solid #005a9e; /* Darker blue border when focused */
+    border: 1px solid #88C0D0; /* Teal border when focused */
 }
-&quot;&quot;&quot;
 </string>
                       </property>
                      </widget>
@@ -2450,18 +2714,27 @@ QComboBox:focus {
                        </size>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">/* Input Fields */
+                       <string notr="true">/* Input Field */
 QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
 }
+
+/* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}</string>
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
                       </property>
                      </widget>
                     </item>
@@ -3206,103 +3479,146 @@ QTabBar::tab {
                  <attribute name="title">
                   <string>Tab 2</string>
                  </attribute>
-                 <widget class="QPushButton" name="add_teacher_button">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>10</y>
-                    <width>101</width>
-                    <height>38</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton {
-    background-color: #f0f0f0; /* Light gray background */
+                 <layout class="QGridLayout" name="gridLayout_13">
+                  <item row="1" column="0">
+                   <widget class="QWidget" name="widget_8" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">    background-color:#eceff4
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QWidget" name="widget_17" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">    background-color:#eceff4
+</string>
+                    </property>
+                    <widget class="QLineEdit" name="search_edit_teachers">
+                     <property name="geometry">
+                      <rect>
+                       <x>150</x>
+                       <y>30</y>
+                       <width>231</width>
+                       <height>31</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 6px 12px; /* Padding inside the button */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Small font size */
-    min-width: 60px; /* Minimum width for consistency */
-    min-height: 24px; /* Minimum height for consistency */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="add_teacher_button">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>20</y>
+                       <width>101</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
 }
 
 /* Hover State */
 QPushButton:hover {
-    background-color: #e0e0e0; /* Slightly darker gray on hover */
-    border: 1px solid #999999; /* Darker border on hover */
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
 }
 
 /* Pressed State */
 QPushButton:pressed {
-    background-color: #d0d0d0; /* Even darker gray when pressed */
-    border: 1px solid #777777; /* Darker border when pressed */
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
 }
 
 /* Edit Button Specific Style */
-QPushButton {
-    background-color: #0078d7; /* Blue background for Edit */
-    color: white; /* White text for Edit */
-    border: 1px solid #005a9e; /* Darker blue border */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
 }
 
-QPushButton:hover {
-    background-color: #005a9e; /* Darker blue on hover */
-    border: 1px solid #004578; /* Even darker blue border on hover */
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
 }
 
-QPushButton:pressed {
-    background-color: #004578; /* Even darker blue when pressed */
-    border: 1px solid #003366; /* Darkest blue border when pressed */
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
 }
 </string>
-                  </property>
-                  <property name="text">
-                   <string>PushButton</string>
-                  </property>
-                 </widget>
-                 <widget class="QLineEdit" name="search_edit_teachers">
-                  <property name="geometry">
-                   <rect>
-                    <x>120</x>
-                    <y>10</y>
-                    <width>231</width>
-                    <height>31</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}</string>
-                  </property>
-                 </widget>
-                 <widget class="QScrollArea" name="scrollArea_teachers">
-                  <property name="geometry">
-                   <rect>
-                    <x>40</x>
-                    <y>70</y>
-                    <width>891</width>
-                    <height>621</height>
-                   </rect>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QTabBar::tab {
+                     </property>
+                     <property name="text">
+                      <string>PushButton</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QScrollArea" name="scrollArea_teachers">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QTabBar::tab {
     background: #E5E5E5; /* Light gray background for unselected tabs */
     color: #000000; /* Black text color */
     border: 1px solid transparent; /* Transparent border to prevent outlines */
@@ -3359,22 +3675,114 @@ QTabWidget::tab-bar {
 QTabBar::tab {
     height: 24px; /* Reduce the height of tabs */
 }
+
+
+
+
+
+
+
+
+
+QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+/* Scrollbar */
+QScrollBar:vertical {
+    border: none;
+    background: #e6e6e6; /* Light background for scrollbar */
+    width: 12px;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #4c566a; /* Nord3 - Darker gray for the scrollbar handle */
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #81a1c1; /* Nord8 - Light blue for handle hover */
+}
+
+QScrollBar::sub-line:vertical,
+QScrollBar::add-line:vertical {
+    background: none;
+    height: 0;
+}
+
+
+
+
 </string>
-                  </property>
-                  <property name="widgetResizable">
-                   <bool>true</bool>
-                  </property>
-                  <widget class="QWidget" name="scrollAreaWidgetContents_2">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>891</width>
-                     <height>621</height>
-                    </rect>
-                   </property>
-                  </widget>
-                 </widget>
+                    </property>
+                    <property name="widgetResizable">
+                     <bool>true</bool>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                     <property name="geometry">
+                      <rect>
+                       <x>0</x>
+                       <y>0</y>
+                       <width>972</width>
+                       <height>642</height>
+                      </rect>
+                     </property>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_7">
+                    <property name="font">
+                     <font>
+                      <pointsize>25</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Teachers</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                 <widget class="QWidget" name="tab_4">
                  <attribute name="title">

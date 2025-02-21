@@ -92,9 +92,9 @@ QScrollBar::handle:vertical:hover {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
+     <y>20</y>
      <width>361</width>
-     <height>60</height>
+     <height>65</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -103,8 +103,24 @@ QScrollBar::handle:vertical:hover {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>13</pointsize>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 16px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+</string>
       </property>
       <property name="text">
        <string>class name</string>
@@ -112,7 +128,31 @@ QScrollBar::handle:vertical:hover {
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="class_name_field"/>
+     <widget class="QLineEdit" name="class_name_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -122,7 +162,7 @@ QScrollBar::handle:vertical:hover {
      <x>150</x>
      <y>410</y>
      <width>241</width>
-     <height>32</height>
+     <height>40</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -130,12 +170,52 @@ QScrollBar::handle:vertical:hover {
      <widget class="QPushButton" name="add_class_button">
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>30</height>
+        <width>86</width>
+        <height>38</height>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
       </property>
       <property name="text">
        <string>Add Class</string>
@@ -151,22 +231,23 @@ QScrollBar::handle:vertical:hover {
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">/* Cancel Button */
+       <string notr="true">
 
 
 
 
-/*#bababa*/
-
-/*background-color: transparent; */
+/*          background-color: transparent;  No background */
 
 
 
+
+/* Cancel Button */
 QPushButton {
-    background-color: #bababa; /* No background */
+    background-color: #bababa;
+
     color: black;                  /* Black text */
     border: 1px solid #cccccc;     /* Light gray border */
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 8px 16px;
     font-size: 10pt;
 }
@@ -193,7 +274,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>60</y>
+     <y>50</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -208,49 +289,48 @@ QPushButton:pressed {
    <property name="styleSheet">
     <string notr="true">/* Base ComboBox */
 QComboBox {
-    background-color: #ffffff; /* White background */
-    color: #000000; /* Black text */
-    border: 1px solid #cccccc; /* Light gray border */
-    border-radius: 0px; /* Slightly rounded corners */
-    font-family: &quot;Segoe UI&quot;; /* Windows system font */
-    font-size: 12px; /* Standard font size */
-    padding: 2px; /* Keep original padding */
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
 }
 
 /* Arrow Button */
 QComboBox::drop-down {
     border: none; /* Remove border around the drop-down button */
-    background-color: #f0f0f0; /* Light gray background for the arrow */
-    border-left: 1px solid #cccccc; /* Add a separator for the arrow */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
     width: 20px; /* Keep original width */
 }
 
 /* Drop-down Arrow */
 QComboBox::down-arrow {
-    image: url(down-arrow-icon.png); /* Use a custom arrow icon if needed */
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
     width: 10px;
     height: 10px;
 }
 
 /* Drop-down List (Popup Menu) */
 QComboBox QAbstractItemView {
-    background-color: #f9f9f9; /* Light gray background for the menu */
-    color: #000000; /* Black text */
-    border: 0px solid #cccccc; /* Light gray border around the menu */
-    selection-background-color: #0078d4; /* Blue highlight for selected items */
-    selection-color: #ffffff; /* White text for selected items */
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
 }
 
 /* Hover Effect */
 QComboBox:hover {
-    border: 1px solid #0078d4; /* Blue border on hover */
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
 }
 
 /* Focused ComboBox */
 QComboBox:focus {
-    border: 1px solid #005a9e; /* Darker blue border when focused */
+    border: 1px solid #88C0D0; /* Teal border when focused */
 }
-&quot;&quot;&quot;
 </string>
    </property>
   </widget>
@@ -260,18 +340,56 @@ QComboBox:focus {
      <x>140</x>
      <y>100</y>
      <width>201</width>
-     <height>26</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>130</y>
+     <y>140</y>
      <width>101</width>
      <height>18</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 16px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+</string>
    </property>
    <property name="text">
     <string>max students</string>
@@ -286,6 +404,21 @@ QComboBox:focus {
      <height>18</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 16px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+</string>
+   </property>
    <property name="text">
     <string>session</string>
    </property>
@@ -294,76 +427,108 @@ QComboBox:focus {
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>130</y>
+     <y>140</y>
      <width>201</width>
-     <height>26</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
    </property>
   </widget>
   <widget class="QScrollArea" name="teachers_subjects_scrollArea">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>180</y>
+     <y>190</y>
      <width>481</width>
      <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">    QScrollArea {
-        border: 1px solid #cccccc;
-        background: #f9f9f9;
-        border-radius: 8px;
-    }
+    <string notr="true">QScrollArea {
+    border: 1px solid #3b4252; /* Nord1 - Dark gray-blue border */
+    background: #f9f9f9; /* Keep original background */
+    border-radius: 0px;
+}
 
-    /* Scroll Bar */
-    QScrollBar:vertical {
-        border: none;
-        background: #e6e6e6;
-        width: 12px;
-        margin: 2px;
-        border-radius: 6px;
-    }
-    QScrollBar::handle:vertical {
-        background: #aaaaaa;
-        min-height: 20px;
-        border-radius: 6px;
-    }
-    QScrollBar::handle:vertical:hover {
-        background: #888888;
-    }
-    QScrollBar::sub-line:vertical,
-    QScrollBar::add-line:vertical {
-        background: none;
-        height: 0;
-    }
+/* Scroll Bar */
+QScrollBar:vertical {
+    border: none;
+    background: #e6e6e6; /* Keep original background */
+    width: 12px;
+    margin: 2px;
+    border-radius: 6px;
+}
 
-    /* Items inside the Scroll Area */
-    QWidget {
-        font-size: 16px;
-        font-family: Arial, sans-serif;
-        color: #333333;
-        background: transparent;
-    }
+QScrollBar::handle:vertical {
+    background: #4c566a; /* Nord3 - Medium gray-blue for handle */
+    min-height: 20px;
+    border-radius: 6px;
+}
 
-    QCheckBox {
-        spacing: 10px;
-        padding: 5px;
-    }
-    QCheckBox::indicator {
-        width: 16px;
-        height: 16px;
-    }
-    QCheckBox::indicator:checked {
-        background-color: #0078d4;
-        border: 1px solid #0078d4;
-        border-radius: 4px;
-    }
-    QCheckBox::indicator:unchecked {
-        background-color: #f0f0f0;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-    }</string>
+QScrollBar::handle:vertical:hover {
+    background: #81a1c1; /* Nord8 - Blue on hover */
+}
+
+QScrollBar::sub-line:vertical,
+QScrollBar::add-line:vertical {
+    background: none;
+    height: 0;
+}
+
+/* Items inside the Scroll Area */
+QWidget {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #2e3440;
+    background: transparent;
+}
+
+QCheckBox {
+    spacing: 10px;
+    padding: 5px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+/* Checked state */
+QCheckBox::indicator:checked {
+    background-color: #5e81ac; /* Nord9 - Blue for checked state */
+    border: 1px solid #5e81ac; /* Matching border color */
+    border-radius: 4px;
+}
+
+/* Unchecked state */
+QCheckBox::indicator:unchecked {
+    background-color: #f0f0f0; /* Light background for unchecked */
+    border: 1px solid #cccccc; /* Light gray border */
+    border-radius: 4px;
+}
+</string>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>
@@ -378,6 +543,21 @@ QComboBox:focus {
      </rect>
     </property>
    </widget>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>531</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/*background-color: #bababa;*/
+border-radius: 0px;
+ background-color:#2e3440;</string>
+   </property>
   </widget>
  </widget>
  <resources/>

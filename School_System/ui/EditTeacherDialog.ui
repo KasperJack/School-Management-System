@@ -20,7 +20,7 @@ QWidget {
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
-border-radius: 10px;
+border-radius: 0px;
 }
 
 /* Dark Mode (Toggle this for dark theme) */
@@ -119,37 +119,29 @@ QScrollBar::handle:vertical:hover {
    </property>
    <property name="styleSheet">
     <string notr="true">QTabBar::tab {
-    background: #E5E5E5; /* Light gray background for unselected tabs */
-    color: #000000; /* Black text color */
-    border: 1px solid transparent; /* Transparent border to prevent outlines */
+    background: #3B4252; /* Dark gray-blue background for unselected tabs */
+    color: #D8DEE9; /* Light text color */
+    border: 1px solid #4C566A; /* Slight border for separation */
     border-bottom: none; /* Remove bottom border for seamless alignment with content */
     padding: 4px 12px; /* Padding for consistent size */
     min-width: 100px; /* Minimum tab width */
-    border-top-left-radius: 5px; /* Rounded top-left corner */
-    border-top-right-radius: 5px; /* Rounded top-right corner */
     margin-left: 0px; /* Adjust spacing between tabs */
     outline: none; /* Remove focus outline */
 }
 
 /* Selected Tab */
 QTabBar::tab:selected {
-    background: qlineargradient(
-        spread:pad, x1:0, y1:0, x2:1, y2:1,
-        stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */
-    border: 1px solid transparent; /* Transparent border */
-    color: white; /* White text for contrast */
-    border-top-left-radius: 5px; /* Match rounded corners */
-    border-top-right-radius: 5px;
+    background: #8FBCBB; /* Nord teal color for selected tab */
+    border: 1px solid #88C0D0; /* Slight border */
+    color: #2E3440; /* Darker text for contrast */
     padding: 4px 12px; /* Match padding to ensure consistent size */
-    outline: none; /* Remove focus outline */
 }
 
 /* Prevent Hover Effect on Selected Tab */
 QTabBar::tab:hover:!selected {
-    background: #F0F0F0; /* Light gray hover effect */
-    color: #000000; /* Ensure text stays visible */
-    border: 1px solid transparent; /* Transparent border to match other tabs */
+    background: #4C566A; /* Darker gray-blue hover effect */
+    color: #D8DEE9; /* Ensure text stays visible */
+    border: 1px solid #5E81AC; /* Subtle border */
 }
 
 /* Tab Bar Scroll Buttons (if tabs don't fit) */
@@ -159,11 +151,9 @@ QTabBar::scroller {
 
 /* Tab Widget Panel */
 QTabWidget::pane {
-    border: 1px solid transparent; /* Transparent border for panel */
-    background: #FFFFFF; /* White content area background */
-    border-radius: 5px; /* Rounded corners */
+    border: 0px solid #4C566A; /* Subtle border */
+    background: #2E3440; /* Darker background for contrast */
     margin-top: -1px; /* Align pane with tabs */
-    outline: none; /* Remove focus outline */
 }
 
 /* Center Align the Tab Bar */
@@ -175,10 +165,52 @@ QTabWidget::tab-bar {
 QTabBar::tab {
     height: 24px; /* Reduce the height of tabs */
 }
+
+
+
+
+
+/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 13px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+
+
+
+
+
 </string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -190,8 +222,51 @@ QTabBar::tab {
        <x>330</x>
        <y>450</y>
        <width>88</width>
-       <height>26</height>
+       <height>38</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 10px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
      </property>
      <property name="text">
       <string>PushButton</string>
@@ -212,7 +287,8 @@ QTabBar::tab {
         <property name="font">
          <font>
           <family>Segoe UI</family>
-          <pointsize>13</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -240,7 +316,8 @@ QTabBar::tab {
         <property name="font">
          <font>
           <family>Segoe UI</family>
-          <pointsize>13</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -259,17 +336,57 @@ QTabBar::tab {
        <x>240</x>
        <y>500</y>
        <width>239</width>
-       <height>30</height>
+       <height>38</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>0</width>
-       <height>30</height>
+       <width>86</width>
+       <height>38</height>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 10px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
      </property>
      <property name="text">
       <string>Add Teacher</string>
@@ -290,7 +407,8 @@ QTabBar::tab {
         <property name="font">
          <font>
           <family>Segoe UI</family>
-          <pointsize>13</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -318,7 +436,8 @@ QTabBar::tab {
         <property name="font">
          <font>
           <family>Segoe UI</family>
-          <pointsize>13</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -346,7 +465,8 @@ QTabBar::tab {
         <property name="font">
          <font>
           <family>Segoe UI</family>
-          <pointsize>13</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
