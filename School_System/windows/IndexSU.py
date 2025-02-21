@@ -68,7 +68,8 @@ class IndexSU(QMainWindow):
         self.update_pic.clicked.connect(self.open_image_dialog)
         self.hide_side_widget.clicked.connect(lambda:self.side_widget.hide()
 )
-
+        ################# closed windows ######################
+        ##edit_class_dialog.finished.connect(self.dialog_closed)
         ##############################################################
         self.greet_user()
         self.update_on_start_up() #updates the counters
@@ -1018,14 +1019,23 @@ class IndexSU(QMainWindow):
     def open_view_class_dialog(self ,class_id):
         view_class_dialog = ViewClassDialog(self, class_id)
         view_class_dialog.exec()
+
     def open_edit_class_dialog(self, class_id):
         edit_class_dialog = EditClassDialog(self, class_id)
+        edit_class_dialog.finished.connect(self.edit_class_dialog_closed)
         edit_class_dialog.exec()
+
     def open_edit_teacher_dialog(self, teacher_id):
         edit_teacher_dialog = EditTeacherDialog(self, teacher_id)
         edit_teacher_dialog.exec()
 
-
+    def edit_class_dialog_closed(self):
+        # This method will run when the dialog is closed (even via the "X" button)
+        print("Dialog closed!")
+        self.load_classes_table()
+        #self.update_classes_count()
+        self.load_classes_student_search()
+        #self.index_instance.refresh_setup_activity_log__table()
 
 
 
