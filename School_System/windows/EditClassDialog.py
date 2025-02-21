@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox
+from PyQt6.QtWidgets import QDialog, QTableWidgetItem, QWidget, QLabel, QVBoxLayout, QHBoxLayout, QPushButton, QAbstractItemView, QHeaderView, QTableWidget, QComboBox, QMessageBox
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QPainter, QPainterPath, QIcon
 from PyQt6.QtCore import Qt,QSize, QTimer
@@ -62,6 +62,18 @@ class EditClassDialog(QDialog):
     def add_student_to_class(self):
         # Disable the button to prevent spam
         #self.add_std_button.setEnabled(False)
+        if self.current_students == self.max_students:
+            confirmation = QMessageBox.question(
+                self,
+                "Confirm Activation",
+                f"Are you sure you want to add student:?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                QMessageBox.StandardButton.No
+            )
+
+            if confirmation == QMessageBox.StandardButton.No:
+                return 
+
 
         selected_row = self.no_class_table.currentRow()
         if selected_row >= 0:
@@ -71,6 +83,9 @@ class EditClassDialog(QDialog):
                 database.assign_student_to_class(id, self.class_id)
                 self.load_students_no_class()
                 self.load_students_in_class()
+        self.current_students += 1
+        self.update_count()
+
 
         # Re-enable the button after a short delay (e.g., 1 second)
         #QTimer.singleShot(500, lambda: self.add_std_button.setEnabled(True))
@@ -91,7 +106,9 @@ class EditClassDialog(QDialog):
                 self.load_students_no_class()
                 self.load_students_in_class()
 
-
+        self.current_students -= 1
+        #print(self.current_students)
+        self.update_count()
 
 
 
@@ -366,6 +383,7 @@ class EditClassDialog(QDialog):
 
 
     def update_count(self):
+        self.students_count.setText(f"{self.current_students}/{self.max_students}")
 
 
 
