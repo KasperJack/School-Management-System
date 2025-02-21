@@ -581,7 +581,6 @@ class IndexSU(QMainWindow):
             "class_id": None if self.comboBox_class.currentText() == "NO class" else self.comboBox_class.currentData(),
         }
 
-
         database.update_student_info(self.sid,full_name,new_data)
         self.load_students_to_table()
         self.refresh_setup_activity_log__table()

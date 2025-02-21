@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1352</width>
-    <height>836</height>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -485,7 +485,7 @@ QPushButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>35</height>
+              <height>50</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -550,7 +550,6 @@ QPushButton:checked {
 
 ; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
-    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
 }
 
 </string>
@@ -1041,7 +1040,13 @@ QPushButton:checked {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>35</height>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -1137,7 +1142,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -2452,7 +2457,7 @@ border-radius: 0px;</string>
                      <x>160</x>
                      <y>10</y>
                      <width>121</width>
-                     <height>134</height>
+                     <height>136</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -2639,7 +2644,7 @@ QPushButton:disabled {
                      <x>10</x>
                      <y>200</y>
                      <width>261</width>
-                     <height>58</height>
+                     <height>60</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2690,7 +2695,7 @@ QPushButton:disabled {
                      <x>10</x>
                      <y>340</y>
                      <width>261</width>
-                     <height>58</height>
+                     <height>60</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -2741,7 +2746,7 @@ QPushButton:disabled {
                      <x>10</x>
                      <y>270</y>
                      <width>261</width>
-                     <height>58</height>
+                     <height>60</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -2789,7 +2794,7 @@ QPushButton:disabled {
                      <x>10</x>
                      <y>410</y>
                      <width>261</width>
-                     <height>58</height>
+                     <height>60</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -3160,8 +3165,8 @@ QTabBar::tab {
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>889</width>
-                     <height>619</height>
+                     <width>891</width>
+                     <height>621</height>
                     </rect>
                    </property>
                   </widget>

@@ -14,9 +14,10 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">    background-color:#f3f3f3;; /* Light Gray for Light Mode */
+   <string notr="true">   background-color:#f3f3f3;; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
-    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;</string>
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -875,6 +876,19 @@ QScrollBar::handle:vertical:hover {
 }
 </string>
    </property>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>90</y>
+      <width>121</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>delete class</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
@@ -965,8 +979,8 @@ QScrollBar::handle:vertical:hover {
      <rect>
       <x>20</x>
       <y>40</y>
-      <width>113</width>
-      <height>31</height>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -976,10 +990,10 @@ QScrollBar::handle:vertical:hover {
    <widget class="QLineEdit" name="class_grade">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>90</y>
-      <width>113</width>
-      <height>31</height>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -989,10 +1003,10 @@ QScrollBar::handle:vertical:hover {
    <widget class="QLineEdit" name="class_settion">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>22</x>
       <y>140</y>
-      <width>113</width>
-      <height>31</height>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -1002,10 +1016,10 @@ QScrollBar::handle:vertical:hover {
    <widget class="QLineEdit" name="class_c_date">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>190</y>
-      <width>113</width>
-      <height>31</height>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -1015,14 +1029,27 @@ QScrollBar::handle:vertical:hover {
    <widget class="QLineEdit" name="students_count">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>330</y>
-      <width>71</width>
-      <height>31</height>
+      <x>250</x>
+      <y>320</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>10/23</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>47</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

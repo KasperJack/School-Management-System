@@ -99,11 +99,13 @@ QScrollBar::handle:vertical:hover {
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget {
-    background-color: #f3f3f3; /* Light Gray for Light Mode */
+    background-color:#2e3440; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
-}</string>
+}
+/* background-color:#2e3440;*/
+/*background-color: #f3f3f3;*/</string>
    </property>
   </widget>
   <widget class="QTabWidget" name="tabWidget">
@@ -201,7 +203,7 @@ QTabBar::tab {
        <x>210</x>
        <y>300</y>
        <width>361</width>
-       <height>62</height>
+       <height>64</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -229,7 +231,7 @@ QTabBar::tab {
        <x>210</x>
        <y>380</y>
        <width>361</width>
-       <height>62</height>
+       <height>64</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -279,7 +281,7 @@ QTabBar::tab {
        <x>210</x>
        <y>230</y>
        <width>361</width>
-       <height>62</height>
+       <height>64</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -307,7 +309,7 @@ QTabBar::tab {
        <x>210</x>
        <y>160</y>
        <width>171</width>
-       <height>62</height>
+       <height>64</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -335,7 +337,7 @@ QTabBar::tab {
        <x>400</x>
        <y>160</y>
        <width>171</width>
-       <height>62</height>
+       <height>64</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -480,26 +482,6 @@ QTreeWidget QScrollBar::sub-line:vertical {
     <attribute name="title">
      <string>Page</string>
     </attribute>
-    <widget class="QLineEdit" name="line_edit">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>100</y>
-       <width>221</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QListWidget" name="list_widget">
-     <property name="geometry">
-      <rect>
-       <x>245</x>
-       <y>130</y>
-       <width>211</width>
-       <height>192</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
  </widget>

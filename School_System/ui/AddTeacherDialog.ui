@@ -541,8 +541,9 @@ QLineEdit:focus {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #bababa;
-border-radius: 0px;</string>
+     <string notr="true">/*background-color: #bababa;*/
+border-radius: 0px;
+ background-color:#2e3440;</string>
     </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -561,7 +562,7 @@ border-radius: 0px;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>Subjects</string>
