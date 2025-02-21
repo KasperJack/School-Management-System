@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1352</width>
-    <height>886</height>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,8 +26,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1340</width>
-      <height>871</height>
+      <width>1344</width>
+      <height>821</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -132,26 +132,27 @@ QWidget {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -188,26 +189,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -244,26 +246,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -300,26 +303,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -356,26 +360,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -429,26 +434,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -485,26 +491,27 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #3c4043; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
-    padding: 8px; /* Adjust padding for icon buttons */
-    font-size: 16px;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 14px;
+    font-weight: bold; /* Make the text bold */
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Nord teal text when selected */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
+    font-weight: bold;
 }
 </string>
             </property>
@@ -653,9 +660,10 @@ border: none; </string>
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -663,20 +671,20 @@ border: none; </string>
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 3px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -716,9 +724,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -726,20 +735,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -776,9 +785,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -786,20 +796,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -836,9 +846,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -846,20 +857,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -896,9 +907,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -906,20 +918,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -973,9 +985,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -983,20 +996,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -1039,9 +1052,10 @@ QPushButton:checked {
             <property name="styleSheet">
              <string notr="true">QPushButton {
     background-color: transparent; /* Default background */
-    color: #D8DEE9; /* Light gray text */
+    color: #FFFFFF
+; /* Darker gray text */
     border: none; /* No border */
-    border-radius: 0px; /* Remove roundness */
+    border-radius: 8px; /* Rounded edges */
     padding: 10px 20px; /* Add some padding for spacing */
     text-align: left; /* Align text/icons to the left */
     font-size: 16px;
@@ -1049,20 +1063,20 @@ QPushButton:checked {
 }
 
 QPushButton:hover {
-    background-color: #4C566A; /* Nord hover background */
-    color: #ECEFF4; /* Light text on hover */
+    background-color: #f5f5f5; /* Light hover background */
+    color: #202124; /* Even darker text on hover */
 }
 
 QPushButton:pressed {
-    background-color: #434C5E; /* Slightly darker blue-gray when pressed */
-    color: #8FBCBB; /* Nord teal when pressed */
+    background-color: #e1e6fa; /* Light blue pressed background */
+    color: #1967d2; /* Fluent blue text when pressed */
 }
 
 QPushButton:checked {
-    background-color: #3B4252; /* Darker background for selected button */
-    color: #8FBCBB; /* Selected text color */
+    background-color: #e1e6fa; /* Highlight the selected button */
+    color: #1967d2; /* Fluent blue text */
     font-weight: bold;
-    border-left: 3px solid #8FBCBB; /* Nord teal accent on the left */
+    border-left: 4px solid #1967d2; /* Add a blue accent on the left */
 }
 </string>
             </property>
@@ -1128,7 +1142,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1149,29 +1163,37 @@ QPushButton:checked {
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QTabBar::tab {
-    background: #3B4252; /* Dark gray-blue background for unselected tabs */
-    color: #D8DEE9; /* Light text color */
-    border: 1px solid #4C566A; /* Slight border for separation */
+    background: #E5E5E5; /* Light gray background for unselected tabs */
+    color: #000000; /* Black text color */
+    border: 1px solid transparent; /* Transparent border to prevent outlines */
     border-bottom: none; /* Remove bottom border for seamless alignment with content */
     padding: 4px 12px; /* Padding for consistent size */
     min-width: 100px; /* Minimum tab width */
+    border-top-left-radius: 5px; /* Rounded top-left corner */
+    border-top-right-radius: 5px; /* Rounded top-right corner */
     margin-left: 0px; /* Adjust spacing between tabs */
     outline: none; /* Remove focus outline */
 }
 
 /* Selected Tab */
 QTabBar::tab:selected {
-    background: #8FBCBB; /* Nord teal color for selected tab */
-    border: 1px solid #88C0D0; /* Slight border */
-    color: #2E3440; /* Darker text for contrast */
+    background: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:1,
+        stop:0 #0078D4, stop:1 #005A9E
+    ); /* Gradient for selected tab */
+    border: 1px solid transparent; /* Transparent border */
+    color: white; /* White text for contrast */
+    border-top-left-radius: 5px; /* Match rounded corners */
+    border-top-right-radius: 5px;
     padding: 4px 12px; /* Match padding to ensure consistent size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Prevent Hover Effect on Selected Tab */
 QTabBar::tab:hover:!selected {
-    background: #4C566A; /* Darker gray-blue hover effect */
-    color: #D8DEE9; /* Ensure text stays visible */
-    border: 1px solid #5E81AC; /* Subtle border */
+    background: #F0F0F0; /* Light gray hover effect */
+    color: #000000; /* Ensure text stays visible */
+    border: 1px solid transparent; /* Transparent border to match other tabs */
 }
 
 /* Tab Bar Scroll Buttons (if tabs don't fit) */
@@ -1181,9 +1203,11 @@ QTabBar::scroller {
 
 /* Tab Widget Panel */
 QTabWidget::pane {
-    border: 0px solid #4C566A; /* Subtle border */
-    background: #2E3440; /* Darker background for contrast */
+    border: 1px solid transparent; /* Transparent border for panel */
+    background: #FFFFFF; /* White content area background */
+    border-radius: 5px; /* Rounded corners */
     margin-top: -1px; /* Align pane with tabs */
+    outline: none; /* Remove focus outline */
 }
 
 /* Center Align the Tab Bar */
@@ -1738,275 +1762,178 @@ background-color: #0078d7; </string>
              </layout>
             </widget>
             <widget class="QWidget" name="classes">
-             <layout class="QGridLayout" name="gridLayout_10">
-              <item row="0" column="0">
-               <layout class="QVBoxLayout" name="verticalLayout_18">
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_17">
-                  <item>
-                   <widget class="QLabel" name="label_6">
-                    <property name="font">
-                     <font>
-                      <pointsize>25</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>classes</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_2" native="true">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>80</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>80</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">    background-color:#eceff4
-</string>
-                    </property>
-                    <widget class="QWidget" name="widget_12" native="true">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>20</y>
-                       <width>191</width>
-                       <height>51</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">
-background-color: #8fbcbb</string>
-                     </property>
-                     <widget class="QLabel" name="students_label_2">
-                      <property name="geometry">
-                       <rect>
-                        <x>40</x>
-                        <y>20</y>
-                        <width>107</width>
-                        <height>18</height>
-                       </rect>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <family>Segoe UI</family>
-                        <pointsize>12</pointsize>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>students | 220</string>
-                      </property>
-                     </widget>
-                     <widget class="QWidget" name="widget_13" native="true">
-                      <property name="geometry">
-                       <rect>
-                        <x>0</x>
-                        <y>0</y>
-                        <width>191</width>
-                        <height>51</height>
-                       </rect>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">
-background-color: #8fbcbb</string>
-                      </property>
-                      <widget class="QLabel" name="students_label_3">
-                       <property name="geometry">
-                        <rect>
-                         <x>40</x>
-                         <y>20</y>
-                         <width>107</width>
-                         <height>18</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>12</pointsize>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>students | 220</string>
-                       </property>
-                      </widget>
-                      <widget class="QWidget" name="widget_14" native="true">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>0</y>
-                         <width>191</width>
-                         <height>51</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">
-background-color: #8fbcbb</string>
-                       </property>
-                       <widget class="QLabel" name="students_label_4">
-                        <property name="geometry">
-                         <rect>
-                          <x>40</x>
-                          <y>10</y>
-                          <width>107</width>
-                          <height>18</height>
-                         </rect>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Segoe UI</family>
-                          <pointsize>12</pointsize>
-                          <bold>true</bold>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>students | 220</string>
-                        </property>
-                       </widget>
-                      </widget>
-                     </widget>
-                    </widget>
-                    <widget class="QWidget" name="widget_15" native="true">
-                     <property name="geometry">
-                      <rect>
-                       <x>230</x>
-                       <y>20</y>
-                       <width>191</width>
-                       <height>51</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">
-background-color: #8fbcbb</string>
-                     </property>
-                     <widget class="QLabel" name="students_label_5">
-                      <property name="geometry">
-                       <rect>
-                        <x>40</x>
-                        <y>20</y>
-                        <width>107</width>
-                        <height>18</height>
-                       </rect>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <family>Segoe UI</family>
-                        <pointsize>12</pointsize>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>students | 220</string>
-                      </property>
-                     </widget>
-                    </widget>
-                    <widget class="QWidget" name="widget_16" native="true">
-                     <property name="geometry">
-                      <rect>
-                       <x>440</x>
-                       <y>20</y>
-                       <width>191</width>
-                       <height>51</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">
-background-color: #8fbcbb</string>
-                     </property>
-                     <widget class="QLabel" name="students_label_6">
-                      <property name="geometry">
-                       <rect>
-                        <x>40</x>
-                        <y>20</y>
-                        <width>107</width>
-                        <height>18</height>
-                       </rect>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <family>Segoe UI</family>
-                        <pointsize>12</pointsize>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>students | 220</string>
-                      </property>
-                     </widget>
-                    </widget>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QWidget" name="widget_11" native="true">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>80</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>80</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">/* General Window */
+             <widget class="QWidget" name="">
+              <property name="geometry">
+               <rect>
+                <x>120</x>
+                <y>120</y>
+                <width>781</width>
+                <height>419</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_18">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_17">
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="font">
+                    <font>
+                     <pointsize>25</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>classes</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_2" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">/* General Window */
 QWidget {
-    background-color:#eceff4; /* Light Gray for Light Mode */
+    background-color:#f3f3f3; /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
 }
 </string>
+                   </property>
+                   <widget class="QLabel" name="students_label_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>40</x>
+                      <y>30</y>
+                      <width>107</width>
+                      <height>18</height>
+                     </rect>
                     </property>
-                    <widget class="QToolButton" name="add_class_button">
-                     <property name="geometry">
-                      <rect>
-                       <x>20</x>
-                       <y>20</y>
-                       <width>41</width>
-                       <height>41</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(0, 0, 0);</string>
-                     </property>
-                     <property name="text">
-                      <string>...</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="../resources/rec.qrc">
-                       <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>50</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="search_edit_teachers_2">
-                     <property name="geometry">
-                      <rect>
-                       <x>110</x>
-                       <y>20</y>
-                       <width>231</width>
-                       <height>31</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">/* Input Fields */
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI</family>
+                      <pointsize>12</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>students | 220</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="classes_label_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>440</x>
+                      <y>30</y>
+                      <width>121</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI</family>
+                      <pointsize>12</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>classes | 20</string>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="teachers_label_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>190</x>
+                      <y>30</y>
+                      <width>121</width>
+                      <height>20</height>
+                     </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI</family>
+                      <pointsize>12</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>teachers | 40</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="widget_11" native="true">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>80</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">/* General Window */
+QWidget {
+    background-color:#f3f3f3; /* Light Gray for Light Mode */
+    color: #000000;           /* Black Text */
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 12pt;
+}
+</string>
+                   </property>
+                   <widget class="QToolButton" name="add_class_button">
+                    <property name="geometry">
+                     <rect>
+                      <x>20</x>
+                      <y>20</y>
+                      <width>41</width>
+                      <height>41</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(0, 0, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../resources/rec.qrc">
+                      <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>50</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                   </widget>
+                   <widget class="QLineEdit" name="search_edit_teachers_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>80</x>
+                      <y>20</y>
+                      <width>231</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* Input Fields */
 QLineEdit {
     background-color: white;
     color: black;
@@ -2018,16 +1945,16 @@ QLineEdit:focus {
     border: 1px solid #0078d7; /* Blue Border on Focus */
     background-color: #ffffff;
 }</string>
-                     </property>
-                    </widget>
+                    </property>
                    </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QTableWidget" name="classes_table">
-                  <property name="styleSheet">
-                   <string notr="true">            QTableWidget {
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="classes_table">
+                 <property name="styleSheet">
+                  <string notr="true">            QTableWidget {
                 background-color: white;
                 gridline-color: #E5E7EB;
                 border: none;
@@ -2102,18 +2029,17 @@ QWidget {
 }
 
 </string>
-                  </property>
-                  <property name="lineWidth">
-                   <number>1</number>
-                  </property>
-                  <property name="alternatingRowColors">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
             <widget class="QWidget" name="students">
              <layout class="QGridLayout" name="gridLayout_3">
@@ -3151,29 +3077,37 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <widget class="QTabWidget" name="tabWidget">
                 <property name="styleSheet">
                  <string notr="true">QTabBar::tab {
-    background: #3B4252; /* Dark gray-blue background for unselected tabs */
-    color: #D8DEE9; /* Light text color */
-    border: 1px solid #4C566A; /* Slight border for separation */
+    background: #E5E5E5; /* Light gray background for unselected tabs */
+    color: #000000; /* Black text color */
+    border: 1px solid transparent; /* Transparent border to prevent outlines */
     border-bottom: none; /* Remove bottom border for seamless alignment with content */
     padding: 4px 12px; /* Padding for consistent size */
     min-width: 100px; /* Minimum tab width */
+    border-top-left-radius: 5px; /* Rounded top-left corner */
+    border-top-right-radius: 5px; /* Rounded top-right corner */
     margin-left: 0px; /* Adjust spacing between tabs */
     outline: none; /* Remove focus outline */
 }
 
 /* Selected Tab */
 QTabBar::tab:selected {
-    background: #8FBCBB; /* Nord teal color for selected tab */
-    border: 1px solid #88C0D0; /* Slight border */
-    color: #2E3440; /* Darker text for contrast */
+    background: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:1,
+        stop:0 #0078D4, stop:1 #005A9E
+    ); /* Gradient for selected tab */
+    border: 1px solid transparent; /* Transparent border */
+    color: white; /* White text for contrast */
+    border-top-left-radius: 5px; /* Match rounded corners */
+    border-top-right-radius: 5px;
     padding: 4px 12px; /* Match padding to ensure consistent size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Prevent Hover Effect on Selected Tab */
 QTabBar::tab:hover:!selected {
-    background: #4C566A; /* Darker gray-blue hover effect */
-    color: #D8DEE9; /* Ensure text stays visible */
-    border: 1px solid #5E81AC; /* Subtle border */
+    background: #F0F0F0; /* Light gray hover effect */
+    color: #000000; /* Ensure text stays visible */
+    border: 1px solid transparent; /* Transparent border to match other tabs */
 }
 
 /* Tab Bar Scroll Buttons (if tabs don't fit) */
@@ -3183,9 +3117,11 @@ QTabBar::scroller {
 
 /* Tab Widget Panel */
 QTabWidget::pane {
-    border: 0px solid #4C566A; /* Subtle border */
-    background: #2E3440; /* Darker background for contrast */
+    border: 1px solid transparent; /* Transparent border for panel */
+    background: #FFFFFF; /* White content area background */
+    border-radius: 5px; /* Rounded corners */
     margin-top: -1px; /* Align pane with tabs */
+    outline: none; /* Remove focus outline */
 }
 
 /* Center Align the Tab Bar */

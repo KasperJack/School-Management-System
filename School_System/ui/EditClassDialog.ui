@@ -29,64 +29,31 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">/* Parent Widget */
-QWidget {
-    background: #FFFFFF; /* White background for the parent widget */
-}
-
-/* Tab Widget */
-QTabWidget {
-    background: #FFFFFF; /* White background for the entire TabWidget */
-    border: none; /* Optional: remove any border */
-}
-
-/* Tab Widget Panel */
-QTabWidget::pane {
-    border: 1px solid #CCCCCC; /* Restore border for panel */
-    background: #FFFFFF; /* White content area background */
-    border-radius: 0px; /* Rounded corners */
-    margin-top: -1px; /* Align pane with tabs */
-}
-
-
-
-
-/* Tab Widget Background */
-QTabWidget {
-    background: #FFFFFF; /* White background for the entire TabWidget */
-}
-
-/* Tab Bar Styling */
-QTabBar::tab {
-    background: #E5E5E5; 
-    color: #000000; /* Black text color */
-    border: 1px solid #CCCCCC; /* Restore border */
+    <string notr="true">QTabBar::tab {
+    background: #3B4252; /* Dark gray-blue background for unselected tabs */
+    color: #D8DEE9; /* Light text color */
+    border: 1px solid #4C566A; /* Slight border for separation */
     border-bottom: none; /* Remove bottom border for seamless alignment with content */
     padding: 4px 12px; /* Padding for consistent size */
     min-width: 100px; /* Minimum tab width */
-    border-top-left-radius: 5px; /* Rounded top-left corner */
-    border-top-right-radius: 5px; /* Rounded top-right corner */
     margin-left: 0px; /* Adjust spacing between tabs */
+    outline: none; /* Remove focus outline */
 }
 
 /* Selected Tab */
 QTabBar::tab:selected {
-    background: qlineargradient(
-        spread:pad, x1:0, y1:0, x2:1, y2:1,
-        stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */
-    border: 1px solid #CCCCCC; /* Restore border */
-    color: white; /* White text for contrast */
-    border-top-left-radius: 5px; /* Match rounded corners */
-    border-top-right-radius: 5px;
+    background: #8FBCBB; /* Nord teal color for selected tab */
+    border: 1px solid #88C0D0; /* Slight border */
+    color: #2E3440; /* Darker text for contrast */
     padding: 4px 12px; /* Match padding to ensure consistent size */
+    outline: none; /* Remove focus outline */
 }
 
-/* Hover Effect on Non-Selected Tabs */
+/* Prevent Hover Effect on Selected Tab */
 QTabBar::tab:hover:!selected {
-    background: #F0F0F0; /* Light gray hover effect */
-    color: #000000; /* Ensure text stays visible */
-    border: 1px solid #CCCCCC; /* Restore border */
+    background: #4C566A; /* Darker gray-blue hover effect */
+    color: #D8DEE9; /* Ensure text stays visible */
+    border: 1px solid #5E81AC; /* Subtle border */
 }
 
 /* Tab Bar Scroll Buttons (if tabs don't fit) */
@@ -96,15 +63,15 @@ QTabBar::scroller {
 
 /* Tab Widget Panel */
 QTabWidget::pane {
-    border: 1px solid #CCCCCC; /* Restore border for panel */
-    background: #FFFFFF; /* White content area background */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #4C566A; /* Subtle border */
+    background: #2E3440; /* Darker background for contrast */
     margin-top: -1px; /* Align pane with tabs */
+    outline: none; /* Remove focus outline */
 }
 
-/* Align Tabs to the Left */
+/* Center Align the Tab Bar */
 QTabWidget::tab-bar {
-    alignment: left; /* Align tabs to the left */
+    alignment: center; /* Center align the tabs */
 }
 
 /* Optional: Reduce Tab Height (Override default height) */
@@ -114,7 +81,7 @@ QTabBar::tab {
 </string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
