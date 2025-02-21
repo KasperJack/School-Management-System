@@ -41,8 +41,8 @@ class ViewClassDialog(QDialog):
 
 
 
+        self.setup_subjects_table()
 
-        # Set row and column counts
         self.teachers_table.setRowCount(len(teachers_data))
         self.teachers_table.setColumnCount(4)  # ts_id, teacher_id, subject_name, full_name
 
@@ -57,7 +57,7 @@ class ViewClassDialog(QDialog):
         self.teachers_table.setColumnHidden(0, True)
         self.teachers_table.setColumnHidden(1, True)
 
-
+        self.resize_subjects_table()
 
 
 
@@ -241,3 +241,19 @@ class ViewClassDialog(QDialog):
 
 
 
+    def setup_subjects_table(self):
+        self.teachers_table.verticalHeader().setVisible(False)
+        #self.teachers_table.horizontalHeader().hide()
+
+        self.teachers_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        #self.teachers_table.setShowGrid(False)
+
+        # self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
+        self.teachers_table.setSelectionMode(self.students_table.SelectionMode.NoSelection)
+        self.teachers_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+
+
+
+    def resize_subjects_table(self):
+        header = self.teachers_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)

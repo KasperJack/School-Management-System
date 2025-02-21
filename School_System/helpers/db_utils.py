@@ -1496,5 +1496,55 @@ def get_class_data(class_id):
     return class_data
 
 
+def update_class_n_m(class_id, class_name=None, max_students=None):
+    """
+    Updates a class record with optional parameters.
+
+    Args:
+        class_id (int): Required - The ID of the class to update
+        class_name (str, optional): New name for the class
+        max_students (int, optional): New maximum number of students
+
+    Returns:
+        bool: True if update successful, False otherwise
+    """
+    # Build the dynamic query parts
+    update_parts = []
+    params = []
+
+    if class_name is not None:
+        update_parts.append("class_name = ?")
+        params.append(class_name)
+
+    if max_students is not None:
+        update_parts.append("max_students = ?")
+        params.append(max_students)
+
+    # If nothing to update, return early
+    if not update_parts:
+        return False
+
+    # Complete the parameter list with class_id
+    params.append(class_id)
+
+    # Construct the query
+    query = f"UPDATE class SET {', '.join(update_parts)} WHERE class_id = ?"
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(query, params)
+        conn.commit()
+
+        # Check if anything was updated
+        rows_affected = cursor.rowcount
+        conn.close()
+
+        return rows_affected > 0
+    except Exception as e:
+        print(f"Error updating class: {e}")
+        return False
+
+
 
 

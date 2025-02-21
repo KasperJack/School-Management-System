@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
-    <height>638</height>
+    <width>891</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,144 +17,299 @@
    <string notr="true">color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>-10</x>
-     <y>50</y>
-     <width>781</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="class_name">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Class TSIG4</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>90</y>
-     <width>321</width>
-     <height>311</height>
+     <y>100</y>
+     <width>581</width>
+     <height>231</height>
     </rect>
    </property>
    <property name="title">
     <string/>
-   </property>
-   <widget class="QLabel" name="max_stud">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Inter</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>30/30</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="creation_date">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>80</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Inter</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>7/08/20011</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QLabel" name="grade">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>20</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>BTSS</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="sesstion">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>20</y>
-     <width>251</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>sesstion</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="teachers_table">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>421</y>
-     <width>431</width>
-     <height>211</height>
+     <y>340</y>
+     <width>581</width>
+     <height>331</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+            QTableWidget {
+                background-color: #2e3440;
+                gridline-color: #2e3440;
+       		alternate-background-color: #2e3440;
+            }
+
+            QHeaderView::section {
+                background-color: #2e3440;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #2e3440;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+
+
+
+
+
+
+    QComboBox {
+        border: 1px solid #ccc; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        background: #fff; /* White background */
+        padding: 0px 5px; /* Adjust padding for text */
+        font-size: 14px; /* Adjust font size */
+        color: #333; /* Text color */
+
+
+
+    }
+
+    QComboBox::drop-down {
+        border: none; /* No border for the drop-down button */
+        background: transparent; /* Transparent background for drop-down */
+        width: 20px; /* Adjust drop-down button width */
+    }
+
+    QComboBox::down-arrow {
+        width: 10px; /* Default arrow width */
+        height: 10px; /* Default arrow height */
+    }
+
+    QComboBox QAbstractItemView {
+        border: 1px solid #ccc; /* Border around dropdown list */
+        background-color: #f5f5f5; /* Light gray background for dropdown */
+        color: #333; /* Text color in dropdown */
+        selection-background-color: #0078d7; /* Highlight color */
+        selection-color: white; /* Highlighted text color */
+    }
+
+    QComboBox QAbstractItemView::item {
+        padding: 5px; /* Padding for dropdown items */
+    }
+
+    QComboBox QAbstractItemView::item:hover {
+        background-color: #e0e0e0; /* Slightly darker gray on hover */
+        color: #000; /* Black text on hover */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+       		alternate-background-color: #F9FAFB;
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+
+
+
+
+
+
+    QComboBox {
+        border: 1px solid #ccc; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        background: #fff; /* White background */
+        padding: 0px 5px; /* Adjust padding for text */
+        font-size: 14px; /* Adjust font size */
+        color: #333; /* Text color */
+
+
+
+    }
+
+    QComboBox::drop-down {
+        border: none; /* No border for the drop-down button */
+        background: transparent; /* Transparent background for drop-down */
+        width: 20px; /* Adjust drop-down button width */
+    }
+
+    QComboBox::down-arrow {
+        width: 10px; /* Default arrow width */
+        height: 10px; /* Default arrow height */
+    }
+
+    QComboBox QAbstractItemView {
+        border: 1px solid #ccc; /* Border around dropdown list */
+        background-color: #f5f5f5; /* Light gray background for dropdown */
+        color: #333; /* Text color in dropdown */
+        selection-background-color: #0078d7; /* Highlight color */
+        selection-color: white; /* Highlighted text color */
+    }
+
+    QComboBox QAbstractItemView::item {
+        padding: 5px; /* Padding for dropdown items */
+    }
+
+    QComboBox QAbstractItemView::item:hover {
+        background-color: #e0e0e0; /* Slightly darker gray on hover */
+        color: #000; /* Black text on hover */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</string>
    </property>
   </widget>
   <widget class="QTableWidget" name="students_table">
    <property name="geometry">
     <rect>
-     <x>540</x>
-     <y>90</y>
-     <width>251</width>
-     <height>531</height>
+     <x>640</x>
+     <y>100</y>
+     <width>241</width>
+     <height>571</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -188,17 +343,190 @@ background-color: rgb(255, 255, 255);</string>
 </string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>20</y>
-     <width>88</width>
-     <height>26</height>
+     <x>0</x>
+     <y>0</y>
+     <width>891</width>
+     <height>81</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Edit</string>
+   <property name="styleSheet">
+    <string notr="true">    background-color:#2e3440
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="class_name">
+      <property name="font">
+       <font>
+        <family>Inter</family>
+        <pointsize>18</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: white;
+    background-color: #2c3e50;  /* Dark background */
+    padding: 6px;
+    text-align: center;
+    border: 2px solid #8fbcbb;  /* Teal border */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Class TSIG4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="grade">
+      <property name="font">
+       <font>
+        <family>Inter</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: white;
+    background-color: #2c3e50;  /* Dark background */
+    padding: 6px;
+    text-align: center;
+    border: 2px solid #8fbcbb;  /* Teal border */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>BTS</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="sesstion">
+      <property name="font">
+       <font>
+        <family>Inter</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: white;
+    background-color: #2c3e50;  /* Dark background */
+    padding: 6px;
+    text-align: center;
+    border: 2px solid #8fbcbb;  /* Teal border */
+}</string>
+      </property>
+      <property name="text">
+       <string>sesstion</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="max_stud">
+      <property name="font">
+       <font>
+        <family>Inter</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    color: white;
+    background-color: #2c3e50;  /* Dark background */
+    padding: 6px;
+    text-align: center;
+    border: 2px solid #8fbcbb;  /* Teal border */
+}</string>
+      </property>
+      <property name="text">
+       <string>30/30</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    color: #ECEFF4;  /* Light text color */
+    background-color: #4C566A;  /* Nord dark gray */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: 2px solid #3B4252;  /* Slightly darker border */
+    border-radius: 0px;  /* No rounded corners */
+}
+
+QPushButton:hover {
+    background-color: #434C5E;  /* Slightly lighter gray */
+    border: 2px solid #2E3440;
+}
+
+QPushButton:pressed {
+    background-color: #2E3440;  /* Darker when clicked */
+    border: 2px solid #3B4252;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Edit</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="creation_date">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: white;
+    background-color: #2c3e50;  /* Dark background */
+    padding: 6px;
+    text-align: center;
+    border: 2px solid #8fbcbb;  /* Teal border */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>7/08/2011</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>80</y>
+     <width>16</width>
+     <height>621</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">    background-color:#2e3440
+</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Vertical</enum>
    </property>
   </widget>
  </widget>

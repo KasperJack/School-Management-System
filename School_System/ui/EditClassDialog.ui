@@ -114,7 +114,7 @@ QTabBar::tab {
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -489,8 +489,7 @@ QLineEdit:focus {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-            QTableWidget {
+      <string notr="true">   QTableWidget {
                 background-color: white;
                 gridline-color: #E5E7EB;
        		alternate-background-color: #F9FAFB;
@@ -560,64 +559,6 @@ QLineEdit:focus {
         background-color: #e0e0e0; /* Slightly darker gray on hover */
         color: #000; /* Black text on hover */
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </string>
      </property>

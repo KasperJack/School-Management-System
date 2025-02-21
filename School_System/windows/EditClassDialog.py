@@ -424,8 +424,8 @@ class EditClassDialog(QDialog):
         self.students_count.setText(f"{self.current_students}/{self.max_students}")
         self.class_name.setText(self.class_name_v)
 
-        self.class_name.setReadOnly(False)
-        self.students_count.setReadOnly(False)
+        self.class_name.setReadOnly(True)
+        self.students_count.setReadOnly(True)
         self.button_box.hide()
         self.edit_button.show()
 
@@ -435,16 +435,17 @@ class EditClassDialog(QDialog):
 
         if self.class_name_v != self.class_name.text():
             if self.max_students != int(self.students_count.text()):
-                print("tow changed")
+                database.update_class_n_m(self.class_id, self.class_name.text(),self.students_count.text() )
                 self.update()
                 return
             else:
-                print("only class name changed")
+                database.update_class_n_m(self.class_id,class_name=self.class_name.text())
                 self.update()
                 return
 
         if self.max_students != int(self.students_count.text()):
-            print("only student count changed")
+            database.update_class_n_m(self.class_id, max_students=self.students_count.text())
+
             self.update()
 
 
@@ -465,8 +466,8 @@ class EditClassDialog(QDialog):
         self.students_count.setText(f"{self.current_students}/{self.max_students}")
         self.class_name.setText(self.class_name_v)
 
-        self.class_name.setReadOnly(False)
-        self.students_count.setReadOnly(False)
+        self.class_name.setReadOnly(True)
+        self.students_count.setReadOnly(True)
         self.button_box.hide()
         self.edit_button.show()
 
@@ -507,3 +508,8 @@ class EditClassDialog(QDialog):
         print(last_row)
         if last_row >= 0:  # Ensure the table is not empty
             self.subjects_table.selectRow(last_row)
+    def update_main_windoww(self): #main class
+        self.index_instance.load_classes_table()
+        self.index_instance.update_classes_count()
+        self.index_instance.load_classes_student_search()
+        self.index_instance.refresh_setup_activity_log__table()
