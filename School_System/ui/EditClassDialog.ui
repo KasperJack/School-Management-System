@@ -81,7 +81,7 @@ QTabBar::tab {
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -415,17 +415,43 @@ QHeaderView {
       <string>&gt;</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>450</x>
        <y>30</y>
-       <width>201</width>
+       <width>271</width>
        <height>31</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QLineEdit {
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="toolButton_5">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton { background: transparent; border: none;}</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/rec.qrc">
+          <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
     background-color: white;
     color: black;
     border: 1px solid #cccccc;
@@ -436,10 +462,13 @@ QLineEdit:focus {
     border: 1px solid #0078d7; /* Blue Border on Focus */
     background-color: #ffffff;
 }</string>
-     </property>
-     <property name="text">
-      <string>search</string>
-     </property>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
@@ -672,17 +701,43 @@ QLineEdit:focus {
 </string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>25</y>
-       <width>201</width>
-       <height>31</height>
+       <x>510</x>
+       <y>20</y>
+       <width>231</width>
+       <height>36</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QLineEdit {
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QToolButton" name="toolButton_6">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QToolButton { background: transparent; border: none;}</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/rec.qrc">
+          <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_4">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
     background-color: white;
     color: black;
     border: 1px solid #cccccc;
@@ -693,10 +748,13 @@ QLineEdit:focus {
     border: 1px solid #0078d7; /* Blue Border on Focus */
     background-color: #ffffff;
 }</string>
-     </property>
-     <property name="text">
-      <string>search</string>
-     </property>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>
@@ -716,7 +774,8 @@ QWidget {
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
-border-radius: 10px;
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+
 }
 
 /* Dark Mode (Toggle this for dark theme) */
@@ -814,7 +873,8 @@ QWidget {
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
     font-size: 12pt;
-border-radius: 10px;
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+
 }
 
 /* Dark Mode (Toggle this for dark theme) */
@@ -887,9 +947,32 @@ QScrollBar::handle:vertical:hover {
      <rect>
       <x>20</x>
       <y>40</y>
-      <width>161</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
     </property>
     <property name="text">
      <string>class 475</string>
@@ -900,9 +983,32 @@ QScrollBar::handle:vertical:hover {
      <rect>
       <x>20</x>
       <y>90</y>
-      <width>161</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
     </property>
     <property name="text">
      <string>BTS</string>
@@ -913,9 +1019,32 @@ QScrollBar::handle:vertical:hover {
      <rect>
       <x>22</x>
       <y>140</y>
-      <width>161</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
     </property>
     <property name="text">
      <string>mars</string>
@@ -926,9 +1055,32 @@ QScrollBar::handle:vertical:hover {
      <rect>
       <x>20</x>
       <y>190</y>
-      <width>161</width>
+      <width>181</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
     </property>
     <property name="text">
      <string>2025-01-17</string>
@@ -942,6 +1094,29 @@ QScrollBar::handle:vertical:hover {
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
     </property>
     <property name="text">
      <string>10/23</string>
@@ -975,6 +1150,8 @@ QScrollBar::handle:vertical:hover {
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/rec.qrc"/>
+ </resources>
  <connections/>
 </ui>

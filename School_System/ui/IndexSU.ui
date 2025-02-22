@@ -1012,7 +1012,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1089,7 +1089,7 @@ QTabBar::tab {
                   <string>Tab 1</string>
                  </attribute>
                  <layout class="QGridLayout" name="gridLayout_9">
-                  <item row="1" column="0">
+                  <item row="2" column="0">
                    <layout class="QVBoxLayout" name="verticalLayout_16">
                     <item>
                      <widget class="QWidget" name="cal_widget" native="true">
@@ -1104,7 +1104,7 @@ QTabBar::tab {
                     </item>
                    </layout>
                   </item>
-                  <item row="1" column="1">
+                  <item row="2" column="1">
                    <layout class="QVBoxLayout" name="verticalLayout_15">
                     <item>
                      <layout class="QGridLayout" name="gridLayout_8">
@@ -1119,7 +1119,7 @@ QTabBar::tab {
                         <property name="styleSheet">
                          <string notr="true">/* General Window */
 QWidget {
-           background-color:#eceff4;
+           background-color: rgb(255, 255, 255);
 
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
@@ -1127,11 +1127,17 @@ QWidget {
 }
 </string>
                         </property>
-                        <layout class="QGridLayout" name="gridLayout_18">
-                         <item row="0" column="0">
-                          <widget class="QPushButton" name="add_subject_button_dash">
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton {
+                        <widget class="QPushButton" name="add_subject_button_dash">
+                         <property name="geometry">
+                          <rect>
+                           <x>6</x>
+                           <y>89</y>
+                           <width>210</width>
+                           <height>44</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
     background-color: #5E81AC; /* Nord Blue */
     color: #ECEFF4; /* Light text */
     border: 1px solid #81A1C1; /* Lighter blue border */
@@ -1171,26 +1177,32 @@ QPushButton#editButton:pressed {
     border: 1px solid #4C566A; /* Darker border */
 }
 </string>
-                           </property>
-                           <property name="text">
-                            <string>Add Subject</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="../resources/rec.qrc">
-                             <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>100</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="2" column="0">
-                          <widget class="QPushButton" name="add_class_button_dash">
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton {
+                         </property>
+                         <property name="text">
+                          <string>Add Subject</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>100</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="add_teacher_button_dash">
+                         <property name="geometry">
+                          <rect>
+                           <x>6</x>
+                           <y>222</y>
+                           <width>213</width>
+                           <height>44</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
     background-color: #5E81AC; /* Nord Blue */
     color: #ECEFF4; /* Light text */
     border: 1px solid #81A1C1; /* Lighter blue border */
@@ -1230,26 +1242,97 @@ QPushButton#editButton:pressed {
     border: 1px solid #4C566A; /* Darker border */
 }
 </string>
-                           </property>
-                           <property name="text">
-                            <string>Add Class</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="../resources/rec.qrc">
-                             <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>100</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="3" column="0">
-                          <widget class="QPushButton" name="add_student_button_dash">
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton {
+                         </property>
+                         <property name="text">
+                          <string>Add Teacher</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>100</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="add_class_button_dash">
+                         <property name="geometry">
+                          <rect>
+                           <x>6</x>
+                           <y>355</y>
+                           <width>196</width>
+                           <height>44</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Add Class</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>100</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="add_student_button_dash">
+                         <property name="geometry">
+                          <rect>
+                           <x>6</x>
+                           <y>488</y>
+                           <width>224</width>
+                           <height>44</height>
+                          </rect>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
     background-color: #5E81AC; /* Nord Blue */
     color: #ECEFF4; /* Light text */
     border: 1px solid #81A1C1; /* Lighter blue border */
@@ -1289,176 +1372,24 @@ QPushButton#editButton:pressed {
     border: 1px solid #4C566A; /* Darker border */
 }
 </string>
-                           </property>
-                           <property name="text">
-                            <string>Add Student</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="../resources/rec.qrc">
-                             <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>100</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="1" column="0">
-                          <widget class="QPushButton" name="add_teacher_button_dash">
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton {
-    background-color: #5E81AC; /* Nord Blue */
-    color: #ECEFF4; /* Light text */
-    border: 1px solid #81A1C1; /* Lighter blue border */
-    border-radius: 0px; /* No roundness */
-    padding: 6px 12px;
-    font-family: &quot;Segoe UI&quot;;
-    font-size: 15px;
-    min-height: 24px;
-}
-
-/* Hover State */
-QPushButton:hover {
-    background-color: #81A1C1; /* Lighter Nord Blue */
-    border: 1px solid #88C0D0; /* Teal highlight */
-}
-
-/* Pressed State */
-QPushButton:pressed {
-    background-color: #4C566A; /* Darker Nord Blue */
-    border: 1px solid #8FBCBB; /* Teal accent */
-}
-
-/* Edit Button Specific Style */
-QPushButton#editButton {
-    background-color: #88C0D0; /* Soft Teal Blue */
-    color: #2E3440; /* Darker text for contrast */
-    border: 1px solid #8FBCBB; /* Teal border */
-}
-
-QPushButton#editButton:hover {
-    background-color: #8FBCBB; /* Slightly lighter teal */
-    border: 1px solid #81A1C1; /* Soft blue highlight */
-}
-
-QPushButton#editButton:pressed {
-    background-color: #5E81AC; /* Dark Nord Blue */
-    border: 1px solid #4C566A; /* Darker border */
-}
-</string>
-                           </property>
-                           <property name="text">
-                            <string>Add Teacher</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="../resources/rec.qrc">
-                             <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>100</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item row="1" column="0">
-                       <widget class="QWidget" name="widget_6" native="true">
-                        <property name="styleSheet">
-                         <string notr="true">/* General Window */
-QWidget {
-         background-color:#eceff4;
-
-    color: #000000;           /* Black Text */
-    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
-    font-size: 12pt;
-}
-</string>
-                        </property>
-                        <layout class="QGridLayout" name="gridLayout_20">
-                         <item row="0" column="0">
-                          <widget class="QPushButton" name="pushButton_5">
-                           <property name="styleSheet">
-                            <string notr="true">QPushButton {
-    background-color: #5E81AC; /* Nord Blue */
-    color: #ECEFF4; /* Light text */
-    border: 1px solid #81A1C1; /* Lighter blue border */
-    border-radius: 0px; /* No roundness */
-    padding: 6px 12px;
-    font-family: &quot;Segoe UI&quot;;
-    font-size: 15px;
-    min-height: 24px;
-}
-
-/* Hover State */
-QPushButton:hover {
-    background-color: #81A1C1; /* Lighter Nord Blue */
-    border: 1px solid #88C0D0; /* Teal highlight */
-}
-
-/* Pressed State */
-QPushButton:pressed {
-    background-color: #4C566A; /* Darker Nord Blue */
-    border: 1px solid #8FBCBB; /* Teal accent */
-}
-
-/* Edit Button Specific Style */
-QPushButton#editButton {
-    background-color: #88C0D0; /* Soft Teal Blue */
-    color: #2E3440; /* Darker text for contrast */
-    border: 1px solid #8FBCBB; /* Teal border */
-}
-
-QPushButton#editButton:hover {
-    background-color: #8FBCBB; /* Slightly lighter teal */
-    border: 1px solid #81A1C1; /* Soft blue highlight */
-}
-
-QPushButton#editButton:pressed {
-    background-color: #5E81AC; /* Dark Nord Blue */
-    border: 1px solid #4C566A; /* Darker border */
-}
-</string>
-                           </property>
-                           <property name="text">
-                            <string>Add event</string>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
+                         </property>
+                         <property name="text">
+                          <string>Add Student</string>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../resources/rec.qrc">
+                           <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>100</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
                        </widget>
                       </item>
                      </layout>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="widget_10" native="true">
-                      <property name="styleSheet">
-                       <string notr="true">/* General Window */
-QWidget {
-        background-color:#eceff4;
-
-    color: #000000;           /* Black Text */
-    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
-    font-size: 12pt;
-}
-</string>
-                      </property>
-                      <widget class="QTextEdit" name="textEdit">
-                       <property name="geometry">
-                        <rect>
-                         <x>30</x>
-                         <y>30</y>
-                         <width>151</width>
-                         <height>201</height>
-                        </rect>
-                       </property>
-                      </widget>
-                     </widget>
                     </item>
                    </layout>
                   </item>
@@ -1709,6 +1640,81 @@ background-color: #ebcb8b</string>
                       </spacer>
                      </item>
                     </layout>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QWidget" name="widget_5" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">    background-color:#eceff4
+</string>
+                    </property>
+                    <widget class="QPushButton" name="pushButton_5">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>20</y>
+                       <width>121</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
+                     </property>
+                     <property name="text">
+                      <string>Add event</string>
+                     </property>
+                    </widget>
                    </widget>
                   </item>
                  </layout>
@@ -4237,8 +4243,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>1050</width>
-                       <height>570</height>
+                       <width>72</width>
+                       <height>16</height>
                       </rect>
                      </property>
                     </widget>

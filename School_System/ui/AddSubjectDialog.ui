@@ -31,46 +31,7 @@ QWidget {
 }
 */
 
-/* Buttons */
-QPushButton {
-    background-color: #0078d7; /* Windows Blue */
-    color: white;
-    border-radius: 5px;
-    padding: 8px 16px;
-    border: none;
-    font-size: 11pt;
-}
-QPushButton:hover {
-    background-color: #005a9e; /* Darker Blue on Hover */
-}
-QPushButton:pressed {
-    background-color: #004578; /* Even Darker Blue on Click */
-}
 
-/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}
-
-/* Labels */
-QLabel {
-    font-size: 13pt;
-    color: #333333; /* Dark Gray */
-}
-
-/* Checkboxes and Radio Buttons */
-QCheckBox, QRadioButton {
-    spacing: 6px;
-    color: #333333;
-}
 
 /* Scrollbars */
 QScrollBar:vertical {
@@ -94,7 +55,7 @@ QScrollBar::handle:vertical:hover {
      <x>30</x>
      <y>60</y>
      <width>491</width>
-     <height>60</height>
+     <height>65</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -103,8 +64,24 @@ QScrollBar::handle:vertical:hover {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>13</pointsize>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 16px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+</string>
       </property>
       <property name="text">
        <string>subject</string>
@@ -112,7 +89,31 @@ QScrollBar::handle:vertical:hover {
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="subject_name_field"/>
+     <widget class="QLineEdit" name="subject_name_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -122,7 +123,7 @@ QScrollBar::handle:vertical:hover {
      <x>150</x>
      <y>340</y>
      <width>241</width>
-     <height>32</height>
+     <height>40</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -130,12 +131,52 @@ QScrollBar::handle:vertical:hover {
      <widget class="QPushButton" name="add_subject_button">
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>30</height>
+        <width>86</width>
+        <height>38</height>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
       </property>
       <property name="text">
        <string>Add subject</string>
@@ -154,6 +195,8 @@ QScrollBar::handle:vertical:hover {
        <string notr="true">
 
 
+
+
 /*          background-color: transparent;  No background */
 
 
@@ -165,7 +208,7 @@ QPushButton {
 
     color: black;                  /* Black text */
     border: 1px solid #cccccc;     /* Light gray border */
-    border-radius: 5px;
+    border-radius: 0px;
     padding: 8px 16px;
     font-size: 10pt;
 }
@@ -200,8 +243,24 @@ QPushButton:pressed {
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>13</pointsize>
+     <pointsize>-1</pointsize>
+     <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-size: 16px; /* Smaller font size for the label */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+</string>
    </property>
    <property name="text">
     <string>description</string>
@@ -215,6 +274,44 @@ QPushButton:pressed {
      <width>491</width>
      <height>111</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>551</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/*background-color: #bababa;*/
+border-radius: 0px;
+ background-color:#2e3440;</string>
    </property>
   </widget>
  </widget>
