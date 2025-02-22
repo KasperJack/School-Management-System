@@ -62,7 +62,8 @@ class IndexSU(QMainWindow):
 
 
 
-
+        self.logout_s.clicked.connect(self.close)
+        self.logout_b.clicked.connect(self.close)
         self.students_table.cellClicked.connect(self.on_cell_clicked)
         self.profile_pic_user.clicked.connect(lambda: print("F"))
 
