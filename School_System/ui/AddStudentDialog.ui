@@ -1035,7 +1035,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>17</day>
+        <day>16</day>
        </datetime>
       </property>
       <property name="displayFormat">
