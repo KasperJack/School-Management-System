@@ -1128,7 +1128,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>6</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -2490,36 +2490,10 @@ QWidget {
 }
 </string>
                     </property>
-                    <widget class="QToolButton" name="add_class_button">
-                     <property name="geometry">
-                      <rect>
-                       <x>20</x>
-                       <y>20</y>
-                       <width>41</width>
-                       <height>41</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(0, 0, 0);</string>
-                     </property>
-                     <property name="text">
-                      <string>...</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="../resources/rec.qrc">
-                       <normaloff>:/icons/icons/add student.png</normaloff>:/icons/icons/add student.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>50</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
                     <widget class="QLineEdit" name="search_edit_teachers_2">
                      <property name="geometry">
                       <rect>
-                       <x>110</x>
+                       <x>200</x>
                        <y>20</y>
                        <width>231</width>
                        <height>31</height>
@@ -2538,6 +2512,100 @@ QLineEdit:focus {
     border: 1px solid #0078d7; /* Blue Border on Focus */
     background-color: #ffffff;
 }</string>
+                     </property>
+                    </widget>
+                    <widget class="QToolButton" name="toolButton_5">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="geometry">
+                      <rect>
+                       <x>170</x>
+                       <y>20</y>
+                       <width>36</width>
+                       <height>36</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QToolButton { background: transparent; border: none;}</string>
+                     </property>
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../resources/rec.qrc">
+                       <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </widget>
+                    <widget class="QPushButton" name="add_class_button">
+                     <property name="geometry">
+                      <rect>
+                       <x>20</x>
+                       <y>20</y>
+                       <width>141</width>
+                       <height>38</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
+                     </property>
+                     <property name="text">
+                      <string> add class</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../resources/rec.qrc">
+                       <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
                      </property>
                     </widget>
                    </widget>
@@ -2667,6 +2735,9 @@ QWidget {
                     </property>
                     <item>
                      <widget class="QToolButton" name="toolButton">
+                      <property name="styleSheet">
+                       <string notr="true">QToolButton { background: transparent; border: none;}</string>
+                      </property>
                       <property name="text">
                        <string>...</string>
                       </property>
@@ -2800,7 +2871,17 @@ QPushButton#editButton:pressed {
 </string>
                       </property>
                       <property name="text">
-                       <string>Add student</string>
+                       <string> Add student</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../resources/rec.qrc">
+                        <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
                       </property>
                      </widget>
                     </item>
@@ -2819,6 +2900,26 @@ QPushButton#editButton:pressed {
                        </size>
                       </property>
                      </spacer>
+                    </item>
+                    <item>
+                     <widget class="QToolButton" name="toolButton_3">
+                      <property name="styleSheet">
+                       <string notr="true">QToolButton { background: transparent; border: none;}</string>
+                      </property>
+                      <property name="text">
+                       <string>...</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../resources/rec.qrc">
+                        <normaloff>:/newPrefix/more_icons/filter.png</normaloff>:/newPrefix/more_icons/filter.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <widget class="QComboBox" name="class_combo_box">
@@ -2947,6 +3048,16 @@ QPushButton#editButton:pressed {
                       <property name="text">
                        <string>PDF</string>
                       </property>
+                      <property name="icon">
+                       <iconset resource="../resources/rec.qrc">
+                        <normaloff>:/icons/icons/pdf.png</normaloff>:/icons/icons/pdf.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -3018,6 +3129,16 @@ QPushButton#editButton:pressed {
                       </property>
                       <property name="text">
                        <string>Excel</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../resources/rec.qrc">
+                        <normaloff>:/icons/icons/excel.png</normaloff>:/icons/icons/excel.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>30</width>
+                        <height>20</height>
+                       </size>
                       </property>
                      </widget>
                     </item>
@@ -3878,8 +3999,8 @@ QTabBar::tab {
                     <widget class="QLineEdit" name="search_edit_teachers">
                      <property name="geometry">
                       <rect>
-                       <x>150</x>
-                       <y>30</y>
+                       <x>180</x>
+                       <y>20</y>
                        <width>231</width>
                        <height>31</height>
                       </rect>
@@ -3961,7 +4082,43 @@ QPushButton#editButton:pressed {
 </string>
                      </property>
                      <property name="text">
-                      <string>PushButton</string>
+                      <string> add</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../resources/rec.qrc">
+                       <normaloff>:/newPrefix/more_icons/plus-sign.png</normaloff>:/newPrefix/more_icons/plus-sign.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </widget>
+                    <widget class="QToolButton" name="toolButton_4">
+                     <property name="geometry">
+                      <rect>
+                       <x>140</x>
+                       <y>20</y>
+                       <width>36</width>
+                       <height>36</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QToolButton { background: transparent; border: none;}</string>
+                     </property>
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../resources/rec.qrc">
+                       <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
                      </property>
                     </widget>
                    </widget>
@@ -4119,8 +4276,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>972</width>
-                       <height>642</height>
+                       <width>72</width>
+                       <height>16</height>
                       </rect>
                      </property>
                     </widget>
@@ -4307,157 +4464,6 @@ QPushButton#editButton:pressed {
                <property name="text">
                 <string>Modefy</string>
                </property>
-              </widget>
-              <widget class="QWidget" name="layoutWidget_2">
-               <property name="geometry">
-                <rect>
-                 <x>52</x>
-                 <y>50</y>
-                 <width>381</width>
-                 <height>143</height>
-                </rect>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_5">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="update_photo_la">
-                  <property name="minimumSize">
-                   <size>
-                    <width>141</width>
-                    <height>141</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>141</width>
-                    <height>141</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">border: 1px solid gray;
-border-radius: 0px;</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap resource="../resources/rec.qrc">:/icons/icons/profile.png</pixmap>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <layout class="QVBoxLayout" name="verticalLayout_21">
-                  <item>
-                   <widget class="QLabel" name="label_59">
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>13</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(119, 118, 123);</string>
-                    </property>
-                    <property name="text">
-                     <string>FULL NAME</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="update_f_name">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>31</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="update_l_name">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>31</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QComboBox" name="comboBox_class">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>31</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>31</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">/* Base ComboBox */
-QComboBox {
-    background-color: #3B4252; /* Darker background to fit the Nord theme */
-    color: #ECEFF4; /* Light text */
-    border: 1px solid #4C566A; /* Neutral gray-blue border */
-    border-radius: 0px; /* No rounded corners */
-    font-family: &quot;Segoe UI&quot;; /* System font */
-    font-size: 15px; /* Standard font size */
-    padding: 6px; /* Maintain padding */
-}
-
-/* Arrow Button */
-QComboBox::drop-down {
-    border: none; /* Remove border around the drop-down button */
-    background-color: #434C5E; /* Slightly darker gray for the arrow background */
-    border-left: 1px solid #4C566A; /* Subtle separator */
-    width: 20px; /* Keep original width */
-}
-
-/* Drop-down Arrow */
-QComboBox::down-arrow {
-    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
-    width: 10px;
-    height: 10px;
-}
-
-/* Drop-down List (Popup Menu) */
-QComboBox QAbstractItemView {
-    background-color: #2E3440; /* Dark background for the list */
-    color: #ECEFF4; /* Light text for readability */
-    border: 1px solid #4C566A; /* Match the border to the base combo box */
-    selection-background-color: #88C0D0; /* Teal highlight for selected items */
-    selection-color: #2E3440; /* Dark text on selection for contrast */
-}
-
-/* Hover Effect */
-QComboBox:hover {
-    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
-}
-
-/* Focused ComboBox */
-QComboBox:focus {
-    border: 1px solid #88C0D0; /* Teal border when focused */
-}
-</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
               </widget>
               <widget class="QWidget" name="layoutWidget_3">
                <property name="geometry">
@@ -4670,8 +4676,8 @@ QDateEdit::drop-down:pressed {
                 <rect>
                  <x>90</x>
                  <y>200</y>
-                 <width>71</width>
-                 <height>31</height>
+                 <width>61</width>
+                 <height>21</height>
                 </rect>
                </property>
                <property name="styleSheet">
@@ -4717,8 +4723,197 @@ QPushButton#editButton:pressed {
 </string>
                </property>
                <property name="text">
-                <string>pic</string>
+                <string/>
                </property>
+               <property name="icon">
+                <iconset resource="../resources/rec.qrc">
+                 <normaloff>:/newPrefix/more_icons/addd-image.png</normaloff>:/newPrefix/more_icons/addd-image.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+              <widget class="QWidget" name="">
+               <property name="geometry">
+                <rect>
+                 <x>53</x>
+                 <y>51</y>
+                 <width>381</width>
+                 <height>148</height>
+                </rect>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QLabel" name="update_photo_la">
+                  <property name="minimumSize">
+                   <size>
+                    <width>141</width>
+                    <height>141</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>141</width>
+                    <height>141</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 1px solid gray;
+border-radius: 0px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="../resources/rec.qrc">:/icons/icons/profile.png</pixmap>
+                  </property>
+                  <property name="scaledContents">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_20">
+                  <item>
+                   <widget class="QLabel" name="label_59">
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI</family>
+                      <pointsize>13</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(119, 118, 123);</string>
+                    </property>
+                    <property name="text">
+                     <string>FULL NAME</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_19">
+                    <item>
+                     <widget class="QLineEdit" name="update_f_name">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>31</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="update_l_name">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>31</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QComboBox" name="comboBox_class">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>31</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>31</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    font-size: 15px; /* Standard font size */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="toolButton_6">
+                        <property name="styleSheet">
+                         <string notr="true">QToolButton { background: transparent; border: none;}</string>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="../resources/rec.qrc">
+                          <normaloff>:/newPrefix/more_icons/calekjndar.png</normaloff>:/newPrefix/more_icons/calekjndar.png</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>20</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </widget>
              </widget>
              <widget class="QTextEdit" name="update_additional_info">
