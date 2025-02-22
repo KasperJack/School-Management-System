@@ -542,69 +542,20 @@ QLineEdit::placeholder {
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="add_pic">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>180</y>
-     <width>81</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: #5E81AC; /* Nord Blue */
-    color: #ECEFF4; /* Light text */
-    border: 1px solid #81A1C1; /* Lighter blue border */
-    border-radius: 0px; /* No roundness */
-    padding: 6px 12px;
-    font-family: &quot;Segoe UI&quot;;
-    font-size: 10px;
-
-}
-
-/* Hover State */
-QPushButton:hover {
-    background-color: #81A1C1; /* Lighter Nord Blue */
-    border: 1px solid #88C0D0; /* Teal highlight */
-}
-
-/* Pressed State */
-QPushButton:pressed {
-    background-color: #4C566A; /* Darker Nord Blue */
-    border: 1px solid #8FBCBB; /* Teal accent */
-}
-
-/* Edit Button Specific Style */
-QPushButton#editButton {
-    background-color: #88C0D0; /* Soft Teal Blue */
-    color: #2E3440; /* Darker text for contrast */
-    border: 1px solid #8FBCBB; /* Teal border */
-}
-
-QPushButton#editButton:hover {
-    background-color: #8FBCBB; /* Slightly lighter teal */
-    border: 1px solid #81A1C1; /* Soft blue highlight */
-}
-
-QPushButton#editButton:pressed {
-    background-color: #5E81AC; /* Dark Nord Blue */
-    border: 1px solid #4C566A; /* Darker border */
-}
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="update_photo_la">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>40</y>
-     <width>131</width>
-     <height>131</height>
+     <x>330</x>
+     <y>41</y>
+     <width>141</width>
+     <height>141</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid gray;
@@ -630,31 +581,6 @@ border-radius: 0px;</string>
     <string notr="true">background-color: #f3f3f3;
 border-radius: 0px;</string>
    </property>
-   <widget class="QLineEdit" name="serach_class">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}</string>
-    </property>
-   </widget>
    <widget class="QScrollArea" name="scrollArea_class">
     <property name="geometry">
      <rect>
@@ -791,6 +717,60 @@ QRadioButton::indicator:checked:disabled {
       </rect>
      </property>
     </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QToolButton" name="toolButton_5">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton { background: transparent; border: none;}</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/rec.qrc">
+         <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="serach_class">
+       <property name="styleSheet">
+        <string notr="true">
+/* Input Fields */
+QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -964,7 +944,7 @@ QDateEdit::drop-down {
 
 /* Drop-down Calendar Button Icon */
 QDateEdit::down-arrow {
-    image: url(:/icons/calendar.png); /* Calendar icon */
+	image: url(:/newPrefix/more_icons/calendkar.png);
     width: 16px;
     height: 16px;
 }
@@ -990,7 +970,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>15</day>
+        <day>14</day>
        </datetime>
       </property>
       <property name="displayFormat">
@@ -1020,28 +1000,122 @@ border-radius: 0px;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>90</x>
       <y>10</y>
-      <width>81</width>
+      <width>71</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Segoe UI</family>
-      <pointsize>13</pointsize>
+      <pointsize>14</pointsize>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+    font-size: 14pt;
+</string>
     </property>
     <property name="text">
-     <string>classes</string>
+     <string>Classes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/layers.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="add_pic">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>190</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 10px;
+
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/rec.qrc">
+     <normaloff>:/newPrefix/more_icons/edit-image.png</normaloff>:/newPrefix/more_icons/edit-image.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/rec.qrc"/>
+ </resources>
  <connections/>
 </ui>

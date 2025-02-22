@@ -783,31 +783,6 @@ QCheckBox::indicator:unchecked {
      </property>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="serach_subject">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>80</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
@@ -845,9 +820,84 @@ border-radius: 0px;
       <string>Subjects</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>20</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/pbython.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QToolButton" name="toolButton_5">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QToolButton { background: transparent; border: none;}</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/rec.qrc">
+         <normaloff>:/newPrefix/more_icons/search-interface-symbol.png</normaloff>:/newPrefix/more_icons/search-interface-symbol.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="serach_subject">
+       <property name="styleSheet">
+        <string notr="true">
+/* Input Fields */
+QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
+}
+QLineEdit:focus {
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/rec.qrc"/>
+ </resources>
  <connections/>
 </ui>

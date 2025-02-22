@@ -37,8 +37,8 @@ class IndexSU(QMainWindow):
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
 
-        self.subject_s.clicked.connect(self.sw_subject)
-        self.subject_b.clicked.connect(self.sw_subject)
+        ###self.subject_s.clicked.connect(self.sw_subject)
+        ###self.subject_b.clicked.connect(self.sw_subject)
 
         self.classes_s.clicked.connect(self.sw_class)
         self.classes_b.clicked.connect(self.sw_class)
@@ -217,15 +217,15 @@ class IndexSU(QMainWindow):
 
     def update_students_count(self):
         students = database.get_total_students()
-        self.students_label.setText(f"students | {students}")
+        self.students_label.setText(f"Students | {students}")
 
     def update_teachers_count(self):
         teachers = database.get_total_teachers()
-        self.teachers_label.setText(f"teachers | {teachers}")
+        self.teachers_label.setText(f"Teachers | {teachers}")
 
     def update_classes_count(self):
         classes = database.get_total_classes()
-        self.classes_label.setText(f"classes | {classes}")
+        self.classes_label.setText(f"Classes | {classes}")
 
     def update_on_start_up(self):
         self.update_classes_count()
