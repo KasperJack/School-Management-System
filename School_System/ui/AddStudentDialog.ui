@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>749</width>
-    <height>638</height>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -545,10 +545,10 @@ QLineEdit::placeholder {
   <widget class="QPushButton" name="add_pic">
    <property name="geometry">
     <rect>
-     <x>335</x>
+     <x>350</x>
      <y>180</y>
-     <width>101</width>
-     <height>38</height>
+     <width>81</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -560,8 +560,7 @@ QLineEdit::placeholder {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 10px;
-    min-width: 60px;
-    min-height: 24px;
+
 }
 
 /* Hover State */
@@ -595,7 +594,7 @@ QPushButton#editButton:pressed {
 </string>
    </property>
    <property name="text">
-    <string>add pic</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="update_photo_la">
@@ -621,10 +620,10 @@ border-radius: 0px;</string>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>241</width>
-     <height>601</height>
+     <x>0</x>
+     <y>60</y>
+     <width>261</width>
+     <height>581</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -634,43 +633,35 @@ border-radius: 0px;</string>
    <widget class="QLineEdit" name="serach_class">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>70</y>
+      <x>30</x>
+      <y>30</y>
       <width>201</width>
       <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">/* Input Field */
+     <string notr="true">
+/* Input Fields */
 QLineEdit {
-    background-color: #eceff4; /* Light background */
-    color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
-    padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 6px;
 }
-
-/* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
-    background-color: #e1e9f2; /* Slightly lighter background on focus */
-}
-
-/* Placeholder Text */
-QLineEdit::placeholder {
-    color: #4C566A; /* Darker gray for placeholder text */
-}
-</string>
+    border: 1px solid #0078d7; /* Blue Border on Focus */
+    background-color: #ffffff;
+}</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea_class">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>110</y>
-      <width>201</width>
-      <height>471</height>
+      <y>80</y>
+      <width>221</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -795,47 +786,11 @@ QRadioButton::indicator:checked:disabled {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>199</width>
-       <height>469</height>
+       <width>219</width>
+       <height>449</height>
       </rect>
      </property>
     </widget>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>20</y>
-      <width>61</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>13</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>classes</string>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>50</y>
-      <width>221</width>
-      <height>1</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(192, 191, 188);</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -1035,7 +990,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>16</day>
+        <day>15</day>
        </datetime>
       </property>
       <property name="displayFormat">
@@ -1047,6 +1002,44 @@ QDateEdit::drop-down:pressed {
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>261</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/*background-color: #bababa;*/
+border-radius: 0px;
+ background-color:#2e3440;</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>13</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>classes</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

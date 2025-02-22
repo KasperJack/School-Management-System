@@ -48,11 +48,21 @@ class IndexSU(QMainWindow):
 
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
+
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
-        self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
         self.add_student_button.clicked.connect(self.open_add_student_dialog)
+
+
+        self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
+        self.add_subject_button_dash.clicked.connect(self.open_add_subject_dialog)
+        self.add_class_button_dash.clicked.connect(self.open_add_class_dialog)
+        self.add_student_button_dash.clicked.connect(self.open_add_student_dialog)
+
+
+
+
         self.students_table.cellClicked.connect(self.on_cell_clicked)
         self.profile_pic_user.clicked.connect(lambda: print("F"))
 
@@ -133,6 +143,10 @@ class IndexSU(QMainWindow):
         #self.apply_floating_effect(self.icon_text)
         #self.apply_floating_effect(self.icon_only)
         self.apply_floating_effect(self.main_screen)
+        self.apply_floating_effect(self.students_table)
+        self.apply_floating_effect(self.search_bar)
+
+
 
 
 
