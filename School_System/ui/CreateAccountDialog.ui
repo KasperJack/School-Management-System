@@ -446,7 +446,7 @@ border-radius: 0px;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/pbython.png</pixmap>
+     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/add-user.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

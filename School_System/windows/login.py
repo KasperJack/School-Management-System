@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit,QGraphicsDropShadowEffect
 from PyQt6 import uic
 from PyQt6.QtGui import QColor
+from PyQt6.QtCore import Qt
 import bcrypt
 
 from School_System.ui import LOGIN # ui file path
@@ -24,7 +25,8 @@ class Login(QMainWindow):
         #aself.view_password_button.clicked.connect(self.toggle_password_visibility)
         self.remember_me_button.toggled.connect(self.remember_me)
         self.apply_floating_effect(self.widget)
-
+        #self.widget.setStyleSheet("background-color: white;")
+        #self.setAutoFillBackground(True)
 
 
 

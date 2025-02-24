@@ -14,9 +14,12 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(222, 221, 218);
-color: rgb(0, 0, 0);
-background-image: url(:/backrounds/backrounds/OF18H90.jpg);</string>
+   <string notr="true">
+
+
+    QMainWindow {
+        background-image: url(:/backrounds/backrounds/OF18H90.jpg);
+    }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -77,7 +80,7 @@ background-color: white;
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../resources/rec.qrc">:/icons/icons/logosmall2.png</pixmap>
+                <pixmap resource="../resources/rec.qrc">:/backrounds/backrounds/school-building.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignmentFlag::AlignCenter</set>
