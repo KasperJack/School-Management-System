@@ -19,3 +19,7 @@ EDIT_CLASS_DIALOG = os.path.join(os.path.dirname(__file__), "EditClassDialog.ui"
 
 EDIT_TEACHER_DIALOG = os.path.join(os.path.dirname(__file__), "EditTeacherDialog.ui")
 
+EXPORT_EXCEL_DIALOG = os.path.join(os.path.dirname(__file__), "ExportExcelDialog.ui")
+
+EXPORT_PDF_DIALOG = os.path.join(os.path.dirname(__file__), "ExportPdfDialog.ui")
+
