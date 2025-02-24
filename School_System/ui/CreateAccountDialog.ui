@@ -6,56 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>435</width>
-    <height>561</height>
+    <width>424</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(222, 221, 218);
-color: rgb(0, 0, 0);</string>
+   <string notr="true">QWidget {
+    background-color:rgb(255, 255, 255); /* Light Gray for Light Mode */
+    color: #000000;           /* Black Text */
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 12pt;
+border-radius: 10px;
+}</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>-10</x>
-     <y>50</y>
-     <width>561</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Inter</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Create Account</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>200</y>
      <width>381</width>
-     <height>54</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -63,7 +36,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
-        <family>Inter</family>
+        <family>Segoe UI</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -73,7 +46,31 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="email_field"/>
+     <widget class="QLineEdit" name="email_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -83,7 +80,7 @@ color: rgb(0, 0, 0);</string>
      <x>20</x>
      <y>300</y>
      <width>381</width>
-     <height>54</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -91,7 +88,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_4">
       <property name="font">
        <font>
-        <family>Inter</family>
+        <family>Segoe UI</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -101,7 +98,31 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="pass1_field"/>
+     <widget class="QLineEdit" name="pass1_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -111,7 +132,7 @@ color: rgb(0, 0, 0);</string>
      <x>20</x>
      <y>390</y>
      <width>381</width>
-     <height>54</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -119,7 +140,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_5">
       <property name="font">
        <font>
-        <family>Inter</family>
+        <family>Segoe UI</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -129,7 +150,31 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="pass2_field"/>
+     <widget class="QLineEdit" name="pass2_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -139,7 +184,7 @@ color: rgb(0, 0, 0);</string>
      <x>20</x>
      <y>110</y>
      <width>181</width>
-     <height>54</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -147,7 +192,7 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <family>Inter</family>
+        <family>Segoe UI</family>
         <pointsize>12</pointsize>
        </font>
       </property>
@@ -157,17 +202,41 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="name_field"/>
+     <widget class="QLineEdit" name="name_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>480</y>
+     <x>90</x>
+     <y>500</y>
      <width>241</width>
-     <height>32</height>
+     <height>40</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -175,17 +244,52 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="create_account_button">
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>30</height>
+        <width>86</width>
+        <height>38</height>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(52, 212, 129);
-color:white;
-border:none;
-border-radius: 8px;
-font-weight:bold;
-font-size: 15px;</string>
+       <string notr="true">QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 15px;
+    min-width: 60px;
+    min-height: 24px;
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+</string>
       </property>
       <property name="text">
        <string>Create Account</string>
@@ -201,12 +305,37 @@ font-size: 15px;</string>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(88, 88, 88);
-color:white;
-border:none;
-border-radius: 8px;
-font-weight:bold;
-font-size: 15px;</string>
+       <string notr="true">
+
+
+
+
+/*          background-color: transparent;  No background */
+
+
+
+
+/* Cancel Button */
+QPushButton {
+    background-color: #bababa;
+
+    color: black;                  /* Black text */
+    border: 1px solid #cccccc;     /* Light gray border */
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-size: 10pt;
+}
+
+QPushButton:hover {
+    background-color: #e5e5e5; /* Light gray on hover */
+    border: 1px solid #bbbbbb; /* Slightly darker gray border on hover */
+}
+
+QPushButton:pressed {
+    background-color: #d9d9d9; /* Darker gray on press */
+    border: 1px solid #aaaaaa; /* Even darker gray border on press */
+}
+</string>
       </property>
       <property name="text">
        <string>Cancel</string>
@@ -221,7 +350,7 @@ font-size: 15px;</string>
      <x>220</x>
      <y>110</y>
      <width>181</width>
-     <height>54</height>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -229,21 +358,104 @@ font-size: 15px;</string>
      <widget class="QLabel" name="label_6">
       <property name="font">
        <font>
-        <family>Inter</family>
+        <family>Segoe UI</family>
         <pointsize>12</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>last name</string>
+       <string>Last name</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="last_name_field"/>
+     <widget class="QLineEdit" name="last_name_field">
+      <property name="styleSheet">
+       <string notr="true">/* Input Field */
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    padding: 6px; /* Padding inside the field */
+    font-size: 14px; /* Standard font size */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>441</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/*background-color: #bababa;*/
+border-radius: 0px;
+ background-color:#2e3440;</string>
+   </property>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Create Account</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/pbython.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/rec.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -31,7 +31,7 @@ def login_user(email, password):
         query = "SELECT * FROM users WHERE email = ?"
         cursor.execute(query, (email,))
         result = cursor.fetchone()
-        print(result)
+        #print(result)
         if result:
             stored_hashed_password = result[3]
             status = result[5]  # Status column
