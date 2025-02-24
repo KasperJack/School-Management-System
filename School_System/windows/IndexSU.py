@@ -14,6 +14,8 @@ from School_System.windows.AddStudentDialog import AddStudentDialog
 from School_System.windows.ViewClassDialog import ViewClassDialog
 from School_System.windows.EditClassDialog import EditClassDialog
 from School_System.windows.EditTeacherDialog import EditTeacherDialog
+from School_System.windows.ExportPdfDialog import ExportPdfDialog
+from School_System.windows.ExportExcelDialog import ExportExcelDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -59,8 +61,8 @@ class IndexSU(QMainWindow):
         self.add_subject_button_dash.clicked.connect(self.open_add_subject_dialog)
         self.add_class_button_dash.clicked.connect(self.open_add_class_dialog)
         self.add_student_button_dash.clicked.connect(self.open_add_student_dialog)
-
-
+        self.exportpdf.clicked.connect(self.open_export_pdf_dialog)
+        self.exportexcel.clicked.connect(self.open_export_excel_dialog)
 
         self.logout_s.clicked.connect(self.close)
         self.logout_b.clicked.connect(self.close)
@@ -1039,6 +1041,16 @@ class IndexSU(QMainWindow):
         edit_class_dialog = EditClassDialog(self, class_id)
         edit_class_dialog.finished.connect(self.edit_class_dialog_closed)
         edit_class_dialog.exec()
+
+    def open_export_pdf_dialog(self):
+        export_pdf_dialog = ExportPdfDialog(self)
+        export_pdf_dialog.exec()
+
+    def open_export_excel_dialog(self):
+        export_excel_dialog = ExportExcelDialog(self)
+        export_excel_dialog.exec()
+
+
 
     def open_edit_teacher_dialog(self, teacher_id):
         edit_teacher_dialog = EditTeacherDialog(self, teacher_id)

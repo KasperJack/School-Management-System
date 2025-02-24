@@ -1012,7 +1012,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -2949,7 +2949,7 @@ QComboBox:focus {
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_2">
+                     <widget class="QPushButton" name="exportpdf">
                       <property name="minimumSize">
                        <size>
                         <width>86</width>
@@ -3031,7 +3031,7 @@ QPushButton#editButton:pressed {
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_4">
+                     <widget class="QPushButton" name="exportexcel">
                       <property name="minimumSize">
                        <size>
                         <width>86</width>
@@ -3741,6 +3741,12 @@ QLineEdit:focus + QLabel {
                         <height>31</height>
                        </size>
                       </property>
+                      <property name="font">
+                       <font>
+                        <family>Segoe UI</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">
     background-color: #eceff4; /* Light background */
@@ -3748,7 +3754,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                       </property>
                       <property name="text">

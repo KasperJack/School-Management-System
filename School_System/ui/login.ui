@@ -119,9 +119,7 @@ background-color: white;
                     </size>
                    </property>
                    <property name="font">
-                    <font>
-                     <pointsize>-1</pointsize>
-                    </font>
+                    <font/>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">/* Input Field */
@@ -129,9 +127,7 @@ QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
     border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 }
 
 /* Focused Input Field */
@@ -165,9 +161,7 @@ QLineEdit::placeholder {
                  <item>
                   <widget class="QLineEdit" name="password_field">
                    <property name="font">
-                    <font>
-                     <pointsize>-1</pointsize>
-                    </font>
+                    <font/>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">/* Input Field */
@@ -175,9 +169,7 @@ QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
     border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 }
 
 /* Focused Input Field */
@@ -292,7 +284,6 @@ QLineEdit::placeholder {
                <property name="font">
                 <font>
                  <family>Segoe UI</family>
-                 <pointsize>-1</pointsize>
                  <bold>true</bold>
                 </font>
                </property>
@@ -304,10 +295,7 @@ QLineEdit::placeholder {
     background-color: #5E81AC; /* Nord Blue */
     color: #ECEFF4; /* Light text */
     border: 1px solid #81A1C1; /* Lighter blue border */
-    border-radius: 0px; /* No roundness */
     padding: 6px 12px;
-    font-family: &quot;Segoe UI&quot;;
-    font-size: 15px;
 
 }
 

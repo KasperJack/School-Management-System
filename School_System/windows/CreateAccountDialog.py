@@ -23,10 +23,10 @@ class CreateAccountDialog(QDialog):
         # Hash the password with the salt
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
         return hashed_password.decode('utf-8')
-    
-    
-    
-    
+
+
+
+
     def create_account(self):
 
         # Get info from input fields
@@ -55,14 +55,14 @@ class CreateAccountDialog(QDialog):
             QMessageBox.information(self, "info", f"{evaluate}")
             self.close()
 
-        
+
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
 
-        
 
 
 
 
-        
+
+
 
