@@ -7,6 +7,8 @@ from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.IndexSU import IndexSU
 import School_System.helpers.db_utils as database
+import School_System.resources.qrc.rec_rc
+
 
 
 

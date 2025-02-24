@@ -46,6 +46,27 @@
     <file>icons/dashboard1.png</file>
     <file>icons/add student.png</file>
   </qresource>
+  <qresource prefix="backrounds">
+    <file>backrounds/45260.jpg</file>
+    <file>backrounds/46273.jpg</file>
+    <file>backrounds/Anime Hall Background 6.png</file>
+    <file>backrounds/css.png</file>
+    <file>backrounds/education.png</file>
+    <file>backrounds/education1.png</file>
+    <file>backrounds/education2.png</file>
+    <file>backrounds/education2d.png</file>
+    <file>backrounds/foldber.png</file>
+    <file>backrounds/folder.png</file>
+    <file>backrounds/graduation-hat.png</file>
+    <file>backrounds/OF18H90.jpg</file>
+    <file>backrounds/schfdool.png</file>
+    <file>backrounds/schodol.png</file>
+    <file>backrounds/school-building.png</file>
+    <file>backrounds/school.png</file>
+    <file>backrounds/university.2png</file>
+    <file>backrounds/university.png</file>
+    <file>backrounds/university3.png</file>
+  </qresource>
   <qresource prefix="newPrefix">
     <file>more_icons/60995.png</file>
     <file>more_icons/add-image.png</file>

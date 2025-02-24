@@ -4221,8 +4221,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>1050</width>
-                       <height>570</height>
+                       <width>72</width>
+                       <height>16</height>
                       </rect>
                      </property>
                     </widget>
