@@ -3,6 +3,7 @@ import sqlite3
 from School_System.db import DB_PATH
 from datetime import datetime
 from collections import defaultdict
+import bcrypt
 
 
 LOGGED_IN_USER_NAME = None
@@ -18,33 +19,41 @@ USER_INACTIVE = "inactive"
 INVALID_CREDENTIALS = "invalid"
 
 
+
+
+
 def login_user(email, password):
     ######## connect to the database ########
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
 
-        # Query the database for the user
-        query = "SELECT * FROM users WHERE email = ? AND password = ?"
-        cursor.execute(query, (email, password))
+        #  email and hashed password
+        query = "SELECT * FROM users WHERE email = ?"
+        cursor.execute(query, (email,))
         result = cursor.fetchone()
-
+        print(result)
         if result:
+            stored_hashed_password = result[3]
             status = result[5]  # Status column
-            user_type = result[4] # User type column
+            user_type = result[4]  # User type column
             id = result[0]
             name = result[1]
-            if status == 'inactive':  # explicit check for inactive users
-                return USER_INACTIVE
-            if status == 'active':
-                if user_type == 'superadmin':
-                    log_user_in(id)
-                    return SUPERADMIN
-                elif user_type == 'admin':
-                    log_user_in(id)
-                    return ADMIN
 
+            # Verify the password
+            if check_password(password, stored_hashed_password):
+                if status == 'inactive':  # explicit check for inactive users
+                    return USER_INACTIVE
+                if status == 'active':
+                    if user_type == 'superadmin':
+                        log_user_in(id)  ## this logs the user time of entry
+                        return SUPERADMIN
+                    elif user_type == 'admin':
+                        log_user_in(id)  ## this logs the user time of entry
+                        return ADMIN
+            else:
+                return INVALID_CREDENTIALS
 
-        return INVALID_CREDENTIALS  # gitaddno match is found
+        return INVALID_CREDENTIALS
 
 
 
@@ -105,7 +114,8 @@ def activate_admin(full_name,email):
         db_connection.commit()
 
 
-
+def check_password(entered_password: str, stored_hashed_password: str) -> bool:
+    return bcrypt.checkpw(entered_password.encode('utf-8'), stored_hashed_password.encode('utf-8'))
 
 #adds admin the entry log
 def log_user_in(user_id):

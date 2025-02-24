@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit,QGraphicsDropShadowEffect
 from PyQt6 import uic
 from PyQt6.QtGui import QColor
+import bcrypt
 
 from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
@@ -121,9 +122,9 @@ class Login(QMainWindow):
         # Optional: Slightly raise the widget to enhance the floating effect
         widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
 
-            
+    def check_password(entered_password: str, stored_hashed_password: str) -> bool:
+        return bcrypt.checkpw(entered_password.encode('utf-8'), stored_hashed_password.encode('utf-8'))
 
-    
 
 
 

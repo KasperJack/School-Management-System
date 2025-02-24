@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 import School_System.helpers.db_utils as database
 from School_System.ui import CREATE_ACCOUNT_DIALOG
+import bcrypt
 
 
 class CreateAccountDialog(QDialog):
@@ -16,7 +17,12 @@ class CreateAccountDialog(QDialog):
 
 
 
-
+    def hash_password(self,password: str) -> str:
+        # Generate a salt
+        salt = bcrypt.gensalt()
+        # Hash the password with the salt
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+        return hashed_password.decode('utf-8')
     
     
     
@@ -40,8 +46,10 @@ class CreateAccountDialog(QDialog):
             QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
             return
 
-     
-        evaluate = database.add_account_user(full_name,email,pass1)
+        hash_password = self.hash_password(pass1)
+
+
+        evaluate = database.add_account_user(full_name,email,hash_password)
 
         if evaluate == 'User added successfully':
             QMessageBox.information(self, "info", f"{evaluate}")
