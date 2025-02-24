@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
+   <string notr="true"> QWidget {
     background-color:rgb(255, 255, 255); /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
@@ -28,7 +28,7 @@ border-radius: 10px;
      <x>20</x>
      <y>200</y>
      <width>381</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -80,7 +80,7 @@ QLineEdit::placeholder {
      <x>20</x>
      <y>300</y>
      <width>381</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -132,7 +132,7 @@ QLineEdit::placeholder {
      <x>20</x>
      <y>390</y>
      <width>381</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -184,7 +184,7 @@ QLineEdit::placeholder {
      <x>20</x>
      <y>110</y>
      <width>181</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -350,7 +350,7 @@ QPushButton:pressed {
      <x>220</x>
      <y>110</y>
      <width>181</width>
-     <height>61</height>
+     <height>63</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">

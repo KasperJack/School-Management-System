@@ -29,7 +29,7 @@ class ExportPdfDialog(QDialog):
         options = QFileDialog.Option(0)
 
         file_path, _ = QFileDialog.getSaveFileName(
-            None,  # Parent set to `None` to avoid inheriting app styles
+            self,  # Parent set to `None` to avoid inheriting app styles
             "Save PDF",
             "",
             "PDF Files (*.pdf);;All Files (*)",
