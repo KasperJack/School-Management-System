@@ -43,7 +43,7 @@ class CreateAccountDialog(QDialog):
         # Get info from input fields
         name = self.name_field.text()
         last_name = self.last_name_field.text()
-        full_name = fmt.format_name(f"{name} {last_name}")
+        full_name = fmt.format_name(f"{name} {last_name}",18)
         email = self.email_field.text()
         pass1 = self.pass1_field.text()
         pass2 = self.pass2_field.text()

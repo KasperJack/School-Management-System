@@ -22,12 +22,53 @@ def format_name(input_string, length=None):
     if not stripped_string:
         return False
 
-    if re.search(r'\d', stripped_string):  # Check for numbers
+    if re.search(r'\d', stripped_string):  #numbers
         return False
 
     words = stripped_string.split()
     capitalized_words = [word[0].upper() + word[1:].lower() for word in words]
     formatted_name = " ".join(capitalized_words)
+
+    if length is not None and len(formatted_name) != length:
+        return False
+
+    return formatted_name
+
+
+
+
+def format_name_complex(input_string, length=None):
+    """
+    Formats a complex name string: strips whitespace, capitalizes words,
+    handles "de", "da", etc., checks for numbers, and validates length.
+
+    Args:
+        input_string (str): The name string to format.
+        length (int, optional): The desired length of the name.
+
+    Returns:
+        str: The formatted name string, or False if validation fails.
+    """
+    if not isinstance(input_string, str):
+        return False
+
+    stripped_string = input_string.strip()
+
+    if not stripped_string:
+        return False
+
+    if re.search(r'\d', stripped_string):
+        return False
+
+    words = stripped_string.split()
+    formatted_words = []
+    for word in words:
+        if word.lower() in ("de", "da", "di", "du"):
+            formatted_words.append(word[0].lower() + word[1:].upper())  # Special case
+        else:
+            formatted_words.append(word[0].upper() + word[1:].lower())
+
+    formatted_name = " ".join(formatted_words)
 
     if length is not None and len(formatted_name) != length:
         return False
