@@ -1558,3 +1558,73 @@ def update_class_n_m(class_id, class_name=None, max_students=None):
 
 
 
+def fetch_students(class_id=None, fields=None):
+    """
+    Fetch student data, optionally filtering by class_id, and allowing selection of specific fields.
+
+    Args:
+        db_path (str): Path to the SQLite database file.
+        class_id (int, optional): The ID of the class to filter students. If None, fetch all students.
+        fields (list, optional): List of fields to retrieve. Defaults to a standard set.
+
+    Returns:
+        list[dict]: A list of dictionaries containing student data.
+    """
+    # Default fields if none are provided
+    default_fields = [
+        "students.student_id",
+        "students.full_name",
+        "students.gender",
+        "grades.grade_name",
+        "class.class_name",
+        "students.birth_date",
+        "students.address",
+        "students.phone",
+        "students.email"
+    ]
+
+    if fields is None:
+        fields = default_fields
+
+    # Ensure all requested fields are valid
+    allowed_fields = {
+        "student_id": "students.student_id",
+        "full_name": "students.full_name",
+        "gender": "students.gender",
+        "grade_name": "grades.grade_name",
+        "class_name": "class.class_name",
+        "birth_date": "students.birth_date",
+        "address": "students.address",
+        "phone": "students.phone",
+        "email": "students.email"
+    }
+
+    selected_fields = [allowed_fields[field] for field in fields if field in allowed_fields]
+
+    if not selected_fields:
+        raise ValueError("No valid fields selected.")
+
+
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+
+        query = f"""
+        SELECT {", ".join(selected_fields)}
+        FROM students
+        LEFT JOIN class ON students.class_id = class.class_id
+        LEFT JOIN grades ON class.grade_name = grades.grade_name
+        """
+
+        params = ()
+        if class_id is not None:
+            query += " WHERE students.class_id = ?"
+            params = (class_id,)
+
+        cursor.execute(query, params)
+        columns = [col[0] for col in cursor.description]
+        students = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    return students
+
+
+
