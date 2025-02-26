@@ -3,6 +3,8 @@ from PyQt6 import uic
 
 from PyQt6.QtGui import QTextDocument, QPainter
 from PyQt6.QtPrintSupport import QPrinter
+from fontTools.tfmLib import PASSTHROUGH
+from fontTools.varLib.models import nonNone
 
 import School_System.helpers.db_utils as database
 
@@ -19,54 +21,147 @@ class ExportPdfDialog(QDialog):
 
 
         ##self.index_instance.students_table
-        self.close_button.clicked.connect(self.export_to_pdf)
+        self.close_button.clicked.connect(self.init_export)
+
+
+        default_fields = [
+            "students.student_id",
+            "students.full_name",
+            "students.gender",
+            "grades.grade_name",
+            "class.class_name",
+            "students.email"
+        ]
+
+        #ass = database.fetch_students(class_id= 20,fields=default_fields)
+        #print(ass)
+        #self.export_to_pdf_reportlab(ass)
 
 
 
 
-    def export_to_pdf(self):
-        """Exports table data to a PDF file."""
+
+    def init_export(self):
+        fields = []
+        class_id = None
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def export_to_pdf_reportlab(self,data, column_names=None):
+        from reportlab.lib.pagesizes import letter
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+        from reportlab.lib import colors
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from PyQt6.QtWidgets import QFileDialog, QApplication
+        import datetime
+
+        app = QApplication.instance()
+        if app is None:
+            app = QApplication([])
+
         options = QFileDialog.Option(0)
-
-        file_path, _ = QFileDialog.getSaveFileName(
-            self,  # Parent set to `None` to avoid inheriting app styles
-            "Save PDF",
-            "",
-            "PDF Files (*.pdf);;All Files (*)",
-            options=options
-        )
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save PDF", "", "PDF Files (*.pdf);;All Files (*)",
+                                                   options=options)
 
         if not file_path:
-            return  # User canceled
+            return False
 
-        # Convert table to HTML
-        html_content = "<table border='1' cellspacing='0' cellpadding='3'>"
-        html_content += "<tr>"
+        if not file_path.lower().endswith('.pdf'):
+            file_path += '.pdf'
 
-        # Add table headers
-        for col in range(self.index_instance.students_table.columnCount()):
-            html_content += f"<th>{self.index_instance.students_table.horizontalHeaderItem(col).text()}</th>"
-        html_content += "</tr>"
+        if not data:
+            print("No data to export.")
+            return False
 
-        # Add table data
-        for row in range(self.index_instance.students_table.rowCount()):
-            html_content += "<tr>"
-            for col in range(self.index_instance.students_table.columnCount()):
-                item = self.index_instance.students_table.item(row, col)
-                html_content += f"<td>{item.text() if item else ''}</td>"
-            html_content += "</tr>"
+        try:
+            if not column_names and data and isinstance(data[0], dict):
+                column_names = list(data[0].keys())
+            elif not column_names:
+                if data and isinstance(data[0], (list, tuple)):
+                    column_names = [f"Column {i + 1}" for i in range(len(data[0]))]
+                else:
+                    column_names = ["Data"]
 
-        html_content += "</table>"
+            table_data = []
+            styles = getSampleStyleSheet()
 
-        # Convert HTML to PDF
-        document = QTextDocument()
-        document.setHtml(html_content)
+            table_cell_style = ParagraphStyle(
+                'TableCell',
+                parent=styles['Normal'],
+                wordWrap='CJK',
+                leading=12,
+                fontSize=8,
+            )
 
-        printer = QPrinter(QPrinter.PrinterMode.HighResolution)
-        printer.setOutputFormat(QPrinter.OutputFormat.PdfFormat)
-        printer.setOutputFileName(file_path)
+            header_row = [Paragraph(col.replace('_', ' ').title().split('.')[-1], styles['Normal']) for col in
+                          column_names]
+            table_data.append(header_row)
 
-        document.print(printer)
+            for row in data:
+                data_row = []
+                if isinstance(row, dict):
+                    for col in column_names:
+                        value = str(row.get(col, ""))
+                        data_row.append(Paragraph(value, table_cell_style))
+                elif isinstance(row, (list, tuple)):
+                    data_row = [Paragraph(str(val) if val is not None else "", table_cell_style) for val in row]
+                else:
+                    data_row = [Paragraph(str(row) if row is not None else "", table_cell_style)]
+                table_data.append(data_row)
 
-        print(f"PDF saved to: {file_path}")
+            doc = SimpleDocTemplate(file_path, pagesize=letter)
+            elements = []
+
+            elements.append(Paragraph("Data Export", styles['Title']))
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            elements.append(Paragraph(f"Generated on: {current_time}", styles['Normal']))
+            elements.append(Paragraph("<br/><br/>", styles['Normal']))
+
+            table = Table(table_data)
+            table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+                ('GRID', (0, 0), (-1, -1), 1, colors.black),
+                ('LEFTPADDING', (0, 0), (-1, -1), 5),  # add padding to the left.
+                ('RIGHTPADDING', (0, 0), (-1, -1), 5),  # add padding to the right.
+            ]))
+            elements.append(table)
+
+            elements.append(Paragraph("<br/><br/>", styles['Normal']))
+            elements.append(Paragraph(f"Total records: {len(data)}", styles['Italic']))
+
+            doc.build(elements)
+            return True
+
+        except Exception as e:
+            print(f"Error exporting to PDF: {e}")
+            return False
 

@@ -3,6 +3,8 @@ pyqt6-tools
 flask
 flask-cors
 bcrypt
+fpdf2
+reportlab
 
 
 

@@ -450,6 +450,19 @@ def get_classes_ids():
     return classes
 
 
+def get_classes_ids_grades():
+    """Fetch a list of (class_id, class_name) from the database."""
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+        # Query to fetch class IDs and names
+        cursor.execute("SELECT class_id, class_name,grade_name FROM class")
+        classes = cursor.fetchall()  # List of tuples (class_id, class_name)
+
+    return classes
+
+
+
+
 
 
 
@@ -1556,8 +1569,6 @@ def update_class_n_m(class_id, class_name=None, max_students=None):
         return False
 
 
-
-
 def fetch_students(class_id=None, fields=None):
     """
     Fetch student data, optionally filtering by class_id, and allowing selection of specific fields.
@@ -1570,6 +1581,7 @@ def fetch_students(class_id=None, fields=None):
     Returns:
         list[dict]: A list of dictionaries containing student data.
     """
+
     # Default fields if none are provided
     default_fields = [
         "students.student_id",
@@ -1599,11 +1611,16 @@ def fetch_students(class_id=None, fields=None):
         "email": "students.email"
     }
 
-    selected_fields = [allowed_fields[field] for field in fields if field in allowed_fields]
+    # Map short field names to fully qualified names
+    selected_fields = []
+    for field in fields:
+        if field in allowed_fields:
+            selected_fields.append(allowed_fields[field])
+        elif field in [v for v in allowed_fields.values()]:
+            selected_fields.append(field)
 
     if not selected_fields:
         raise ValueError("No valid fields selected.")
-
 
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
