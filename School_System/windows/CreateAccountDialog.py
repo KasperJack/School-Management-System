@@ -1,10 +1,13 @@
 from PyQt6.QtWidgets import QDialog, QMessageBox
 from PyQt6 import uic
 import School_System.helpers.db_utils as database
+import School_System.helpers.strings as fmt
 from School_System.ui import CREATE_ACCOUNT_DIALOG
 import bcrypt
 import validators
 from PyQt6.QtCore import  Qt
+
+
 
 
 
@@ -17,6 +20,9 @@ class CreateAccountDialog(QDialog):
         self.setWindowTitle("Create Account")
 
         self.create_account_button.clicked.connect(self.create_account)
+
+        ass = fmt.format_name("jane doe   ")
+        print(ass)
 
 
 
