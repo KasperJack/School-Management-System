@@ -2,6 +2,10 @@ from PyQt6.QtWidgets import QDialog, QMessageBox, QFileDialog,QVBoxLayout,QWidge
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap,QColor
 
+
+import School_System.helpers.strings as fmt
+import validators
+
 import School_System.helpers.db_utils as database
 from School_System.resources import  ICONS
 from School_System.ui import ADD_STUDENT_DIALOG
@@ -134,7 +138,8 @@ class AddStudentDialog(QDialog):
 
         name = self.name_field.text()
         last_name = self.last_name_field.text()
-        full_name = f"{name} {last_name}"
+
+        full_name = fmt.format_name_complex(f"{name} {last_name}",18)
         phone = self.phone_field.text()
         email = self.email_field.text()
         birth_date = self.birth_date.date().toString("dd-MM-yyyy")
@@ -163,6 +168,18 @@ class AddStudentDialog(QDialog):
         if not name or not last_name or not phone or not email or not address:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
+
+
+
+        if not full_name:
+            QMessageBox.information(self, "info", f"invalid name")
+            return
+
+        email_valid = validators.email(email)
+        if not email_valid:
+            QMessageBox.information(self, "info", f"invalid email")
+            return
+
 
 
         if self.image_bin:

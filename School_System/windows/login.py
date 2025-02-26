@@ -7,6 +7,7 @@ from School_System.ui import LOGIN # ui file path
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.IndexSU import IndexSU
 import School_System.helpers.db_utils as database
+import School_System.helpers.settings as settings
 import School_System.resources.qrc.rec_rc
 
 
@@ -26,14 +27,27 @@ class Login(QMainWindow):
         self.apply_floating_effect(self.widget)
         #self.widget.setStyleSheet("background-color: white;")
         #self.setAutoFillBackground(True)
+        self.load_settings()
+
+
+
+
+
+
+
+
 
 
 
     def remember_me(self, checked):
         if checked:
-            self.email_field.setText("Button is checked")
+            settings.set_remember_true()
+
         else:
-            self.email_field.setText("Button is unchecked")
+            settings.set_remember_false()
+
+
+
 
 
 
@@ -42,11 +56,11 @@ class Login(QMainWindow):
 
 
 
+
     def open_create_account_dialog(self):
         # Create an instance of the CreateAccountDialog
         create_account_dialog = CreateAccountDialog(self)  
         create_account_dialog.exec()  
-
 
 
 
@@ -62,7 +76,7 @@ class Login(QMainWindow):
 
 
 
-        
+
 
     def authenticate_user(self):
         # Get email and password from input fields
@@ -127,6 +141,15 @@ class Login(QMainWindow):
 
 
 
+    def load_settings(self):
+        if settings.remember_mail():
+            self.email_field.setText(settings.remember_mail())
+            self.remember_me_button.setChecked(True)
+
+
+    def remember_mail(self,email):
+        if settings.remember_mail():
+            settings.add_email(email)
 
 
 

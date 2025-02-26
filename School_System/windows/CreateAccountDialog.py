@@ -54,6 +54,11 @@ class CreateAccountDialog(QDialog):
             return
 
 
+        if pass1 != pass2:
+            QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
+            return
+
+
         if not full_name:
             QMessageBox.information(self, "info", f"invalid name")
             return
@@ -67,9 +72,7 @@ class CreateAccountDialog(QDialog):
             return
 
 
-        if pass1 != pass2:
-            QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
-            return
+
 
 
 
