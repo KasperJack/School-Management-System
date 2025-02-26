@@ -1,7 +1,6 @@
 PyQt6
 pyqt6-tools
-flask
-flask-cors
+validators
 bcrypt
 fpdf2
 reportlab

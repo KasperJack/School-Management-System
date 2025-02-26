@@ -1,6 +1,5 @@
 from PyQt6.QtWidgets import QDialog, QFileDialog
 from PyQt6 import uic
-
 from PyQt6.QtGui import QTextDocument, QPainter
 from PyQt6.QtPrintSupport import QPrinter
 from fontTools.tfmLib import PASSTHROUGH
@@ -39,7 +38,7 @@ class ExportPdfDialog(QDialog):
         #ass = database.fetch_students(class_id= 20,fields=default_fields)
         #print(ass)
         #self.export_to_pdf_reportlab(ass)
-
+        self.test()
 
 
     def setup(self):
@@ -193,4 +192,6 @@ class ExportPdfDialog(QDialog):
         except Exception as e:
             print(f"Error exporting to PDF: {e}")
             return False
+
+
 

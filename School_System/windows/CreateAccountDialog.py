@@ -3,7 +3,9 @@ from PyQt6 import uic
 import School_System.helpers.db_utils as database
 from School_System.ui import CREATE_ACCOUNT_DIALOG
 import bcrypt
+import validators
 from PyQt6.QtCore import  Qt
+
 
 
 
@@ -29,6 +31,8 @@ class CreateAccountDialog(QDialog):
 
 
 
+
+
     def create_account(self):
 
         # Get info from input fields
@@ -39,15 +43,24 @@ class CreateAccountDialog(QDialog):
         pass1 = self.pass1_field.text()
         pass2 = self.pass2_field.text()
 
-        # Validate input fields
+
         if not name or not last_name or not email or not pass1:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
-            ##self.styled_message_box("warning", "Input Error", "Please fill in all required fields.")
             return
+
+        email_valid = validators.email(email)
+        if not email_valid:
+            QMessageBox.information(self, "info", f"invalid email")
+            return
+
 
         if pass1 != pass2:
             QMessageBox.warning(self, "Password Mismatch", "Passwords do not match.")
             return
+
+
+
+
 
         hash_password = self.hash_password(pass1)
 
@@ -62,25 +75,6 @@ class CreateAccountDialog(QDialog):
         else:
             QMessageBox.warning(self, "Error", f"{evaluate}")
 
-    def styled_message_box(self, icon, title, text):
-        # Create a separate message box instance
-        msg_box = QMessageBox(self)
-        msg_box.setWindowTitle(title)
-        msg_box.setText(text)
 
-        # Set correct icon
-        if icon == "warning":
-            msg_box.setIcon(QMessageBox.Icon.Warning)
-        elif icon == "information":
-            msg_box.setIcon(QMessageBox.Icon.Information)
-        elif icon == "critical":
-            msg_box.setIcon(QMessageBox.Icon.Critical)
-        elif icon == "question":
-            msg_box.setIcon(QMessageBox.Icon.Question)
-
-        # Apply stylesheet only to the QMessageBox instance
-        msg_box.setStyleSheet("ass")
-
-        return msg_box.exec()
 
 
