@@ -456,7 +456,7 @@ def get_classes_ids_grades():
         cursor = db_connection.cursor()
         # Query to fetch class IDs and names
         cursor.execute("SELECT class_id, class_name,grade_name FROM class")
-        classes = cursor.fetchall()  # List of tuples (class_id, class_name)
+        classes = cursor.fetchall()  # List of tuples (class_id, class_name, grade_name)
 
     return classes
 

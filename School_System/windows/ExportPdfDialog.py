@@ -5,6 +5,7 @@ from PyQt6.QtGui import QTextDocument, QPainter
 from PyQt6.QtPrintSupport import QPrinter
 from fontTools.tfmLib import PASSTHROUGH
 from fontTools.varLib.models import nonNone
+from PyQt6.QtCore import pyqtSlot
 
 import School_System.helpers.db_utils as database
 
@@ -18,10 +19,12 @@ class ExportPdfDialog(QDialog):
         uic.loadUi(EXPORT_PDF_DIALOG, self)
 
         self.setWindowTitle("Export pdf")
+        self.classes = database.get_classes_ids_grades()
 
 
         ##self.index_instance.students_table
         self.close_button.clicked.connect(self.init_export)
+        self.setup()
 
 
         default_fields = [
@@ -38,6 +41,32 @@ class ExportPdfDialog(QDialog):
         #self.export_to_pdf_reportlab(ass)
 
 
+
+    def setup(self):
+        added_grades = set()
+        self.comboBox_grades.addItem("--")  # added default value.
+        for class_id, class_name, grade in self.classes:
+            self.comboBox_class.addItem(class_name, class_id)
+            if grade not in added_grades:
+                self.comboBox_grades.addItem(grade)
+                added_grades.add(grade)
+
+        self.comboBox_grades.currentIndexChanged.connect(self.update_classes)
+
+
+    @pyqtSlot(int)  # Signal index
+    def update_classes(self, index):
+        selected_grade = self.comboBox_grades.itemText(index)
+        self.comboBox_class.clear()  # clear the class combo box
+
+        if selected_grade == "--":
+            for class_id, class_name, grade in self.classes:
+                self.comboBox_class.addItem(class_name, class_id)
+            return
+
+        for class_id, class_name, grade in self.classes:
+            if grade == selected_grade:
+                self.comboBox_class.addItem(class_name, class_id)
 
 
 
