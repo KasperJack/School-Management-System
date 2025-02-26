@@ -38,7 +38,6 @@ class ExportPdfDialog(QDialog):
         #ass = database.fetch_students(class_id= 20,fields=default_fields)
         #print(ass)
         #self.export_to_pdf_reportlab(ass)
-        self.test()
 
 
     def setup(self):

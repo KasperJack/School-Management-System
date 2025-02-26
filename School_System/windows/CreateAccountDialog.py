@@ -21,8 +21,7 @@ class CreateAccountDialog(QDialog):
 
         self.create_account_button.clicked.connect(self.create_account)
 
-        ass = fmt.format_name("jane doe   ")
-        print(ass)
+
 
 
 
@@ -44,7 +43,7 @@ class CreateAccountDialog(QDialog):
         # Get info from input fields
         name = self.name_field.text()
         last_name = self.last_name_field.text()
-        full_name = f"{name} {last_name}"
+        full_name = fmt.format_name(f"{name} {last_name}")
         email = self.email_field.text()
         pass1 = self.pass1_field.text()
         pass2 = self.pass2_field.text()
@@ -53,6 +52,14 @@ class CreateAccountDialog(QDialog):
         if not name or not last_name or not email or not pass1:
             QMessageBox.warning(self, "Input Error", "Please fill in all required fields.")
             return
+
+
+        if not full_name:
+            QMessageBox.information(self, "info", f"invalid name")
+            return
+
+
+
 
         email_valid = validators.email(email)
         if not email_valid:
