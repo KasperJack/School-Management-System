@@ -19,73 +19,9 @@ QWidget {
     background-color:rgb(255, 255, 255); /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
-    font-size: 12pt;
-border-radius: 10px;
 }
 
-/* Dark Mode (Toggle this for dark theme) */
-/*
-QWidget {
-    background-color: #2b2b2b; 
-    color: #ffffff;           
-}
-*/
 
-/* Buttons */
-QPushButton {
-    background-color: #0078d7; /* Windows Blue */
-    color: white;
-    border-radius: 5px;
-    padding: 8px 16px;
-    border: none;
-    font-size: 11pt;
-}
-QPushButton:hover {
-    background-color: #005a9e; /* Darker Blue on Hover */
-}
-QPushButton:pressed {
-    background-color: #004578; /* Even Darker Blue on Click */
-}
-
-/* Input Fields */
-QLineEdit {
-    background-color: white;
-    color: black;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    padding: 6px;
-}
-QLineEdit:focus {
-    border: 1px solid #0078d7; /* Blue Border on Focus */
-    background-color: #ffffff;
-}
-
-/* Labels */
-QLabel {
-    font-size: 13pt;
-    color: #333333; /* Dark Gray */
-}
-
-/* Checkboxes and Radio Buttons */
-QCheckBox, QRadioButton {
-    spacing: 6px;
-    color: #333333;
-}
-
-/* Scrollbars */
-QScrollBar:vertical {
-    border: none;
-    background: #f3f3f3;
-    width: 8px;
-    margin: 0px 0px 0px 0px;
-}
-QScrollBar::handle:vertical {
-    background: #cccccc;
-    border-radius: 4px;
-}
-QScrollBar::handle:vertical:hover {
-    background: #aaaaaa;
-}
 </string>
   </property>
   <widget class="QWidget" name="layoutWidget">
@@ -130,19 +66,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="email_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -198,19 +133,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="phone_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -266,19 +200,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="name_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -306,8 +239,8 @@ QLineEdit::placeholder {
      <widget class="QPushButton" name="add_student_button">
       <property name="minimumSize">
        <size>
-        <width>86</width>
-        <height>38</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -319,8 +252,8 @@ QLineEdit::placeholder {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-width: 60px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -386,6 +319,7 @@ QPushButton {
     border-radius: 0px;
     padding: 8px 16px;
     font-size: 10pt;
+border-radius: 5px;
 }
 
 QPushButton:hover {
@@ -448,19 +382,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="last_name_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -516,19 +449,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="address_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -718,13 +650,13 @@ QRadioButton::indicator:checked:disabled {
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>30</y>
       <width>221</width>
-      <height>31</height>
+      <height>37</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -917,7 +849,6 @@ QDateEdit {
     background-color: #eceff4; /* Light background */
     color: #2e3440; /* Nord0 - Darker text color */
     border: 1px solid #d8dee9; /* Nord4 - Light gray border */
-    border-radius: 0px; /* No rounded corners */
     padding: 6px;
     selection-background-color: #81a1c1; /* Nord8 - Light blue highlight */
     selection-color: white; /* White text color for selected text */
@@ -940,11 +871,13 @@ QDateEdit::drop-down {
     subcontrol-position: center right;
     width: 24px; /* Width of the drop-down button */
     border-left: 1px solid #d8dee9; /* Light gray separator */
+    border-top-right-radius: 6px; /* Match QDateEdit rounding */
+    border-bottom-right-radius: 6px;
 }
 
 /* Drop-down Calendar Button Icon */
 QDateEdit::down-arrow {
-	image: url(:/newPrefix/more_icons/calendkar.png);
+    image: url(:/newPrefix/more_icons/calendkar.png);
     width: 16px;
     height: 16px;
 }
@@ -958,6 +891,47 @@ QDateEdit::drop-down:hover {
 QDateEdit::drop-down:pressed {
     background-color: #d0d4db; /* Slightly darker gray when pressed */
 }
+
+/* Drop-down Calendar Widget */
+QCalendarWidget {
+    background-color: #2e3440; /* Dark background */
+    color: #d8dee9; /* Light text */
+    border: 1px solid #4C566A; /* Subtle border */
+    border-radius: 6px; /* Rounded corners */
+}
+
+/* Calendar Header (Month &amp; Year) */
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #000000; /* Fully black header */
+    color: #ffffff; /* White text */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+/* Calendar Header Buttons (Previous/Next Month) */
+QCalendarWidget QToolButton {
+    background-color: #000000; /* Black background */
+    color: white; /* White text */
+    border-radius: 4px;
+}
+
+/* Calendar Header Hover */
+QCalendarWidget QToolButton:hover {
+    background-color: #5e81ac; /* Blue */
+}
+
+/* Calendar Grid (Days) */
+QCalendarWidget QTableView {
+    background-color: #2e3440; /* Dark grid background */
+    color: #eceff4; /* Light text */
+}
+
+/* Selected Day */
+QCalendarWidget QAbstractItemView:enabled:selected {
+    background-color: #81a1c1; /* Light blue */
+    color: white;
+    border-radius: 4px;
+}
 </string>
       </property>
       <property name="wrapping">
@@ -970,7 +944,7 @@ QDateEdit::drop-down:pressed {
         <second>0</second>
         <year>1999</year>
         <month>12</month>
-        <day>14</day>
+        <day>11</day>
        </datetime>
       </property>
       <property name="displayFormat">

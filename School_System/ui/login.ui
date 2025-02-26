@@ -122,17 +122,18 @@ background-color: white;
                     <font/>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">/* Input Field */
-QLineEdit {
+                    <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -164,17 +165,18 @@ QLineEdit::placeholder {
                     <font/>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">/* Input Field */
-QLineEdit {
+                    <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -294,8 +296,9 @@ QLineEdit::placeholder {
                 <string notr="true">QPushButton {
     background-color: #5E81AC; /* Nord Blue */
     color: #ECEFF4; /* Light text */
-    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
     padding: 6px 12px;
+border-radius: 5px;
 
 }
 

@@ -19,8 +19,6 @@ QWidget {
     background-color:rgb(255, 255, 255); /* Light Gray for Light Mode */
     color: #000000;           /* Black Text */
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
-    font-size: 12pt;
-border-radius: 10px;
 }
 
 /* Dark Mode (Toggle this for dark theme) */
@@ -55,7 +53,7 @@ QScrollBar::handle:vertical:hover {
      <x>30</x>
      <y>60</y>
      <width>491</width>
-     <height>65</height>
+     <height>66</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -91,19 +89,18 @@ QLineEdit:focus + QLabel {
     <item>
      <widget class="QLineEdit" name="subject_name_field">
       <property name="styleSheet">
-       <string notr="true">/* Input Field */
-QLineEdit {
+       <string notr="true">QLineEdit {
     background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
-    border: 1px solid #4C566A; /* Subtle gray-blue border */
-    border-radius: 0px; /* No rounded corners */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
+    outline: none; /* Remove focus outline */
 }
 
 /* Focused Input Field */
 QLineEdit:focus {
-    border: 1px solid #88C0D0; /* Light blue/teal border on focus */
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
     background-color: #e1e9f2; /* Slightly lighter background on focus */
 }
 
@@ -131,8 +128,8 @@ QLineEdit::placeholder {
      <widget class="QPushButton" name="add_subject_button">
       <property name="minimumSize">
        <size>
-        <width>86</width>
-        <height>38</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -143,9 +140,8 @@ QLineEdit::placeholder {
     border-radius: 0px; /* No roundness */
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
-    font-size: 15px;
-    min-width: 60px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -210,7 +206,7 @@ QPushButton {
     border: 1px solid #cccccc;     /* Light gray border */
     border-radius: 0px;
     padding: 8px 16px;
-    font-size: 10pt;
+border-radius: 5px;
 }
 
 QPushButton:hover {
@@ -283,7 +279,6 @@ QLineEdit {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 }
 
 /* Focused Input Field */

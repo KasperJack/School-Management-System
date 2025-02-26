@@ -1012,7 +1012,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -1139,7 +1139,8 @@ QWidget {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -1198,7 +1199,8 @@ QPushButton#editButton:pressed {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -1257,7 +1259,8 @@ QPushButton#editButton:pressed {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -1315,8 +1318,9 @@ QPushButton#editButton:pressed {
     border-radius: 0px; /* No roundness */
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
-    font-size: 17px;
-    min-height: 24px;
+    font-size: 15px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -1656,7 +1660,8 @@ background-color: #ebcb8b</string>
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -2761,7 +2766,7 @@ QLineEdit:focus {
                       <property name="minimumSize">
                        <size>
                         <width>130</width>
-                        <height>38</height>
+                        <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
@@ -2791,7 +2796,8 @@ QLineEdit:focus {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -2952,8 +2958,8 @@ QComboBox:focus {
                      <widget class="QPushButton" name="exportpdf">
                       <property name="minimumSize">
                        <size>
-                        <width>86</width>
-                        <height>38</height>
+                        <width>0</width>
+                        <height>0</height>
                        </size>
                       </property>
                       <property name="styleSheet">
@@ -2965,8 +2971,8 @@ QComboBox:focus {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-width: 60px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -3034,8 +3040,8 @@ QPushButton#editButton:pressed {
                      <widget class="QPushButton" name="exportexcel">
                       <property name="minimumSize">
                        <size>
-                        <width>86</width>
-                        <height>38</height>
+                        <width>0</width>
+                        <height>0</height>
                        </size>
                       </property>
                       <property name="styleSheet">
@@ -3047,8 +3053,8 @@ QPushButton#editButton:pressed {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-width: 60px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -3910,7 +3916,7 @@ QTabBar::tab {
 </string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab_5">
                  <attribute name="title">
@@ -3997,8 +4003,8 @@ QLineEdit:focus {
     padding: 6px 12px;
     font-family: &quot;Segoe UI&quot;;
     font-size: 15px;
-    min-width: 60px;
-    min-height: 24px;
+border-radius: 5px;
+
 }
 
 /* Hover State */
@@ -4226,8 +4232,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>72</width>
-                       <height>16</height>
+                       <width>1050</width>
+                       <height>570</height>
                       </rect>
                      </property>
                     </widget>
