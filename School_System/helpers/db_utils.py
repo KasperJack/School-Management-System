@@ -12,12 +12,20 @@ PROFILE_PIC = None
 
 
 
-# constants for return values
 SUPERADMIN = "superadmin"
 ADMIN = "admin"
 USER_INACTIVE = "inactive"
 INVALID_CREDENTIALS = "invalid"
 
+
+
+
+def reset():
+    global LOGGED_IN_USER_ID, LOGGED_IN_USER_NAME, PROFILE_PIC
+    LOGGED_IN_USER_ID = None
+    LOGGED_IN_USER_NAME = None
+    PROFILE_PIC = None
+    #print(f"RESET DONE: {LOGGED_IN_USER_ID}, {LOGGED_IN_USER_NAME}, {PROFILE_PIC}")  # Debugging
 
 
 

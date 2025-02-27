@@ -6,6 +6,9 @@ from datetime import datetime
 from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath,QTextCharFormat,QPen
 from PyQt6.QtCore import pyqtSlot, QDate, Qt,QRect
 
+
+
+#from School_System.helpers.db_utils import LOGGED_IN_USER_ID
 #from School_System.helpers.db_utils import PROFILE_PIC
 from School_System.windows.AddSubjectDialog import AddSubjectDialog
 from School_System.windows.AddTeacherDialog import AddTeacherDialog
@@ -16,6 +19,7 @@ from School_System.windows.EditClassDialog import EditClassDialog
 from School_System.windows.EditTeacherDialog import EditTeacherDialog
 from School_System.windows.ExportPdfDialog import ExportPdfDialog
 from School_System.windows.ExportExcelDialog import ExportExcelDialog
+from School_System.windows.SettingsDialog import SettingsDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -35,7 +39,7 @@ class IndexSU(QMainWindow):
 
         print(School_System.__version__)
 
-
+        #print(database.LOGGED_IN_USER_ID)
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
 
@@ -51,6 +55,10 @@ class IndexSU(QMainWindow):
         self.students_s.clicked.connect(self.sw_students)
         self.students_b.clicked.connect(self.sw_students)
 
+        self.settings_b.clicked.connect(self.open_settings_dialog)
+        self.settings_s.clicked.connect(self.open_settings_dialog)
+
+
         self.add_subject_button.clicked.connect(self.open_add_subject_dialog)
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
@@ -64,8 +72,8 @@ class IndexSU(QMainWindow):
         self.exportpdf.clicked.connect(self.open_export_pdf_dialog)
         self.exportexcel.clicked.connect(self.open_export_excel_dialog)
 
-        self.logout_s.clicked.connect(self.close)
-        self.logout_b.clicked.connect(self.close)
+        self.logout_s.clicked.connect(self.logout)
+        self.logout_b.clicked.connect(self.logout)
         self.students_table.cellClicked.connect(self.on_cell_clicked)
         self.profile_pic_user.clicked.connect(lambda: print("F"))
 
@@ -1050,6 +1058,10 @@ class IndexSU(QMainWindow):
         export_excel_dialog = ExportExcelDialog(self)
         export_excel_dialog.exec()
 
+    def open_settings_dialog(self):
+        settings_dialog = SettingsDialog(self,database.LOGGED_IN_USER_ID)
+        settings_dialog.exec()
+
 
 
     def open_edit_teacher_dialog(self, teacher_id):
@@ -1069,7 +1081,13 @@ class IndexSU(QMainWindow):
             self.load_students_to_table()
 
 
-
+    def logout(self):
+        database.reset()
+        from School_System.windows.login import Login
+        self.close()  # Close current window
+        if not hasattr(self, 'login_window') or self.login_window is None:
+            self.login_window = Login()
+        self.login_window.show()
 
 
     def sw_dash(self):
@@ -1242,7 +1260,7 @@ class TeacherWidget(QWidget):
 
     @pyqtSlot()
     def on_button_click(self):
-        #print(f"Button clicked for teacher{self.teacher_id}")
+        #print(f"Button clicked for teacher{self.teacher_id}") debugging
         self.index_instance.open_edit_teacher_dialog(self.teacher_id)
 
 
