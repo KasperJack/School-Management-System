@@ -1,9 +1,9 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget,QCalendarWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget,QCalendarWidget,QTableView
 from PyQt6 import uic
 
 from datetime import datetime
-from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath,QTextCharFormat,QPen
+from PyQt6.QtGui import QIcon, QColor, QBrush, QPixmap, QPainter,QPainterPath,QTextCharFormat,QPen,QMouseEvent
 from PyQt6.QtCore import pyqtSlot, QDate, Qt,QRect
 
 
@@ -169,7 +169,7 @@ class IndexSU(QMainWindow):
         self.tabWidget_dash.setTabText(2, "Activity")
 
         self.setup_calendar()
-        self.add_test_events()
+        self.load_events()
 ##################################################################################################################################
 
 
@@ -1002,28 +1002,20 @@ class IndexSU(QMainWindow):
         #self.calendar.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
 
 
-    def add_test_events(self):
-        # Single events
-        self.calendar.add_event(QDate(2025, 2, 18),
-                                Event("meeting", QColor(255, 165, 0, 180)))
-        self.calendar.add_event(QDate(2025, 2, 20),
-                                Event("waht", QColor(255, 100, 100, 180)))
-        self.calendar.add_event(QDate(2025, 2, 22),
-                                Event("32", QColor(100, 100, 255, 180)))
+    def load_events(self):
+        database.add_event(QDate(2025,2,25),Event("meeting", QColor(255, 22, 0, 180)))
 
-        # Multiple events on same day
-        self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("team", QColor(100, 200, 100, 180)))
-        self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("32", QColor(200, 100, 200, 180)))
-        self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("idon't know", QColor(255, 165, 0, 180)))
-        self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("E32", QColor(100, 200, 255, 180)))
+        events = database.get_events()
+        #print(events)
+
+        # Add each event to the calendar
+        for event_date, event in events:
+            self.calendar.add_event(event_date, event)
+
 
         # Events for today
-        today = QDate.currentDate()
-        self.calendar.add_event(today, Event("Today's Event", QColor(255, 100, 100, 180)))
+        #today = QDate.currentDate()
+        #self.calendar.add_event(today, Event("Today's Event", QColor(255, 100, 100, 180)))
 
 
         #####################################[switching]#############################################
@@ -1302,58 +1294,79 @@ class CustomCalendarWidget(QCalendarWidget):
         # Dictionary mapping QDate to a list of events
         self.events = {}
 
-    def add_event(self, date: QDate, event: Event):
+    def add_event(self, date: QDate, event):
         """Add an event to a specific date."""
         if date not in self.events:
             self.events[date] = []
         self.events[date].append(event)
         self.update()  # Repaint the calendar
 
-    def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
-        """
-        Paint the cell using the default drawing,
-        then paint a single event card if the date has events.
-        """
-        # First, let QCalendarWidget draw the cell (date number, etc.)
-        super().paintCell(painter, rect, date)
+    def mousePressEvent(self, event: QMouseEvent):
+        # Try to locate the internal calendar view.
+        calendar_view = self.findChild(QTableView, "qt_calendar_calendarview")
+        if calendar_view is not None:
+            # Map the click position into the calendar view's coordinate system.
+            pos_in_view = calendar_view.mapFromParent(event.pos())
+            if calendar_view.rect().contains(pos_in_view):
+                index = calendar_view.indexAt(pos_in_view)
+                if index.isValid():
+                    # Compute the date based on the index.
+                    # Get the currently shown year and month.
+                    year = self.yearShown()
+                    month = self.monthShown()
+                    first_day = QDate(year, month, 1)
+                    # The first visible cell in the grid might be from the previous month.
+                    # Assuming the calendar starts on Monday (day 1), compute the start date:
+                    start_date = first_day.addDays(- (first_day.dayOfWeek() - 1))
+                    # Compute the offset from the start_date based on the cell's row and column.
+                    day_offset = index.row() * 7 + index.column()
+                    clicked_date = start_date.addDays(day_offset)
+                    print("Clicked date:", clicked_date.toString())
+                    # Optionally, emit a custom signal here or process the clicked_date.
+        else:
+            print("Calendar view not found.")
 
+        # Continue with default handling.
+        super().mousePressEvent(event)
+
+    def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         if date in self.events:
             painter.save()
 
-            # Use the first event as the main event to display.
-            events = self.events[date]
-            main_event = events[0]
-            extra_count = len(events) - 1
+            painter.fillRect(rect, QColor("white"))
 
-            # Create the text to display.
-            event_text = main_event.title
-            if extra_count > 0:
-                event_text += f" +{extra_count}"
-
-            # Define a rectangle at the bottom of the cell for the event card.
-            card_height = 15
-            card_rect = QRect(
-                rect.left() + 2,
-                rect.bottom() - card_height - 2,
-                rect.width() - 4,
-                card_height
-            )
-
-            # Draw the event card background.
-            painter.setBrush(main_event.color)
-            painter.setPen(Qt.PenStyle.NoPen)
-            painter.drawRoundedRect(card_rect, 3, 3)
-
-            # Draw the event text.
+            date_text = str(date.day())
+            date_rect = QRect(rect.left() + 2, rect.top() + 2, rect.width() - 4, 20)
             painter.setPen(QPen(Qt.GlobalColor.black))
-            font = painter.font()
-            font.setPointSize(10)
-            painter.setFont(font)
-            text_rect = card_rect.adjusted(2, 0, -2, 0)
-            painter.drawText(
-                text_rect,
-                Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft,
-                event_text
-            )
+            painter.drawText(date_rect, Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft, date_text)
 
+            events = self.events[date]
+            current_y = date_rect.bottom() + 2
+            event_card_height = 15
+            spacing = 2
+
+            #  each event stack
+            for event in events:
+                if current_y + event_card_height > rect.bottom() - 2:
+                    break
+
+                event_rect = QRect(rect.left() + 2, current_y, rect.width() - 4, event_card_height)
+                painter.setBrush(event.color)
+                painter.setPen(Qt.PenStyle.NoPen)
+                painter.drawRoundedRect(event_rect, 3, 3)
+
+
+                painter.setPen(QPen(Qt.GlobalColor.black))
+                painter.drawText(event_rect.adjusted(2, 0, -2, 0),
+                                 Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft,
+                                 event.title)
+
+                current_y += event_card_height + spacing
+
+            painter.restore()
+        else:
+
+            painter.save()
+            painter.fillRect(rect, QColor("white"))
+            super().paintCell(painter, rect, date)
             painter.restore()

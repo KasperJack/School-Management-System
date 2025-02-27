@@ -31,7 +31,6 @@ class Login(QMainWindow):
         #self.widget.setStyleSheet("background-color: white;")
         #self.setAutoFillBackground(True)
         self.load_settings()
-        print(database.LOGGED_IN_USER_ID)
 
 
 

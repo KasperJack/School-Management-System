@@ -5,6 +5,15 @@ from datetime import datetime
 from collections import defaultdict
 import bcrypt
 
+from PyQt6.QtCore import QDate
+from PyQt6.QtGui import QColor
+
+
+class Event:
+    def __init__(self, title, color=QColor(255, 100, 100, 180)):
+        self.title = title
+        self.color = color
+
 
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
@@ -1668,3 +1677,81 @@ def email_exists(email):
 
 
 
+def add_event(event_date, event):
+    try:
+        # Open a connection to the database
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # Insert event into the database
+        cursor.execute('''
+            INSERT INTO events (event_name, event_date, color_red, color_green, color_blue, color_alpha)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (
+            event.title,
+            event_date.toString("yyyy-MM-dd"),  # Format the date as 'yyyy-mm-dd'
+            event.color.red(),
+            event.color.green(),
+            event.color.blue(),
+            event.color.alpha()
+        ))
+
+        # Commit changes
+        conn.commit()
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return False
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+        return False
+    finally:
+        # Close the connection
+        conn.close()
+
+    return True
+
+
+
+
+
+def get_events():
+    events = []
+    try:
+        # Open a connection to the database
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # Query to fetch all events
+        cursor.execute('''
+            SELECT event_name, event_date, color_red, color_green, color_blue, color_alpha
+            FROM events
+        ''')
+
+        # Fetch all rows from the result
+        rows = cursor.fetchall()
+
+        for row in rows:
+            title = row[0]
+            date_str = row[1]
+            red = row[2]
+            green = row[3]
+            blue = row[4]
+            alpha = row[5]
+
+            # Convert the string date back to QDate
+            event_date = QDate.fromString(date_str, "yyyy-MM-dd")
+
+            # Create an Event object
+            event = Event(title, QColor(red, green, blue, alpha))
+            events.append((event_date, event))
+
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+    finally:
+        # Close the connection
+        conn.close()
+
+    return events
