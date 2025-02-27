@@ -33,8 +33,8 @@ def set_remember_true():
 
             settings['remember'] = True
 
-            with open(SETTINGS, "w") as f: #save the new setting.
-                json.dump(settings, f, indent=4) #use indent for readability.
+            with open(SETTINGS, "w") as f:
+                json.dump(settings, f, indent=4)
 
         except (FileNotFoundError, json.JSONDecodeError, KeyError, IOError) as e:
             print(f"Error setting 'remember' to True: {e}")
@@ -60,7 +60,7 @@ def set_remember_false():
 
         except (FileNotFoundError, json.JSONDecodeError, IOError) as e:
             print(f"Error setting 'remember' to False and clearing email: {e}")
-            # Handle errors (e.g., log them)
+
 
 
 
@@ -80,9 +80,8 @@ def add_email(email):
 
         except (FileNotFoundError, json.JSONDecodeError, IOError) as e:
             print(f"Error inserting email: {e}")
-            # Handle errors (e.g., log them)
+
     else:
-        #if the file does not exist, create it with the email.
         try:
             settings = {'email':email}
             with open(SETTINGS, "w") as f:

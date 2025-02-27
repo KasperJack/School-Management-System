@@ -23,3 +23,11 @@ EXPORT_EXCEL_DIALOG = os.path.join(os.path.dirname(__file__), "ExportExcelDialog
 
 EXPORT_PDF_DIALOG = os.path.join(os.path.dirname(__file__), "ExportPdfDialog.ui")
 
+FORGET_PASSWORD_DIALOG = os.path.join(os.path.dirname(__file__), "ForgotPasswordDialog.ui")
+
+
+
+
+
+
+
