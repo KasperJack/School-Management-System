@@ -53,7 +53,7 @@ QScrollBar::handle:vertical:hover {
      <x>30</x>
      <y>60</y>
      <width>491</width>
-     <height>66</height>
+     <height>71</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -62,7 +62,7 @@ QScrollBar::handle:vertical:hover {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>11</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -70,7 +70,6 @@ QScrollBar::handle:vertical:hover {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 16px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -239,7 +238,6 @@ QPushButton:pressed {
    <property name="font">
     <font>
      <family>Segoe UI</family>
-     <pointsize>-1</pointsize>
      <bold>true</bold>
     </font>
    </property>
@@ -247,7 +245,6 @@ QPushButton:pressed {
     <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 16px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1421</width>
-    <height>886</height>
+    <height>895</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1012,7 +1012,7 @@ QPushButton:checked {
 </string>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="dash">
              <layout class="QGridLayout" name="gridLayout_7">
@@ -3321,24 +3321,12 @@ border-radius: 0px;</string>
                       <property name="font">
                        <font>
                         <family>Segoe UI</family>
-                        <pointsize>-1</pointsize>
+                        <pointsize>13</pointsize>
                         <bold>true</bold>
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">/* Label Style */
-QLabel {
-    color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
-    font-weight: bold; /* Bold text to emphasize the label */
-    margin-top: 4px; /* Space between the label and the input field */
-}
-
-/* Optional: Focused Label Change (to match the input field) */
-QLineEdit:focus + QLabel {
-    color: #88C0D0; /* Change label color to light blue on focus */
-}
-</string>
+                       <string notr="true"/>
                       </property>
                       <property name="text">
                        <string>FULL NAME</string>
@@ -3366,7 +3354,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                       </property>
                       <property name="text">
@@ -3395,7 +3382,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                       </property>
                       <property name="text">
@@ -3426,7 +3412,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                         </property>
                         <property name="text">
@@ -3514,7 +3499,7 @@ QPushButton:disabled {
                      <x>10</x>
                      <y>200</y>
                      <width>261</width>
-                     <height>60</height>
+                     <height>64</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3523,7 +3508,7 @@ QPushButton:disabled {
                       <property name="font">
                        <font>
                         <family>Segoe UI</family>
-                        <pointsize>-1</pointsize>
+                        <pointsize>13</pointsize>
                         <bold>true</bold>
                        </font>
                       </property>
@@ -3531,7 +3516,6 @@ QPushButton:disabled {
                        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -3578,7 +3562,7 @@ QLineEdit:focus + QLabel {
                      <x>10</x>
                      <y>340</y>
                      <width>261</width>
-                     <height>60</height>
+                     <height>64</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -3587,7 +3571,7 @@ QLineEdit:focus + QLabel {
                       <property name="font">
                        <font>
                         <family>Segoe UI</family>
-                        <pointsize>-1</pointsize>
+                        <pointsize>13</pointsize>
                         <bold>true</bold>
                        </font>
                       </property>
@@ -3595,7 +3579,6 @@ QLineEdit:focus + QLabel {
                        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -3626,7 +3609,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                       </property>
                       <property name="text">
@@ -3642,7 +3624,7 @@ QLineEdit:focus + QLabel {
                      <x>10</x>
                      <y>270</y>
                      <width>261</width>
-                     <height>60</height>
+                     <height>64</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -3651,7 +3633,7 @@ QLineEdit:focus + QLabel {
                       <property name="font">
                        <font>
                         <family>Segoe UI</family>
-                        <pointsize>-1</pointsize>
+                        <pointsize>13</pointsize>
                         <bold>true</bold>
                        </font>
                       </property>
@@ -3659,7 +3641,6 @@ QLineEdit:focus + QLabel {
                        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -3690,7 +3671,6 @@ QLineEdit:focus + QLabel {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
                       </property>
                       <property name="text">
@@ -3706,7 +3686,7 @@ QLineEdit:focus + QLabel {
                      <x>10</x>
                      <y>410</y>
                      <width>261</width>
-                     <height>60</height>
+                     <height>64</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -3715,7 +3695,7 @@ QLineEdit:focus + QLabel {
                       <property name="font">
                        <font>
                         <family>Segoe UI</family>
-                        <pointsize>-1</pointsize>
+                        <pointsize>13</pointsize>
                         <bold>true</bold>
                        </font>
                       </property>
@@ -3723,7 +3703,6 @@ QLineEdit:focus + QLabel {
                        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -3754,13 +3733,11 @@ QLineEdit:focus + QLabel {
                        </font>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">
-    background-color: #eceff4; /* Light background */
+                       <string notr="true">    background-color: #eceff4; /* Light background */
     color: #000000; /* Black text */
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
-    padding: 6px; /* Padding inside the field */
-</string>
+    padding: 6px; /* Padding inside the field */</string>
                       </property>
                       <property name="text">
                        <string>NHEZE DAZD ZA</string>
@@ -4232,8 +4209,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>1050</width>
-                       <height>570</height>
+                       <width>72</width>
+                       <height>16</height>
                       </rect>
                      </property>
                     </widget>

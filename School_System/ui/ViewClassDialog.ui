@@ -374,7 +374,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>Inter</family>
-      <pointsize>-1</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -385,7 +385,6 @@ background-color: rgb(255, 255, 255);</string>
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
     </property>
     <property name="text">
@@ -404,7 +403,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>Inter</family>
-      <pointsize>-1</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -414,7 +413,6 @@ background-color: rgb(255, 255, 255);</string>
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
     </property>
     <property name="text">
@@ -433,7 +431,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>Inter</family>
-      <pointsize>-1</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -443,7 +441,6 @@ background-color: rgb(255, 255, 255);</string>
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
     </property>
     <property name="text">
@@ -462,7 +459,7 @@ background-color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>Inter</family>
-      <pointsize>-1</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -472,7 +469,6 @@ background-color: rgb(255, 255, 255);</string>
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
     </property>
     <property name="text">
@@ -526,7 +522,7 @@ QPushButton:pressed {
     <property name="font">
      <font>
       <family>Inter</family>
-      <pointsize>-1</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -536,7 +532,6 @@ QPushButton:pressed {
     border: 1px solid #4C566A; /* Subtle gray-blue border */
     border-radius: 0px; /* No rounded corners */
     padding: 6px; /* Padding inside the field */
-    font-size: 14px; /* Standard font size */
 </string>
     </property>
     <property name="text">

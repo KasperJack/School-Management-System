@@ -769,7 +769,7 @@ class IndexSU(QMainWindow):
 
     def toggle_id_columns(self, state):
         show = state == 2
-        #print(show)
+        #print(show)#debugging
         self.activity_log_table.setColumnHidden(0, not show)
         self.activity_log_table.setColumnHidden(2, not show)
         self.activity_log_table.setColumnHidden(7, not show)
@@ -1005,21 +1005,21 @@ class IndexSU(QMainWindow):
     def add_test_events(self):
         # Single events
         self.calendar.add_event(QDate(2025, 2, 18),
-                                Event("aaaaaaaa", QColor(255, 165, 0, 180)))
+                                Event("meeting", QColor(255, 165, 0, 180)))
         self.calendar.add_event(QDate(2025, 2, 20),
-                                Event("Meeting", QColor(255, 100, 100, 180)))
+                                Event("waht", QColor(255, 100, 100, 180)))
         self.calendar.add_event(QDate(2025, 2, 22),
-                                Event("Conference", QColor(100, 100, 255, 180)))
+                                Event("32", QColor(100, 100, 255, 180)))
 
         # Multiple events on same day
         self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("Team Syc", QColor(100, 200, 100, 180)))
+                                Event("team", QColor(100, 200, 100, 180)))
         self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("Intededdadrview", QColor(200, 100, 200, 180)))
+                                Event("32", QColor(200, 100, 200, 180)))
         self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("Deadldddddddine", QColor(255, 165, 0, 180)))
+                                Event("idon't know", QColor(255, 165, 0, 180)))
         self.calendar.add_event(QDate(2025, 2, 24),
-                                Event("Extra Event", QColor(100, 200, 255, 180)))
+                                Event("E32", QColor(100, 200, 255, 180)))
 
         # Events for today
         today = QDate.currentDate()
@@ -1070,7 +1070,7 @@ class IndexSU(QMainWindow):
 
 
     def edit_class_dialog_closed(self):
-        #print("Dialog closed")
+        #print("Dialog closed")#debugging
         edit_class_dialog = self.sender()
 
         if edit_class_dialog.is_modified:
@@ -1081,13 +1081,30 @@ class IndexSU(QMainWindow):
             self.load_students_to_table()
 
 
+
+
     def logout(self):
-        database.reset()
-        from School_System.windows.login import Login
-        self.close()  # Close current window
-        if not hasattr(self, 'login_window') or self.login_window is None:
-            self.login_window = Login()
-        self.login_window.show()
+
+        confirmation = QMessageBox.question(
+            self,
+            "logou ?",
+            f"Are you sure you want to logout",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+
+        if confirmation == QMessageBox.StandardButton.Yes:
+            database.reset()
+            from School_System.windows.login import Login
+            self.close()
+            if not hasattr(self, 'login_window') or self.login_window is None:
+                self.login_window = Login()
+            self.login_window.show()
+
+
+
+
+
 
 
     def sw_dash(self):
@@ -1260,7 +1277,7 @@ class TeacherWidget(QWidget):
 
     @pyqtSlot()
     def on_button_click(self):
-        #print(f"Button clicked for teacher{self.teacher_id}") debugging
+        #print(f"Button clicked for teacher{self.teacher_id}") #debugging
         self.index_instance.open_edit_teacher_dialog(self.teacher_id)
 
 

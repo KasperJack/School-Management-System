@@ -38,7 +38,7 @@ QWidget {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>12</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -46,7 +46,6 @@ QWidget {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -105,7 +104,7 @@ QLineEdit::placeholder {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>12</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -113,7 +112,6 @@ QLineEdit::placeholder {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -125,7 +123,6 @@ QLineEdit:focus + QLabel {
 /* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-bottom: 4px; /* Space between the label and the input field */
 }
@@ -427,7 +424,7 @@ QPushButton:pressed {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>12</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -435,7 +432,6 @@ QPushButton:pressed {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -494,7 +490,7 @@ QLineEdit::placeholder {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>12</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -502,7 +498,6 @@ QLineEdit::placeholder {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
@@ -561,7 +556,7 @@ QLineEdit::placeholder {
       <property name="font">
        <font>
         <family>Segoe UI</family>
-        <pointsize>-1</pointsize>
+        <pointsize>12</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -569,7 +564,6 @@ QLineEdit::placeholder {
        <string notr="true">/* Label Style */
 QLabel {
     color: #2e3440; /* Light text color */
-    font-size: 13px; /* Smaller font size for the label */
     font-weight: bold; /* Bold text to emphasize the label */
     margin-top: 4px; /* Space between the label and the input field */
 }
