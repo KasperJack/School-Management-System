@@ -1645,3 +1645,18 @@ def fetch_students(class_id=None, fields=None):
 
 
 
+def email_exists(email):
+    conn = sqlite3.connect(DB_PATH)  # Connect to your database
+    cursor = conn.cursor()
+
+    # Query to check if the email exists
+    cursor.execute("SELECT 1 FROM users WHERE email = ?", (email,))
+    result = cursor.fetchone()
+
+    conn.close()
+    return result is not None  # Returns True if email exists, False otherwise
+
+
+
+
+

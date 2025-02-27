@@ -4,6 +4,7 @@ validators
 bcrypt
 fpdf2
 reportlab
-
+load_dotenv
+dotenv
 
 
