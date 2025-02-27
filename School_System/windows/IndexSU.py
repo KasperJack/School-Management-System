@@ -1301,33 +1301,6 @@ class CustomCalendarWidget(QCalendarWidget):
         self.events[date].append(event)
         self.update()  # Repaint the calendar
 
-    def mousePressEvent(self, event: QMouseEvent):
-        # Try to locate the internal calendar view.
-        calendar_view = self.findChild(QTableView, "qt_calendar_calendarview")
-        if calendar_view is not None:
-            # Map the click position into the calendar view's coordinate system.
-            pos_in_view = calendar_view.mapFromParent(event.pos())
-            if calendar_view.rect().contains(pos_in_view):
-                index = calendar_view.indexAt(pos_in_view)
-                if index.isValid():
-                    # Compute the date based on the index.
-                    # Get the currently shown year and month.
-                    year = self.yearShown()
-                    month = self.monthShown()
-                    first_day = QDate(year, month, 1)
-                    # The first visible cell in the grid might be from the previous month.
-                    # Assuming the calendar starts on Monday (day 1), compute the start date:
-                    start_date = first_day.addDays(- (first_day.dayOfWeek() - 1))
-                    # Compute the offset from the start_date based on the cell's row and column.
-                    day_offset = index.row() * 7 + index.column()
-                    clicked_date = start_date.addDays(day_offset)
-                    print("Clicked date:", clicked_date.toString())
-                    # Optionally, emit a custom signal here or process the clicked_date.
-        else:
-            print("Calendar view not found.")
-
-        # Continue with default handling.
-        super().mousePressEvent(event)
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         if date in self.events:
