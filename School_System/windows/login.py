@@ -4,7 +4,10 @@ from PyQt6.QtGui import QColor
 from PyQt6.QtCore import Qt
 
 from School_System.ui import LOGIN # ui file path
+
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
+from School_System.windows.ForgotPasswordDialog import ForgotPasswordDialog
+
 from School_System.windows.IndexSU import IndexSU
 import School_System.helpers.db_utils as database
 import School_System.helpers.settings as settings
@@ -52,7 +55,7 @@ class Login(QMainWindow):
 
 
     def forget_password(self):
-        pass
+        self.open_forget_password_dialog()
 
 
 
@@ -60,7 +63,13 @@ class Login(QMainWindow):
     def open_create_account_dialog(self):
         # Create an instance of the CreateAccountDialog
         create_account_dialog = CreateAccountDialog(self)  
-        create_account_dialog.exec()  
+        create_account_dialog.exec()
+
+
+
+    def open_forget_password_dialog(self):
+        forget_password_dialog = ForgotPasswordDialog(self)
+        forget_password_dialog.exec()
 
 
 
