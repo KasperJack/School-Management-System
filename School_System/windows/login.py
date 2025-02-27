@@ -92,7 +92,7 @@ class Login(QMainWindow):
 
         if evaluate == database.SUPERADMIN:
             QMessageBox.information(self, "superadmin",f"Welcome {database.LOGGED_IN_USER_NAME}")
-            # Load the IndexSU window
+            self.remember_mail(email)
             self.index_window = IndexSU()
             self.index_window.show()   
             self.close()    
@@ -102,6 +102,7 @@ class Login(QMainWindow):
         elif evaluate == database.ADMIN:
             QMessageBox.information(self, " admin",f"Welcome {database.LOGGED_IN_USER_NAME}")
             # Load the IndexSU window(for admins)
+            self.remember_mail(email)
             self.index_window = IndexSU()
             self.index_window.show()
             self.close()
@@ -143,8 +144,13 @@ class Login(QMainWindow):
 
     def load_settings(self):
         if settings.remember_mail():
+            if settings.remember_mail() == " ":
+                self.remember_me_button.setChecked(True)
+                return
             self.email_field.setText(settings.remember_mail())
             self.remember_me_button.setChecked(True)
+
+
 
 
     def remember_mail(self,email):

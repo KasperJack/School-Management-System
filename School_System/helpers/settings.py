@@ -23,6 +23,7 @@ def remember_mail():
 
 
 
+
 def set_remember_true():
 
     if os.path.exists(SETTINGS):
@@ -44,7 +45,7 @@ def set_remember_true():
 
 def set_remember_false():
     """
-    Sets the 'remember' setting to False in the settings file.
+    Sets the 'remember' setting to False and sets the email to "".
     """
     if os.path.exists(SETTINGS):
         try:
@@ -52,14 +53,14 @@ def set_remember_false():
                 settings = json.load(f)
 
             settings['remember'] = False  # Set 'remember' to False
+            settings['email'] = " " # Set the email to ""
 
-            with open(SETTINGS, "w") as f: #save the new setting.
-                json.dump(settings, f, indent=4) #use indent for readability.
+            with open(SETTINGS, "w") as f:
+                json.dump(settings, f, indent=4)
 
-        except (FileNotFoundError, json.JSONDecodeError, KeyError, IOError) as e:
-            print(f"Error setting 'remember' to False: {e}")
+        except (FileNotFoundError, json.JSONDecodeError, IOError) as e:
+            print(f"Error setting 'remember' to False and clearing email: {e}")
             # Handle errors (e.g., log them)
-
 
 
 
