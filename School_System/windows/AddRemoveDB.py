@@ -21,6 +21,8 @@ class AddRemoveDB(QDialog):
         self.db_manager = db_manager_instance
         self.setWindowTitle("Add Database")
 
+        self.add_db_button.clicked.connect(self.add_data_base)
+
         self.set_up_db_selction_table()
 
 
@@ -66,14 +68,46 @@ class AddRemoveDB(QDialog):
             #print(f"Selected Database: {db_name}")
             #self.db_manager.change_database(db_name)
             self.db_manager.change_database(db_name)
+            database.update_route()
 
 
 
     def delete_database(self, db_name):
-        print(db_name)
+
+        confirmation = QMessageBox.question(
+            self,
+            "TRASH ?",
+            f"Are you sure you want to delete the db",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No
+        )
+
+        if confirmation == QMessageBox.StandardButton.Yes:
+            self.db_manager.delete_database(db_name)
+            self.populate_table()
+
+
+
+
+
+
+
 
 
 
 
     def add_data_base(self):
-        pass
+
+        db_name = self.db_name.text()
+
+        if not db_name:
+            return
+
+        for row in range(self.db_table.rowCount()):
+            existing_db_name = self.db_table.item(row, 1).text()
+            if existing_db_name == db_name:
+                print("Database name already exists!")
+                return
+
+        self.db_manager.create_new_db(db_name)
+        self.populate_table()

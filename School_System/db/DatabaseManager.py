@@ -31,7 +31,6 @@ class DatabaseManager:
 
 
     def _load_metadata(self):
-        """Load the metadata from the configuration file."""
         metadata_path = SETTINGS
         if os.path.exists(metadata_path):
             with open(metadata_path, "r") as f:
@@ -59,10 +58,30 @@ class DatabaseManager:
                 print(f"Error setting 'remember' to True: {e}")
 
 
+    def delete_database(self, db_name):
+
+        if not db_name.endswith(".db"):
+            db_name += ".db"
+
+        db_path = os.path.join(self.DB_DIRECTORY, db_name)
+
+        if os.path.exists(db_path):
+            try:
+                os.remove(db_path)  # Delete the database file
+
+                self.reset()
+
+            except OSError as e:
+                print(f"Error deleting database '{db_name}': {e}")
+
+        else:
+            print(f"Database '{db_name}' not found.")
+
+
+
 
     def create_new_db(self, new_db_name):
-        """Create a new DB by copying the schema file and update metadata."""
-        # Ensure the new DB name has a .db extension
+
         if not new_db_name.endswith(".db"):
             new_db_name += ".db"
 
@@ -92,6 +111,7 @@ class DatabaseManager:
         ]
 
         return db_files_with_status
+
 
 
 

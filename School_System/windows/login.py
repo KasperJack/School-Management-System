@@ -1,3 +1,5 @@
+from School_System.db.DatabaseManager import db_manager_instance
+
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit,QGraphicsDropShadowEffect
 from PyQt6 import uic
 from PyQt6.QtGui import QColor
@@ -32,9 +34,12 @@ class Login(QMainWindow):
         self.apply_floating_effect(self.widget)
         #self.widget.setStyleSheet("background-color: white;")
         #self.setAutoFillBackground(True)
+        self.db_manager = db_manager_instance
+
+        self.active_db = None
 
         self.load_settings()
-
+        self.start_up_script()
 
 
 
@@ -76,12 +81,12 @@ class Login(QMainWindow):
 
     def open_add_remove_db_dialog(self):
         add_remove_db_dialog = AddRemoveDB(self)
+        add_remove_db_dialog.finished.connect(self.start_up_script)
         add_remove_db_dialog.exec()
 
 
 
     def toggle_password_visibility(self):
-        # Toggle the echoMode of the password field
         if self.password_field.echoMode() == QLineEdit.EchoMode.Password:
             self.password_field.setEchoMode(QLineEdit.EchoMode.Normal)
         else:
@@ -91,9 +96,32 @@ class Login(QMainWindow):
 
 
 
+    def start_up_script(self):
+        db_list = self.db_manager.get_all_databases()
+
+        if not db_list:
+            self.db_indicator.setText("Create a Database")
+            self.active_db = False
+
+
+        elif not any("(current)" in db for db in db_list):
+            self.db_indicator.setText("Select a Database")
+            self.active_db = False
+
+
+        else:
+            current_db = next(db for db in db_list if "(current)" in db)
+            current_db_name = current_db.replace(" (current)", "")
+            self.db_indicator.setText(current_db_name)
+            self.active_db = True
+
 
     def authenticate_user(self):
-        # Get email and password from input fields
+
+        if not self.active_db:
+            print("ss")
+            return
+
         email = self.email_field.text()
         password = self.password_field.text()
 

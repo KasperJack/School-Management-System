@@ -1003,7 +1003,7 @@ class IndexSU(QMainWindow):
 
 
     def load_events(self):
-        database.add_event(QDate(2025,2,25),Event("meeting", QColor(255, 22, 0, 180)))
+        #database.add_event(QDate(2025,2,25),Event("meeting", QColor(255, 22, 0, 180)))
 
         events = database.get_events()
         #print(events)

@@ -41,12 +41,12 @@ border-radius: 10px;
        </font>
       </property>
       <property name="text">
-       <string>Password</string>
+       <string>Name</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="pass2_field">
+     <widget class="QLineEdit" name="db_name">
       <property name="styleSheet">
        <string notr="true">/* Input Field */
 QLineEdit {
@@ -85,7 +85,7 @@ QLineEdit::placeholder {
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="create_account_button">
+     <widget class="QPushButton" name="add_db_button">
       <property name="minimumSize">
        <size>
         <width>86</width>
@@ -136,7 +136,7 @@ QPushButton#editButton:pressed {
 </string>
       </property>
       <property name="text">
-       <string>Create Account</string>
+       <string>Add DB</string>
       </property>
      </widget>
     </item>
@@ -222,7 +222,7 @@ border-radius: 0px;
      <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Create Account</string>
+     <string>Select Database</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -238,7 +238,7 @@ border-radius: 0px;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/add-user.png</pixmap>
+     <pixmap resource="../resources/rec.qrc">:/newPrefix/more_icons/database.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

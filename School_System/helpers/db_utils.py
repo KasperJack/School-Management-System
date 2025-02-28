@@ -1,6 +1,10 @@
 
 import sqlite3
-from School_System.db import DB_PATH
+
+#from School_System.db import DB_PATH
+from School_System.db.DatabaseManager import db_manager_instance
+
+
 from datetime import datetime
 from collections import defaultdict
 import bcrypt
@@ -9,16 +13,13 @@ import bcrypt
 from PyQt6.QtCore import QDate
 from PyQt6.QtGui import QColor
 
-from School_System.db.DatabaseManager import db_manager_instance
 
-db = db_manager_instance.get_all_databases()
-print(db)
 
-class Event:
-    def __init__(self, title, color=QColor(255, 100, 100, 180)):
-        self.title = title
-        self.color = color
 
+
+
+DB_PATH = db_manager_instance.current_db_path
+print(DB_PATH)
 
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
@@ -1758,3 +1759,15 @@ def get_events():
         conn.close()
 
     return events
+
+
+
+def update_route():
+    global DB_PATH
+    DB_PATH = db_manager_instance.current_db_path
+    print(DB_PATH)
+
+class Event:
+    def __init__(self, title, color=QColor(255, 100, 100, 180)):
+        self.title = title
+        self.color = color
