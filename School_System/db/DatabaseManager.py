@@ -29,6 +29,7 @@ class DatabaseManager:
         self.current_db_path = f"{self.DB_DIRECTORY}/{self.current_db}"
 
 
+
     def _load_metadata(self):
         """Load the metadata from the configuration file."""
         metadata_path = SETTINGS
@@ -58,6 +59,7 @@ class DatabaseManager:
                 print(f"Error setting 'remember' to True: {e}")
 
 
+
     def create_new_db(self, new_db_name):
         """Create a new DB by copying the schema file and update metadata."""
         # Ensure the new DB name has a .db extension
@@ -71,9 +73,7 @@ class DatabaseManager:
         if os.path.exists(schema_path):
             shutil.copy(schema_path, new_db_path)
             # Update the metadata with the new database
-            self.last_db = self.current_db
-            self.current_db = new_db_path
-            self._save_metadata()  # Save the metadata file
+            self.reset()
         else:
             print(f"Schema file '{self.SCHEMA_FILE}' not found.")
 

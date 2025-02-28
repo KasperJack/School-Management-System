@@ -63,7 +63,7 @@ class AddRemoveDB(QDialog):
         """Handle the radio button toggle event."""
         if checked:
 
-            print(f"Selected Database: {db_name}")
+            #print(f"Selected Database: {db_name}")
             #self.db_manager.change_database(db_name)
             self.db_manager.change_database(db_name)
 
@@ -74,3 +74,6 @@ class AddRemoveDB(QDialog):
 
 
 
+
+    def add_data_base(self):
+        pass
