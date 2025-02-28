@@ -7,6 +7,7 @@ from School_System.ui import LOGIN # ui file path
 
 from School_System.windows.CreateAccountDialog import CreateAccountDialog
 from School_System.windows.ForgotPasswordDialog import ForgotPasswordDialog
+from School_System.windows.AddRemoveDB import AddRemoveDB
 
 from School_System.windows.IndexSU import IndexSU
 import School_System.helpers.db_utils as database
@@ -25,11 +26,13 @@ class Login(QMainWindow):
         self.login_button.clicked.connect(self.authenticate_user)
         self.create_account_button.clicked.connect(self.open_create_account_dialog)
         self.forget_password_button.clicked.connect(self.forget_password)
+        self.add_db_button.clicked.connect(self.open_add_remove_db_dialog)
         #aself.view_password_button.clicked.connect(self.toggle_password_visibility)
         self.remember_me_button.toggled.connect(self.remember_me)
         self.apply_floating_effect(self.widget)
         #self.widget.setStyleSheet("background-color: white;")
         #self.setAutoFillBackground(True)
+
         self.load_settings()
 
 
@@ -71,7 +74,9 @@ class Login(QMainWindow):
         forget_password_dialog = ForgotPasswordDialog(self)
         forget_password_dialog.exec()
 
-
+    def open_add_remove_db_dialog(self):
+        add_remove_db_dialog = AddRemoveDB(self)
+        add_remove_db_dialog.exec()
 
 
 

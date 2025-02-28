@@ -38,7 +38,7 @@ def set_remember_true():
 
         except (FileNotFoundError, json.JSONDecodeError, KeyError, IOError) as e:
             print(f"Error setting 'remember' to True: {e}")
-            # Handle errors (e.g., log them)
+
 
 
 

@@ -27,6 +27,11 @@ FORGET_PASSWORD_DIALOG = os.path.join(os.path.dirname(__file__), "ForgotPassword
 
 SETTINGS_DIALOG = os.path.join(os.path.dirname(__file__), "SettingsDialog.ui")
 
+ADD_REMOVE_DB = os.path.join(os.path.dirname(__file__), "AddRemoveDB.ui")
+
+
+
+
 
 
 

@@ -536,7 +536,7 @@ QPushButton#editButton:pressed {
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="view_password_button">
+          <widget class="QToolButton" name="add_db_button">
            <property name="text">
             <string>...</string>
            </property>

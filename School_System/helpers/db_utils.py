@@ -5,9 +5,14 @@ from datetime import datetime
 from collections import defaultdict
 import bcrypt
 
+
 from PyQt6.QtCore import QDate
 from PyQt6.QtGui import QColor
 
+from School_System.db.DatabaseManager import db_manager_instance
+
+db = db_manager_instance.get_all_databases()
+print(db)
 
 class Event:
     def __init__(self, title, color=QColor(255, 100, 100, 180)):
@@ -18,8 +23,6 @@ class Event:
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
 PROFILE_PIC = None
-
-
 
 SUPERADMIN = "superadmin"
 ADMIN = "admin"
