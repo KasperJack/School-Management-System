@@ -1,5 +1,5 @@
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget,QCalendarWidget,QTableView
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QHBoxLayout, QWidget, QAbstractItemView, QHeaderView, QScrollArea, QVBoxLayout, QLabel, QTreeWidgetItem, QFileDialog, QSizePolicy,QGraphicsDropShadowEffect,QGraphicsBlurEffect,QTableWidget,QCalendarWidget,QTableView,QFrame
 from PyQt6 import uic
 
 from datetime import datetime
@@ -97,7 +97,7 @@ class IndexSU(QMainWindow):
         self.greet_user()
         self.update_on_start_up() #updates the counters
         self.setup_students_table()
-        self.setup_inactive_admins_table()
+        self.display_inactive_admins()
         self.setup_activity_log__table()
         # removes the seconds tab in the tab widget for admin access
         # self.tabWidget.removeTab(1)#################"
@@ -172,11 +172,13 @@ class IndexSU(QMainWindow):
 
         self.setup_calendar()
         self.load_events()
+        self.display_today_events()
+        self.display_inactive_admins()
 ##################################################################################################################################
 
 
     def greet_user(self):
-        self.label_user_name.setText(f"Hello, {database.LOGGED_IN_USER_NAME}")
+        self.label_4.setText(f"{database.LOGGED_IN_USER_NAME}")
 
         if database.PROFILE_PIC:
             default_pixmap = QPixmap(f"{ICONS}/camu.jpg")
@@ -249,7 +251,6 @@ class IndexSU(QMainWindow):
         self.dashboard_b.setChecked(True)
         self.icon_only.setHidden(True)
         self.setStatusBar(None)
-
         self.side_widget.hide()
 
 
@@ -260,93 +261,57 @@ class IndexSU(QMainWindow):
 
 #################### inactive admins table ###########################
 
-    def setup_inactive_admins_table(self):
-        self.inactive_admins_table.verticalHeader().setVisible(False)
 
-        # prevents the table () from being edited
-        self.inactive_admins_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.load_inactive_admins() ###load data
-        header = self.inactive_admins_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+    def display_inactive_admins(self):
+        # Create a container widget to hold all admin cards
+        container = QWidget()
+        container_layout = QVBoxLayout(container)
+        container_layout.setSpacing(10)
+        container_layout.setContentsMargins(10, 10, 10, 10)
 
-        for row in range(self.inactive_admins_table.rowCount()):
-            self.inactive_admins_table.setRowHeight(row, 40)
+        # Retrieve data from the database (assumes each row is a tuple: (full_name, email, registration_date))
+        results = database.get_inactive_admins()
 
+        # Create and add an AdminWidget for each inactive admin
+        for admin in results:
+            full_name, email, registration_date = admin
+            admin_card = AdminWidget(self, full_name, email, registration_date)
+            container_layout.addWidget(admin_card)
 
-
-    def load_inactive_admins(self):
-            
-            results = database.get_inactive_admins()
-
-            # Set up the table widget for 3 columns
-            self.inactive_admins_table.setRowCount(len(results))  # Set rows based on query result count
-            self.inactive_admins_table.setColumnCount(4)  # Set columns for "Full Name", "Email", "Registration Date"
-            self.inactive_admins_table.setHorizontalHeaderLabels(["Full Name", "Email", "Registration Date", "Actions"])
-
-            # Populate the table
-            for row_index, row_data in enumerate(results):
-                for col_index, data in enumerate(row_data):
-                    self.inactive_admins_table.setItem(row_index, col_index, QTableWidgetItem(str(data)))
-
-
-                # Add the "Actions" buttons
-                activate_button = QPushButton("Activate")
-                delete_button = QPushButton("Delete")
-                activate_button.setStyleSheet(edit_button_style_sheet)
-                delete_button.setStyleSheet(delete_button_style_sheet)
-
-                # Connect buttons to their respective methods
-                activate_button.clicked.connect(lambda _, r=row_index: self.activate_admin(r))
-                delete_button.clicked.connect(lambda _, r=row_index: self.delete_admin(r))
-
-                # Add buttons to a layout
-                button_layout = QHBoxLayout()
-                button_layout.addWidget(activate_button)
-                button_layout.addWidget(delete_button)
-
-                # Create a widget to hold the buttons
-                button_widget = QWidget()
-                button_widget.setLayout(button_layout)
-
-                # Add the widget to the table
-                self.inactive_admins_table.setCellWidget(row_index, 3, button_widget)  # Column 3 is the "Actions" column
+        container_layout.addStretch()  # Add stretch to push content to the top
+        self.inactive_admins_scrollArea.setWidget(container)
 
 
 
-            #self.tableWidget.resizeColumnsToContents()
-
-    def activate_admin(self, row_index):
-        full_name = self.inactive_admins_table.item(row_index, 0).text()
-        email = self.inactive_admins_table.item(row_index, 1).text()
-
+    def activate_admin_t(self, full_name, email):
         confirmation = QMessageBox.question(
             self,
             "Confirm Activation",
-            f"Are you sure you want to activate the user:\n\nName: {full_name}\nEmail: {email}?",
+            f"Are you sure you want to activate the admin:\n\nName: {full_name}\nEmail: {email}?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             QMessageBox.StandardButton.No
         )
-
         if confirmation == QMessageBox.StandardButton.Yes:
             database.activate_admin(full_name, email)
-            self.load_inactive_admins()
+            self.display_inactive_admins()  # Refresh the list
 
-    def delete_admin(self, row_index):
-        full_name = self.inactive_admins_table.item(row_index, 0).text()  # Get full_name from row
-        email = self.inactive_admins_table.item(row_index, 1).text()  # Get email from row
 
-        # Show a confirmation dialog
+
+
+
+    def delete_admin_t(self, full_name, email):
         confirmation = QMessageBox.question(
             self,
             "Confirm Deletion",
-            f"Are you sure you want to delete the user:\n\nName: {full_name}\nEmail: {email}?",
+            f"Are you sure you want to delete the admin:\n\nName: {full_name}\nEmail: {email}?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             QMessageBox.StandardButton.No
         )
-
         if confirmation == QMessageBox.StandardButton.Yes:
             database.delete_admin(full_name, email)
-            self.load_inactive_admins()
+            self.display_inactive_admins()  # Refresh the list
+
+
 
 
 
@@ -1003,6 +968,21 @@ class IndexSU(QMainWindow):
         #self.setCentralWidget(self.cal_widget)
         #self.calendar.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
 
+    def display_today_events(self):
+        """Fetch and display today's events in a QTextEdit with formatting."""
+        today = QDate.currentDate()
+        events = [(event.title, event.color) for date, event in database.get_events() if date == today]
+
+        if events:
+            formatted_text = "<h2>📅 Events for Today</h2><ul>"
+            for title, color in events:
+                color_hex = color.name()  # Convert QColor to hex string
+                formatted_text += f'<li><span style="color:{color_hex}; font-weight:bold;">{title}</span> - <i>No description</i></li>'
+            formatted_text += "</ul>"
+        else:
+            formatted_text = "<p><i>No events for today.</i></p>"
+
+        self.todays_events.setHtml(formatted_text)
 
     def load_events(self):
 
@@ -1153,7 +1133,20 @@ class IndexSU(QMainWindow):
         self.display_teachers(filtered_data)
 
 
+    def apply_floating_effect(self, widget):
+        # Create a subtle shadow effect
+        shadow_effect = QGraphicsDropShadowEffect()
 
+        # Make the shadow effect more subtle
+        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
+        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
+        shadow_effect.setColor(QColor(0, 0, 0, 50))  # Lighter shadow color (lower alpha for subtlety)
+
+        # Apply the effect to the widget
+        widget.setGraphicsEffect(shadow_effect)
+
+        # Optional: Slightly raise the widget to enhance the floating effect
+        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
 
 
 
@@ -1198,83 +1191,159 @@ class IndexSU(QMainWindow):
         self.scrollArea_teachers.setWidget(container)
 
 
-    def apply_floating_effect(self, widget):
-        # Create a subtle shadow effect
-        shadow_effect = QGraphicsDropShadowEffect()
-
-        # Make the shadow effect more subtle
-        shadow_effect.setBlurRadius(5)  # Reduced blur radius for a softer shadow
-        shadow_effect.setOffset(1, 1)  # Reduced offset for a minimal floating effect
-        shadow_effect.setColor(QColor(0, 0, 0, 50))  # Lighter shadow color (lower alpha for subtlety)
-
-        # Apply the effect to the widget
-        widget.setGraphicsEffect(shadow_effect)
-
-        # Optional: Slightly raise the widget to enhance the floating effect
-        widget.move(widget.x(), widget.y() - 4)  # Raise it just a bit
-
-
-
-
-
-
 class TeacherWidget(QWidget):
-    """Custom widget to represent a teacher card."""
+    """A refined teacher card with tag-style subjects and classes, plus an icon next to the teacher's name.
+       Displays a placeholder for subjects or classes if none are provided.
+    """
 
-    def __init__(self, index_instance, name, subjects, classes, teacher_id):
-        super().__init__()
-        self.name = name
-        self.subjects = subjects
-        self.classes = classes
+    def __init__(self, parent, name, subjects, classes, teacher_id):
+        super().__init__(parent)
+        self.parent = parent
         self.teacher_id = teacher_id
-        self.index_instance = index_instance
+        self.setupUI(name, subjects, classes)
 
-        # Set size policy for the widget
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-
-        # Layout
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        layout.setSpacing(0)
-
-        # Teacher's name and subjects
-        teacher_label = QLabel(f"{name} ({', '.join(subjects)})")
-        teacher_label.setStyleSheet("font-weight: bold; font-size: 25px;")
-        teacher_label.setWordWrap(True)  # Allow text wrapping
-        layout.addWidget(teacher_label)
-
-        # Classes
-        classes_label = QLabel(" ".join(classes))
-        classes_label.setStyleSheet("font-size: 16px; color: gray;")
-        classes_label.setWordWrap(True)  # Allow text wrapping
-        layout.addWidget(classes_label)
-
-        # Add a button
-        button = QPushButton("Button")
-        button.setFixedSize(80, 30)
-        button.setStyleSheet("background-color: lightgray;")
-        button.clicked.connect(self.on_button_click)
-
-        # Add the button to a horizontal layout
-        button_layout = QHBoxLayout()
-        button_layout.addStretch()
-        button_layout.addWidget(button)
-        layout.addLayout(button_layout)
-
-        self.setStyleSheet("""
-            background-color:#f3f3f3; /* Light Gray for Light Mode */
-            font-family: "Segoe UI", Arial, sans-serif;
-
-
-            border-radius: 0px;
-            padding: 7px;
+    def setupUI(self, name, subjects, classes):
+        # Use a QFrame to create a card-like container
+        self.frame = QFrame(self)
+        self.frame.setObjectName("cardFrame")
+        self.frame.setStyleSheet("""
+            QFrame#cardFrame {
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #FFFFFF, stop:1 #F0F0F0);
+                border: 1px solid #CCCCCC;
+                border-radius: 10px;
+            }
         """)
-        self.setFixedHeight(125)
 
-    @pyqtSlot()
+        # Layout for the card content with internal padding
+        frame_layout = QVBoxLayout(self.frame)
+        frame_layout.setContentsMargins(20, 20, 20, 20)  # Internal padding for the text
+        frame_layout.setSpacing(10)
+
+        # Teacher name row: icon and name
+        name_layout = QHBoxLayout()
+        # Load the icon (make sure ICONS is defined with your icons path)
+        test_icon = QIcon(f"{ICONS}/user.png")
+        icon_label = QLabel(self.frame)
+        # Set the icon pixmap with a desired size (e.g., 40x40)
+        icon_label.setPixmap(test_icon.pixmap(35, 35))
+        name_layout.addWidget(icon_label)
+
+        # Teacher name label
+        name_label = QLabel(name, self.frame)
+        name_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #333333;")
+        name_layout.addWidget(name_label)
+        name_layout.addStretch()
+        frame_layout.addLayout(name_layout)
+
+        # Subjects row using a horizontal layout with tag-style labels
+        subjects_layout = QHBoxLayout()
+        subjects_indicator = QLabel("Subjects:", self.frame)
+        subjects_indicator.setStyleSheet("font-size: 18px; color: #007ACC; font-weight: bold;")
+        subjects_layout.addWidget(subjects_indicator)
+        # Create a tag for each subject; if none, display a placeholder
+        if subjects:
+            for subject in subjects:
+                subject_tag = QLabel(subject, self.frame)
+                subject_tag.setStyleSheet("""
+                    background-color: #E0F7FA;
+                    color: #007ACC;
+                    border: 1px solid #007ACC;
+                    border-radius: 5px;
+                    padding: 2px 6px;
+                    font-size: 16px;
+                """)
+                subjects_layout.addWidget(subject_tag)
+        else:
+            no_subjects = QLabel("-no subjects-", self.frame)
+            no_subjects.setStyleSheet("font-size: 16px; color: gray; font-style: italic;")
+            subjects_layout.addWidget(no_subjects)
+        subjects_layout.addStretch()  # Push content to the left
+        frame_layout.addLayout(subjects_layout)
+
+        # Classes row using a horizontal layout with tag-style labels
+        classes_layout = QHBoxLayout()
+        classes_indicator = QLabel("Classes:", self.frame)
+        classes_indicator.setStyleSheet("font-size: 18px; color: #D35400; font-weight: bold;")
+        classes_layout.addWidget(classes_indicator)
+        # Create a tag for each class; if none, display a placeholder
+        if classes:
+            for cls in classes:
+                class_tag = QLabel(cls, self.frame)
+                class_tag.setStyleSheet("""
+                    background-color: #FFF3E0;
+                    color: #D35400;
+                    border: 1px solid #D35400;
+                    border-radius: 5px;
+                    padding: 2px 6px;
+                    font-size: 16px;
+                """)
+                classes_layout.addWidget(class_tag)
+        else:
+            no_classes = QLabel("-no classes-", self.frame)
+            no_classes.setStyleSheet("font-size: 16px; color: gray; font-style: italic;")
+            classes_layout.addWidget(no_classes)
+        classes_layout.addStretch()  # Push content to the left
+        frame_layout.addLayout(classes_layout)
+
+        # Bottom layout for the edit button aligned to the right
+        bottom_layout = QHBoxLayout()
+        bottom_layout.addStretch()
+        edit_button = QPushButton("Edit", self.frame)
+        edit_button.setFixedSize(90, 35)
+        edit_button.setStyleSheet("""
+QPushButton {
+    background-color: #5E81AC; /* Nord Blue */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #81A1C1; /* Lighter blue border */
+    border-radius: 0px; /* No roundness */
+    padding: 6px 12px;
+    font-family: "Segoe UI";
+    font-size: 15px;
+border-radius: 5px;
+
+}
+
+/* Hover State */
+QPushButton:hover {
+    background-color: #81A1C1; /* Lighter Nord Blue */
+    border: 1px solid #88C0D0; /* Teal highlight */
+}
+
+/* Pressed State */
+QPushButton:pressed {
+    background-color: #4C566A; /* Darker Nord Blue */
+    border: 1px solid #8FBCBB; /* Teal accent */
+}
+
+/* Edit Button Specific Style */
+QPushButton#editButton {
+    background-color: #88C0D0; /* Soft Teal Blue */
+    color: #2E3440; /* Darker text for contrast */
+    border: 1px solid #8FBCBB; /* Teal border */
+}
+
+QPushButton#editButton:hover {
+    background-color: #8FBCBB; /* Slightly lighter teal */
+    border: 1px solid #81A1C1; /* Soft blue highlight */
+}
+
+QPushButton#editButton:pressed {
+    background-color: #5E81AC; /* Dark Nord Blue */
+    border: 1px solid #4C566A; /* Darker border */
+}
+
+        """)
+        edit_button.clicked.connect(self.on_button_click)
+        bottom_layout.addWidget(edit_button)
+        frame_layout.addLayout(bottom_layout)
+
+        # Set the overall layout for the widget to include the card frame
+        outer_layout = QVBoxLayout(self)
+        outer_layout.setContentsMargins(5, 5, 5, 5)  # Minimal outer margin
+        outer_layout.addWidget(self.frame)
+
     def on_button_click(self):
-        #print(f"Button clicked for teacher{self.teacher_id}") #debugging
-        self.index_instance.open_edit_teacher_dialog(self.teacher_id)
+        self.parent.open_edit_teacher_dialog(self.teacher_id)
 
 
 #class ComboDelegate(QStyledItemDelegate):
@@ -1291,6 +1360,8 @@ class Event:
     def __init__(self, title, color=QColor(255, 100, 100, 180)):
         self.title = title
         self.color = color
+
+
 
 class CustomCalendarWidget(QCalendarWidget):
     def __init__(self, parent=None):
@@ -1351,3 +1422,100 @@ class CustomCalendarWidget(QCalendarWidget):
             painter.fillRect(rect, QColor("white"))
             super().paintCell(painter, rect, date)
             painter.restore()
+
+
+class AdminWidget(QWidget):
+    """Custom widget to display an inactive admin in a card style."""
+
+    def __init__(self, parent, full_name, email, registration_date):
+        super().__init__(parent)
+        self.parent = parent
+        self.full_name = full_name
+        self.email = email
+        self.registration_date = registration_date
+        self.setupUI()
+
+    def setupUI(self):
+        # Create a card container using QFrame with a subtle gradient and rounded corners
+        self.frame = QFrame(self)
+        self.frame.setObjectName("adminCard")
+        self.frame.setStyleSheet("""
+            QFrame#adminCard {
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #FFFFFF, stop:1 #F9F9F9);
+                border: 1px solid #CCCCCC;
+                border-radius: 10px;
+            }
+        """)
+
+        # Layout for the card content with internal padding
+        frame_layout = QVBoxLayout(self.frame)
+        frame_layout.setContentsMargins(20, 20, 20, 20)
+        frame_layout.setSpacing(10)
+
+        # Full Name Label
+        name_label = QLabel(self.full_name, self.frame)
+        name_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #333333;")
+        frame_layout.addWidget(name_label)
+
+        # Email Label
+        email_label = QLabel(self.email, self.frame)
+        email_label.setStyleSheet("font-size: 18px; color: #555555;")
+        frame_layout.addWidget(email_label)
+
+        # Registration Date Label
+        reg_label = QLabel(f"Registered: {self.registration_date}", self.frame)
+        reg_label.setStyleSheet("font-size: 16px; color: #777777;")
+        frame_layout.addWidget(reg_label)
+
+        # Action buttons layout
+        button_layout = QHBoxLayout()
+        button_layout.addStretch()  # Push buttons to the right
+
+        # Activate button
+        activate_button = QPushButton("Activate", self.frame)
+        activate_button.setFixedSize(90, 35)
+        activate_button.setStyleSheet("""
+            QPushButton {
+                background-color: #e0e0e0;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            QPushButton:hover {
+                background-color: #d0d0d0;
+            }
+        """)
+        activate_button.clicked.connect(self.activate)
+        button_layout.addWidget(activate_button)
+
+        # Delete button
+        delete_button = QPushButton("Delete", self.frame)
+        delete_button.setFixedSize(90, 35)
+        delete_button.setStyleSheet("""
+            QPushButton {
+                background-color: #ffcccc;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            QPushButton:hover {
+                background-color: #ffaaaa;
+            }
+        """)
+        delete_button.clicked.connect(self.delete)
+        button_layout.addWidget(delete_button)
+
+        frame_layout.addLayout(button_layout)
+
+        # Overall layout for this widget – add some outer margin if needed
+        outer_layout = QVBoxLayout(self)
+        outer_layout.setContentsMargins(5, 5, 5, 5)
+        outer_layout.addWidget(self.frame)
+
+    def activate(self):
+        # Delegate activation to the parent widget
+        self.parent.activate_admin_t(self.full_name, self.email)
+
+    def delete(self):
+        # Delegate deletion to the parent widget
+        self.parent.delete_admin_t(self.full_name, self.email)

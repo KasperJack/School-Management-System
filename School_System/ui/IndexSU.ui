@@ -1082,7 +1082,7 @@ QTabBar::tab {
 </string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab">
                  <attribute name="title">
@@ -1107,15 +1107,15 @@ QTabBar::tab {
                      <string notr="true">background-color: rgb(255, 255, 255);</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_17">
-                     <item row="0" column="3">
-                      <widget class="QWidget" name="widget_19" native="true">
+                     <item row="0" column="4">
+                      <widget class="QWidget" name="widget_21" native="true">
                        <property name="styleSheet">
                         <string notr="true">
 background-color: #ebcb8b</string>
                        </property>
-                       <layout class="QGridLayout" name="gridLayout_15">
+                       <layout class="QGridLayout" name="gridLayout_16">
                         <item row="0" column="0">
-                         <widget class="QToolButton" name="toolButton_9">
+                         <widget class="QToolButton" name="toolButton_10">
                           <property name="minimumSize">
                            <size>
                             <width>50</width>
@@ -1141,7 +1141,7 @@ background-color: #ebcb8b</string>
                          </widget>
                         </item>
                         <item row="0" column="1">
-                         <widget class="QLabel" name="classes_label">
+                         <widget class="QLabel" name="classes_label_2">
                           <property name="font">
                            <font>
                             <family>Segoe UI</family>
@@ -1266,15 +1266,15 @@ background-color: #bf616a</string>
                        </layout>
                       </widget>
                      </item>
-                     <item row="0" column="4">
-                      <widget class="QWidget" name="widget_21" native="true">
+                     <item row="0" column="3">
+                      <widget class="QWidget" name="widget_19" native="true">
                        <property name="styleSheet">
                         <string notr="true">
 background-color: #ebcb8b</string>
                        </property>
-                       <layout class="QGridLayout" name="gridLayout_16">
+                       <layout class="QGridLayout" name="gridLayout_15">
                         <item row="0" column="0">
-                         <widget class="QToolButton" name="toolButton_10">
+                         <widget class="QToolButton" name="toolButton_9">
                           <property name="minimumSize">
                            <size>
                             <width>50</width>
@@ -1300,7 +1300,7 @@ background-color: #ebcb8b</string>
                          </widget>
                         </item>
                         <item row="0" column="1">
-                         <widget class="QLabel" name="classes_label_2">
+                         <widget class="QLabel" name="classes_label">
                           <property name="font">
                            <font>
                             <family>Segoe UI</family>
@@ -1318,22 +1318,6 @@ background-color: #ebcb8b</string>
                         </item>
                        </layout>
                       </widget>
-                     </item>
-                     <item row="0" column="5">
-                      <spacer name="horizontalSpacer_5">
-                       <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
-                       </property>
-                       <property name="sizeType">
-                        <enum>QSizePolicy::Policy::Ignored</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>200</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                     </layout>
                    </widget>
@@ -1689,7 +1673,7 @@ QPushButton#editButton:pressed {
                     <item>
                      <layout class="QGridLayout" name="gridLayout_8">
                       <item row="0" column="0">
-                       <widget class="QTextEdit" name="textEdit">
+                       <widget class="QTextEdit" name="todays_events">
                         <property name="minimumSize">
                          <size>
                           <width>290</width>
@@ -1731,10 +1715,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <widget class="QGroupBox" name="groupBox">
                   <property name="geometry">
                    <rect>
-                    <x>20</x>
-                    <y>240</y>
-                    <width>691</width>
-                    <height>239</height>
+                    <x>420</x>
+                    <y>670</y>
+                    <width>431</width>
+                    <height>121</height>
                    </rect>
                   </property>
                   <property name="sizePolicy">
@@ -1754,7 +1738,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </property>
                   <layout class="QGridLayout" name="gridLayout_2">
                    <item row="0" column="0">
-                    <widget class="QTableWidget" name="inactive_admins_table">
+                    <widget class="QTableWidget" name="as">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                        <horstretch>0</horstretch>
@@ -1806,45 +1790,28 @@ alternate-background-color: #B0EDFB;
                    </item>
                   </layout>
                  </widget>
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QScrollArea" name="inactive_admins_scrollArea">
                   <property name="geometry">
                    <rect>
-                    <x>420</x>
-                    <y>110</y>
-                    <width>111</width>
-                    <height>51</height>
+                    <x>30</x>
+                    <y>90</y>
+                    <width>981</width>
+                    <height>451</height>
                    </rect>
                   </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>13</pointsize>
-                    <bold>true</bold>
-                   </font>
+                  <property name="widgetResizable">
+                   <bool>true</bool>
                   </property>
-                  <property name="text">
-                   <string>  Dashboard</string>
-                  </property>
-                 </widget>
-                 <widget class="QWidget" name="widget_7" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>270</x>
-                    <y>530</y>
-                    <width>61</width>
-                    <height>41</height>
-                   </rect>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">   /* background: qlineargradient(
-        spread:pad, x1:0, y1:0, x2:1, y2:1,
-        stop:0 #0078D4, stop:1 #005A9E
-    ); /* Gradient for selected tab */
-
-
-
-
-background-color: #0078d7; </string>
-                  </property>
+                  <widget class="QWidget" name="scrollAreaWidgetContents">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>981</width>
+                     <height>451</height>
+                    </rect>
+                   </property>
+                  </widget>
                  </widget>
                 </widget>
                 <widget class="QWidget" name="tab_3">
@@ -3915,7 +3882,7 @@ QTabBar::tab {
 </string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="tab_5">
                  <attribute name="title">
@@ -4231,8 +4198,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>72</width>
-                       <height>16</height>
+                       <width>1042</width>
+                       <height>570</height>
                       </rect>
                      </property>
                     </widget>

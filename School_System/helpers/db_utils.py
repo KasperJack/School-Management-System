@@ -1722,17 +1722,14 @@ def add_event(event_date, event):
 def get_events():
     events = []
     try:
-        # Open a connection to the database
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
-        # Query to fetch all events
         cursor.execute('''
             SELECT event_name, event_date, color_red, color_green, color_blue, color_alpha
             FROM events
         ''')
 
-        # Fetch all rows from the result
         rows = cursor.fetchall()
 
         for row in rows:
@@ -1743,10 +1740,8 @@ def get_events():
             blue = row[4]
             alpha = row[5]
 
-            # Convert the string date back to QDate
             event_date = QDate.fromString(date_str, "yyyy-MM-dd")
 
-            # Create an Event object
             event = Event(title, QColor(red, green, blue, alpha))
             events.append((event_date, event))
 
@@ -1755,7 +1750,6 @@ def get_events():
     except Exception as e:
         print(f"Exception occurred: {e}")
     finally:
-        # Close the connection
         conn.close()
 
     return events
@@ -1766,6 +1760,9 @@ def update_route():
     global DB_PATH
     DB_PATH = db_manager_instance.current_db_path
     print(DB_PATH)
+
+
+
 
 class Event:
     def __init__(self, title, color=QColor(255, 100, 100, 180)):
