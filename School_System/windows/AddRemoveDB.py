@@ -1,12 +1,15 @@
 
 from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QRadioButton, QPushButton, QDialog, QMessageBox,QAbstractItemView,QHeaderView
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt,QSize
+from PyQt6.QtGui import  QIcon
+
 
 
 import School_System.helpers.db_utils as database
 import School_System.helpers.strings as fmt
 from School_System.ui import ADD_REMOVE_DB
+from School_System.resources import  ICONS, delete_s_button_style_sheet
 
 
 from School_System.db.DatabaseManager import db_manager_instance
@@ -41,8 +44,9 @@ class AddRemoveDB(QDialog):
         # self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
         self.db_table.setSelectionMode(self.db_table.SelectionMode.NoSelection)
         self.db_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
-        header = self.db_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.db_table.horizontalHeader().setDefaultAlignment(
+            Qt.AlignmentFlag.AlignLeft)  # Align all headers to the left
+
         self.populate_table()
 
 
@@ -68,9 +72,22 @@ class AddRemoveDB(QDialog):
             self.db_table.setItem(row, 1, QTableWidgetItem(db_name))
 
             # Create a delete button
-            delete_button = QPushButton("Delete")
+            delete_button = QPushButton("")
+            delete_button.setStyleSheet(delete_s_button_style_sheet)
+
+            delete_button.setIcon(QIcon(f'{ICONS}/del.png'))
+
+            delete_button.setIconSize(QSize(24, 24))
             delete_button.clicked.connect(lambda checked, db_name=db_file.replace(" (current)", ""): self.delete_database(db_name))
-            self.db_table.setCellWidget(row, 2, delete_button)  # Place delete button in the third column
+            self.db_table.setCellWidget(row, 2, delete_button)
+
+        for row in range(self.db_table.rowCount()):
+            self.db_table.setRowHeight(row, 45)
+        header = self.db_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(2, 65)
 
 
     def on_radio_button_toggled(self, checked, db_name):

@@ -248,10 +248,10 @@ border-radius: 0px;
   <widget class="QTableWidget" name="db_table">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>90</y>
-     <width>401</width>
-     <height>331</height>
+     <x>10</x>
+     <y>70</y>
+     <width>421</width>
+     <height>361</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -343,7 +343,6 @@ QWidget {
 
 
 
-
 QRadioButton {
     font-size: 14px;
     color: #D8DEE9;  /* Nord4 (Light grayish blue) */
@@ -356,10 +355,8 @@ QRadioButton {
 QRadioButton::indicator {
     width: 18px;
     height: 18px;
-    border: 2px solid #3B4252;  /* Nord2 (Dark grayish blue) */
     border-radius: 9px;
     background-color: #434C5E;  /* Nord1 (Darker gray) */
-    transition: background-color 0.3s, border-color 0.3s;
 }
 
 QRadioButton::indicator:checked {

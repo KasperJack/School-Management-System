@@ -1,5 +1,5 @@
 {
-    "email": " ",
-    "remember": false,
-    "current_db": "school.db"
+    "email": "a",
+    "remember": true,
+    "current_db": "test.db"
 }
