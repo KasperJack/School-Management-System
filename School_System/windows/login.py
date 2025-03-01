@@ -63,6 +63,9 @@ class Login(QMainWindow):
 
 
     def forget_password(self):
+        if not self.active_db:
+            print("create or select a database")
+            return
         self.open_forget_password_dialog()
 
 
@@ -70,6 +73,9 @@ class Login(QMainWindow):
 
     def open_create_account_dialog(self):
         # Create an instance of the CreateAccountDialog
+        if not self.active_db:
+            print("create or select a database")
+            return
         create_account_dialog = CreateAccountDialog(self)  
         create_account_dialog.exec()
 
@@ -111,7 +117,7 @@ class Login(QMainWindow):
 
         else:
             current_db = next(db for db in db_list if "(current)" in db)
-            current_db_name = current_db.replace(" (current)", "")
+            current_db_name = current_db.replace(" (current)", "").replace(".db", "")
             self.db_indicator.setText(current_db_name)
             self.active_db = True
 
@@ -119,7 +125,7 @@ class Login(QMainWindow):
     def authenticate_user(self):
 
         if not self.active_db:
-            print("ss")
+            print("create or select a database")
             return
 
         email = self.email_field.text()

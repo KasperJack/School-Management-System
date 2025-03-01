@@ -1,7 +1,8 @@
 
-from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QRadioButton, QPushButton, QDialog, QMessageBox
-import os
+from PyQt6.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QRadioButton, QPushButton, QDialog, QMessageBox,QAbstractItemView,QHeaderView
 from PyQt6 import uic
+from PyQt6.QtCore import Qt
+
 
 import School_System.helpers.db_utils as database
 import School_System.helpers.strings as fmt
@@ -22,6 +23,7 @@ class AddRemoveDB(QDialog):
         self.setWindowTitle("Add Database")
 
         self.add_db_button.clicked.connect(self.add_data_base)
+        self.close_button.clicked.connect(self.close)
 
         self.set_up_db_selction_table()
 
@@ -31,6 +33,16 @@ class AddRemoveDB(QDialog):
     def set_up_db_selction_table(self):
         self.db_table.setColumnCount(3)  # Three columns (Radio, Database Name, Delete Button)
         self.db_table.setHorizontalHeaderLabels(["Select", "Database Name", "Delete"])
+        self.db_table.verticalHeader().setVisible(False)
+
+        self.db_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.db_table.setShowGrid(False)
+
+        # self.classes_table.setSelectionBehavior(self.classes_table.SelectionBehavior.SelectRows)
+        self.db_table.setSelectionMode(self.db_table.SelectionMode.NoSelection)
+        self.db_table.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        header = self.db_table.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.populate_table()
 
 

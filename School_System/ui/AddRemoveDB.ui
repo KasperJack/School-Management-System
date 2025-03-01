@@ -141,7 +141,7 @@ QPushButton#editButton:pressed {
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="close_button">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -253,6 +253,145 @@ border-radius: 0px;
      <width>401</width>
      <height>331</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">            QTableWidget {
+                background-color: white;
+                gridline-color: #E5E7EB;
+                border: none;
+       		alternate-background-color: #F9FAFB;
+            }
+
+            QHeaderView::section {
+                background-color: #F3F4F6;
+                padding: 10px;
+					padding-left: 5px;
+                border: none;
+                font-weight: bold;
+                color: #374151;
+            }
+
+
+    QTableView::item {
+        border-bottom: 1px solid #E5E7EB;
+        border-right: none;
+    }
+
+/*
+        QTableWidget::item {
+            selection-background-color: transparent;
+            selection-color: black;  */
+
+
+
+
+    /* Scroll Bar */
+    QScrollBar:vertical {
+        border: none;
+        background: #e6e6e6;
+        width: 12px;
+        margin: 2px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical {
+        background: #aaaaaa;
+        min-height: 20px;
+        border-radius: 6px;
+    }
+    QScrollBar::handle:vertical:hover {
+        background: #888888;
+    }
+    QScrollBar::sub-line:vertical,
+    QScrollBar::add-line:vertical {
+        background: none;
+        height: 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QWidget {
+    background: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QRadioButton {
+    font-size: 14px;
+    color: #D8DEE9;  /* Nord4 (Light grayish blue) */
+    padding-left: 20px;
+    padding-right: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3B4252;  /* Nord2 (Dark grayish blue) */
+    border-radius: 9px;
+    background-color: #434C5E;  /* Nord1 (Darker gray) */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+QRadioButton::indicator:checked {
+    background-color: #88C0D0;  /* Nord5 (Light cyan) */
+    border-color: #88C0D0;
+}
+
+QRadioButton::indicator:hover {
+    border-color: #81A1C1;  /* Nord3 (Grayish blue) */
+}
+
+QRadioButton::indicator:checked:hover {
+    background-color: #81A1C1;
+    border-color: #81A1C1;
+}
+
+QRadioButton::indicator:checked:pressed {
+    background-color: #5E81AC;  /* Nord6 (Blue) */
+    border-color: #5E81AC;
+}
+
+QRadioButton:hover {
+    color: #E5E9F0;  /* Nord0 (Snowy white) */
+}
+
+</string>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <property name="showGrid">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>
