@@ -1,5 +1,5 @@
 # School_System/__init__.py
-__version__ = "1.2.0 beta"
+__version__ = "2.9.0 beta"
 
 
 

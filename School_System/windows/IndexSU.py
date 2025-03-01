@@ -20,6 +20,7 @@ from School_System.windows.EditTeacherDialog import EditTeacherDialog
 from School_System.windows.ExportPdfDialog import ExportPdfDialog
 from School_System.windows.ExportExcelDialog import ExportExcelDialog
 from School_System.windows.SettingsDialog import SettingsDialog
+from School_System.windows.AddEventDialog import AddEventDialog
 
 #from School_System.helpers.db_utils import * ?????
 import School_System.helpers.db_utils as database
@@ -63,6 +64,7 @@ class IndexSU(QMainWindow):
         self.add_class_button.clicked.connect(self.open_add_class_dialog)
         self.add_teacher_button.clicked.connect(self.open_add_teacher_dialog)
         self.add_student_button.clicked.connect(self.open_add_student_dialog)
+        self.add_event_button.clicked.connect(self.open_add_event_dialog)
 
 
         self.add_teacher_button_dash.clicked.connect(self.open_add_teacher_dialog)
@@ -1003,19 +1005,15 @@ class IndexSU(QMainWindow):
 
 
     def load_events(self):
-        #database.add_event(QDate(2025,2,25),Event("meeting", QColor(255, 22, 0, 180)))
+
+        self.calendar.clear_events()
 
         events = database.get_events()
-        #print(events)
 
         # Add each event to the calendar
         for event_date, event in events:
             self.calendar.add_event(event_date, event)
 
-
-        # Events for today
-        #today = QDate.currentDate()
-        #self.calendar.add_event(today, Event("Today's Event", QColor(255, 100, 100, 180)))
 
 
         #####################################[switching]#############################################
@@ -1041,6 +1039,12 @@ class IndexSU(QMainWindow):
         edit_class_dialog = EditClassDialog(self, class_id)
         edit_class_dialog.finished.connect(self.edit_class_dialog_closed)
         edit_class_dialog.exec()
+
+
+    def open_add_event_dialog(self):
+        add_event_dialog = AddEventDialog(self,database.LOGGED_IN_USER_ID)
+        add_event_dialog.exec()
+
 
     def open_export_pdf_dialog(self):
         export_pdf_dialog = ExportPdfDialog(self)
@@ -1301,6 +1305,10 @@ class CustomCalendarWidget(QCalendarWidget):
         self.events[date].append(event)
         self.update()  # Repaint the calendar
 
+    def clear_events(self):
+        """Remove all events from the calendar."""
+        self.events.clear()
+        self.update()  # Repaint the calendar
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         if date in self.events:

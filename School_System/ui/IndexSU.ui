@@ -411,7 +411,7 @@ QPushButton:checked {
              </size>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="autoExclusive">
              <bool>true</bool>
@@ -467,7 +467,7 @@ QPushButton:checked {
              </size>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="autoExclusive">
              <bool>true</bool>
@@ -899,7 +899,7 @@ QPushButton:checked {
              </size>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="autoExclusive">
              <bool>true</bool>
@@ -965,7 +965,7 @@ QPushButton:checked {
              </size>
             </property>
             <property name="checkable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="autoExclusive">
              <bool>true</bool>
@@ -1392,7 +1392,7 @@ background-color: #ebcb8b</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_18">
                      <item row="0" column="0">
-                      <widget class="QPushButton" name="pushButton_5">
+                      <widget class="QPushButton" name="add_event_button">
                        <property name="styleSheet">
                         <string notr="true">QPushButton {
     background-color: #5E81AC; /* Nord Blue */
