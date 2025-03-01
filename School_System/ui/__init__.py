@@ -29,6 +29,8 @@ SETTINGS_DIALOG = os.path.join(os.path.dirname(__file__), "SettingsDialog.ui")
 
 ADD_REMOVE_DB = os.path.join(os.path.dirname(__file__), "AddRemoveDB.ui")
 
+ADD_EVENT_DIALOG = os.path.join(os.path.dirname(__file__), "AddEventDialog.ui")
+
 
 
 

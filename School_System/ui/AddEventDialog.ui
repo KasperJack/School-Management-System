@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddTeacherDialog</class>
+ <widget class="QDialog" name="AddTeacherDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>476</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+  </property>
+  <widget class="QPushButton" name="close_button">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>420</y>
+     <width>239</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+
+
+
+
+/*          background-color: transparent;  No background */
+
+
+
+
+/* Cancel Button */
+QPushButton {
+    background-color: #bababa;
+
+    color: black;                  /* Black text */
+    border: 1px solid #cccccc;     /* Light gray border */
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-size: 10pt;
+}
+
+QPushButton:hover {
+    background-color: #e5e5e5; /* Light gray on hover */
+    border: 1px solid #bbbbbb; /* Slightly darker gray border on hover */
+}
+
+QPushButton:pressed {
+    background-color: #d9d9d9; /* Darker gray on press */
+    border: 1px solid #aaaaaa; /* Even darker gray border on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Export pdf</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="check_all">
+   <property name="geometry">
+    <rect>
+     <x>61</x>
+     <y>130</y>
+     <width>45</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>all</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>166</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>id</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="name">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>197</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_4">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>228</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_5">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>259</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_6">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>290</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_7">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>321</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_8">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>352</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_9">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>383</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_10">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>190</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_11">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>230</y>
+     <width>97</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>class</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>581</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QComboBox" name="comboBox_grades">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>94</width>
+      <height>35</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_class">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>20</y>
+      <width>161</width>
+      <height>35</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>20</y>
+      <width>131</width>
+      <height>34</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>20</y>
+      <width>97</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>all classes</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/rec.qrc"/>
+ </resources>
+ <connections/>
+</ui>
