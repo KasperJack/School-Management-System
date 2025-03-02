@@ -43,6 +43,10 @@ class DatabaseManager:
 
 
     def change_database(self,db_name):
+
+        if not db_name.endswith(".db"):
+            db_name += ".db"
+
         if os.path.exists(SETTINGS):
             try:
                 with open(SETTINGS, "r") as f:
