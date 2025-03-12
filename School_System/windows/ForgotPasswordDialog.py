@@ -10,6 +10,7 @@ import random
 from email.message import EmailMessage
 import bcrypt
 from PyQt6.QtCore import  Qt
+from PyQt6.QtCore import QTimer
 
 load_dotenv()
 
@@ -27,9 +28,13 @@ class ForgotPasswordDialog(QDialog):
         self.user_mail = None
         self.reset_code = None
 
+        self.check_code.clicked.connect(self.verify_code)
+        self.change_pass_button.clicked.connect(self.change_password)
 
 
-
+        self.warnning.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
 
 
@@ -41,38 +46,54 @@ class ForgotPasswordDialog(QDialog):
 
 
         if database.email_exists(email):
-            self.frame.hide()
             self.user_mail = email
-            self.send_reset_email()
+            check = self.send_reset_email()
+            if check:
+                self.frame.hide()
+                return
+
+            self.warnning.setText("check your internet connection or try later")
             return
 
 
-        self.warnning.setText("email does not esist")
+        self.warnning.setText("email does not exist")
+        QTimer.singleShot(2000, self.warnning.clear)
+
+
+
+    def verify_code(self):
+        code = self.code_filed.text()
+
+        if not code: return
+
+
+        if code == self.reset_code:
+            self.frame_2.hide()
+            return
+
+
+        self.label_2.setText("wrong code")
+        QTimer.singleShot(2000, self.label_2.clear)
 
 
 
 
 
+    def change_password(self):
+        pass1 = self.pass_1.text()
+        pass2 = self.pass_2.text()
+
+        if not pass1 : return
+
+        if pass1 != pass2:
+            self.label_5.setText("password do not match")
+            QTimer.singleShot(2000, self.label_5.clear)
+            return
 
 
-    def send_reset_code(self):
-        self.reset_code = str(random.randint(100000, 999999))  # Generate a 6-digit code
+        hash_password = self.hash_password(pass1)
 
-
-        # Email setup (Use your email & app password)
-        sender_email = "your-email@gmail.com"
-        sender_password = "your-app-password"  # Use an app password, not your real password!
-
-        message = f"Subject: Password Reset Code\n\nYour reset code is: {self.reset_code}"
-
-        try:
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-                server.login(sender_email, sender_password)
-                server.sendmail(sender_email, self.user_mail, message)
-            return True  # Email sent successfully
-        except Exception as e:
-            print("Error sending email:", e)
-            return False
+        ### database update password where email = ?
 
 
 
@@ -102,3 +123,14 @@ class ForgotPasswordDialog(QDialog):
         except Exception as e:
             print("❌ Error sending email:", e)
             return False
+
+
+
+
+
+    def hash_password(self,password: str) -> str:
+        # Generate a salt
+        salt = bcrypt.gensalt()
+        # Hash the password with the salt
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+        return hashed_password.decode('utf-8')

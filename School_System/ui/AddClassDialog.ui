@@ -266,38 +266,6 @@ QComboBox:focus {
 </string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="session_field">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>100</y>
-     <width>201</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLineEdit {
-    background-color: #eceff4; /* Light background */
-    color: #000000; /* Black text */
-    border: none; /* Remove default border */
-    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
-    padding: 6px; /* Padding inside the field */
-    outline: none; /* Remove focus outline */
-}
-
-/* Focused Input Field */
-QLineEdit:focus {
-    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
-    background-color: #e1e9f2; /* Slightly lighter background on focus */
-}
-
-/* Placeholder Text */
-QLineEdit::placeholder {
-    color: #4C566A; /* Darker gray for placeholder text */
-}
-</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
@@ -485,6 +453,68 @@ QCheckBox::indicator:unchecked {
     <string notr="true">/*background-color: #bababa;*/
 border-radius: 0px;
  background-color:#2e3440;</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="sessions_dropdown">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>100</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Base ComboBox */
+QComboBox {
+    background-color: #3B4252; /* Darker background to fit the Nord theme */
+    color: #ECEFF4; /* Light text */
+    border: 1px solid #4C566A; /* Neutral gray-blue border */
+    border-radius: 0px; /* No rounded corners */
+    font-family: &quot;Segoe UI&quot;; /* System font */
+    padding: 6px; /* Maintain padding */
+}
+
+/* Arrow Button */
+QComboBox::drop-down {
+    border: none; /* Remove border around the drop-down button */
+    background-color: #434C5E; /* Slightly darker gray for the arrow background */
+    border-left: 1px solid #4C566A; /* Subtle separator */
+    width: 20px; /* Keep original width */
+}
+
+/* Drop-down Arrow */
+QComboBox::down-arrow {
+    image: url(down-arrow-icon.png); /* Custom arrow icon if needed */
+    width: 10px;
+    height: 10px;
+}
+
+/* Drop-down List (Popup Menu) */
+QComboBox QAbstractItemView {
+    background-color: #2E3440; /* Dark background for the list */
+    color: #ECEFF4; /* Light text for readability */
+    border: 1px solid #4C566A; /* Match the border to the base combo box */
+    selection-background-color: #88C0D0; /* Teal highlight for selected items */
+    selection-color: #2E3440; /* Dark text on selection for contrast */
+}
+
+/* Hover Effect */
+QComboBox:hover {
+    border: 1px solid #5E81AC; /* Light blue-gray border on hover */
+}
+
+/* Focused ComboBox */
+QComboBox:focus {
+    border: 1px solid #88C0D0; /* Teal border when focused */
+}
+</string>
    </property>
   </widget>
  </widget>

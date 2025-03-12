@@ -18,8 +18,11 @@ class AddClassDialog(QDialog):
 
 
         grades = database.get_grades()
+        sessions = database.get_sessions()
 
         self.grades_dropdown.addItems(grades)
+        self.sessions_dropdown.addItems(sessions)
+
         self.load_teachers_subjects()
 
 
@@ -123,7 +126,7 @@ class AddClassDialog(QDialog):
         class_name = self.class_name_field.text()
         grade_name = self.grades_dropdown.currentText()
         max_students = self.max_students_field.text()
-        session = self.session_field.text()
+        session = self.sessions_dropdown.currentText()
 
         # Validate input fields
         if not class_name or not grade_name or not max_students or not session:
@@ -137,7 +140,7 @@ class AddClassDialog(QDialog):
             QMessageBox.information(self, "info", f"{evaluate}")
             self.class_name_field.clear()
             self.max_students_field.clear()
-            self.session_field.clear()
+            #self.session_field.clear()
 
             self.index_instance.load_classes_table()
             self.index_instance.update_classes_count()

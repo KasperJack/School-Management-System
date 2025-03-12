@@ -153,12 +153,19 @@ def log_user_in(user_id):
         cursor.execute(query, (user_id,))
         user_data = cursor.fetchone()
 
+
         if user_data:
+
+            current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            new_tup = user_data + (current_datetime,) + ("login",)
+
+
+
             insert_query = """
-                INSERT OR REPLACE INTO logged_in_user (id, full_name, email, type)
-                VALUES (?, ?, ?, ?)
+                INSERT OR REPLACE INTO logged_in_user (id, full_name, email, type, time, action)
+                VALUES (?, ?, ?, ?, ?, ?)
             """
-            cursor.execute(insert_query, user_data)
+            cursor.execute(insert_query, new_tup)
             db_connection.commit()
             global LOGGED_IN_USER_ID , LOGGED_IN_USER_NAME
             LOGGED_IN_USER_ID = user_data[0]
@@ -313,6 +320,66 @@ def get_grades():
         grades = cursor.fetchall()  # Fetch all grade names
         grades = [grade[0] for grade in grades]
     return  grades
+
+
+
+def get_sessions():
+
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+        cursor.execute("SELECT session_name FROM session")
+        sessions = cursor.fetchall()  # Fetch all grade names
+        sessions = [session[0] for session in sessions]
+    return  sessions
+
+
+
+
+import sqlite3
+
+import sqlite3
+
+def add_grade(grade_name):
+
+    try:
+        with sqlite3.connect(DB_PATH) as db_connection:
+            cursor = db_connection.cursor()
+            cursor.execute("INSERT INTO grades (grade_name) VALUES (?)", (grade_name,))
+            db_connection.commit()
+        return True, "Grade added successfully."
+    except sqlite3.IntegrityError:
+        return False, "Error: Grade already exists."
+    except Exception as e:
+        return False, f"Unexpected error: {e}"
+
+
+def add_session(session_name):
+
+    try:
+        with sqlite3.connect(DB_PATH) as db_connection:
+            cursor = db_connection.cursor()
+            cursor.execute("INSERT INTO session (session_name) VALUES (?)", (session_name,))
+            db_connection.commit()
+        return True, "Session added successfully."
+    except sqlite3.IntegrityError:
+        return False, "Error: Session already exists."
+    except Exception as e:
+        return False, f"Unexpected error: {e}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1753,6 +1820,151 @@ def get_events():
         conn.close()
 
     return events
+
+
+def get_teacher_info(teacher_id):
+    conn = sqlite3.connect(DB_PATH)  # Replace with your database path
+    cursor = conn.cursor()
+
+    query = """
+    SELECT teacher_id, full_name, phone, email, address, registration_date 
+    FROM teachers 
+    WHERE teacher_id = ?
+    """
+
+    cursor.execute(query, (teacher_id,))
+    result = cursor.fetchone()
+
+    conn.close()
+    return result
+
+
+import sqlite3
+
+import sqlite3
+
+
+def update_teacher_info(teacher_id, new_data):
+    """
+    Updates teacher information in the database for the given teacher_id.
+
+    Args:
+        teacher_id (int): The ID of the teacher to update.
+        new_data (dict): A dictionary containing the new field values.
+                         The "registration_date" field is excluded.
+    """
+    try:
+        # Retrieve the current teacher data as a tuple
+        current_data_tuple = get_teacher_info(teacher_id)
+        if not current_data_tuple:
+            return
+
+        # Convert the tuple to a dictionary.
+        # Adjust the column names as per your actual database schema.
+        columns = ["teacher_id", "full_name", "phone", "email", "address", "registration_date"]
+        current_data = dict(zip(columns, current_data_tuple))
+
+        changes = {}
+        changes_str = ""
+        for column, new_value in new_data.items():
+            if column == "registration_date":
+                continue  # Skip registration_date field.
+            current_value = current_data.get(column)
+            if current_value != new_value:
+                changes[column] = new_value
+                changes_str += f"{column}: '{current_value}' -> '{new_value}'\n"
+
+        if not changes:
+            print("No changes detected.")
+            return
+
+        # Build the dynamic UPDATE query
+        query = "UPDATE teachers SET " + ", ".join(f"{col} = ?" for col in changes.keys())
+        query += " WHERE teacher_id = ?"
+
+        # Execute the query
+        conn = sqlite3.connect(DB_PATH)  # Ensure DB_PATH is defined with the path to your database.
+        cursor = conn.cursor()
+        cursor.execute(query, (*changes.values(), teacher_id))
+        conn.commit()
+        conn.close()
+
+        print("Teacher info updated with the following changes:")
+        print(changes_str)
+
+    except Exception as e:
+        print("Error updating teacher info:", e)
+
+
+def get_school_data(school_id):
+    # Connect to the SQLite database
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Execute a query to fetch data from the school table where id matches
+    cursor.execute("SELECT * FROM school WHERE id = ?", (school_id,))
+
+    # Fetch the result (only one row expected since id is unique)
+    row = cursor.fetchone()
+
+    # Close the connection
+    conn.close()
+
+    # Return the fetched data
+    return row
+
+
+# adds admin the entry log
+def log_out():
+    # Connect to the database
+    with sqlite3.connect(DB_PATH) as db_connection:
+        cursor = db_connection.cursor()
+
+        # cursor.execute("DELETE FROM logged_in_user")
+        query = """
+            SELECT user_id, full_name, email, type 
+            FROM users 
+            WHERE user_id = ?
+        """
+        cursor.execute(query, (LOGGED_IN_USER_ID,))
+        user_data = cursor.fetchone()
+
+        if user_data:
+
+            current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            new_tup = user_data + (current_datetime,) + ("logout",)
+
+            insert_query = """
+                INSERT OR REPLACE INTO logged_in_user (id, full_name, email, type, time, action)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """
+            cursor.execute(insert_query, new_tup)
+            db_connection.commit()
+
+        else:
+            raise ValueError(f"User with ID {LOGGED_IN_USER_ID} not found.")
+            #quuete exit
+
+
+
+
+def get_last_entries():
+    """Fetch the last 6 entries from the logged_in_user table using the timestamp."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Order by timestamp in descending order to get the latest entries
+    cursor.execute("SELECT * FROM logged_in_user ORDER BY time DESC LIMIT 6")
+    last_six_entries = cursor.fetchall()
+
+    conn.close()
+
+    # If you want the entries in chronological order (oldest first), reverse the list:
+    return last_six_entries[::-1]
+
+
+
+
 
 
 

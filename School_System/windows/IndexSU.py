@@ -40,6 +40,8 @@ class IndexSU(QMainWindow):
 
         print(School_System.__version__)
 
+
+
         #print(database.LOGGED_IN_USER_ID)
         self.dashboard_s.clicked.connect(self.sw_dash)
         self.dashboard_b.clicked.connect(self.sw_dash)
@@ -102,7 +104,7 @@ class IndexSU(QMainWindow):
         # removes the seconds tab in the tab widget for admin access
         # self.tabWidget.removeTab(1)#################"
 
-
+        self.display_last_entries()
 
         self.show_ids.stateChanged.connect(self.toggle_id_columns)
         self.filter_activity_type.currentIndexChanged.connect(self.apply_filters)
@@ -175,7 +177,8 @@ class IndexSU(QMainWindow):
         self.display_today_events()
         self.display_inactive_admins()
 ##################################################################################################################################
-
+    def closeEvent(self, event):
+        database.log_out()
 
     def greet_user(self):
         self.label_4.setText(f"{database.LOGGED_IN_USER_NAME}")
@@ -984,6 +987,50 @@ class IndexSU(QMainWindow):
 
         self.todays_events.setHtml(formatted_text)
 
+
+
+
+    def display_last_entries(self):
+        """Fetch and display the last 6 entry log records in a QTextEdit with formatting."""
+        # Assume you have a function in your database module that returns the last 6 entries:
+        # Each entry is a tuple: (id, name, email, role, timestamp, action)
+        last_entries = database.get_last_entries()  # or get_last_six_entries()
+
+        if last_entries:
+            formatted_text = "<h2>📋 Last 6 Entry Log</h2>"
+            # Build a table for a clear, tabular display
+            formatted_text += """
+            <table border="1" cellspacing="0" cellpadding="4" style="border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                </tr>
+            """
+            # Loop through each entry, ignoring the email (3rd field)
+            for entry in last_entries:
+                id, name, _, role, timestamp, action = entry
+                formatted_text += f"""
+                <tr>
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{role}</td>
+                    <td>{timestamp}</td>
+                    <td>{action}</td>
+                </tr>
+                """
+            formatted_text += "</table>"
+        else:
+            formatted_text = "<p><i>No entry logs available.</i></p>"
+
+        # Set the HTML content of your QTextEdit widget
+        self.entry_log_text_edit.setHtml(formatted_text)
+
+
+
+
     def load_events(self):
 
         self.calendar.clear_events()
@@ -1070,9 +1117,10 @@ class IndexSU(QMainWindow):
         )
 
         if confirmation == QMessageBox.StandardButton.Yes:
-            database.reset()
+
             from School_System.windows.login import Login
             self.close()
+            database.reset()
             if not hasattr(self, 'login_window') or self.login_window is None:
                 self.login_window = Login()
             self.login_window.show()

@@ -7,6 +7,7 @@ from PyQt6.QtGui import QColor ,QBrush,QIcon,QFont
 
 
 import School_System.helpers.db_utils as database
+from School_System.helpers.db_utils import add_teacher
 from School_System.ui import EDIT_TEACHER_DIALOG
 from School_System.resources import  ICONS
 from School_System.resources import  ICONS
@@ -21,9 +22,9 @@ class EditTeacherDialog(QDialog):
         uic.loadUi(EDIT_TEACHER_DIALOG, self)
 
         self.setWindowTitle("Edit Teacher")
+        self.teacher_info()
 
-
-        self.tree_widget.setHeaderLabel("Adem Boubaker")  # Se
+        #self.tree_widget.setHeaderLabel("Adem Boubaker")  # Se
         self.tree_widget.setColumnCount(2)
         self.add_subjects()
         self.add_classes_and_grades()
@@ -31,6 +32,9 @@ class EditTeacherDialog(QDialog):
         self.tree_widget.setColumnWidth(0, 200)
         self.tree_widget.setColumnWidth(1, 90)
         self.tree_widget.expandAll()
+        self.update_info.clicked.connect(self.update_teacher_info)
+        self.edit_button.clicked.connect(self.on_edit_press)
+        self.undoo_button.clicked.connect(self.undo_changes)
 
 
 ##################################
@@ -182,3 +186,136 @@ class EditTeacherDialog(QDialog):
             self.tree_widget.addTopLevelItem(leaf_item)
 
 
+    def teacher_info(self):
+
+        self.update_info.hide()
+        self.undoo_button.hide()
+
+        teacher_info = database.get_teacher_info(self.teacher_id)
+        self.tree_widget.setHeaderLabel(teacher_info[1])
+
+        full_name = teacher_info[1] if teacher_info[1] else ""
+        name_parts = full_name.split(" ", 1)
+
+        # Assign first and last name safely
+        first_name = name_parts[0] if len(name_parts) > 0 else ""
+        last_name = name_parts[1] if len(name_parts) > 1 else ""
+        self.name_field.setText(first_name)
+        self.last_name_field.setText(last_name)
+        self.email_field.setText(teacher_info[3])
+        self.phone_field.setText(teacher_info[2])
+        self.address_field.setText(teacher_info[4])
+        self.regestarion_date.setText(teacher_info[5])
+
+        self.name_field.setReadOnly(True)
+        self.last_name_field.setReadOnly(True)
+        self.email_field.setReadOnly(True)
+        self.phone_field.setReadOnly(True)
+        self.address_field.setReadOnly(True)
+        self.regestarion_date.setReadOnly(True)
+
+
+
+
+
+    def on_edit_press(self):
+        self.edit_button.hide()
+
+        self.update_info.show()
+        self.undoo_button.show()
+        self.name_field.setReadOnly(False)
+        self.last_name_field.setReadOnly(False)
+        self.email_field.setReadOnly(False)
+        self.phone_field.setReadOnly(False)
+        self.address_field.setReadOnly(False)
+        self.groupBox.setStyleSheet("""
+QLineEdit {
+    background-color: #eceff4; /* Light background */
+    color: #000000; /* Black text */
+    border: none; /* Remove default border */
+    border-bottom: 1px solid #4C566A; /* Subtle bottom border */
+    padding: 6px; /* Padding inside the field */
+    outline: none; /* Remove focus outline */
+}
+
+/* Focused Input Field */
+QLineEdit:focus {
+    border-bottom: 2px solid #88C0D0; /* Thicker light blue bottom border on focus */
+    background-color: #e1e9f2; /* Slightly lighter background on focus */
+}
+
+/* Placeholder Text */
+QLineEdit::placeholder {
+    color: #4C566A; /* Darker gray for placeholder text */
+}
+
+/* Label Style */
+QLabel {
+    color: #2e3440; /* Light text color */
+    font-weight: bold; /* Bold text to emphasize the label */
+    margin-top: 4px; /* Space between the label and the input field */
+}
+
+/* Optional: Focused Label Change (to match the input field) */
+QLineEdit:focus + QLabel {
+    color: #88C0D0; /* Change label color to light blue on focus */
+}
+
+""")
+
+
+
+
+
+    def update_teacher_info(self):
+
+        name = self.name_field.text()
+        last_name = self.last_name_field.text()
+        full_name = f"{name} {last_name}"
+        phone = self.phone_field.text()
+        email = self.email_field.text()
+        address = self.address_field.text()
+
+        if not name or not last_name or not phone or not email : return
+
+
+
+        new_data = {
+            "full_name": full_name,
+            "phone": phone,
+            "email": email,
+            "address": address,
+        }
+
+
+
+
+        self.tree_widget.setHeaderLabel(full_name)
+
+        database.update_teacher_info(self.teacher_id,new_data)
+        self.index_instance.setup_teachers_scroll()
+
+        self.groupBox.setStyleSheet("""     QLineEdit {
+        border: none;
+    } """)
+        self.name_field.setReadOnly(True)
+        self.last_name_field.setReadOnly(True)
+        self.email_field.setReadOnly(True)
+        self.phone_field.setReadOnly(True)
+        self.address_field.setReadOnly(True)
+        self.regestarion_date.setReadOnly(True)
+        self.update_info.hide()
+
+        self.edit_button.show()
+
+        self.update_info.hide()
+        self.undoo_button.hide()
+
+
+
+    def undo_changes(self):
+        self.groupBox.setStyleSheet("""     QLineEdit {
+              border: none;
+          } """)
+        self.edit_button.show()
+        self.teacher_info()

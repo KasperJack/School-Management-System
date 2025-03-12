@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1421</width>
+    <width>1435</width>
     <height>895</height>
    </rect>
   </property>
@@ -26,7 +26,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1410</width>
+      <width>1425</width>
       <height>858</height>
      </rect>
     </property>
@@ -1712,107 +1712,35 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <attribute name="title">
                   <string>Tab 2</string>
                  </attribute>
-                 <widget class="QGroupBox" name="groupBox">
-                  <property name="geometry">
-                   <rect>
-                    <x>420</x>
-                    <y>670</y>
-                    <width>431</width>
-                    <height>121</height>
-                   </rect>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>13</pointsize>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="title">
-                   <string>inactive Admins</string>
-                  </property>
-                  <layout class="QGridLayout" name="gridLayout_2">
-                   <item row="0" column="0">
-                    <widget class="QTableWidget" name="as">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="0" column="0">
+                   <widget class="QScrollArea" name="inactive_admins_scrollArea">
+                    <property name="widgetResizable">
+                     <bool>true</bool>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents">
+                     <property name="geometry">
+                      <rect>
+                       <x>0</x>
+                       <y>0</y>
+                       <width>1061</width>
+                       <height>491</height>
+                      </rect>
                      </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QHeaderView::section{
-font-weight: bold;
-background-color: black;
-color: white;
-
-}
-
-QTableWidget{
-alternate-background-color: #B0EDFB;
-#background-color: #FBFB9A;
-
-
-}</string>
-                     </property>
-                     <property name="alternatingRowColors">
-                      <bool>false</bool>
-                     </property>
-                     <column>
-                      <property name="text">
-                       <string>full name </string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>email</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>regestration date</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>actions</string>
-                      </property>
-                     </column>
                     </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                 <widget class="QScrollArea" name="inactive_admins_scrollArea">
-                  <property name="geometry">
-                   <rect>
-                    <x>30</x>
-                    <y>90</y>
-                    <width>981</width>
-                    <height>451</height>
-                   </rect>
-                  </property>
-                  <property name="widgetResizable">
-                   <bool>true</bool>
-                  </property>
-                  <widget class="QWidget" name="scrollAreaWidgetContents">
-                   <property name="geometry">
-                    <rect>
-                     <x>0</x>
-                     <y>0</y>
-                     <width>981</width>
-                     <height>451</height>
-                    </rect>
-                   </property>
-                  </widget>
-                 </widget>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QTextEdit" name="entry_log_text_edit">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>300</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                 <widget class="QWidget" name="tab_3">
                  <attribute name="title">
@@ -4198,8 +4126,8 @@ QScrollBar::add-line:vertical {
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>1042</width>
-                       <height>570</height>
+                       <width>72</width>
+                       <height>16</height>
                       </rect>
                      </property>
                     </widget>
