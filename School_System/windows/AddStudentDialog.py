@@ -123,6 +123,7 @@ class AddStudentDialog(QDialog):
 
     def update(self):
         self.clear_fields()
+        self.index_instance.load_classes_table()
         self.index_instance.load_students_to_table()
         self.index_instance.update_students_count()
         self.index_instance.refresh_setup_activity_log__table()

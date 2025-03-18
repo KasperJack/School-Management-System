@@ -115,6 +115,24 @@ class IndexSU(QMainWindow):
 
 
 
+        self.tabWidget.setTabText(0, "card-view")
+        self.tabWidget.setTabText(1, "table-view")
+
+        if database.LOGGED_IN_USER_ROLE == "admin":
+            #self.tabWidget_dash.removeTab(1)
+            #self.tabWidget_dash.removeTab(2)
+            #self.tabWidget_dash.hideTab(0)
+            self.tabWidget_dash.setTabVisible(1, False)
+            self.tabWidget_dash.setTabVisible(2, False)
+
+            #self.tabWidget_dash.setCurrentIndex(2)
+
+
+
+
+
+
+
         self.classes_table.verticalHeader().setVisible(False)
 
         self.classes_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -177,6 +195,14 @@ class IndexSU(QMainWindow):
         self.display_today_events()
         self.display_inactive_admins()
 ##################################################################################################################################
+
+    def hide_tab(self, index):
+        """Hides the tab at the given index."""
+        self.tab_widget.removeTab(index)
+        # store the removed widget for later use.
+        self.hidden_tab_widget = self.tab_widget.widget(index)
+
+
     def closeEvent(self, event):
         database.log_out()
 
@@ -1102,6 +1128,7 @@ class IndexSU(QMainWindow):
             self.load_classes_student_search()
             # self.index_instance.refresh_setup_activity_log__table()
             self.load_students_to_table()
+            self.setup_teachers_scroll()
 
 
 

@@ -18,10 +18,10 @@ load_dotenv()
 
 
 class ForgotPasswordDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, login_instance,parent=None):
         super().__init__(parent)
         uic.loadUi(FORGET_PASSWORD_DIALOG, self)
-
+        self.login_instance = login_instance
         self.setWindowTitle("forget password")
 
         self.check_mail_button.clicked.connect(self.check_email)
@@ -36,14 +36,15 @@ class ForgotPasswordDialog(QDialog):
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-
+        email = self.login_instance.email_field.text()
+        self.email_field.setText(email)
 
     def check_email(self):
         email = self.email_field.text()
 
-        if not email:
-            return
+        if not email:return
 
+        if "@" not in email: return
 
         if database.email_exists(email):
             self.user_mail = email
@@ -94,6 +95,9 @@ class ForgotPasswordDialog(QDialog):
         hash_password = self.hash_password(pass1)
 
         ### database update password where email = ?
+
+        database.update_password(self.user_mail,hash_password)
+        self.close()
 
 
 

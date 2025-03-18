@@ -36,7 +36,9 @@ class EditTeacherDialog(QDialog):
         self.edit_button.clicked.connect(self.on_edit_press)
         self.undoo_button.clicked.connect(self.undo_changes)
 
-
+        self.tabWidget.setTabText(0, "Info")
+        self.tabWidget.setTabText(1, "Classes")
+        self.tabWidget.setTabText(1, "Subjects")
 ##################################
 
 

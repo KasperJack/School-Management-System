@@ -295,7 +295,7 @@ class EditClassDialog(QDialog):
 
 
     def teacher_selection_changed(self):
-        #self.is_modified = True
+        self.is_modified = True
 
         # Get the sender (the combo box that triggered the signal)
         combo_box = self.sender()
@@ -317,7 +317,7 @@ class EditClassDialog(QDialog):
 
 
     def remove_teacher(self, row_index):
-        #self.is_modified = True
+        self.is_modified = True
         # Get Subject ID from the first column
         subject_id_item = self.subjects_table.item(row_index, 0)  # Column 0 for Subject ID
         subject_id = int(subject_id_item.text()) if subject_id_item else None

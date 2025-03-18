@@ -197,7 +197,7 @@ QLineEdit::placeholder {
        </font>
       </property>
       <property name="text">
-       <string>Full name </string>
+       <string>Name </string>
       </property>
      </widget>
     </item>

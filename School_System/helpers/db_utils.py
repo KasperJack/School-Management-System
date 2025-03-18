@@ -1,5 +1,6 @@
 
 import sqlite3
+from pickle import GLOBAL
 
 #from School_System.db import DB_PATH
 from School_System.db.DatabaseManager import db_manager_instance
@@ -23,6 +24,7 @@ print(DB_PATH)
 
 LOGGED_IN_USER_NAME = None
 LOGGED_IN_USER_ID = None
+LOGGED_IN_USER_ROLE = None
 PROFILE_PIC = None
 
 SUPERADMIN = "superadmin"
@@ -34,16 +36,19 @@ INVALID_CREDENTIALS = "invalid"
 
 
 def reset():
-    global LOGGED_IN_USER_ID, LOGGED_IN_USER_NAME, PROFILE_PIC
+    global LOGGED_IN_USER_ID, LOGGED_IN_USER_NAME, PROFILE_PIC,LOGGED_IN_USER_ROLE
     LOGGED_IN_USER_ID = None
     LOGGED_IN_USER_NAME = None
     PROFILE_PIC = None
+    LOGGED_IN_USER_ROLE = None
+
     #print(f"RESET DONE: {LOGGED_IN_USER_ID}, {LOGGED_IN_USER_NAME}, {PROFILE_PIC}")  # Debugging
 
 
 
 
 def login_user(email, password):
+    global LOGGED_IN_USER_ROLE
     ######## connect to the database ########
     with sqlite3.connect(DB_PATH) as db_connection:
         cursor = db_connection.cursor()
@@ -66,10 +71,12 @@ def login_user(email, password):
                     return USER_INACTIVE
                 if status == 'active':
                     if user_type == 'superadmin':
-                        log_user_in(id)  ## this logs the user time of entry
+                        log_user_in(id)
+                        LOGGED_IN_USER_ROLE = 'superadmin'
                         return SUPERADMIN
                     elif user_type == 'admin':
-                        log_user_in(id)  ## this logs the user time of entry
+                        log_user_in(id)
+                        LOGGED_IN_USER_ROLE = 'admin'
                         return ADMIN
             else:
                 return INVALID_CREDENTIALS
@@ -551,7 +558,34 @@ def get_classes_ids_grades():
 
 
 
+def update_password(user_email, new_password):
 
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+
+        # Update statement
+        update_query = """
+            UPDATE users
+            SET password = ?
+            WHERE email = ?
+        """
+        cursor.execute(update_query, (new_password, user_email))
+
+        # Commit the changes
+        conn.commit()
+
+        # Check if any row was updated
+        if cursor.rowcount > 0:
+            print(f"Password updated successfully for {user_email}.")
+        else:
+            print(f"No user found with email {user_email}.")
+
+    except sqlite3.Error as e:
+        print("An error occurred:", e)
+    finally:
+        if conn:
+            conn.close()
 
 
 def add_student(full_name, phone, email, gender, birth_date, address, class_id=None, photo =None):
