@@ -23,6 +23,8 @@ class ForgotPasswordDialog(QDialog):
         uic.loadUi(FORGET_PASSWORD_DIALOG, self)
         self.login_instance = login_instance
         self.setWindowTitle("forget password")
+        self.setFixedSize(440, 519)
+
 
         self.check_mail_button.clicked.connect(self.check_email)
         self.user_mail = None
